@@ -1,0 +1,143 @@
+{# ------------------------------------------------------- #}
+{# INDIVIDUAL VIEW FOR EACH projects #}
+{# This page can use any data from http:localhost:2000/cms/#/form/projects/ #}
+{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
+{# http://paularmstrong.github.io/swig/docs/tags/ #}
+{# Learn about calling data into Webhook pages here: #}
+{# http://www.webhook.com/docs/template-rules-and-filters/ #}
+{# ------------------------------------------------------- #}
+{# Confused what extends and blocks do? Watch a primer: #}
+{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
+{% extends "templates/partials/base.html" %}
+{# This sets our page <title>. It will append this projects's name to the site title defined in base.html #}
+{% block title %}{% parent %} - {{ item.name }}{% endblock %}
+{% block content %}
+  <p><a href="{{ url('projects') }}">View a list of all projects</a></p>
+  <h1>{{ item.name }}</h1>
+  <ul>
+      <li>
+        <strong>Name: </strong>
+        {{ item.name }}
+      </li>
+      <li>
+        <strong>Create Date: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ item.create_date|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Last Updated: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ item.last_updated|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Publish Date: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ item.publish_date|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Core Project Information: </strong>
+        {{ item.core_project_information }}
+      </li>
+      <li>
+        <strong>Summary: </strong>
+        {{ item.summary }}
+      </li>
+      <li>
+        <strong>Body: </strong>
+        {{ item.body|safe }}
+      </li>
+      <li>
+        <strong>Images: </strong>
+        {# You can pull out a lot more information from the gallery property. Info here: #}
+        {# http://www.webhook.com/docs/widget-template-reference/#image #}
+        <ul>
+          {% for image in item.images %}
+            <li>
+              {# You can get the raw image url by accessing image.url #}
+              <img src="{{ image|imageSize(200, 200) }}">
+              <div>{{ image.caption }}</div>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+      <li>
+        <strong>Collaborators: </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {% for relation in item.collaborators %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
+      </li>
+      <li>
+        <strong>Funders: </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {% for relation in item.funders %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
+      </li>
+      <li>
+        <strong>That&#39;s It!: </strong>
+        {{ item.thats_it }}
+      </li>
+      <li>
+        <strong>Updates: </strong>
+        {# Loop of your Repeatable Form items. Remember, you can sort the order in your CMS if you need. #}
+        <ul>
+        {% for row in item.updates %}
+            <li>
+              <strong>Title: </strong>
+              {{ row.title }}
+            </li>
+            <li>
+              <strong>date: </strong>
+              {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+                {{ row.date|date('F d Y') }}
+            </li>
+            <li>
+              <strong>Image: </strong>
+              {# You can pull out a lot more information from the image property. Info here: #}
+                {# http://www.webhook.com/docs/widget-template-reference/#image #}
+                <img src="{{ row.image|imageSize(200, 200) }}" />
+            </li>
+            <li>
+              <strong>text: </strong>
+              {{ row.text }}
+            </li>
+        {% endfor %}
+        </ul>
+      </li>
+      <li>
+        <strong>Preview URL: </strong>
+        {{ item.preview_url }}
+      </li>
+      <li>
+        <strong>Slug: </strong>
+        {{ item.slug }}
+      </li>
+      <li>
+        <strong>Takeaways: </strong>
+        {# Loop of your Repeatable Form items. Remember, you can sort the order in your CMS if you need. #}
+        <ul>
+        {% for row in item.takeaways %}
+            <li>
+              <strong>Team Member: </strong>
+              {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+                {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+                <a href="{{ url(row.team_member) }}">{{ row.team_member.name }}</a>
+            </li>
+            <li>
+              <strong>Image: </strong>
+              {# You can pull out a lot more information from the image property. Info here: #}
+                {# http://www.webhook.com/docs/widget-template-reference/#image #}
+                <img src="{{ row.image|imageSize(200, 200) }}" />
+            </li>
+            <li>
+              <strong>Paragraph text: </strong>
+              {{ row.paragraph_text }}
+            </li>
+        {% endfor %}
+        </ul>
+      </li>
+  </ul>
+{% endblock %}

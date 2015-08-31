@@ -1,0 +1,488 @@
+/*
+OBJECTS
+margins and padding	
+structure and position
+backgrounds
+animations
+forms
+fancy objects
+flexslider
+*/
+
+
+/********** @MARGINS AND PADDING *********/
+
+.m0{
+	margin: 0;
+}
+
+@for $i from 1 through 9 {
+  .m#{$i} { 
+  	margin-bottom: 1em * $i;
+  	margin-top: 1em * $i;
+  }
+}
+
+@for $i from 1 through 9 {
+  .mb#{$i} { 
+  	margin-bottom: 1em * $i;
+  }
+}
+
+@for $i from 1 through 9 {
+  .mt#{$i} { 
+  	margin-top: 1em * $i;
+  }
+}
+
+@for $i from 1 through 9 {
+  .ml#{$i} { 
+  	margin-left: 1em * $i;
+  }
+}
+
+@for $i from 1 through 9 {
+  .mr#{$i} { 
+  	margin-right: 1em * $i;
+  }
+}
+
+
+@for $i from 1 through 9 {
+  .p#{$i} { 
+  	padding: 1em * $i;
+  }
+}
+
+.padded-less{
+	padding-top: 2.5%;
+	padding-bottom: 2.5%;
+}
+
+.padded{
+	padding-top: 4%;
+	padding-bottom: 4.25%;
+}
+
+.padded-more{
+	padding-top: 8%;
+	padding-bottom: 9%;
+}
+
+
+
+/********** @BACKGROUNDS *********/
+
+.bg-white{
+	background: $ultra-light;
+}
+
+.bg-light{
+	background: $light;
+}
+
+.bg-brand{
+	background: $brand;
+}
+
+.bg-dark{
+	background: $dark;
+}
+
+.bg-yellow{
+	background: yellow;
+}
+
+.bg-pink{
+	background: pink;
+}
+
+.bg-orange{
+	background: orange;
+}
+
+.bg-green{
+	background: green;
+}
+
+
+.bg-gradient{
+ 	@include gradient();
+}
+
+.background-cover{
+	background-size: cover;
+}
+
+.background-mask-light{
+	&:before{
+		content: '';
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: rgba(255,255,255,.5);
+		@include transition(all);
+	}
+}
+
+.background-mask-dark{
+	&:before{
+		content: '';
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: rgba(40,30,30,.75);
+		@include transition(all);
+	}
+}
+
+
+/********** @BORDERS AND SHADOWS *********/
+
+.shadow{
+	@include box-shadow(0,0,1px,rgba(53,50,50,.35));
+}
+
+.border{
+	border: 2px solid;
+}
+
+.border-brand{
+	border: 2px solid $brand;
+}
+
+
+/********** @STRUCTURE AND POSITION *********/
+
+.full{
+	width: 100%;
+}
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+.vertical-center{
+	margin-top: 0;
+	position: relative;
+	top: 49%;
+	@include transform(translate(0,-50%));	
+}
+
+.display-block{
+	display: block;
+}
+
+.crop{
+	overflow: hidden;
+}
+
+
+
+/********** @ANIMATIONS *********/
+
+$slide-distance-vertical: 20px;
+
+.fade-in{
+	@include animation(fade-in, 1s, ease, 0s, 1);
+}
+@include keyframes(fade-in){
+	0% { opacity: 0;  }
+	100% { opacity: 1; }	
+}
+
+.fade-out{
+	@include animation(fade-out, 1s, ease, 0s, 1);
+}
+@include keyframes(fade-out){
+	0% { opacity: 1;  }
+	100% { opacity: 0; }	
+}
+
+.fade-in-slide-up{
+	@include animation(fade-in-slide-up, .5s, ease, 1s, 1);
+	position: relative;
+}
+@include keyframes(fade-in-slide-up){
+	0% { opacity: 0; top: $slide-distance-vertical; }
+	50% { opacity: 1; top: $slide-distance-vertical / 3; }
+	100% { opacity: 1; top: 0px; }	
+}
+
+.fade-in-slide-down{
+	@include animation(fade-in-slide-down, .5s, ease, 1s, 1);
+	position: relative;
+}
+@include keyframes(fade-in-slide-down){
+	0% { opacity: 0; top: -1 * $slide-distance-vertical; }	
+	50% { opacity: 1; top: -1 * ($slide-distance-vertical / 3); }
+	100% { opacity: 1; top: 0px; }	
+}
+
+
+
+/********** @FANCY OBJECTS *********/
+
+.loading{
+	opacity: 0;
+	@include transition(opacity,.25s);
+}
+
+.loaded{
+	opacity: 1;
+}
+
+.block{
+	position: relative;
+	width: 100%;
+	display: block;
+	z-index: 1;
+
+	&.crop{
+		overflow: hidden;
+	}
+
+	&.active{
+
+	}
+
+	&.activated{
+
+	}
+
+}
+
+.block-background{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	background-size: cover;
+	background-position: center top;	
+	
+	&:after{
+		content: '';
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: 2;
+		background: rgba(0,0,0,0);
+		@include transition(all);
+	}
+}
+
+.background{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#edit-button{
+	position: fixed;
+	bottom: 80px;
+	right: 30px;
+	z-index: 10000;
+	width: 40px;
+	height: 40px;
+	display: table;
+	@include transition();
+	background: #00f;
+	padding: 5px 9px;
+
+	&:hover{
+		bottom: 83px;
+		background: #11f;
+	}
+}
+
+
+/********** @FORMS *********/
+
+input,textarea{
+	//@include transition(all,.25s);
+	padding: 5px;
+	border: 1px solid $brand;
+	outline: none;
+	width: 100%;
+	max-width: 300px;
+	background: white;
+
+	&:focus{
+		outline: none;
+		border: 2px solid $brand;
+	}
+	
+	&[type="submit"]{
+		background: white;
+		padding: 10px 15px;
+		color: $brand;
+		width: auto;
+		text-align: center;
+	}
+	
+	&[type="checkbox"]{
+		max-width: 30px;
+		display: inline;
+	}	
+	
+}
+
+label{
+	font-size: 15px;
+	margin-bottom: 4px;
+	display: block;
+}
+
+gform_wrapper{
+	
+	.gfield{
+		margin-bottom: 20px;
+	}
+	
+	.gfield.gform_validation_container{
+		display: none;
+	}	
+	
+	.validation_error{
+		font-size: 18px;
+		padding: 15px 0;
+		border-bottom: 3px solid $error;
+		margin-bottom: 15px;
+	}
+	
+	.gfield_error{
+		border-bottom: 2px solid $error;
+	}
+	
+	.validation_message{
+		font-weight: bold;
+		font-size: 11px;
+		padding: 5px 0;
+	}
+	
+	.gfield_checkbox{
+		label{
+			display: inline;
+			max-width: none;
+		}
+		
+		li{
+			margin-bottom: 5px;
+		}
+	}	
+	
+	.gfield_required{
+		color: $brand;
+		margin-left: 5px;
+	}
+	
+}
+
+.gform_confirmation_message{
+	h1{
+		font-size: 30px;
+		color: white;
+		padding: 5px;
+	}
+	
+	font-size: 30px;
+}
+
+img.gform_ajax_spinner {
+    display: none !important;
+}
+
+
+/********** @FLEXSLIDER *********/
+
+.flexslider li {
+	background-size: cover;
+}
+
+.flexslider-direction{
+	height: 100%;
+	z-index: 6;
+	position: absolute;
+	right: 0;
+	width: auto;
+	height: 60px;
+	top: 48%;
+	margin-top: -30px;
+	@include transition(all,.25s);
+	
+	.icon:before{
+		font-size: 90px;
+		color: $brand;
+	}
+	
+	&.previous{
+		right: auto;
+		left: 0;
+	}
+	
+	&:hover{
+		cursor: pointer;
+		cursor: w-resize;
+	}
+	
+	&.next:hover{
+		cursor: pointer;
+		cursor: e-resize;
+	}
+	
+}
+
+.flexslider-controls{	
+	position: absolute;
+	width: 300px;
+	margin-left: -150px;
+	z-index: 6;
+	left: 50%;
+	text-align: center;
+	bottom: -40px;
+	height: 20px;
+	
+	li{
+		list-style: none;
+		margin: 0 7px;
+		display: inline-block;
+		overflow: hidden;
+		
+		a{
+			display: block;
+			text-indent: 9999px;
+			width: 15px;
+			height: 15px;
+			background: darken($light,5);	
+			@include border-radius(30px);
+
+			&:hover{
+				cursor: pointer;
+			}
+			
+			&.flex-active{
+				background: $brand;			
+			}	
+		}
+	}
+}
+
+
+
