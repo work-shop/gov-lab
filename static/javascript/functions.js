@@ -199,7 +199,7 @@ function loadPage(){
 
 $(document).on('spy-init', function() {
 
-	var current = undefined;
+	var current;
 	var previousBodyClass;
 
 	spied = {};
@@ -234,7 +234,7 @@ $(document).on('spy-init', function() {
 
 	 		current = d;
 	 	}
-	 })
+	 });
 
 
 	 $(window).on('scroll', function() {
