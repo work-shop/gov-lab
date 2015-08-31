@@ -41,8 +41,28 @@
         <img src="{{ item.logo|imageSize(200, 200) }}" />
       </li>
       <li>
+        <strong>Website: </strong>
+        {{ item.website }}
+      </li>
+      <li>
         <strong>Description: </strong>
         {{ item.description }}
+      </li>
+      <li>
+        <strong>Preview URL: </strong>
+        {{ item.preview_url }}
+      </li>
+      <li>
+        <strong>Slug: </strong>
+        {{ item.slug }}
+      </li>
+      <li>
+        <strong>Projects (Collaborators): </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {% for relation in item.projects_collaborators %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
       </li>
   </ul>
 {% endblock %}

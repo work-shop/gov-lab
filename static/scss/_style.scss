@@ -2,17 +2,52 @@
 
 /********** @STRUCTURE *********/
 
+body {
+	box-sizing:border-box;
+}
 
 /********** @HEADER *********/
 
+header {
+	height: $nav-height;
+}
 
 /********** @NAV *********/
 
 
+/********** @MENU *********/
+
+menu {
+	padding-left:10%;
+	position: relative;
+}
+
 /********** @FOOTER *********/
 
-
 /********** @FEATURE *********/
+
+/********** @hrs *************/
+
+hr {
+
+	border-bottom:1px solid $medium;
+
+	@extend .mb1;
+	@extend .mt1;
+	@extend .ml1;
+
+	&.hr-light {
+		border-bottom-color:$medium-light;
+	}
+
+	&.hr-dark {
+		border-bottom-color:$medium-dark;
+	}
+
+	&.hr-brand {
+		border-bottom:2px solid $brand;
+	}
+}
 
 
 

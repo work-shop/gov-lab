@@ -3,10 +3,13 @@
 $brand: #00f;
 $ultra-light: #fafafa;
 $light: #f1f1f1;
+$medium-light: darken( $light, 20 );
 $dark: #222222;
+$medium-dark: lighten( $dark, 20 );
+$medium: #555555;
 $error: #ff4a4a;
 
-$nav-height: 50px;
+$nav-height: 75px;
 $mobile-margins: 15px;
 
 $transitions: .25s;

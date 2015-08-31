@@ -35,6 +35,10 @@
         {{ item.publish_date|date('F d Y') }}
       </li>
       <li>
+        <strong>Shortname: </strong>
+        {{ item.shortname }}
+      </li>
+      <li>
         <strong>Core Project Information: </strong>
         {{ item.core_project_information }}
       </li>
@@ -138,6 +142,14 @@
             </li>
         {% endfor %}
         </ul>
+      </li>
+      <li>
+        <strong>Single line text: </strong>
+        {{ item.single_line_text }}
+      </li>
+      <li>
+        <strong>Single line text 1: </strong>
+        {{ item.single_line_text_1 }}
       </li>
   </ul>
 {% endblock %}

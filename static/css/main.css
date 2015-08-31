@@ -116,7 +116,7 @@ flexslider
   margin-top: 9em;
 }
 
-.mb1 {
+.mb1, hr {
   margin-bottom: 1em;
 }
 
@@ -152,7 +152,7 @@ flexslider
   margin-bottom: 9em;
 }
 
-.mt1 {
+.mt1, hr {
   margin-top: 1em;
 }
 
@@ -188,7 +188,7 @@ flexslider
   margin-top: 9em;
 }
 
-.ml1 {
+.ml1, hr {
   margin-left: 1em;
 }
 
@@ -947,7 +947,7 @@ img.gform_ajax_spinner {
 /********** @TYPOGRAPHY *********/
 body {
   font-size: 18px;
-  font-family: "SimplonNormRegular", Helvetica, Arial, sans-serif;
+  font-family: "SimplonNormLight", Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
 }
@@ -1058,10 +1058,38 @@ p {
 }
 
 /********** @STRUCTURE *********/
+body {
+  box-sizing: border-box;
+}
+
 /********** @HEADER *********/
+header {
+  height: 75px;
+}
+
 /********** @NAV *********/
+/********** @MENU *********/
+menu {
+  padding-left: 10%;
+  position: relative;
+}
+
 /********** @FOOTER *********/
 /********** @FEATURE *********/
+/********** @hrs *************/
+hr {
+  border-bottom: 1px solid #555555;
+}
+hr.hr-light {
+  border-bottom-color: #bebebe;
+}
+hr.hr-dark {
+  border-bottom-color: #555555;
+}
+hr.hr-brand {
+  border-bottom: 2px solid #00f;
+}
+
 /********** @RESPONSIVE *********/
 
 /*# sourceMappingURL=main.css.map */
