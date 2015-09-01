@@ -1,17 +1,55 @@
+{% set length = 5 %}
+
 <footer class="bg-white">
 
-	<div class="row bg-white">
+	<div class="row bg-white padded">
 		<div class="col-sm-offset-3 col-sm-2">
-			<h4>About</h4>
-			
+			<h5 class="bold">About</h5>
+			<ul>
+				<li><h5><a href="/about#what-we-do"></a>What We Do</h5></li>
+				<li><h5><a href="/about#our-team"></a>Our Team</h5></li>
+				<li><h5><a href="/about#collaborators"></a>Collaborators</h5></li>
+				<li><h5><a href="/about#sponsors"></a>Sponsors</h5></li>
+			</ul>
 		</div>
-		<div class="col-sm-offset-1 col-sm-4">
-			<h4>Projects</h4>
+		<div class="col-sm-3">
+			<h5 class="bold">Projects <a class="uppercase more" href="{{ url( cms.projects ) }}">See All</a></h5>
+			<ul>
+			{% for project in cms.projects|slice(0,length) %}
+				<li><h5><a href="{{ url( project ) }}">{{ project.shortname }}</a></h5></li>
+			{% endfor %}
+			</ul>
+		</div>
+		<div class="col-sm-3">
+			<h5 class="bold">News <a class="uppercase more" href="{{ url( cms.news ) }}">See All</a></h5>
+			<ul>
+			{% for news in cms.news|slice(0,length) %}
+				<li><h4><a href="{{ url( news ) }}">{{ news.name }}</a></h4></li>
+			{% endfor %}
+			</ul>
 		</div>
 	</div>
 
-	<div class="row bg-dark">
-		
+	<div class="row bg-dark padded">
+		<div class="row white mb2">
+			<div class="col-sm-offset-1 col-sm-4">MIT GOV/LAB</div>
+			<div class="col-sm-3">
+				<address id="office-address" class="mt1">
+					<h5 class="bold uppercase mb2 underline">Visit Us</h6>
+					<h5>30 Wadsworth Street</h6>
+					<h5>Building E53-430</h6>
+					<h5>Cambridge, MA 02142</h6>
+				</address>
+			</div>
+			<div class="col-sm-3">
+				<address id="mailing-address" class="mt1">
+					<h5 class="bold uppercase mb2 underline">Send Us Mail</h5>
+					<h5>77 Massachusetts Avenue</h5>
+					<h5>Building E53-430</h5>
+					<h5>Cambridge, MA 02139</h5>
+				</address>	
+			</div>
+		</div>
 	</div>
 
 </footer>
