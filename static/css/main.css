@@ -10,12 +10,12 @@ body:before {
 
 ::selection {
   color: white;
-  background: #00f;
+  background: #a31f34;
 }
 
 ::-moz-selection {
   color: white;
-  background: #00f;
+  background: #a31f34;
 }
 
 img, video, svg {
@@ -321,7 +321,7 @@ flexslider
 }
 
 .bg-brand {
-  background: #00f;
+  background: #a31f34;
 }
 
 .bg-dark {
@@ -406,7 +406,7 @@ flexslider
 }
 
 .border-brand {
-  border: 2px solid #00f;
+  border: 2px solid #a31f34;
 }
 
 /********** @STRUCTURE AND POSITION *********/
@@ -799,7 +799,7 @@ flexslider
 /********** @FORMS *********/
 input, textarea {
   padding: 5px;
-  border: 1px solid #00f;
+  border: 1px solid #a31f34;
   outline: none;
   width: 100%;
   max-width: 300px;
@@ -807,12 +807,12 @@ input, textarea {
 }
 input:focus, textarea:focus {
   outline: none;
-  border: 2px solid #00f;
+  border: 2px solid #a31f34;
 }
 input[type="submit"], textarea[type="submit"] {
   background: white;
   padding: 10px 15px;
-  color: #00f;
+  color: #a31f34;
   width: auto;
   text-align: center;
 }
@@ -855,7 +855,7 @@ gform_wrapper .gfield_checkbox li {
   margin-bottom: 5px;
 }
 gform_wrapper .gfield_required {
-  color: #00f;
+  color: #a31f34;
   margin-left: 5px;
 }
 
@@ -894,7 +894,7 @@ img.gform_ajax_spinner {
 }
 .flexslider-direction .icon:before {
   font-size: 90px;
-  color: #00f;
+  color: #a31f34;
 }
 .flexslider-direction.previous {
   right: auto;
@@ -941,7 +941,7 @@ img.gform_ajax_spinner {
   cursor: pointer;
 }
 .flexslider-controls li a.flex-active {
-  background: #00f;
+  background: #a31f34;
 }
 
 /********** @TYPOGRAPHY *********/
@@ -1041,7 +1041,7 @@ p {
 }
 
 .brand {
-  color: #00f;
+  color: #a31f34;
 }
 
 /********** @ICONS *********/
@@ -1087,7 +1087,7 @@ hr.hr-dark {
   border-bottom-color: #555555;
 }
 hr.hr-brand {
-  border-bottom: 2px solid #00f;
+  border-bottom: 2px solid #a31f34;
 }
 
 /********** @RESPONSIVE *********/

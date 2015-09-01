@@ -52,7 +52,7 @@
 
 
   <body {% block body_attributes %}{% endblock %}>
-    <div class="container-fluid">
+    <!-- <div class="container-fluid"> -->
     {% block body %}
         <!--[if lt IE 7]>
           <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
@@ -62,7 +62,6 @@
         {% block menu %}
           {% include "templates/partials/menu.html" %}
         {% endblock %}
-    
 
         {% block header %}
           {% include "templates/partials/header.html" %}
@@ -100,6 +99,6 @@
           s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
     {% endblock %}
-    </div>
+    <!-- </div> -->
   </body>
 </html>

@@ -9,13 +9,115 @@
 {# Confused what extends and blocks do? Watch a primer: #}
 {# http://www.webhook.com/docs/template-inheritance-blocks/ #}
 {% extends "templates/partials/base.html" %}
+
 {# This sets our page <title>. It will append this about's name to the site title defined in base.html #}
 {% block title %}{% parent %} - {{ cms.about.name }}{% endblock %}
 
 {% block content %}
 
-<div class="container-fluid">
+<section id="introduction bg-white">
+	<div class="row half-strict crop">
+		<div class="col-sm-12">
+			<img class="fade-in" src="{{ cms.about.hero_image|imageSize(1000) }}" />
+		</div>
+	</div>
+	<div class="row padded">
+		<div class=" col-sm-offset-1 col-sm-10 centered">
+			<h2>{{ cms.about.tagline }}</h2>
+		</div>
+	</div>
+</section>
 
-</div>
+<section id="what-we-do" class="bg-light padded">
+	<div class="row">
+		<div class="col-sm-offset-3 col-sm-8 padded">
+			<h3>
+				We discover new methods, technologies, and programs to make governments more accountable to their citizens.
+			</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-offset-3 col-sm-4">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pellentesque sapien tellus, in consectetur purus euismod sit amet. Quisque lobortis nunc eget mi venenatis, quis mattis metus lacinia. Phasellus ex risus, sagittis vel dui at, molestie scelerisque turpis. Maecenas rutrum justo eget nisi tincidunt sodales.</p>
+		</div>
+		<div class="col-sm-4">
+			<p>nulla ut fringilla pharetra, sem leo accumsan neque, eu tempor purus ligula quis tortor. Quisque commodo purus risus, sed aliquet lectus tincidunt et. Maecenas eleifend eros non dui pretium mattis. Fusce quis neque velit. Aliquam erat volutpat. Aenean eros ante, maximus eget libero at, lobortis suscipit nunc</p>
+		</div>
+	</div>
+	<div class="row">
+		{# Image for this section goes here. #}
+	</div>
+</section>
+
+<section id="our-team" class="bg-light padded">
+	<div class="row">
+		<div class="col-sm-offset-3 col-sm-8 padded">
+			<h3>
+				We've build a network of dedicated academics, researchers, graduate students, and partners.
+			</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		{% for person in cms.people %}
+
+			<div class="teammember {% if ( loop.index0 % 2 == 0 ) %}col-sm-offset-3{% endif %} col-sm-4 mb1">
+				<img class="teammember-image mb1" src="{{ person.image|imageSize(500,auto) }}" />
+				<h4 class="teammember-name bold">{{ person.name }}</h4>
+				<p class="teammember-description mb1">{{ person.bio }}</p>
+				<a href="mailto:{{ person.email }}">{{ person.email }}</a>
+			</div>
+
+		{% endfor %}
+	</div>
+</section>
+
+<section id="our-collaborators" class="bg-white padded">
+	<div class="row">
+		<div class="col-sm-offset-3 col-sm-8 padded">
+			<h3>
+				We've build a network of dedicated academics, researchers, graduate students, and partners.
+			</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		{% for collaborator in cms.collaborators %}
+			<div class="collaborator {% if ( loop.index0 % 4 == 0 ) %}col-sm-offset-3{% endif %} col-sm-2 mb1">
+				<a href="mailto:{{ collaborator.website }}"><img class="collaborator-logo mb1" src="{{ collaborator.logo|imageSize(200,auto) }}" /></a>
+			</div>
+
+		{% endfor %}
+	</div>
+</section>
+
+<section id="our-funders" class="bg-light padded">
+	<div class="row">
+		<div class="col-sm-offset-3 col-sm-6 padded">
+			<h3>
+				We're sponsored by groups that share our vision and provide support across the globe.
+			</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		{% for funder in cms.funders %}
+			<div class="funder {% if ( loop.index0 % 3 == 0 ) %}col-sm-offset-3{% endif %} col-sm-2 mb1">
+				<a href="mailto:{{ funder.website }}"><img class="funder-logo mb1" src="{{ funder.logo|imageSize(auto,200) }}" /></a>
+			</div>
+
+		{% endfor %}
+	</div>
+</section>
+
+<section id="back" class="bg-brand">
+	<div class="row">
+		<div class="col-sm-offset-3 col-sm-6 padded">
+			<h3>
+				Back To Home
+			</h3>
+		</div>
+	</div>
+</section>
 
 {% endblock %}

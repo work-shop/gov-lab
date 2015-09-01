@@ -41,6 +41,7 @@ function equal_width( target, selector ) {
 		//'.one-quarter': {callback:height, target: .25},
 		'.forty-five': {callback:height, target: 0.45},
 		'.half': {callback:height, target: 0.5},
+		'.half-strict': {callback:height_strict, target: 0.5},
 		'.half-h': {callback:width, target: 0.5},
 		'.ninety': {callback: height, target: 0.9},
 		'.ninety-h': {callback:width, target: 0.9},

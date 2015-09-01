@@ -1,4 +1,5 @@
 <menu class="bg-light hidden" >
+	<div class="container">
 
 	<div class="row">
 		<div class="col-sm-offset-1 col-sm-11"><span class="close pictogram">X</span></div>
@@ -33,7 +34,7 @@
 
 			{% for project in cms.projects|slice(cms.projects|size / 2, cms.projects|size) %}
 
-			<li><a href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
+			<li {% if ( getCurrentUrl() == url( project ) ) %} class="active" {% endif %}><a href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
 
 			{% endfor %}
 
@@ -43,7 +44,7 @@
 
 			{% for project in cms.projects|slice(0, cms.projects|size / 2) %}
 
-			<li><a href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
+			<li {% if ( getCurrentUrl() == url( project ) ) %} class="active" {% endif %}><a href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
 
 			{% endfor %}
 
@@ -53,7 +54,7 @@
 
 			{% for news in cms.news|slice(cms.news|size / 2, cms.news|size) %}
 
-			<li><a href="{{ url( news ) }}"><h5>{{ news.shortname }}</h5></a></li>
+			<li {% if ( getCurrentUrl() == url( news ) ) %} class="active" {% endif %}><a href="{{ url( news ) }}"><h5>{{ news.shortname }}</h5></a></li>
 
 			{% endfor %}
 			
@@ -63,7 +64,7 @@
 
 			{% for news in cms.news|slice(0, cms.news|size / 2) %}
 
-			<li><a href="{{ url( news ) }}"><h5>{{ news.shortname }}</h5></a></li>
+			<li {% if ( getCurrentUrl() == url( news ) ) %} class="active" {% endif %}><a href="{{ url( news ) }}"><h5>{{ news.shortname }}</h5></a></li>
 
 			{% endfor %}
 			
@@ -94,5 +95,6 @@
 
 	<div class="hidden row bg-white mb2">
 		<div class="col-sm-10 centered"><a class="uppercase" href='/about'>Learn About Us</a></div>
+	</div>
 	</div>
 </menu>
