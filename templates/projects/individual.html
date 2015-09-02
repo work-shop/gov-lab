@@ -9,147 +9,184 @@
 {# Confused what extends and blocks do? Watch a primer: #}
 {# http://www.webhook.com/docs/template-inheritance-blocks/ #}
 {% extends "templates/partials/base.html" %}
+
 {# This sets our page <title>. It will append this projects's name to the site title defined in base.html #}
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
+
 {% block content %}
-  <p><a href="{{ url('projects') }}">View a list of all projects</a></p>
-  <h1>{{ item.name }}</h1>
-  <ul>
-      <li>
-        <strong>Name: </strong>
-        {{ item.name }}
+<article id="project-{{ item.slug }}" class="bg-white">
+
+  <section id="project-body" class="bg-white">
+    <div class="row">
+      <div class="col-sm-3 bg-light">
+        
+      </div>
+      <div class="col-sm-9 bg-white">
+
+        <div class="row">
+          <div class="col-sm-12">
+            {% if ( item.images|size > 1 ) %}
+
+              <div class="flexslider">
+              <ul class="slides">
+                {% for image in project.images %}
+                  <li><img src="{{ image|imageCrop(1000,500) }}"></li>
+                {% endfor %}
+              </ul>
+              </div>
+
+            {% else %}
+  
+              <img src="{{ item.images|first|imageCrop(1000,500) }}">
+
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="row padded">
+          <div class="col-sm-offset-1 col-sm-10">
+            <h2 class="project-title">{{ item.name }}</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-offset-1 col-sm-10">
+            <h4 class="project-summary">{{ item.summary }}</h4>
+          </div>
+        </div>
+  
+        <div class="row mb2">
+        <hr class="col-sm-offset-1 col-sm-10 hr-brand" />
+        </div>
+
+        <div class="row">
+          <div class="col-sm-offset-1 col-sm-10">
+          {{ item.body|safe }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {% if ( item.updates ) %}
+  <section id="project-updates" class="bg-light padded">
+    <div class="row">
+    <div class="col-sm-offset-3 col-sm-9">
+
+      <ul>
+      {% for update in item.updates %}
+      <li class="row mb3">
+      
+        <div class="col-sm-offset-1 col-sm-10">
+          <h6 class="bold uppercase right">{{ update.date|date('m / d / y') }}</h6>
+        </div>
+
+        <div class="col-sm-offset-1 col-sm-4">
+          <img src="{{ update.image|imageSize(300) }}" alt="">
+        </div>
+
+        <div class="col-sm-6">
+          <hr class="hr-light mt0" >
+          <h3 class="mt0">{{ update.title }}</h3>
+          <p>{{ update.text }}</p>
+        </div>
+        
+        {#
+        <div class="col-sm-offset-1 col-sm-1">
+
+        </div>
+        #}
+
       </li>
-      <li>
-        <strong>Create Date: </strong>
-        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-        {{ item.create_date|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Last Updated: </strong>
-        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-        {{ item.last_updated|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Publish Date: </strong>
-        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-        {{ item.publish_date|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Shortname: </strong>
-        {{ item.shortname }}
-      </li>
-      <li>
-        <strong>Core Project Information: </strong>
-        {{ item.core_project_information }}
-      </li>
-      <li>
-        <strong>Summary: </strong>
-        {{ item.summary }}
-      </li>
-      <li>
-        <strong>Body: </strong>
-        {{ item.body|safe }}
-      </li>
-      <li>
-        <strong>Images: </strong>
-        {# You can pull out a lot more information from the gallery property. Info here: #}
-        {# http://www.webhook.com/docs/widget-template-reference/#image #}
-        <ul>
-          {% for image in item.images %}
-            <li>
-              {# You can get the raw image url by accessing image.url #}
-              <img src="{{ image|imageSize(200, 200) }}">
-              <div>{{ image.caption }}</div>
-            </li>
-          {% endfor %}
-        </ul>
-      </li>
-      <li>
-        <strong>Collaborators: </strong>
-        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-        {% for relation in item.collaborators %}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
-        {% endfor %}
-      </li>
-      <li>
-        <strong>Funders: </strong>
-        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-        {% for relation in item.funders %}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
-        {% endfor %}
-      </li>
-      <li>
-        <strong>That&#39;s It!: </strong>
-        {{ item.thats_it }}
-      </li>
-      <li>
-        <strong>Updates: </strong>
-        {# Loop of your Repeatable Form items. Remember, you can sort the order in your CMS if you need. #}
-        <ul>
-        {% for row in item.updates %}
-            <li>
-              <strong>Title: </strong>
-              {{ row.title }}
-            </li>
-            <li>
-              <strong>date: </strong>
-              {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-                {{ row.date|date('F d Y') }}
-            </li>
-            <li>
-              <strong>Image: </strong>
-              {# You can pull out a lot more information from the image property. Info here: #}
-                {# http://www.webhook.com/docs/widget-template-reference/#image #}
-                <img src="{{ row.image|imageSize(200, 200) }}" />
-            </li>
-            <li>
-              <strong>text: </strong>
-              {{ row.text }}
-            </li>
-        {% endfor %}
-        </ul>
-      </li>
-      <li>
-        <strong>Preview URL: </strong>
-        {{ item.preview_url }}
-      </li>
-      <li>
-        <strong>Slug: </strong>
-        {{ item.slug }}
-      </li>
-      <li>
-        <strong>Takeaways: </strong>
-        {# Loop of your Repeatable Form items. Remember, you can sort the order in your CMS if you need. #}
-        <ul>
-        {% for row in item.takeaways %}
-            <li>
-              <strong>Team Member: </strong>
-              {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-                {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-                <a href="{{ url(row.team_member) }}">{{ row.team_member.name }}</a>
-            </li>
-            <li>
-              <strong>Image: </strong>
-              {# You can pull out a lot more information from the image property. Info here: #}
-                {# http://www.webhook.com/docs/widget-template-reference/#image #}
-                <img src="{{ row.image|imageSize(200, 200) }}" />
-            </li>
-            <li>
-              <strong>Paragraph text: </strong>
-              {{ row.paragraph_text }}
-            </li>
-        {% endfor %}
-        </ul>
-      </li>
-      <li>
-        <strong>Single line text: </strong>
-        {{ item.single_line_text }}
-      </li>
-      <li>
-        <strong>Single line text 1: </strong>
-        {{ item.single_line_text_1 }}
-      </li>
-  </ul>
+      {% endfor %}
+      </ul>
+
+    </div>
+  </section>
+  {% endif %}
+
+  {% if ( item.takeaways ) %}
+  <section id="project-takeaways" class="bg-white padded">
+        <div class="row">
+          <div class="col-sm-offset-3 col-sm-9">
+            <ul>
+
+            {% for takeaway in item.takeaways %}
+
+              <li class="row mb3">
+
+              {% if ( takeaway.team_member ) %}
+
+                <div class="col-sm-offset-1 col-sm-4">
+                  <img class="teammember-image mb1" src="{% if ( takeaway.image ) %}{{ takeaway.image|imageSize(400)}}{% else %}{{ takeaway.team_member.image|imageSize(400) }}{% endif %}" alt="">
+                  <h4 class="teammember-name bold">{{ takeaway.team_member.name }}</h4>
+                  <p class="teammember-description mb1">{{ takeaway.team_member.bio }}</p>
+                  <a href="mailto:{{ takeaway.team_member.email }}">{{ takeaway.team_member.email }}</a>
+                </div>
+
+                <div class="col-sm-6">
+                  <p>{{ takeaway.text }}</p>
+                </div>
+
+              {% elseif ( takeaway.image ) %}
+
+                <div class="col-sm-offset-1 col-sm-4">
+                  <img src="{{ takeaway.image|imageSize(400)}}" alt="">
+                </div>
+                <div class="col-sm-6">
+                  <p class="h4">{{ takeaway.text }}</p>
+                </div>
+
+              {% else %}
+
+                <div class="col-sm-offset-1 col-sm-10">
+                  <p class="h4">{{ takeaway.text }}</p>
+                </div>
+
+              {% endif %}
+
+              </li>
+
+            {% endfor %} 
+
+            </ul>  
+          </div>
+        </div>
+  </section>
+  {% endif %}
+
+  <section id="project-sponsors" class="bg-light padded">
+        <div class="row">
+          <div class="col-sm-offset-3 col-sm-9">
+            <ul>
+            {% for sponsor in merge(item.collaborators, item.funders) %}
+              <li class="fade-in {% if ( loop.index0 % 3 == 0 ) %} col-sm-offset-1 {% endif %} col-sm-3">
+                <a href="{{ sponsor.website }}"><img src="{{ sponsor.logo|imageSize(400) }}" alt=""></a>
+              </li>
+            {% endfor %}
+            </ul>  
+          </div>
+        </div>
+  </section>
+
+</article>
+
+<section id="back" class="bg-brand">
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6 padded">
+      <h3>
+        Back To Home
+      </h3>
+    </div>
+  </div>
+</section>
 {% endblock %}
+
+
+
+
+
+
+
+

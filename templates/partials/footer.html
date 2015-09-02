@@ -6,17 +6,17 @@
 		<div class="col-sm-offset-3 col-sm-2">
 			<h5 class="bold">About</h5>
 			<ul>
-				<li><h5><a href="/about#what-we-do"></a>What We Do</h5></li>
-				<li><h5><a href="/about#our-team"></a>Our Team</h5></li>
-				<li><h5><a href="/about#collaborators"></a>Collaborators</h5></li>
-				<li><h5><a href="/about#sponsors"></a>Sponsors</h5></li>
+				<li><h5><a href="/about#what-we-do">What We Do</a></h5></li>
+				<li><h5><a href="/about#our-team">Our Team</a></h5></li>
+				<li><h5><a href="/about#collaborators">Collaborators</a></h5></li>
+				<li><h5><a href="/about#sponsors">Sponsors</a></h5></li>
 			</ul>
 		</div>
 		<div class="col-sm-3">
 			<h5 class="bold">Projects <a class="uppercase more" href="{{ url( cms.projects ) }}">See All</a></h5>
 			<ul>
 			{% for project in cms.projects|slice(0,length) %}
-				<li><h5><a href="{{ url( project ) }}">{{ project.shortname }}</a></h5></li>
+				<li><h5><a {% if  ( getCurrentUrl() == url( project ) ) %}class="active" {% endif %} href="{{ url( project ) }}">{{ project.shortname }}</a></h5></li>
 			{% endfor %}
 			</ul>
 		</div>
@@ -24,7 +24,7 @@
 			<h5 class="bold">News <a class="uppercase more" href="{{ url( cms.news ) }}">See All</a></h5>
 			<ul>
 			{% for news in cms.news|slice(0,length) %}
-				<li><h4><a href="{{ url( news ) }}">{{ news.name }}</a></h4></li>
+				<li><h5><a {% if  ( getCurrentUrl() == url( news ) ) %}class="active" {% endif %} href="{{ url( news ) }}">{{ news.name }}</a></h5></li>
 			{% endfor %}
 			</ul>
 		</div>

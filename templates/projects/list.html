@@ -11,6 +11,7 @@
 {# ------------------------------------------------------- #}
 
 {# Confused what extends and blocks do? Watch a primer: #}
+
 {# http://www.webhook.com/docs/template-inheritance-blocks/ #}
 {% extends "templates/partials/base.html" %}
 
@@ -19,26 +20,108 @@
 
 {% block content %}
 
-  {# The first thing we do is call projects data from the CMS. #}
-  {% set data = cms.projects %}
+  {% set projects = cms.projects|sort('publish_date', true) %}
 
-  {# Next we sort the data by publish_date. The true bit reverses it so it's newest first. Learn more: #}
-  {# http://www.webhook.com/docs/template-rules-and-filters/#sortproperty_reverseorder #}
-  {% set data = data|sort('publish_date', true) %}
+  <section id="projects-introduction" class="bg-white padded">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 centered">
+          <h2>Our research projects are built on close collaboration <br class="hidden-xs" /> with social enterprises and governments.</h2>
+        </div>
+      </div>
+  </section>
 
-  {# This is how you set pagination. It's always important to do this after your sort. #}
-  {% set data = paginate(data, 5) %}
+  <section id="projects-filters" class="bg-light padded">
+      <div class="row">
 
-  <h1>List of projects</h1>
+        <div class="col-sm-offset-1 col-sm-4">
+          <h5 class="uppercase bold">Sort By Region <a href="#map" class="uppercase">(See Map)</a></h5>
+          <hr class="hr-dark full">
+          <ul class="row">
+            
+            {% for region in cms.regions %}
 
-  {# This forloop can use any data from http:localhost:2000/cms/#/form/projects/ #}
+              <li class="region col-sm-4 uppercase"><a href="#"><h5 class="bold">{{ region.name }}</h5></a></li>
+
+            {% endfor %}
+
+          </ul>
+        </div>
+
+        <div class="col-sm-offset-1 col-sm-4">
+          <h5 class="uppercase bold">Sort By Topic</h5>
+          <hr class="hr-dark full">
+          <ul class="row">
+            {# Turn this into actual taxonomy terms #}
+            <li class="topic col-sm-4 uppercase"><a href="#"><h5 class="bold">Education</h5></a></li>
+            <li class="topic col-sm-4 uppercase"><a href="#"><h5 class="bold">Government</h5></a></li>
+            <li class="topic col-sm-4 uppercase"><a href="#"><h5 class="bold">Health</h5></a></li>
+
+          </ul>
+        </div>
+      </div>
+  </section>
+
+  <section id="active-filter" class="bg-white mt2">
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-2"><h5 class="uppercase bold brand">All Projects</h5></div>
+    </div>
+  </section>
+
+  <section id="projects" class="bg-white">
   <ul>
-    {% for object in data %}
-      <li><a href="{{ url(object) }}">{{ object.name }}</a></li>
-    {% endfor %}
-  </ul>
+    {% for project in projects %}
+      <li class="project row padded">
+        <div class="col-sm-offset-1 col-sm-5">
+          {% if ( loop.index0 % 2 == 0 ) %}
 
-  {# The actual pagination template, feel free to edit or replace the default one. #}
-  {% include "templates/partials/paginator.html" %}
+            {% if ( project.images|size > 1 ) %}
+
+              <div class="flexslider">
+              <ul class="slides">
+                {% for image in project.images %}
+                  <li><img src="{{ image|imageSize(500) }}"></li>
+                {% endfor %}
+              </ul>
+              </div>
+
+            {% else %}
+              <img src="{{ project.images|first|imageSize(500) }}">
+            {% endif %}
+
+          {% else %}
+
+          {% endif %}
+        </div>
+        <div class="col-sm-5">
+          {% if ( loop.index0 % 2 == 0 ) %}
+          
+          <h3 class="bold mt0 mb2"> {{ project.name }} </h3>
+
+          <h4 class="mb2">{{ project.summary }}</h4>
+
+          <a class="uppercase underline bold" href="{{ url( project ) }}">View Project</a>
+
+          {% else %}
+          {% endif %}         
+        </div>
+      </li>
+    {% endfor %}
+  </ul>  
+  </section>
+
+  <section id="map">
+    {# map goes in here, kid. #}
+  </section>
+
+  <section id="back" class="bg-brand">
+    <div class="row">
+      <div class="col-sm-offset-3 col-sm-6 padded">
+        <h3>
+          Back To Home
+        </h3>
+      </div>
+    </div>
+  </section>
+
 
 {% endblock %}
