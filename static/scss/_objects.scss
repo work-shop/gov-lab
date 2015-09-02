@@ -1,5 +1,6 @@
 /*
 OBJECTS
+colors
 margins and padding	
 structure and position
 backgrounds
@@ -9,46 +10,47 @@ fancy objects
 flexslider
 */
 
+/********** @COLORS ********************/
+
+.brand {
+	color:$brand;
+}
 
 /********** @MARGINS AND PADDING *********/
 
-.m0{
-	margin: 0;
-}
-
-@for $i from 1 through 9 {
+@for $i from 0 through 9 {
   .m#{$i} { 
   	margin-bottom: 1em * $i;
   	margin-top: 1em * $i;
   }
 }
 
-@for $i from 1 through 9 {
+@for $i from 0 through 9 {
   .mb#{$i} { 
   	margin-bottom: 1em * $i;
   }
 }
 
-@for $i from 1 through 9 {
+@for $i from 0 through 9 {
   .mt#{$i} { 
   	margin-top: 1em * $i;
   }
 }
 
-@for $i from 1 through 9 {
+@for $i from 0 through 9 {
   .ml#{$i} { 
   	margin-left: 1em * $i;
   }
 }
 
-@for $i from 1 through 9 {
+@for $i from 0 through 9 {
   .mr#{$i} { 
   	margin-right: 1em * $i;
   }
 }
 
 
-@for $i from 1 through 9 {
+@for $i from 0 through 9 {
   .p#{$i} { 
   	padding: 1em * $i;
   }

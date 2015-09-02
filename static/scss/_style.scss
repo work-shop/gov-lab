@@ -10,6 +10,7 @@ body {
 
 header {
 	height: $nav-height;
+	border-bottom:1px solid $light;
 }
 
 /********** @NAV *********/
@@ -26,11 +27,25 @@ menu {
 
 /********** @FEATURE *********/
 
+/********** @active ***********/
+
+.active {
+	@extend .bold;
+}
+
+nav > .active {
+	@extend .brand;
+}
+
+
+
 /********** @hrs *************/
 
 hr {
 
 	border-bottom:1px solid $medium;
+
+	@include transform(translate(-15px,0)); // -ish
 
 	@extend .mb1;
 	@extend .mt1;
@@ -41,7 +56,7 @@ hr {
 	}
 
 	&.hr-dark {
-		border-bottom-color:$medium-dark;
+		border-bottom:2px solid $medium-dark;
 	}
 
 	&.hr-brand {
@@ -49,7 +64,9 @@ hr {
 	}
 }
 
-
+.project {
+	//border-bottom: 1px solid $light;
+}
 
 /********** @RESPONSIVE *********/
 

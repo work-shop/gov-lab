@@ -29,6 +29,7 @@ a {
   text-decoration: none;
 }
 a:hover, a:focus {
+  color: #a31f34;
   text-decoration: none;
   outline: none;
 }
@@ -58,6 +59,7 @@ ol, ul {
 }
 /*
 OBJECTS
+colors
 margins and padding	
 structure and position
 backgrounds
@@ -66,9 +68,15 @@ forms
 fancy objects
 flexslider
 */
+/********** @COLORS ********************/
+.brand, nav > .active {
+  color: #a31f34;
+}
+
 /********** @MARGINS AND PADDING *********/
 .m0 {
-  margin: 0;
+  margin-bottom: 0em;
+  margin-top: 0em;
 }
 
 .m1 {
@@ -116,6 +124,10 @@ flexslider
   margin-top: 9em;
 }
 
+.mb0 {
+  margin-bottom: 0em;
+}
+
 .mb1, hr {
   margin-bottom: 1em;
 }
@@ -150,6 +162,10 @@ flexslider
 
 .mb9 {
   margin-bottom: 9em;
+}
+
+.mt0 {
+  margin-top: 0em;
 }
 
 .mt1, hr {
@@ -188,6 +204,10 @@ flexslider
   margin-top: 9em;
 }
 
+.ml0 {
+  margin-left: 0em;
+}
+
 .ml1, hr {
   margin-left: 1em;
 }
@@ -224,6 +244,10 @@ flexslider
   margin-left: 9em;
 }
 
+.mr0 {
+  margin-right: 0em;
+}
+
 .mr1 {
   margin-right: 1em;
 }
@@ -258,6 +282,10 @@ flexslider
 
 .mr9 {
   margin-right: 9em;
+}
+
+.p0 {
+  padding: 0em;
 }
 
 .p1 {
@@ -1024,7 +1052,7 @@ p {
   text-align: right;
 }
 
-.bold {
+.bold, .active {
   font-weight: bold;
 }
 
@@ -1040,7 +1068,7 @@ p {
   color: #222222;
 }
 
-.brand {
+.brand, nav > .active {
   color: #a31f34;
 }
 
@@ -1065,6 +1093,7 @@ body {
 /********** @HEADER *********/
 header {
   height: 75px;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 /********** @NAV *********/
@@ -1076,15 +1105,21 @@ menu {
 
 /********** @FOOTER *********/
 /********** @FEATURE *********/
+/********** @active ***********/
 /********** @hrs *************/
 hr {
   border-bottom: 1px solid #555555;
+  transform: translate(-15px, 0);
+  -moz-transform: translate(-15px, 0);
+  -webkit-transform: translate(-15px, 0);
+  -o-transform: translate(-15px, 0);
+  -ms-transform: translate(-15px, 0);
 }
 hr.hr-light {
   border-bottom-color: #bebebe;
 }
 hr.hr-dark {
-  border-bottom-color: #555555;
+  border-bottom: 2px solid #555555;
 }
 hr.hr-brand {
   border-bottom: 2px solid #a31f34;
