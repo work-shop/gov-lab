@@ -15,27 +15,61 @@
 {% extends "templates/partials/base.html" %}
 
 {# This sets our page <title>. It will append "- Homepage" to the site title defined in base. #}
-{% block title %}{% parent %} - Homepage{% endblock %}
+{% block title %}{% parent %}{% endblock %}
 
 {% block content %}
 
-  <h1>Hello world!</h1>
+<section id="home-introduction" class="bg-light half">
+  
+</section>
 
-  <p>This is your homepage, located at /pages/index.html.</p>
+<section id="home-tagline" class="bg-white padded">
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-10 centered">
+      <h2 class="tagline mb2">The MIT GOV/LAB is a group of political scientists focusing on innovation in citizen engagement and government responsiveness.</h2>
+      <a class="uppercase" href="/about">Learn About Us</a>
+    </div>
+  </div>
+  
+</section>
 
-  <p><a href="/cms/">Looking for the CMS?</a></p>
+<section id="home-map" class="bg-light padded">
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-3">
+      <h3 class="mb2">Our work spans the globe.</h3>
+      <p class="mb2">We take a special interest in citizen engagement by under resourced groups and government accountability in challenging contexts.</p>
+      <a class="uppercase" href="/projects">See Our Projects</a>
+    </div>
+  </div>
+</section>
 
-  {# If you have at least content page type, we show a list. #}
-  {% if cms_types|size !== 0 %}
+<section id="home-updates" class="bg-white padded">
+  <div class="">
+    <ul class="slides">
 
-    <h3>Content types you've created in the CMS so far.</h3>
+      <li class="row">
+        <div class="col-sm-offset-1 col-sm-6">
+          
+        </div>
+        <div class="col-sm-4">
+          <h3 class="mb2">We collaborate on meaningful interventions with measurable outcomes.</h3> 
+          <p class="mb2">We take a special interest in citizen engagement by under resourced groups and government accountability in challenging contexts.</p>
+          <a class="uppercase" href="/projects">Read our Latest Updates</a> 
+        </div>
+      </li>
 
-    <ul>
-    {% for type in cms_types %}
-      <li><a href="{{ url(type) }}">{{ type.name }}</a></li>
-    {% endfor %}
     </ul>
+  </div>
+</section>
 
-  {% endif %}
+<section id="back" class="bg-brand">
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-10 padded centered">
+      <h3>
+        Subscribe to our mailing list to watch our progress
+      </h3>
+    </div>
+  </div>
+</section>
 
 {% endblock %}

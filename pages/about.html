@@ -18,7 +18,7 @@
 <section id="introduction bg-white">
 	<div class="row half-strict crop">
 		<div class="col-sm-12">
-			<img class="fade-in" src="{{ cms.about.hero_image|imageSize(1000) }}" />
+			<img class="fade-in" src="{{ cms.about.hero_image|imageCrop(1000,500) }}" />
 		</div>
 	</div>
 	<div class="row padded">
@@ -84,7 +84,7 @@
 	<div class="row">
 		{% for collaborator in cms.collaborators %}
 			<div class="collaborator {% if ( loop.index0 % 4 == 0 ) %}col-sm-offset-3{% endif %} col-sm-2 mb1">
-				<a href="mailto:{{ collaborator.website }}"><img class="collaborator-logo mb1" src="{{ collaborator.logo|imageSize(200,auto) }}" /></a>
+				<a href="{{ collaborator.website }}"><img class="collaborator-logo mb1" src="{{ collaborator.logo|imageSize(200,auto) }}" /></a>
 			</div>
 
 		{% endfor %}
@@ -103,7 +103,7 @@
 	<div class="row">
 		{% for funder in cms.funders %}
 			<div class="funder {% if ( loop.index0 % 3 == 0 ) %}col-sm-offset-3{% endif %} col-sm-2 mb1">
-				<a href="mailto:{{ funder.website }}"><img class="funder-logo mb1" src="{{ funder.logo|imageSize(auto,200) }}" /></a>
+				<a href="{{ funder.website }}"><img class="funder-logo mb1" src="{{ funder.logo|imageSize(auto,200) }}" /></a>
 			</div>
 
 		{% endfor %}

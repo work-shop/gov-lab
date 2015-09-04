@@ -19,26 +19,78 @@
 
 {% block content %}
 
-  {# The first thing we do is call news data from the CMS. #}
-  {% set data = cms.news %}
+<section id="news-introduction" class="bg-light padded">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1 centered">
+        <h2>Follow our latest news, project updates, and research publications, <br class="hidden-xs"> or subscribe to our newsletter.</h2>
+      </div>
+    </div>
+</section>
 
-  {# Next we sort the data by publish_date. The true bit reverses it so it's newest first. Learn more: #}
-  {# http://www.webhook.com/docs/template-rules-and-filters/#sortproperty_reverseorder #}
-  {% set data = data|sort('publish_date', true) %}
+<section id="news-body" class="bg-white padded">
+  <div class="row">
+    <div class="col-sm-3 bg-white">
+      
+    </div>
+    <div class="col-sm-9 bg-white">
+      <ul>
 
-  {# This is how you set pagination. It's always important to do this after your sort. #}
-  {% set data = paginate(data, 5) %}
+      {% for news in cms.news|sort('publish_date') %}
 
-  <h1>List of news</h1>
+      <li class="row">
+        {% if ( news.category ) %}
+        <div class="col-sm-offset-10 col-sm-2">
+          <h6 class="bold uppercase">{{ news.category.name }}</h6>
+        </div>
+        {% endif %}
 
-  {# This forloop can use any data from http:localhost:2000/cms/#/form/news/ #}
-  <ul>
-    {% for object in data %}
-      <li><a href="{{ url(object) }}">{{ object.name }}</a></li>
-    {% endfor %}
-  </ul>
+        <div class="col-sm-offset-1 col-sm-10">
+          <hr class="hr-light mt0" >
+        </div>
 
-  {# The actual pagination template, feel free to edit or replace the default one. #}
-  {% include "templates/partials/paginator.html" %}
+        {% if ( news.cover_image ) %}
+
+          <div class="col-sm-offset-1 col-sm-4 mt1">
+            <img src="{{ news.cover_image|imageSize(300) }}" alt="">
+          </div>
+
+          <div class="col-sm-4 mt1">
+            <a href="{{ url(news) }}"><h3 class="mb1 mt0">{{ news.name }}</h3></a>
+            <p>{{ news.summary }}</p>
+          </div>
+
+        {% else %}
+
+          <div class="col-sm-offset-1 col-sm-8m mt1">
+            
+            <a href="{{ url(news) }}"><h3 class="mt0 mb1 bold">{{ news.name }}</h3></div></a>
+            <p class="h4">{{ news.summary }}</p>
+          </div>
+
+        {% endif %}
+ 
+        <div class="col-sm-offset-1 col-sm-2">
+          <h6 class="bold uppercase">{{ news.publish_date|date('m / d / y') }}</h6> 
+          {% if ( news.author ) %}
+            <h6 class="bold uppercase">{{ news.author.name }}</h6> 
+          {% endif %}
+        </div>
+      </li>
+
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="back" class="bg-dark">
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6 padded">
+      <h3>
+        Back To Home
+      </h3>
+    </div>
+  </div>
+</section>
 
 {% endblock %}

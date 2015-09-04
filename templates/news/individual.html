@@ -12,37 +12,57 @@
 {# This sets our page <title>. It will append this news's name to the site title defined in base.html #}
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 {% block content %}
-  <p><a href="{{ url('news') }}">View a list of all news</a></p>
-  <h1>{{ item.name }}</h1>
-  <ul>
-      <li>
-        <strong>Name: </strong>
-        {{ item.name }}
-      </li>
-      <li>
-        <strong>Create Date: </strong>
-        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-        {{ item.create_date|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Last Updated: </strong>
-        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-        {{ item.last_updated|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Publish Date: </strong>
-        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-        {{ item.publish_date|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Author: </strong>
-        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-        {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-        <a href="{{ url(item.author) }}">{{ item.author.name }}</a>
-      </li>
-      <li>
-        <strong>Story: </strong>
-        {{ item.story|safe }}
-      </li>
-  </ul>
+<article class="news">
+  <section id="news-story">
+  <div class="row">
+
+    <div class="col-sm-3 bg-brand">
+      
+    </div>
+
+    <div class="col-sm-9 bg-white">
+
+      <div class="row">
+        <div class="col-sm-12">
+          <img class="fade-in" src="{{ item.cover_image|imageCrop(1000,500)}}">
+        </div>
+      </div>
+
+       <div class="row padded">
+          <div class="col-sm-offset-1 col-sm-10">
+            <h2 class="project-title">{{ item.name }}</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-offset-1 col-sm-10">
+            <h4 class="project-summary">{{ item.summary }}</h4>
+          </div>
+        </div>
+  
+        <div class="row mb2">
+        <hr class="col-sm-offset-1 col-sm-10 hr-brand" />
+        </div>
+
+        <div class="row mb2">
+          <div class="col-sm-offset-1 col-sm-10">
+          {{ item.story|safe }}
+          </div>
+        </div>
+
+    </div>
+
+  </div>
+  </section>
+</article>
+
+<section id="back" class="bg-dark">
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6 padded">
+      <h3>
+        Back To Home
+      </h3>
+    </div>
+  </div>
+</section>
 {% endblock %}
