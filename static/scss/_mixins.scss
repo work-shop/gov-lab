@@ -40,17 +40,23 @@
 	border-radius: $radius;
 }
 
-@mixin animation($name: animation, $duration: 1s, $easing: ease, $delay: 0s, $iteration: 1){	
+@mixin animation($name: animation, $duration: 1s, $direction: forwards, $easing: ease, $delay: 0s, $iteration: 1){	
 	animation: $name $duration $easing $delay $iteration;
 	-ms-animation: $name $duration $easing $delay $iteration;
 	-webkit-animation: $name $duration $easing $delay $iteration;
 	-o-animation:move $name $duration $easing $delay $iteration;
 	-moz-animation:move $name $duration $easing $delay $iteration;
-	animation-fill-mode: forwards;
- 	-webkit-animation-fill-mode: forwards;	
- 	-moz-animation-fill-mode: forwards;	
- 	-ms-animation-fill-mode: forwards;	
- 	-o-animation-fill-mode: forwards;	
+	animation-fill-mode: $direction;
+ 	-webkit-animation-fill-mode: $direction;	
+ 	-moz-animation-fill-mode: $direction;	
+ 	-ms-animation-fill-mode: $direction;	
+ 	-o-animation-fill-mode: $direction;	
+}
+
+@mixin animation-direction( $direction: normal ) {
+	-webkit-animation-direction:$direction;
+	-moz-animation-direction: $direction;
+	animation-direction: $direction;
 }
 
 @mixin linear-gradient($direction, $color-stops...) {

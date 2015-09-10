@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url(../fonts/fonts.css);
 /********** @VARIABLES *********/
 /********** @MIXINS *********/
@@ -204,7 +205,7 @@ flexslider
   margin-top: 9em;
 }
 
-.ml0 {
+.ml0, .row {
   margin-left: 0em;
 }
 
@@ -244,7 +245,7 @@ flexslider
   margin-left: 9em;
 }
 
-.mr0 {
+.mr0, .row {
   margin-right: 0em;
 }
 
@@ -420,6 +421,7 @@ flexslider
   -ms-transition: all 0.25s 0s ease;
 }
 
+/********** @ANIMATIONS *********/
 /********** @BORDERS AND SHADOWS *********/
 .shadow {
   -o-box-shadow: 0 0 1px rgba(53, 50, 50, 0.35);
@@ -471,16 +473,16 @@ flexslider
 
 /********** @ANIMATIONS *********/
 .fade-in {
-  animation: fade-in 1s ease 0s 1;
-  -ms-animation: fade-in 1s ease 0s 1;
-  -webkit-animation: fade-in 1s ease 0s 1;
-  -o-animation: move fade-in 1s ease 0s 1;
-  -moz-animation: move fade-in 1s ease 0s 1;
-  animation-fill-mode: forwards;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  -ms-animation-fill-mode: forwards;
-  -o-animation-fill-mode: forwards;
+  animation: fade-in 1s 0s 1 1;
+  -ms-animation: fade-in 1s 0s 1 1;
+  -webkit-animation: fade-in 1s 0s 1 1;
+  -o-animation: move fade-in 1s 0s 1 1;
+  -moz-animation: move fade-in 1s 0s 1 1;
+  animation-fill-mode: ease;
+  -webkit-animation-fill-mode: ease;
+  -moz-animation-fill-mode: ease;
+  -ms-animation-fill-mode: ease;
+  -o-animation-fill-mode: ease;
 }
 
 @-webkit-keyframes fade-in {
@@ -524,16 +526,16 @@ flexslider
   }
 }
 .fade-out {
-  animation: fade-out 1s ease 0s 1;
-  -ms-animation: fade-out 1s ease 0s 1;
-  -webkit-animation: fade-out 1s ease 0s 1;
-  -o-animation: move fade-out 1s ease 0s 1;
-  -moz-animation: move fade-out 1s ease 0s 1;
-  animation-fill-mode: forwards;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  -ms-animation-fill-mode: forwards;
-  -o-animation-fill-mode: forwards;
+  animation: fade-out 1s 0s 1 1;
+  -ms-animation: fade-out 1s 0s 1 1;
+  -webkit-animation: fade-out 1s 0s 1 1;
+  -o-animation: move fade-out 1s 0s 1 1;
+  -moz-animation: move fade-out 1s 0s 1 1;
+  animation-fill-mode: ease;
+  -webkit-animation-fill-mode: ease;
+  -moz-animation-fill-mode: ease;
+  -ms-animation-fill-mode: ease;
+  -o-animation-fill-mode: ease;
 }
 
 @-webkit-keyframes fade-out {
@@ -577,16 +579,16 @@ flexslider
   }
 }
 .fade-in-slide-up {
-  animation: fade-in-slide-up 0.5s ease 1s 1;
-  -ms-animation: fade-in-slide-up 0.5s ease 1s 1;
-  -webkit-animation: fade-in-slide-up 0.5s ease 1s 1;
-  -o-animation: move fade-in-slide-up 0.5s ease 1s 1;
-  -moz-animation: move fade-in-slide-up 0.5s ease 1s 1;
-  animation-fill-mode: forwards;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  -ms-animation-fill-mode: forwards;
-  -o-animation-fill-mode: forwards;
+  animation: fade-in-slide-up 0.5s 1s 1 1;
+  -ms-animation: fade-in-slide-up 0.5s 1s 1 1;
+  -webkit-animation: fade-in-slide-up 0.5s 1s 1 1;
+  -o-animation: move fade-in-slide-up 0.5s 1s 1 1;
+  -moz-animation: move fade-in-slide-up 0.5s 1s 1 1;
+  animation-fill-mode: ease;
+  -webkit-animation-fill-mode: ease;
+  -moz-animation-fill-mode: ease;
+  -ms-animation-fill-mode: ease;
+  -o-animation-fill-mode: ease;
   position: relative;
 }
 
@@ -661,16 +663,16 @@ flexslider
   }
 }
 .fade-in-slide-down {
-  animation: fade-in-slide-down 0.5s ease 1s 1;
-  -ms-animation: fade-in-slide-down 0.5s ease 1s 1;
-  -webkit-animation: fade-in-slide-down 0.5s ease 1s 1;
-  -o-animation: move fade-in-slide-down 0.5s ease 1s 1;
-  -moz-animation: move fade-in-slide-down 0.5s ease 1s 1;
-  animation-fill-mode: forwards;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  -ms-animation-fill-mode: forwards;
-  -o-animation-fill-mode: forwards;
+  animation: fade-in-slide-down 0.5s 1s 1 1;
+  -ms-animation: fade-in-slide-down 0.5s 1s 1 1;
+  -webkit-animation: fade-in-slide-down 0.5s 1s 1 1;
+  -o-animation: move fade-in-slide-down 0.5s 1s 1 1;
+  -moz-animation: move fade-in-slide-down 0.5s 1s 1 1;
+  animation-fill-mode: ease;
+  -webkit-animation-fill-mode: ease;
+  -moz-animation-fill-mode: ease;
+  -ms-animation-fill-mode: ease;
+  -o-animation-fill-mode: ease;
   position: relative;
 }
 
@@ -1086,10 +1088,26 @@ p {
 }
 
 /********** @STRUCTURE *********/
-body {
+html, body {
   box-sizing: border-box;
+  width: 100%;
+  height: 100%;
 }
 
+/** These styles fix a horizontal scrolling issue – but they suck */
+.row {
+  width: 100%;
+}
+
+.row > div[class="col-"]:first-child, .row > div[class*="col-"]:first-child {
+  padding-left: 0em;
+}
+
+.row > div[class="col-"]:last-child, .row > div[class*="col-"]:last-child {
+  padding-right: 0em;
+}
+
+/** This is the end of the bad hack fix styles. */
 /********** @HEADER *********/
 header {
   height: 75px;
@@ -1098,9 +1116,43 @@ header {
 
 /********** @NAV *********/
 /********** @MENU *********/
+#overlay {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  opacity: .75;
+  z-index: 50;
+}
+
 menu {
-  padding-left: 10%;
-  position: relative;
+  position: absolute;
+  width: 95%;
+  z-index: 100;
+  transform: skewX(-5deg) translateX(-105%);
+  -moz-transform: skewX(-5deg) translateX(-105%);
+  -webkit-transform: skewX(-5deg) translateX(-105%);
+  -o-transform: skewX(-5deg) translateX(-105%);
+  -ms-transform: skewX(-5deg) translateX(-105%);
+  transition: transform 0.75s 0s ease;
+  -moz-transition: transform 0.75s 0s ease;
+  -webkit-transition: transform 0.75s 0s ease;
+  -o-transition: transform 0.75s 0s ease;
+  -ms-transition: transform 0.75s 0s ease;
+}
+menu.closed {
+  transform: skewX(-5deg) translateX(-105%);
+  -moz-transform: skewX(-5deg) translateX(-105%);
+  -webkit-transform: skewX(-5deg) translateX(-105%);
+  -o-transform: skewX(-5deg) translateX(-105%);
+  -ms-transform: skewX(-5deg) translateX(-105%);
+}
+menu.open {
+  transform: skewX(0deg) translateX(2.5%);
+  -moz-transform: skewX(0deg) translateX(2.5%);
+  -webkit-transform: skewX(0deg) translateX(2.5%);
+  -o-transform: skewX(0deg) translateX(2.5%);
+  -ms-transform: skewX(0deg) translateX(2.5%);
 }
 
 /********** @FOOTER *********/

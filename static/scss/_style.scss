@@ -2,9 +2,31 @@
 
 /********** @STRUCTURE *********/
 
-body {
+html, body {
 	box-sizing:border-box;
+	width:100%;
+	height:100%;
 }
+
+/** These styles fix a horizontal scrolling issue – but they suck */
+.row {
+	width:100%;
+	@extend .mr0;
+	@extend .ml0;
+
+}
+
+.row > div[class="col-"]:first-child, .row > div[class*="col-"]:first-child  {
+	//border: 1px solid blue;
+	padding-left: 0em;
+}
+
+.row > div[class="col-"]:last-child, .row > div[class*="col-"]:last-child  {
+	//border: 1px solid red;
+	padding-right: 0em;
+}
+/** This is the end of the bad hack fix styles. */
+
 
 /********** @HEADER *********/
 
@@ -13,14 +35,62 @@ header {
 	border-bottom:1px solid $light;
 }
 
+
 /********** @NAV *********/
 
 
 /********** @MENU *********/
 
+
+$open-skew: 0deg;
+$closed-skew:-5deg;
+
+$open-X: 2.5%;
+$closed-X: -105%;
+
+$transition-duration: .75s;
+
+#overlay {
+
+	//@include transition( all, $transition-duration );
+
+	display:none;
+	position: fixed;
+	width:100%;
+	height: 100%;
+	opacity:.75;
+
+	z-index:50;
+
+	&.on {
+		//opacity:0.75;
+	}
+
+	&.off {
+		//display:none;
+		//opacity:0.0;
+	}
+}
+
+
+
 menu {
-	padding-left:10%;
-	position: relative;
+	position: absolute;
+	width:95%;
+	z-index:100;
+
+	@include transform( skewX( $closed-skew ) translateX( $closed-X ) );
+	@include transition( transform, $transition-duration );
+
+	&.closed {
+		@include transform( skewX( $closed-skew ) translateX( $closed-X ) );
+		//@include animation( menu-close, 5s, both );
+	}
+
+	&.open {
+		@include transform( skewX( $open-skew ) translateX( $open-X ) );
+		//@include animation( menu-open, 5s, both);
+	}
 }
 
 /********** @FOOTER *********/

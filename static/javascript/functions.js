@@ -15,12 +15,6 @@ jQuery(document).ready(function($) {
 	  	event.preventDefault();
 		$('body,html').animate({scrollTop:0},2000);
 	});
-	
-	$('.menu-toggle').click(function(event) {
-	  	event.preventDefault();
-		menuToggle();
-		console.log('.menu-toggle clicked');
-	});
 
 	$(".jump").click(function(e){
 		e.preventDefault();
@@ -30,7 +24,7 @@ jQuery(document).ready(function($) {
 	});
 
 	/* for touch scrolling, this event fires when touch point is moved*/
-	document.addEventListener("touchmove", scrollStart, false);	
+	//document.addEventListener("touchmove", scrollStart, false);	
 
 });//end document.ready
 
@@ -60,21 +54,214 @@ $(window).scroll(function() {
 });//end window.scroll
 
 
+/** ----------- MENU RELATED FUNCTIONALITY --------------------------------- */
+
+/**
+ * This class implements fine-grained scrolling control. 
+ * Given an array of elements to watch, the observer sets up
+ * events on the dom that fire when requested elements pass
+ * specified predicates. 
+ *
+ * @param {Map[Selector -> Map[String -> -1 <= x <= 1]} watched. 
+ * A map from selectors to maps from callback names to percentage values. 
+ * The callbacks are installed and fire when that percentage of the element
+ * has passed either the top ( for specified x > 0 ) or bottom of the frame (for x < 0 ).
+ */
+function ScrollObserver( watched ) {
+	if ( ! (this instanceof ScrollObserver ) ) return new ScrollObserver( watched );
+	var self = this;
+
+	var DEBUG 		= false;
+
+	self.direction 	= 1;
+
+	self.base 		= $(window).scrollTop();
+
+	self.offset 	= window.innerHeight;
+
+	self.top = function() { return self.base; };
+
+	self.bottom = function() { return self.base + self.offset; };
+
+	$(window).on( 'resize', function( e ) {  self.offset = window.innerHeight; });
+
+	$(window).on( 'scroll', function( e ) { 
+		var scrollTop = $(window).scrollTop();
+
+		if ( self.base < scrollTop ) { self.direction = 1; }
+		else { self.direction = -1; }
+
+		self.base = $(window).scrollTop(); 
+	});
+
+
+
+
+	var observed = {};
+
+	/**
+	 * [observe description]
+	 * @param  {[type]} selector   [description]
+	 * @param  {[type]} callbackID [description]
+	 * @param  {[type]} predicate  [description]
+	 * @return {[type]}            [description]
+	 */
+	self.observe = function( selector, callbackID, predicate ) {
+
+		if ( ! observed[ selector ] ) {
+
+			observed[ selector ] = {};
+
+		} 
+
+		observed[ selector ][ callbackID ] = predicate;
+
+	};
+
+	self.glance = function( selector, callbackID, predicate ) {
+
+		self.observe( selector, callbackID, function( element ) {
+
+			var accepted = predicate( element );
+
+			if ( accepted ) { self.forget( selector, callbackID ); }
+
+			return accepted;
+
+		});
+	};
+
+	self.forget = function( selector, callbackID ) {
+
+		if ( selector && callbackID ) {
+
+			if ( observed[ selector ] ) { delete observed[ selector ][ callbackID ]; }
+
+		} else if ( selector ) {
+
+			if ( observed[ selector ] ) { delete observed[ selector ]; }
+
+		} else {
+
+			observed = {};
+
+		}
+		
+	};
+
+
+	function trigger() {
+
+		for ( var selector in observed ) {
+
+			var selected = $( selector );
+
+			if ( selected.length ) {
+
+				selected.each( function ( i, element ) {
+
+					element = $( element );
+
+					var elementTop 		= element.offset().top ;
+
+					var elementBottom 	= elementTop + element.outerHeight();
+
+					for ( var trigger in observed[ selector ] ) {
+
+						var topPosition = (1 / (elementBottom - elementTop)) * ( self.top() - elementBottom ) + 1;
+
+						var botPosition = (1 / (elementBottom - elementTop)) * ( self.bottom() - elementBottom ) + 1;
+
+						if (DEBUG) console.log('----');
+						if (DEBUG) console.log( 'top: ele(%f) top(%f)', elementTop, self.top() );
+						if (DEBUG) console.log( topPosition );
+						if (DEBUG) console.log( 'bottom: ele(%f) bot(%f)', elementBottom, self.bottom() );
+						if (DEBUG) console.log( botPosition );
+
+						var elementAttributes = {
+
+							element: element,
+							above: topPosition > 1,
+							below: botPosition < 0,
+							top: topPosition,
+							bottom: botPosition,
+							direction: self.direction
+
+						};
+
+						if ( observed[ selector ][ trigger ]( elementAttributes ) ) { 
+							$( window ).trigger( trigger, element ); 
+						} 
+					}
+
+				});
+
+			}
+
+		}
+	}
+
+	/**
+	 * @todo refactor : requestAnimationFrame
+	 */
+	$( window ).on( 'scroll', trigger );
+
+	// 
+	$( window ).on( 'resize', trigger );
+
+}
+
+/** ----------- DOCUMENT OBESERVERS --------------------------------- */
+$( document ).ready( function() {
+
+	var observer = ScrollObserver();
+
+	observer.observe('#home-updates', 'section-unobscured', function( e ) {
+		return e.top < 0 && e.bottom > 1;
+	});
+
+});
+
+$(window).on('section-unobscured', function( undefined, element ) {
+	//console.log( element );
+});
+
+
+/** ----------- DOCUMENT LISTENERS --------------------------------- */
+
+
+
+/** ----------- MENU ACTIONS --------------------------------- */
+
+
+
+$( document ).ready( function( ) {
+	function cycleMenu( e ) {
+		if ( $('menu').hasClass( 'open' ) ) {
+
+			$('menu').removeClass( 'open' ).addClass('closed');
+			$('#overlay').fadeOut( $('menu').css('transition-duration') );
+			$( document.body ).css({overflow: 'scroll'});
+
+		} else {
+
+			$('menu').removeClass( 'closed' ).addClass('open');
+			$('#overlay').fadeIn( $('menu').css('transition-duration') );
+			$( document.body ).css({overflow: 'hidden'});
+
+		}
+	}
+
+	$('.menu-trigger').on('click', cycleMenu);
+});
+
+
+
+
 
 //FUNCTIONS
 
 //keyboard pressed m or M	
-$(document).keypress(function(e) {
-	if(e.which == 109 || e.which == 77) {	
-		if($("input:focus")){
-			var elem = document.activeElement;
-			if (! elem.type ){ 
-				menuToggle();
-				console.log('m and menu toggle');	
-			}
-		}
-	}
-});
 
 //keyboard pressed up arrow	
 $(document).keypress(function(e) {
@@ -192,97 +379,5 @@ function loadPage(){
 		if ( $('.spy').length > 0 ) { $(document).trigger('spy-init'); }	
 	},500);	
 		
-}
-
-
-
-
-$(document).on('spy-init', function() {
-
-	var current;
-	var previousBodyClass;
-
-	spied = {};
-
-	$('.spy .target:not(.exclude)').each( function( i,d ) { 
-		spied[ $(d).attr('id') ] = true;
-	});
-	/**
-	 * When spying on the state of the page, we're interested in:
-	 * the currently-viewed element. (and performing actions on it).
-	 * at any point we can:
-	 * jump to
-	 */
-
-	 $(document).on('spy-recalculate', function() {
-	 	decideActive(  $('.block.target:in-viewport'));
-	 });
-
-	 $(document).on('spy-repaint', function( event, d ) {
-	 	if ( current != d ) {
-	 		var c = $(current);
-	 		    d = $( d );
-	 		
-	 		var b = $('body');
-	 		var bodyClass = 'block-active-' + d.attr('id');
-
-	 		b.removeClass(previousBodyClass);
-	 		c.removeClass('active');
-	 		d.addClass('active').addClass('activated');
-	 		b.addClass(bodyClass);
-	 		previousBodyClass = bodyClass;
-
-	 		current = d;
-	 	}
-	 });
-
-
-	 $(window).on('scroll', function() {
-	 	if( !$('html').hasClass('menu-open') ) {	
-	 		$(document).trigger('spy-recalculate');
-	 	}
-	 });
-
-	 $(document).trigger('spy-recalculate');
-
-	 function decideActive( candidates ) {
-	 	/**
-		 * Let's define an element as "active" if its body is intersecting the
-		 * centerpoint of the page. Let's compute the current centerpoint, and 
-		 * iterate across the blocks that are in view, decide which ones are active,
-		 * and trigger the desired action on them.
-		 */
-
-
-		var w = $(window), doc = $(document);
-		var centerline = w.scrollTop() + (w.height() / 3);
-
-		candidates.each( function( i,d ) {
-			d = $( d );
-
-			if ( d.offset().top < centerline && (d.offset().top + d.height()) > centerline ) {
- 				var s = $('.spy');
-
- 				doc.trigger('spy-repaint', d);
-
- 				if ( $('.spy').hasClass('falloff') && d.is( $('.falloff-link').attr('href') ) ) {
- 					s.addClass('off');
- 				} else {
- 					s.removeClass('off');
- 				}
- 			}
-		});
-	 }
-
-	 //currently unused
-	 function decideOffset() {
-	 	var w = $(window);
-	 	return 0;
-	 	//return ($('body').hasClass('home')) ? ((w.width() < 768) ? 350 : (w.height() / 2)) : 80;
-	 }
-});
-
-function scrollStart(){
-	
 }
 
