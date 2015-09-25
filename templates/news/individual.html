@@ -1,23 +1,40 @@
-{# ------------------------------------------------------- #}
-{# INDIVIDUAL VIEW FOR EACH news #}
-{# This page can use any data from http:localhost:2000/cms/#/form/news/ #}
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-{# ------------------------------------------------------- #}
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
+
 {% extends "templates/partials/base.html" %}
 {# This sets our page <title>. It will append this news's name to the site title defined in base.html #}
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 {% block content %}
-<article class="news">
-  <section id="news-story">
+<article class="news bg-light">
+
+  <section id="news-story bg-light">
+  <div class="container-fluid">
   <div class="row">
 
-    <div class="col-sm-3 bg-brand">
-      
+    <div id="sidebar" class="col-sm-3" aside-enter>{# right place ?? #}
+    <aside class="mt2">
+          <ul>
+            
+            <li class="sidebar-item sidebar-region-sort mb4">
+              <ul>
+                <li class="h5 uppercase bold sidebar-heading">Sort By</li>
+                <hr class="hr-brand" />
+
+                {% for category in cms.newscategories %}
+
+                  <li class="sort-key sidebar-item h6 uppercase" data-sort-key="{{ category.name|lower }}">{{ category.name }}</li>
+
+                {% endfor %}
+              </ul>
+            </li>
+
+            <li class="sidebar-item sidebar-region-sort">
+              <ul>
+                <li data-sort-key=" " class="sort-key h6 uppercase active sidebar-item">All Updates</li>
+              </ul>
+            </li>
+
+          </ul>
+
+        </aside>     
     </div>
 
     <div class="col-sm-9 bg-white">
@@ -51,18 +68,20 @@
         </div>
 
     </div>
-
+  </div>
   </div>
   </section>
 </article>
 
-<section id="back" class="bg-dark">
+<section id="back" class="bg-white padded news-rule" aside-exit>
+  <div class="container">
   <div class="row">
-    <div class="col-sm-offset-3 col-sm-6 padded">
-      <h3>
-        Back To Home
-      </h3>
+    <div class="col-sm-offset-3 col-sm-6 centered">
+      <a class="sync" href="/news"><h5 class="back-to-home">
+        Back To News
+      </h5></a>
     </div>
+  </div>
   </div>
 </section>
 {% endblock %}
