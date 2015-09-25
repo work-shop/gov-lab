@@ -1,66 +1,78 @@
 <div id="overlay" class="bg-dark off menu-trigger"></div>
 
 <menu class="bg-light" >
-	<div class="row">
+
+	<div class="row hidden-xs">
 		<div class="col-sm-2">
-			<h3>About</h3>
+			<a href="/about"><h3>About</h3></a>
 		</div>
 		<div class="col-sm-4">
-			<h3 >Projects</h3>
+			<a href="/projects"><h3>Projects</h3></a>
 		</div>
 		<div class="col-sm-4">
-			<h3>News</h3>
+			<a href="/news"><h3>News</h3></a>
 		</div>
 	</div>
 		
 
-	<div class="row">
+	<div class="row hidden hidden-xs">
 		<hr class="col-sm-10 hr-light">
 	</div>
 
+	<div class="col-sm-10 hr-light hidden"></div>
+
 	<div class="row">
-		<ul class="about-items col-sm-2">
+		<ul class="col-xs-12 about-items col-sm-2">
+			<li class="visible-xs"><a href="/about"><h3>About</h3></a></li>
 			<li> <a href="/about#what-we-do"><h5>What We Do</h5></a></li>
 			<li> <a href="/about#our-team"><h5>Our Team</h5></a></li>
 			<li> <a href="/about#collaborators"><h5>Collaborators</h5></a> </li>
 			<li> <a href="/about#sponsors"><h5>Sponsors</h5></a> </li>
 		</ul>
 
-		<ul class="projects-left-items col-sm-2">
+
+		<hr class="hr-light col-xs-12 visible-xs">
+
+
+		<ul class="projects-left-items col-xs-12 col-sm-2">
+			<li class="visible-xs"><a href="/projects"><h3>Projects</h3></a></li>
 
 			{% for project in cms.projects|slice(cms.projects|size / 2, cms.projects|size) %}
 
-			<li {% if ( getCurrentUrl() == url( project ) ) %} class="active" {% endif %}><a href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
+			<li><a {% if ( getCurrentUrl() == url( project ) ) %} class="active" {% endif %} href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
 
 			{% endfor %}
 
 		</ul>
 
-		<ul class="projects-right-items col-sm-2">
+		<ul class="projects-right-items col-xs-12 col-sm-2">
 
 			{% for project in cms.projects|slice(0, cms.projects|size / 2) %}
 
-			<li {% if ( getCurrentUrl() == url( project ) ) %} class="active" {% endif %}><a href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
+			<li><a {% if ( getCurrentUrl() == url( project ) ) %} class="active" {% endif %} href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
 
 			{% endfor %}
 
 		</ul>
 
-		<ul class="col-sm-2">
+		<hr class="col-sm-12 hr-light visible-xs">
+
+		<ul class="news-left-items col-xs-12 col-sm-2">
+			<li class="visible-xs"><a href="/news"><h3>News</h3></a></li>
 
 			{% for news in cms.news|slice(cms.news|size / 2, cms.news|size) %}
 
-			<li {% if ( getCurrentUrl() == url( news ) ) %} class="active" {% endif %}><a href="{{ url( news ) }}"><h5>{{ news.name }}</h5></a></li>
+			<li><a {% if ( getCurrentUrl() == url( news ) ) %} class="active" {% endif %} href="{{ url( news ) }}"><h5>{{ news.name }}</h5></a></li>
 
 			{% endfor %}
 			
 		</ul>
 
-		<ul class="col-sm-2">
+		<ul class="news-right-items col-xs-12 col-sm-2">
 
 			{% for news in cms.news|slice(0, cms.news|size / 2) %}
 
-			<li {% if ( getCurrentUrl() == url( news ) ) %} class="active" {% endif %}><a href="{{ url( news ) }}"><h5>{{ news.name }}</h5></a></li>
+			<li><a {% if ( getCurrentUrl() == url( news ) ) %} class="active" {% endif %} href="{{ url( news ) }}"><h5>{{ news.name }}</h5></a></li>
 
 			{% endfor %}
 			
@@ -72,16 +84,16 @@
 	</div>	
 
 	<div class="row mb2">
-		<div class="col-sm-2">
+		<div class="hidden-xs col-sm-2">
 			<h3>Contact</h3>
 		</div>
-		<address id="office-address" class="mt1 col-sm-4">
+		<address id="office-address" class="mt1 col-xs-6 col-sm-4">
 			<h6 class="bold uppercase mb2">Office:</h6>
 			<h6>30 Wadsworth Street</h6>
 			<h6>Building E53-430</h6>
 			<h6>Cambridge, MA 02142</h6>
 		</address>
-		<address id="mailing-address" class="mt1 col-sm-4">
+		<address id="mailing-address" class="mt1 col-xs-6 col-sm-4">
 			<h6 class="bold uppercase mb2">Mail:</h6>
 			<h6>77 Massachusetts Avenue</h6>
 			<h6>Building E53-430</h6>

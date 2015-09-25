@@ -1,47 +1,47 @@
 {% set length = 5 %}
 
-<footer class="bg-white">
+<footer>
+	<div class="container-fluid">
 
-	<div class="row bg-white padded mr0">
-		<div class="col-sm-offset-3 col-sm-2">
-			<h5 class="bold">About</h5>
+	<div class="row bg-light padded">
+		<div class="col-xs-4 col-sm-offset-4 col-sm-2">
+			<a class="sync" href="/about"><h5 class="bold">About</h5></a>
 			<ul>
-				<li><h5><a href="/about#what-we-do">What We Do</a></h5></li>
-				<li><h5><a href="/about#our-team">Our Team</a></h5></li>
-				<li><h5><a href="/about#collaborators">Collaborators</a></h5></li>
-				<li><h5><a href="/about#sponsors">Sponsors</a></h5></li>
+				<li><h5><a class="sync" href="/about#what-we-do">What We Do</a></h5></li>
+				<li><h5><a class="sync" href="/about#our-team">Our Team</a></h5></li>
+				<li><h5><a class="sync" href="/about#collaborators">Collaborators</a></h5></li>
+				<li><h5><a class="sync" href="/about#sponsors">Sponsors</a></h5></li>
 			</ul>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-xs-4 col-sm-3">
 			<h5 class="bold">Projects <a class="uppercase more" href="/projects">See All</a></h5>
 			<ul>
 			{% for project in cms.projects|slice(0,length) %}
-				<li><h5><a {% if  ( getCurrentUrl() == url( project ) ) %}class="active" {% endif %} href="{{ url( project ) }}">{{ project.shortname }}</a></h5></li>
+				<li><h5><a class="sync" {% if  ( getCurrentUrl() == url( project ) ) %}class="active" {% endif %} href="{{ url( project ) }}">{{ project.shortname }}</a></h5></li>
 			{% endfor %}
 			</ul>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-xs-4 col-sm-3">
 			<h5 class="bold">News <a class="uppercase more" href="/news">See All</a></h5>
 			<ul>
 			{% for news in cms.news|slice(0,length) %}
-				<li><h5><a {% if  ( getCurrentUrl() == url( news ) ) %}class="active" {% endif %} href="{{ url( news ) }}">{{ news.name }}</a></h5></li>
+				<li><h5><a class="sync" {% if  ( getCurrentUrl() == url( news ) ) %}class="active" {% endif %} href="{{ url( news ) }}">{{ news.name }}</a></h5></li>
 			{% endfor %}
 			</ul>
 		</div>
 	</div>
 
 	<div class="row bg-dark padded">
-		<div class="row white">
-			<div class="col-sm-offset-1 col-sm-4"><a href="/"><span class="white">MIT GOV/LAB</span></a></div>
-			<div class="col-sm-3">
+			<div class="col-xs-12 col-sm-offset-1 col-sm-3"><a href="/"><span class="white">MIT GOV/LAB</span></a></div>
+			<div class="col-xs-6 col-sm-4 white">
 				<address id="office-address" class="mt1">
-					<h5 class="bold uppercase mb2 underline">Visit Us</h6>
-					<h5>30 Wadsworth Street</h6>
-					<h5>Building E53-430</h6>
-					<h5>Cambridge, MA 02142</h6>
+					<h5 class="bold uppercase mb2 underline">Visit Us</h5>
+					<h5>30 Wadsworth Street</h5>
+					<h5>Building E53-430</h5>
+					<h5>Cambridge, MA 02142</h5>
 				</address>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-xs-6 col-sm-4 white">
 				<address id="mailing-address" class="mt1">
 					<h5 class="bold uppercase mb2 underline">Send Us Mail</h5>
 					<h5>77 Massachusetts Avenue</h5>
@@ -49,7 +49,7 @@
 					<h5>Cambridge, MA 02139</h5>
 				</address>	
 			</div>
-		</div>
 	</div>
 
+	</div>
 </footer>
