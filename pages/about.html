@@ -16,108 +16,181 @@
 {% block content %}
 
 <section id="introduction bg-white">
-	<div class="row half-strict crop">
-		<div class="col-sm-12">
-			<img class="fade-in" src="{{ cms.about.hero_image|imageCrop(1000,500) }}" />
-		</div>
-	</div>
-	<div class="row padded">
-		<div class=" col-sm-offset-1 col-sm-10 centered">
-			<h2>{{ cms.about.tagline }}</h2>
-		</div>
-	</div>
+	<div class="block-background" style="background: url({{ cms.about.about_image|imageSize(1000,1000)}}); background-size:cover; background-position:center center;"> </div>
+
+	  <div class="container half-strict block">
+
+	  </div>
 </section>
 
-<section id="what-we-do" class="bg-light padded">
+<section id="what-we-do" class="bg-light padded" aside-enter>
+	<div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-offset-3 col-sm-8 padded">
-			<h3>
-				We discover new methods, technologies, and programs to make governments more accountable to their citizens.
-			</h3>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-offset-3 col-sm-4">
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pellentesque sapien tellus, in consectetur purus euismod sit amet. Quisque lobortis nunc eget mi venenatis, quis mattis metus lacinia. Phasellus ex risus, sagittis vel dui at, molestie scelerisque turpis. Maecenas rutrum justo eget nisi tincidunt sodales.</p>
-		</div>
-		<div class="col-sm-4">
-			<p>nulla ut fringilla pharetra, sem leo accumsan neque, eu tempor purus ligula quis tortor. Quisque commodo purus risus, sed aliquet lectus tincidunt et. Maecenas eleifend eros non dui pretium mattis. Fusce quis neque velit. Aliquam erat volutpat. Aenean eros ante, maximus eget libero at, lobortis suscipit nunc</p>
-		</div>
-	</div>
-	<div class="row">
-		{# Image for this section goes here. #}
-	</div>
-</section>
 
-<section id="our-team" class="bg-light padded">
-	<div class="row">
-		<div class="col-sm-offset-3 col-sm-8 padded">
-			<h3>
-				We've build a network of dedicated academics, researchers, graduate students, and partners.
-			</h3>
-		</div>
-	</div>
+		 <div id="sidebar" class="col-sm-2">
+			 <aside class="hidden-xs mt2">
+		          <ul>
+		            
+		       
+		            <li class="sidebar-item sidebar-region-sort">
+		              <ul>
+		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#what-we-do">About GOV/LAB</a></li>
+		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#people">People</a></li>
+		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#collaborators">Collaborators</a></li>
+		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#funders">Funders</a></li>
+		              </ul>
+		            </li>
 
-	<div class="row">
-		{% for person in cms.people %}
+		          </ul>
 
-			<div class="teammember {% if ( loop.index0 % 2 == 0 ) %}col-sm-offset-3{% endif %} col-sm-4 mb1">
-				<img class="teammember-image mb1" src="{{ person.image|imageSize(500,auto) }}" />
-				<h4 class="teammember-name bold">{{ person.name }}</h4>
-				<p class="teammember-description mb1">{{ person.bio }}</p>
-				<a href="mailto:{{ person.email }}">{{ person.email }}</a>
+		        </aside>
+	      </div>
+
+
+	      <div class="col-sm-9">
+
+			<div class="row">
+				<div class="col-xs-offset-1 col-xs-10">
+					<h3>
+						We discover new methods, technologies, and programs to make governments more accountable to their citizens.
+					</h3>
+				</div>
 			</div>
 
-		{% endfor %}
-	</div>
-</section>
-
-<section id="our-collaborators" class="bg-white padded">
-	<div class="row">
-		<div class="col-sm-offset-3 col-sm-8 padded">
-			<h3>
-				We've build a network of dedicated academics, researchers, graduate students, and partners.
-			</h3>
-		</div>
-	</div>
-
-	<div class="row">
-		{% for collaborator in cms.collaborators %}
-			<div class="collaborator {% if ( loop.index0 % 4 == 0 ) %}col-sm-offset-3{% endif %} col-sm-2 mb1">
-				<a href="{{ collaborator.website }}"><img class="collaborator-logo mb1" src="{{ collaborator.logo|imageSize(200,auto) }}" /></a>
+			<div class="row">
+				<div class="col-xs-offset-1 col-xs-5">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pellentesque sapien tellus, in consectetur purus euismod sit amet. Quisque lobortis nunc eget mi venenatis, quis mattis metus lacinia. Phasellus ex risus, sagittis vel dui at, molestie scelerisque turpis. Maecenas rutrum justo eget nisi tincidunt sodales.</p>
+				</div>
+				<div class="col-xs-5">
+					<p>nulla ut fringilla pharetra, sem leo accumsan neque, eu tempor purus ligula quis tortor. Quisque commodo purus risus, sed aliquet lectus tincidunt et. Maecenas eleifend eros non dui pretium mattis. Fusce quis neque velit. Aliquam erat volutpat. Aenean eros ante, maximus eget libero at, lobortis suscipit nunc</p>
+				</div>
 			</div>
 
-		{% endfor %}
-	</div>
-</section>
-
-<section id="our-funders" class="bg-light padded">
-	<div class="row">
-		<div class="col-sm-offset-3 col-sm-6 padded">
-			<h3>
-				We're sponsored by groups that share our vision and provide support across the globe.
-			</h3>
-		</div>
-	</div>
-
-	<div class="row">
-		{% for funder in cms.funders %}
-			<div class="funder {% if ( loop.index0 % 3 == 0 ) %}col-sm-offset-3{% endif %} col-sm-2 mb1">
-				<a href="{{ funder.website }}"><img class="funder-logo mb1" src="{{ funder.logo|imageSize(auto,200) }}" /></a>
+			<div class="row">
+				{# Image for this section goes here. #}
 			</div>
 
-		{% endfor %}
+		</div>
+	</div>
 	</div>
 </section>
 
-<section id="back" class="bg-brand">
+<section id="people" class="bg-white padded" >
+	<div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-offset-3 col-sm-6 padded">
-			<h3>
-				Back To Home
-			</h3>
+
+		<div class="col-sm-offset-2 col-sm-9">
+			<div class="row">
+				<div class="col-xs-offset-1 col-xs-10 centered">
+					<h3>
+						We've build a network of dedicated academics, researchers, graduate students, and partners.
+					</h3>
+				</div>
+			</div>
+
+			<div class="row">
+				{% for person in cms.people %}
+
+					<div class="teammember {% if ( loop.index0 % 2 == 0 ) %}col-xs-offset-1{% endif %} col-xs-5 mb1">
+						<img class="teammember-image mb1" src="{{ person.image|imageSize(500,auto) }}" />
+						<h4 class="teammember-name bold">{{ person.name }}</h4>
+						<p class="teammember-description mb1">{{ person.bio }}</p>
+						<a href="mailto:{{ person.email }}">{{ person.email }}</a>
+					</div>
+
+				{% endfor %}
+			</div>
 		</div>
 	</div>
+	</div>
+</section>
+
+<section id="collaborators" class="bg-light padded">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-offset-2 col-sm-9">
+		
+			<div class="row">
+				<div class="col-xs-offset-1 col-xs-10 centered">
+					<h3>
+						We've build a network of dedicated academics, researchers, graduate students, and partners.
+					</h3>
+				</div>
+			</div>
+
+			<div class="row">
+				{% for collaborator in cms.collaborators %}
+					<div class="collaborator bg-light p1 {% if ( loop.index0 % 4 == 0 ) %}col-xs-offset-1{% endif %} col-xs-5 mb1">
+						<a href="{{ collaborator.website }}"><img class="collaborator-logo mb1" src="{{ collaborator.logo|imageSize(200,auto) }}" /></a>
+					</div>
+
+				{% endfor %}
+			</div>
+
+		</div>
+	</div>
+	</div>
+</section>
+
+<section id="funders">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-offset-2 col-sm-9">
+
+			<div class="row">
+				<div class="col-xs-offset-1 col-xs-10 centered">
+					<h3>
+						We're sponsored by groups that share our vision and provide support across the globe.
+					</h3>
+				</div>
+			</div>
+
+			<div class="row">
+				{% for funder in cms.funders %}
+
+					<div class="funder {% if ( loop.index0 % 3 == 0 ) %}col-xs-offset-1{% endif %} col-xs-3 mb1">
+						<a href="{{ funder.website }}"><img class="funder-logo mb1" src="{{ funder.logo|imageSize(auto,200) }}" /></a>
+					</div>
+
+				{% endfor %}
+			</div>
+
+		</div>
+	</div>
+	</div>
+</section>
+
+
+
+<section id="subscribe" class="padded" aside-exit>
+  <div class="container">
+
+  <div class="row">
+
+    <div class="col-sm-12">
+      <div class="bg-brand skew-field">
+        <h3 class="white centered p1">
+          <span class="bold">Subscribe</span> to our mailing list to watch our progress!
+        </h3>
+      </div>
+
+    </div>
+
+  </div>
+
+  </div>
+</section>
+
+<section id="back" class="bg-white padded">
+<div class="container">
+<div class="row">
+  <div class="col-sm-offset-3 col-sm-6 centered">
+    <a class="sync" href="/"><h5 class="back-to-home">
+      Back To Home
+    </h5></a>
+  </div>
+</div>
+</div>
 </section>
 
 {% endblock %}
