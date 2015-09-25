@@ -1,75 +1,143 @@
-{# ------------------------------------------------------- #}
-
-{# YOUR HOMEPAGE #}
-
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-
-{# ------------------------------------------------------- #}
-
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
 {% extends "templates/partials/base.html" %}
 
-{# This sets our page <title>. It will append "- Homepage" to the site title defined in base. #}
 {% block title %}{% parent %}{% endblock %}
 
 {% block content %}
 
-<section id="home-introduction" class="bg-light half">
-  
+<section id="home-introduction" class="bg-light block">
+
+  <div class="block-background" style="background: url({{ cms.about.home_image|imageSize(2500,500)}}); background-size:cover; background-position:center center;"> </div>
+
+  <div class="container half-strict block">
+
+    <div class="row vertical-center">
+      <div class="col-sm-10 col-sm-offset-1 centered white"><h2><span class="bold">Bridging the Gap</span><br /> between Citizens and the Government</h2></div>
+    </div>
+
+  </div>
+
 </section>
 
+
+ 
 <section id="home-tagline" class="bg-white padded">
+  <div class="container block">
 
   <div class="row">
-    <div class="col-sm-offset-1 col-sm-10 centered">
-      <h2 class="tagline mb2">The MIT GOV/LAB is a group of political scientists focusing on innovation in citizen engagement and government responsiveness.</h2>
-      <a class="uppercase" href="/about">Learn About Us</a>
+    <div class="col-sm-offset-2 col-sm-8 centered">
+      <h3 class="tagline">The MIT GOV/LAB is a group of political scientists focusing on innovation in citizen engagement and government responsiveness.</h3>
     </div>
+
   </div>
   
+</div>
 </section>
 
-<section id="home-map" class="bg-light padded">
+<section id="home-map" class="bg-light">
+  <div class="container block">
+
   <div class="row">
-    <div class="col-sm-offset-1 col-sm-3">
+
+    <div class="col-sm-12">
+
+      {% include "templates/partials/map.html" %}
+
+       <div class="col-sm-offset-1 col-sm-3 centered vertical-center">
       <h3 class="mb2">Our work spans the globe.</h3>
       <p class="mb2">We take a special interest in citizen engagement by under resourced groups and government accountability in challenging contexts.</p>
-      <a class="uppercase" href="/projects">See Our Projects</a>
+      <a class="uppercase sync" href="/projects">See All Projects</a>
     </div>
+
+    </div>
+
+    
+
+  </div>
+
   </div>
 </section>
 
-<section id="home-updates" class="bg-white padded">
-  <div class="">
-    <ul class="slides">
+<section id="home-callouts" class="bg-white padded">
+  <div class="container">
 
-      <li class="row">
-        <div class="col-sm-offset-1 col-sm-6">
-          
-        </div>
-        <div class="col-sm-4">
-          <h3 class="mb2">We collaborate on meaningful interventions with measurable outcomes.</h3> 
-          <p class="mb2">We take a special interest in citizen engagement by under resourced groups and government accountability in challenging contexts.</p>
-          <a class="uppercase" href="/projects">Read our Latest Updates</a> 
-        </div>
-      </li>
-
-    </ul>
-  </div>
-</section>
-
-<section id="back" class="bg-brand">
   <div class="row">
-    <div class="col-sm-offset-1 col-sm-10 padded centered">
-      <h3>
-        Subscribe to our mailing list to watch our progress
-      </h3>
+
+    <div class="col-xs-6 col-sm-6">
+
+      <div class="row crop">
+
+        <div class="col-sm-12">
+          <img src="{{ cms.about.about_image|imageCrop(500,350)}}" />
+        </div>
+
+        <div class="image-overlay col-sm-offset-1 col-sm-10 centered mt1">
+
+          <h3 class="mb2 hidden-xs">We collaborate on meaningful interventions with <span class="bold">measurable outcomes</span>.</h3>
+          <a class="uppercase sync" href="/about">Learn About Us</a>
+
+        </div>
+
+      </div>
+
     </div>
+
+    <div class="col-xs-6 col-sm-6">
+
+      <div class="row one-quarter-strict crop"> <!-- BG COLOR ISSUE -->
+
+          <div class="image-overlay col-sm-offset-1 col-sm-10 centered mt1">
+            <h3 class="dark mb2 hidden-xs">We engage under-resourced groups and their governments in <span class="bold">challenging contexts</span>.</h3>
+            <a class="uppercase sync" href="/about">Latest updates and publications</a>
+          </div>
+
+      
+      </div>  
+
+    </div>
+
+  </div>
+
+  </div>
+</section>
+
+<section id="subscribe" class="">
+  <div class="container">
+
+  <div class="row">
+
+    <div class="col-sm-12">
+      <div class="bg-brand skew-field">
+        <h3 class="white centered p1">
+          <span class="bold">Subscribe</span> to our mailing list to watch our progress!
+        </h3>
+      </div>
+
+    </div>
+
+  </div>
+
+  </div>
+</section>
+
+{% set latest = cms.news|first %}
+
+<section id="latest" class="padded">
+  <div class="container">
+
+  <div class="row one-quarter">
+    <div class="col-sm-12">
+      <div class="row one-quarter">
+        <div class="col-sm-6 centered p5"> <!-- BG COLOR ISSUE -->
+              <h4 class="">{{ latest.summary }}</h4>
+              <a class="sync" href="{{ url( latest ) }}">Read More</a>
+        </div>
+        <div class="col-sm-6">
+          <img src="{{ cms.about.about_image|imageCrop(650,450)}}" />
+        </div>
+      </div>
+    </div>
+  </div>
+  
   </div>
 </section>
 
