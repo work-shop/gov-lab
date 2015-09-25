@@ -26,9 +26,14 @@ flexslider
 }
 
 @for $i from 0 through 9 {
-  .mb#{$i} { 
+  // .mb#{$i} { 
+  	
+  // }
+
+  @include size-dependent( ".mb#{$i}" ) {
   	margin-bottom: 1em * $i;
   }
+
 }
 
 @for $i from 0 through 9 {
@@ -53,6 +58,12 @@ flexslider
 @for $i from 0 through 9 {
   .p#{$i} { 
   	padding: 1em * $i;
+  }
+}
+
+@for $i from 0 through 9 {
+  .pt#{$i} { 
+  	padding-top: 1em * $i;
   }
 }
 
@@ -144,8 +155,6 @@ flexslider
 	}
 }
 
-/********** @ANIMATIONS *********/
-
 /********** @BORDERS AND SHADOWS *********/
 
 .shadow{
@@ -175,7 +184,8 @@ flexslider
 	float: right;
 }
 
-.vertical-center{
+
+@include size-dependent(".vertical-center") {
 	margin-top: 0;
 	position: relative;
 	top: 49%;
@@ -190,9 +200,26 @@ flexslider
 	overflow: hidden;
 }
 
+.inline {
+	display: inline;
+}
+
 
 
 /********** @ANIMATIONS *********/
+
+.skew-field {
+	@include transition(transform);
+	@include transform( skewX( $open-skew ) );
+
+	&:hover, &:active {
+		@include transform( skewX( $closed-skew ) );
+	}
+
+	&:hover * {
+		//@include transform( skewX( - $closed-skew ) );
+	}
+}
 
 $slide-distance-vertical: 20px;
 

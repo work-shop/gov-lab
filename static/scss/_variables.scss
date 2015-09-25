@@ -1,6 +1,6 @@
 /********** @VARIABLES *********/
 
-$brand: #a31f34; // mit red, currently
+$brand: #d65839;
 $ultra-light: #fafafa;
 $light: #f1f1f1;
 $medium-light: darken( $light, 20 );
@@ -13,3 +13,21 @@ $nav-height: 75px;
 $mobile-margins: 15px;
 
 $transitions: .25s;
+
+$lg-size: 1201px;
+$lg-query: "min-width: #{ $lg-size }";
+
+$md-size: 1200px;
+$md-query: "max-width: #{$md-size}";
+
+$sm-size: 992px;
+$sm-query: "max-width: #{$sm-size}";
+
+$xs-size: 767px;
+$xs-query: "max-width: #{ $xs-size }";
+
+
+$transition-duration: .75s;
+
+$open-skew: 0deg;
+$closed-skew:-5deg;

@@ -32,6 +32,36 @@
 	text-shadow: $x $y $spread $shadow-color;	
 }
 
+@mixin size-dependent( $selector ) {
+	#{ $selector } {
+		@content;
+	}
+
+	@media ( $lg-query ) {
+		#{ $selector }-lg {
+			@content;
+		}
+	}
+
+	@media ( $md-query ) {
+		#{ $selector }-md {
+			@content;
+		}
+	}
+
+	@media ( $sm-query ) {
+		#{ $selector }-sm {
+			@content;
+		}
+	}
+
+	@media ( $xs-query ) {
+		#{ $selector }-xs {
+			@content;
+		}
+	}
+}
+
 @mixin border-radius($radius: 0px){
 	-webkit-border-radius: $radius;
 	-moz-border-radius: $radius;

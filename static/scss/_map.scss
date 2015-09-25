@@ -1,0 +1,27 @@
+.tooltip {
+	position: fixed;
+	top: 0; left: 0;
+}
+
+.project-label {
+	padding:0px 25px 0px 25px;
+	background-color: rgba(255,255,255,.65);
+	font-family: arial, helvetica, sans-serif;
+	color:#222;
+	text-decoration: none;
+}
+
+.country {
+  fill: #bbb;
+  stroke-width:.5px;
+  stroke: #bbb;
+}
+
+.map-project {
+	fill: $brand;
+	cursor: pointer;
+}
+
+#map {
+	position: relative;
+}

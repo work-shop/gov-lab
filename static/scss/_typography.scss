@@ -2,7 +2,7 @@
 /********** @TYPOGRAPHY *********/
 
 body{
-	font-size: 18px;
+	font-size: 16px;
 	font-family:"SimplonNormLight", Helvetica, Arial, sans-serif; 
 	font-weight:normal; 
 	font-style:normal;
@@ -10,16 +10,18 @@ body{
 
 h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6{
 	font-weight: normal;
-	line-height: 1.3;
+	line-height: 1.5em;
 	font-weight: 500;
 }
 
 h1,.h1{
 	font-size: 3em;
+	line-height: 1.5em;
 }
 
 h2,.h2{
 	font-size: 2em;
+	line-height: 1.5em;
 }
 
 h3,.h3{
@@ -41,6 +43,12 @@ h6,.h6{
 p{
 	font-size: 1em;
 	line-height: 1.6;
+}
+
+.back-to-home {
+	@extend .brand;
+	@extend .bold;
+	@extend .uppercase;
 }
 
 //lg
@@ -146,6 +154,14 @@ p{
 
 .brand{
 	color: $brand;
+}
+
+@include size-dependent( ".righted" ) {
+	text-align: right;
+}
+
+@include size-dependent( ".centered" ) {
+	text-align: center;
 }
 
 /********** @ICONS *********/

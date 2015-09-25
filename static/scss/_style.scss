@@ -3,36 +3,103 @@
 /********** @STRUCTURE *********/
 
 html, body {
-	box-sizing:border-box;
 	width:100%;
 	height:100%;
 }
 
-/** These styles fix a horizontal scrolling issue – but they suck */
-.row {
-	width:100%;
-	@extend .mr0;
-	@extend .ml0;
+#loading-background {
+	position:fixed;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	z-index:1000;
+}
+
+/********** @<a>s ***********/
+
+a {
+	&.active {
+		@extend .bold;
+	}
+
+	&:hover {
+		color: $brand;
+	}
+	
+}
+
+.sync {
+	@extend .bold;
+	color: $brand;
+	border-bottom:2px solid transparent;
+
+	&.active {
+		border-bottom:2px solid $dark;
+	}
+
+	&:hover {
+
+		border-bottom:2px solid $brand;
+		line-height: 1.5em;
+
+	}
 
 }
 
-.row > div[class="col-"]:first-child, .row > div[class*="col-"]:first-child  {
-	//border: 1px solid blue;
-	padding-left: 0em;
+header a, footer a {
+	color: $brand;
+
+	&:hover {
+		@extend .bold;
+	}
 }
 
-.row > div[class="col-"]:last-child, .row > div[class*="col-"]:last-child  {
-	//border: 1px solid red;
-	padding-right: 0em;
-}
-/** This is the end of the bad hack fix styles. */
+header .sync, footer .sync {
+	color: $dark;
 
+	&:hover {
+		color: $brand;
+	}
+}
 
 /********** @HEADER *********/
 
 header {
-	height: $nav-height;
-	border-bottom:1px solid $light;
+	padding:42px 0px 30px 0px;
+	border-bottom:1px solid $medium-light;
+}
+
+header {
+	z-index:50;
+
+	top:-25%;
+	
+	&.header-fixed {
+		@include transition(top, $transition-duration);
+		top:0px;
+	}
+
+	svg {
+		position: relative;
+		top:-2px;
+	}
+}
+
+@media ( $xs-query ) {
+
+	header {
+		padding:20px 0px 12px 0px;
+
+		svg {
+			width:200px;
+		}
+
+		#logo {
+			height:45px;
+		}
+	}
+
 }
 
 
@@ -41,14 +108,8 @@ header {
 
 /********** @MENU *********/
 
-
-$open-skew: 0deg;
-$closed-skew:-5deg;
-
 $open-X: 2.5%;
-$closed-X: -105%;
-
-$transition-duration: .75s;
+$closed-X: -200%;
 
 #overlay {
 
@@ -60,7 +121,7 @@ $transition-duration: .75s;
 	height: 100%;
 	opacity:.75;
 
-	z-index:50;
+	z-index:100;
 
 	&.on {
 		//opacity:0.75;
@@ -75,9 +136,12 @@ $transition-duration: .75s;
 
 
 menu {
-	position: absolute;
+	position: fixed;
 	width:95%;
-	z-index:100;
+	max-height:95%;
+	z-index:150;
+	
+	overflow:scroll;
 
 	@include transform( skewX( $closed-skew ) translateX( $closed-X ) );
 	@include transition( transform, $transition-duration );
@@ -88,10 +152,58 @@ menu {
 	}
 
 	&.open {
+		position: fixed;
 		@include transform( skewX( $open-skew ) translateX( $open-X ) );
 		//@include animation( menu-open, 5s, both);
 	}
 }
+
+/********** @SIDEBAR *********/
+
+#sidebar {
+	height:100%;
+	padding-left:4%;
+	@extend .mr0;
+	@extend .ml0;
+}
+
+
+aside {
+	position: absolute;
+
+	@include transform( skewX( $closed-skew ) translateX( $closed-X ) translateY( 5% ) );
+	@include transition( transform, $transition-duration );
+
+	&.open {
+		@include transform( skewX( $open-skew ) translateX( $open-X ) translateY( 5% ) );
+	}
+	
+	& .sidebar-heading {
+		@extend .brand;
+	}
+
+	& .sidebar-item {
+		//position: relative;
+		//@include transform( translateY( 100px ) );
+	}
+
+	& .active {
+		border-color: $brand !important;
+	}
+
+}
+
+.sort-key {
+	cursor: pointer;
+
+	&.active {
+		@extend .bold;
+		@extend .brand;
+		@include transition(font-weight, $transition-duration / 2);
+	}
+}
+
+
 
 /********** @FOOTER *********/
 
@@ -99,27 +211,21 @@ menu {
 
 /********** @active ***********/
 
-.active {
-	@extend .bold;
-}
-
-nav > .active {
-	@extend .brand;
-}
 
 
-
-/********** @hrs *************/
+/********** @<hr>s *************/
 
 hr {
+	position: relative;
+	top: -15px;
 
 	border-bottom:1px solid $medium;
 
-	@include transform(translate(-15px,0)); // -ish
+	//@include transform(translate(-15px,0)); // -ish
 
-	@extend .mb1;
-	@extend .mt1;
-	@extend .ml1;
+	//@extend .mb1;
+	//@extend .mt1;
+	//@extend .ml1;
 
 	&.hr-light {
 		border-bottom-color:$medium-light;
@@ -134,9 +240,60 @@ hr {
 	}
 }
 
-.project {
-	//border-bottom: 1px solid $light;
+.hr-light {
+		border-bottom-color:$medium-light;
+	}
+
+/********** .image-overlay ********/
+
+.image-overlay {
+	position: absolute;
+	top: 50px;
 }
+
+
+
+
+/********** PROJECTS ********/
+
+.project-tile {
+	
+	&:hover img {
+		//@include transform( skewX( $closed-skew ) translateX( 5px ) );
+		//@include transition( transform, $transition-duration / 2 );
+
+	}
+}
+
+.project-tile-title {
+	@extend h4;
+	@extend .bold;
+}
+
+.project-tile-image, .news-tile-image {
+	@include box-shadow( 0, 0, 1px, $dark);
+}
+
+#projects, #news {
+	border-bottom:1px solid $medium-light;
+}
+
+/********** NEWS ********/
+
+
+.news-rule, .news-rule-xs {
+	border-top:1px solid $medium-light;
+}
+
+.news-tile {
+
+
+}
+
+#news {
+	border-bottom:1px solid $medium-light;
+}
+
 
 /********** @RESPONSIVE *********/
 
@@ -147,29 +304,38 @@ hr {
 }	
 
 //lg
-@media (min-width: 1201px) {
+@media ($lg-query) {
 
 
 
 }
 
 //md
-@media (max-width: 1200px) {
+@media ($md-query) {
 
 
 
 }
 
 //sm
-@media (max-width: 992px) {
+@media ($sm-query) {
 
 
 
 } 
 
 //xs
-@media (max-width: 767px) {
+@media ($xs-query) {
 
-
+	.news-rule {
+		border-top:none;
+	}
 
 }
+
+@media (min-width: $xs-size) {
+	*[aside-enter] {
+		padding-top: 6em !important;
+	}
+}
+
