@@ -1,125 +1,115 @@
-{# ------------------------------------------------------- #}
-
-{# LIST VIEW OF ALL projects #}
-
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-
-{# ------------------------------------------------------- #}
-
-{# Confused what extends and blocks do? Watch a primer: #}
-
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
 {% extends "templates/partials/base.html" %}
 
-{# This sets our page <title>. It will append projects to the site title defined in base.html #}
-{% block title %}{% parent %} - projects{% endblock %}
+
+{% block title %}{% parent %} - Projects{% endblock %}
 
 {% block content %}
 
   {% set projects = cms.projects|sort('publish_date', true) %}
 
-  <section id="projects-introduction" class="bg-white padded">
-      <div class="row">
-        <div class="col-sm-10 col-sm-offset-1 centered">
-          <h2>Our research projects are built on close collaboration <br class="hidden-xs" /> with social enterprises and governments.</h2>
-        </div>
-      </div>
+  <section id="projects-introduction" class="bg-light block">
+
+      {% include "templates/partials/map.html" %}
+
   </section>
 
-  <section id="projects-filters" class="bg-light padded">
-      <div class="row">
 
-        <div class="col-sm-offset-1 col-sm-4">
-          <h5 class="uppercase bold">Sort By Region <a href="#map" class="uppercase">(See Map)</a></h5>
-          <hr class="hr-dark full">
-          <ul class="row">
+  <section id="projects" class="bg-white" aside-enter>
+  <div class="container-fluid">
+  <div class="row">
+      <div id="sidebar" class="col-sm-2">
+
+
+       <aside class="hidden-xs">
+          <ul>
             
-            {% for region in cms.regions %}
+            {% if ( cms.topics.length > 0 ) %}
+            <li class="sidebar-item sidebar-topic-sort mb2">
+              <ul>
+                <li class="h5 uppercase bold sidebar-heading">Filter By Topic <hr class="hr-brand" /></li>
+                {% for topic in cms.topics %}
+                  <li data-sort-key="{{ topic.name|lower }}" class="sort-key sidebar-link h6 uppercase {% if ( loop.index == cms.topics|size ) %}mb2{% endif %}">{{ topic.name }}</li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% endif %}
 
-              <li class="region col-sm-4 uppercase"><a href="#"><h5 class="bold">{{ region.name }}</h5></a></li>
+            {% if ( cms.regions.length > 0 ) %}
+            <li class="sidebar-item sidebar-region-sort mb4">
+              <ul>
+                <li class="h5 uppercase bold sidebar-heading">Filter By Region</li>
+                <li class=""><hr class="hr-brand" /></li>
+                {% for region in cms.regions %}
+                  <li data-sort-key="{{ region.name|lower }}" class="sort-key sidebar-link h6 uppercase {% if ( loop.index == cms.regions|size ) %}mb2{% endif %}">{{ region.name }}</li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% endif %}
+
+            <li class="sidebar-item sidebar-region-sort">
+              <ul>
+                <li data-sort-key=" " class="sort-key h6 uppercase active sidebar-item">All Projects</li>
+              </ul>
+            </li>
+
+          </ul>
+
+        </aside>
+
+      </div>
+      
+      <div class="col-sm-9">
+      <ul id="projects-list">
+        
+        {% for project in projects %}
+
+        {% if (loop.index0 % 2 == 0) %}
+        <div class="row padded">
+        {% endif %}
+
+        <li id="project-{{ project.shortname|escape('url') }}" class="project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4-xs" data-publish-date="{{ project.publish_date }}" data-sort-value="{% for value in merge( project.topics, project.region ) %}{{ value.name|lower }} {% endfor %}"><a href="{{ url( project ) }}">
+          <img class="project-tile-image" src="{{ project.images|first|imageCrop(500, 350) }}" />
+          <h3 class="title project-tile-title">{{ project.name }}</h3>
+          <p>{{ project.summary }}</p>
+          <hr class="hr-light">
+          {% if ( project.topics )%}
+          <ul class="project-tile-topics">
+            
+            {% for topic in project.topics %}
+              
+              <li class="inline sidebar-link h6 uppercase">
+              <a data-sort-key="{{topic.name|lower}}" href="/about#{{ topic.name|escape('url') }}">
+              {{ topic.name }}{% if ( loop.index < project.topics|size ) %}, {% endif %}
+              </a>
+              </li>
 
             {% endfor %}
 
           </ul>
-        </div>
+          {% endif %}
+       </a></li>
 
-        <div class="col-sm-offset-1 col-sm-4">
-          <h5 class="uppercase bold">Sort By Topic</h5>
-          <hr class="hr-dark full">
-          <ul class="row">
-            {# Turn this into actual taxonomy terms #}
-            <li class="topic col-sm-4 uppercase"><a href="#"><h5 class="bold">Education</h5></a></li>
-            <li class="topic col-sm-4 uppercase"><a href="#"><h5 class="bold">Government</h5></a></li>
-            <li class="topic col-sm-4 uppercase"><a href="#"><h5 class="bold">Health</h5></a></li>
-
-          </ul>
+        {% if (loop.index0 % 2 == 1 || loop.index == projects|size ) %}
         </div>
+        {% endif %}
+
+        {% endfor %}
+        </div>
+      </ul>
       </div>
-  </section>
-
-  <section id="active-filter" class="bg-white mt2">
-    <div class="row">
-      <div class="col-sm-offset-1 col-sm-2"><h5 class="uppercase bold brand">All Projects</h5></div>
+    </div>
     </div>
   </section>
 
-  <section id="projects" class="bg-white">
-  <ul>
-    {% for project in projects %}
-      <li class="project row padded">
-        <div class="col-sm-offset-1 col-sm-5">
-          {% if ( loop.index0 % 2 == 0 ) %}
-
-            {% if ( project.images|size > 1 ) %}
-
-              <div class="flexslider">
-              <ul class="slides">
-                {% for image in project.images %}
-                  <li><img src="{{ image|imageSize(500) }}"></li>
-                {% endfor %}
-              </ul>
-              </div>
-
-            {% else %}
-              <img src="{{ project.images|first|imageSize(500) }}">
-            {% endif %}
-
-          {% else %}
-
-          {% endif %}
-        </div>
-        <div class="col-sm-5">
-          {% if ( loop.index0 % 2 == 0 ) %}
-          
-          <h3 class="bold mt0 mb2"> {{ project.name }} </h3>
-
-          <h4 class="mb2">{{ project.summary }}</h4>
-
-          <a class="uppercase underline bold" href="{{ url( project ) }}">View Project</a>
-
-          {% else %}
-          {% endif %}         
-        </div>
-      </li>
-    {% endfor %}
-  </ul>  
-  </section>
-
-  <section id="map">
-    {# map goes in here, kid. #}
-  </section>
-
-  <section id="back" class="bg-brand">
+  <section id="back" class="bg-white padded" aside-exit>
+    <div class="container">
     <div class="row">
-      <div class="col-sm-offset-3 col-sm-6 padded">
-        <h3>
+      <div class="col-sm-offset-3 col-sm-6 centered">
+        <a class="sync" href="/"><h5 class="back-to-home">
           Back To Home
-        </h3>
+        </h5></a>
       </div>
+    </div>
     </div>
   </section>
 
