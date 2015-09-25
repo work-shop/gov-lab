@@ -5,9 +5,14 @@ var loaded = false;
 var state = 'intro';
 var moving = false;
 
+$(document).on('dom-is-sized', function() {
+	$('#loading-background').fadeOut(350, function() { $(this).remove(); });
+});
 
 //initial events, and general event binding
 jQuery(document).ready(function($) {
+
+
 
 	view();
 	
@@ -21,6 +26,13 @@ jQuery(document).ready(function($) {
 		var href = $(this).attr("href");
 		href = href.toLowerCase();
 		scrollLink(href);	
+	});
+
+	$('a.link').click(function(){
+		$('html, body').animate({
+			scrollTop: $( $.attr(this, 'href') ).offset().top - 50
+		}, 750);
+		return false;
 	});
 
 	/* for touch scrolling, this event fires when touch point is moved*/
@@ -99,6 +111,8 @@ function ScrollObserver( watched ) {
 
 	var observed = {};
 
+	var diffed = {};
+
 	/**
 	 * [observe description]
 	 * @param  {[type]} selector   [description]
@@ -116,9 +130,11 @@ function ScrollObserver( watched ) {
 
 		observed[ selector ][ callbackID ] = predicate;
 
+		triggerObserved();
+
 	};
 
-	self.glance = function( selector, callbackID, predicate ) {
+	self.observeOnce = function( selector, callbackID, predicate ) {
 
 		self.observe( selector, callbackID, function( element ) {
 
@@ -150,7 +166,124 @@ function ScrollObserver( watched ) {
 	};
 
 
-	function trigger() {
+	self.diff = function( selectorA, selectorB, callbackID, predicate ) {
+		if ( ! diffed[ selectorA ] ) {
+
+			diffed[ selectorA ] = {};
+
+		} 
+
+		if ( !diffed[ selectorA ][ selectorB ] ) {
+
+			diffed[ selectorA ][ selectorB ] = {};
+
+		}
+
+		diffed[ selectorA ][ selectorB ][ callbackID ] = predicate;
+
+		triggerDiffed();
+	};
+
+	self.diffOnce = function( selectorA, selectorB, callbackID, predicate ) {
+		self.diff( selectorA, selectorB, callbackID, function( element ) {
+
+			var accepted = predicate( element );
+
+			if ( accepted ) { self.undiff( selectorA, selectorB, callbackID ); }
+
+			return accepted;
+
+		});
+	};
+
+	self.undiff = function( selectorA, selectorB, callbackID ) {
+
+		if ( selectorA && selectorB && callbackID ) {
+
+			if ( diffed[ selectorA ] && diffed[ selectorA ][ selectorB ] ) { delete diffed[ selectorA ][ selectorB ][ callbackID ]; }
+
+		} else if ( selectorA && selectorB ) {
+
+			if ( diffed[ selectorA ] ) { delete diffed[ selectorA ][ selectorB ]; }
+
+		} else if ( selectorA ) {
+
+			if ( diffed[ selectorA ] ) { delete diffed[ selectorA ]; }
+
+		} else {
+
+			diffed = {};
+		}
+		
+	};
+
+
+	function triggerDiffed() {
+
+		for ( var selectorA in diffed ) {
+
+			var selectedAs = $( selectorA );
+
+			if ( selectedAs.length ) {
+
+				for ( var selectorB in diffed[ selectorA ] ) {
+
+					var selectedBs = $( selectorB );
+
+					if ( selectedBs.length ) {
+
+						selectedAs.each( function( i, A ) {
+
+							A = $( A );
+
+							var ATop 	= A.offset().top;
+
+							var ABot 	= ATop + A.outerHeight();
+
+							selectedBs.each( function( j, B ) {
+
+								B = $( B );
+
+								var BTop 	= B.offset().top;
+
+								var BBot 	= BTop + B.outerHeight();
+
+								var elementAttributes = {
+									top: {
+										top: BTop - ATop,
+										bottom: BBot - ATop
+									},
+									bottom: {
+										top: BTop - ABot,
+										bottom: BBot - ABot
+									}
+								};
+
+								for ( var trigger in diffed[ selectorA ][ selectorB ] ) {
+
+									if ( diffed[ selectorA ][ selectorB ][ trigger ]( elementAttributes ) ) { 
+										$( window ).trigger( trigger, A, B ); 
+									} 
+
+								}
+
+
+							});
+
+						});
+
+					}
+
+				}
+
+			}
+
+		}
+
+
+	}
+
+	function triggerObserved() {
 
 		for ( var selector in observed ) {
 
@@ -204,27 +337,21 @@ function ScrollObserver( watched ) {
 	/**
 	 * @todo refactor : requestAnimationFrame
 	 */
-	$( window ).on( 'scroll', trigger );
+	$( window ).on( 'scroll', triggerObserved );
+	$( window ).on( 'scroll', triggerDiffed );
 
 	// 
-	$( window ).on( 'resize', trigger );
+	$( window ).on( 'resize', triggerObserved );
+	$( window ).on( 'scroll', triggerDiffed );
 
 }
 
 /** ----------- DOCUMENT OBESERVERS --------------------------------- */
-$( document ).ready( function() {
 
-	var observer = ScrollObserver();
 
-	observer.observe('#home-updates', 'section-unobscured', function( e ) {
-		return e.top < 0 && e.bottom > 1;
-	});
+var observer;
 
-});
 
-$(window).on('section-unobscured', function( undefined, element ) {
-	//console.log( element );
-});
 
 
 /** ----------- DOCUMENT LISTENERS --------------------------------- */
@@ -237,6 +364,8 @@ $(window).on('section-unobscured', function( undefined, element ) {
 
 $( document ).ready( function( ) {
 	function cycleMenu( e ) {
+		e.preventDefault();
+
 		if ( $('menu').hasClass( 'open' ) ) {
 
 			$('menu').removeClass( 'open' ).addClass('closed');
@@ -256,6 +385,158 @@ $( document ).ready( function( ) {
 });
 
 
+/** ----------- SIDEBAR ACTIONS --------------------------------- */
+
+$( document).ready( function() {
+	if ( !observer ) observer = ScrollObserver();
+
+	observer.observeOnce('*[aside-enter]', 'aside-fixed', function( observation ) {
+		return observation.top >= 0;
+	});
+
+	observer.diffOnce('aside', '*[aside-exit]', 'aside-unfix', function( diff ) {
+		return diff.bottom.top >= 50;
+	});
+
+	observer.observeOnce('header', 'header-fix', function( observation ) {
+		return observation.top >= 1;
+	});
+	
+});
+
+
+$( window ).on( 'aside-absolute', function() {
+	console.log('aside-absolute');
+
+	$('aside').css({'position': 'absolute', 'top': '0%'});
+	observer.observeOnce('*[aside-enter]', 'aside-fixed', function( observation ) {
+		return observation.top >= 0;
+	});
+});
+
+$( window ).on( 'aside-fixed', function() {
+	console.log('aside-fixed');
+
+	area = ($('aside').offset().top - $('*[aside-enter]').offset().top);//+ $('header').outerHeight();
+
+	$('aside').css({'position': 'fixed', 'top': area+"px"});
+
+	observer.observeOnce('*[aside-enter]', 'aside-absolute', function( observation ) {
+		return observation.top < 0;
+	});
+});
+
+$( window ).on( 'aside-unfix', function( e ) {
+	console.log('aside-unfix');
+	$('aside').addClass('open');
+	observer.diffOnce('aside', '*[aside-exit]', 'aside-fix', function( diff ) {
+		return diff.bottom.top <= 50;
+	});
+
+});
+
+$( window ).on( 'aside-fix', function( e ) {
+	$('aside').removeClass('open');
+	observer.diffOnce('aside', '*[aside-exit]', 'aside-unfix', function( diff ) {
+		return diff.bottom.top >= 50;
+	});
+});
+
+// HEADER ACTUAL LOGIC
+
+$( window ).on('resize', function() {
+	$('header').width( window.innerWidth );
+});
+
+$( window ).on( 'header-fix', function() {
+
+	var header = $('header');
+
+	var w = header.outerWidth();
+	var h = header.outerHeight();
+
+	header.width( w );
+
+	var shadowElement = $('<div>')
+		.attr('id', 'header-shadow')
+		.width( w )
+		.height( h );
+
+	header.css({'position': 'fixed'});
+	shadowElement.insertBefore( header );
+	header.animate({
+		top: 0,
+	});
+
+	observer.observeOnce('#header-shadow', 'header-unfix', function( o ) {return o.top <= 0.05;});
+});
+
+$( window ).on('header-unfix', function() {
+	var header = $('header');
+
+	$('#header-shadow').remove();
+
+	header.width( "inherit" );
+
+	header.css({'position': 'static'});
+	header.css({'top': '-25%'});
+
+	observer.observeOnce('header', 'header-fix', function( o ) { return o.top >= 1; });
+});
+
+
+/** ----------- SORTING ACTIONS --------------------------------- */
+
+
+function transitionIn( set ) {
+	set.fadeIn( 350 );
+}
+
+function transitionOut( set ) {
+	set.fadeOut( 350 );
+}
+
+function filter(key, set) {
+	var inSet = set.filter( function( i, element ) {
+		return $( this ).data('sort-value').indexOf( key.trim() ) !== -1;
+	});
+
+	var outSet = set.filter( function( i, element ) {
+		return $( this ).data('sort-value').indexOf( key.trim() ) === -1;
+	});
+
+	if ( outSet.length ) {
+
+		outSet.fadeOut( 175, function() {
+			inSet.fadeIn( 175 );
+		});
+
+	} else if ( inSet.length ) {
+
+		inSet.fadeIn( 175 );
+
+	}
+}
+
+function activate( key ) {
+	$('*[data-sort-key]').removeClass('active');
+	key.addClass('active');
+}
+
+$(document).ready( function() {
+
+	['#projects-list', '#news-list'].forEach( function( list ) {
+		$( list ).height( $( list ).height() );
+	});
+
+	$('*[data-sort-key]').on('click', function() {
+
+		activate( $(this) );
+
+		filter( $(this).data('sort-key'), $('*[data-sort-value]') );
+
+	});
+});
 
 
 
@@ -349,14 +630,14 @@ function view(){
 	if($(window).width() >= 768){		
 		$('.block.full').css('height',windowHeight);	
 		$('.block.min').css('min-height',windowHeight);		
-		$('.block.half').css('height',windowHeight*.75);				
-		$('.block.three-quarter').css('height',windowHeight*.75);	
+		$('.block.half').css('height',windowHeight*0.75);				
+		$('.block.three-quarter').css('height',windowHeight*0.75);	
 	}
 	else{
 		$('.block.full').css('height',windowHeight);	
 		$('.block.min').css('min-height',windowHeight);		
-		$('.block.half').css('height',windowHeight*.75);				
-		$('.block.three-quarter').css('height',windowHeight*.75);	
+		$('.block.half').css('height',windowHeight*0.75);				
+		$('.block.three-quarter').css('height',windowHeight*0.75);	
 	}
 	
 	//if the loadPage function has not been called yet, call it
