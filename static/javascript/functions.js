@@ -9,6 +9,10 @@ $(document).on('dom-is-sized', function() {
 	$('#loading-background').fadeOut(350, function() { $(this).remove(); });
 });
 
+function stopAnimationProgress( ) {
+		
+}
+
 //initial events, and general event binding
 jQuery(document).ready(function($) {
 
@@ -28,12 +32,20 @@ jQuery(document).ready(function($) {
 		scrollLink(href);	
 	});
 
+
+
 	$('a.link').click(function(){
 		$('html, body').animate({
 			scrollTop: $( $.attr(this, 'href') ).offset().top - 50
 		}, 750);
+
+
 		return false;
 	});
+
+	// this set of listeners breaks out of the animation gracefully if the user scrolls.
+	$(window).on( "mousewheel", function() { $('html, body').stop(); });
+	$(window).on( "touchmove", function() { $('html, body').stop(); });
 
 	/* for touch scrolling, this event fires when touch point is moved*/
 	//document.addEventListener("touchmove", scrollStart, false);	
@@ -404,11 +416,16 @@ $( document).ready( function() {
 	
 });
 
+var asideFresh = true;
 
 $( window ).on( 'aside-absolute', function() {
 	console.log('aside-absolute');
 
-	$('aside').css({'position': 'absolute', 'top': '0%'});
+	//area = $('aside').offset().top;
+
+	$('aside').animate({'position': 'absolute', 'top': 0 + "px"});
+	$('aside').css({'position': 'absolute'});
+
 	observer.observeOnce('*[aside-enter]', 'aside-fixed', function( observation ) {
 		return observation.top >= 0;
 	});
@@ -419,7 +436,10 @@ $( window ).on( 'aside-fixed', function() {
 
 	area = ($('aside').offset().top - $('*[aside-enter]').offset().top);//+ $('header').outerHeight();
 
-	$('aside').css({'position': 'fixed', 'top': area+"px"});
+	//area = $('aside').offset().top;
+
+	$('aside').animate({'position': 'fixed', 'top': area+"px"});
+	$('aside').css({'position': 'fixed'});
 
 	observer.observeOnce('*[aside-enter]', 'aside-absolute', function( observation ) {
 		return observation.top < 0;
@@ -428,7 +448,22 @@ $( window ).on( 'aside-fixed', function() {
 
 $( window ).on( 'aside-unfix', function( e ) {
 	console.log('aside-unfix');
-	$('aside').addClass('open');
+
+	if ( asideFresh ) {
+
+		$('aside').delay( 750 ).queue( function( next ) {
+			$('aside').addClass('open');
+			next();
+		});
+
+		asideFresh = false;
+
+	} else {
+
+		$('aside').addClass('open');
+
+	}
+	
 	observer.diffOnce('aside', '*[aside-exit]', 'aside-fix', function( diff ) {
 		return diff.bottom.top <= 50;
 	});
@@ -520,14 +555,13 @@ function filter(key, set) {
 
 function activate( key ) {
 	$('*[data-sort-key]').removeClass('active');
+	$('*[data-sort-key="' + ( key.data('sort-key') ) + '"]').addClass('active');
 	key.addClass('active');
 }
 
 $(document).ready( function() {
 
-	['#projects-list', '#news-list'].forEach( function( list ) {
-		$( list ).height( $( list ).height() );
-	});
+	
 
 	$('*[data-sort-key]').on('click', function() {
 
@@ -536,6 +570,12 @@ $(document).ready( function() {
 		filter( $(this).data('sort-key'), $('*[data-sort-value]') );
 
 	});
+
+	// $(window).resize( function() {
+	// 	// ['#projects-list', '#news-list'].forEach( function( list ) {
+	// 	// 	$( list ).height( $( list ).height() );
+	// 	// });
+	// });
 });
 
 
