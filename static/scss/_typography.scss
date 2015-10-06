@@ -1,3 +1,123 @@
+@font-face {
+    font-family: 'modern_pictograms_proregular';
+    src: url('modernpictogramspro_234.eot');
+    src: url('modernpictogramspro_234?#iefix') format('embedded-opentype'),
+		url('modernpictogramspro_234.woff') format('woff'),
+		url('modernpictogramspro_234.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: "ModernPictograms";
+	src: url('modernpictogramspro_2-webfont.eot');
+	src: url('modernpictogramspro_2-webfont.eot?#iefix') format('opentype'),
+		url('modernpictogramspro_2-webfont.woff') format('woff'),
+		url('modernpictogramspro_2-webfont.svg') format('svg');
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "SimplonNormBold";
+	src: url('SimplonNorm-Bold-WebTrial.eot');
+	src: url('SimplonNorm-Bold-WebTrial.eot?#iefix') format('opentype'),
+		url('SimplonNorm-Bold-WebTrial.woff') format('woff');
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "SimplonNormBold";
+	src: url('SimplonNorm-BoldItalic-WebTrial.eot');
+	src: url('SimplonNorm-BoldItalic-WebTrial.eot?#iefix') format('opentype'),
+		url('SimplonNorm-BoldItalic-WebTrial.woff') format('woff');
+
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "SimplonNormLight";
+	src: url('SimplonNorm-Light-WebTrial.eot');
+	src: url('SimplonNorm-Light-WebTrial.eot?#iefix') format('opentype'),
+		url('SimplonNorm-Light-WebTrial.woff') format('woff');
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "SimplonNormLight";
+	src: url('SimplonNorm-LightItalic-WebTrial.eot');
+	src: url('SimplonNorm-LightItalic-WebTrial.eot?#iefix') format('opentype'),
+		url('SimplonNorm-LightItalic-WebTrial.woff') format('woff');
+
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "SimplonNormLight";
+	src: url('SimplonNorm-Light-WebTrial.eot');
+	src: url('SimplonNorm-Light-WebTrial.eot?#iefix') format('opentype'),
+		url('SimplonNorm-Light-WebTrial.woff') format('woff');
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "SimplonNormLight";
+	src: url('SimplonNorm-LightItalic-WebTrial.eot');
+	src: url('SimplonNorm-LightItalic-WebTrial.eot?#iefix') format('opentype'),
+		url('SimplonNorm-LightItalic-WebTrial.woff') format('woff');
+
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "SimplonNormMedium";
+	src: url('SimplonNorm-Medium-WebTrial.eot');
+	src: url('SimplonNorm-Medium-WebTrial.eot?#iefix') format('opentype'),
+		url('SimplonNorm-Medium-WebTrial.woff') format('woff');
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "SimplonNormMedium";
+	src: url('SimplonNorm-MediumItalic-WebTrial.eot');
+	src: url('SimplonNorm-MediumItalic-WebTrial.eot?#iefix') format('opentype'),
+		url('SimplonNorm-MediumItalic-WebTrial.woff') format('woff');
+
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "SimplonNormRegular";
+	src: url('SimplonNorm-Regular-WebTrial.eot');
+	src: url('SimplonNorm-Regular-WebTrial.eot?#iefix') format('opentype'),
+		url('SimplonNorm-Regular-WebTrial.woff') format('woff');
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "SimplonNormRegular";
+	src: url('SimplonNorm-RegularItalic-WebTrial.eot');
+	src: url('SimplonNorm-RegularItalic-WebTrial.eot?#iefix') format('opentype'),
+		url('SimplonNorm-RegularItalic-WebTrial.woff') format('woff');
+
+	font-weight: normal;
+	font-style: italic;
+}
 
 /********** @TYPOGRAPHY *********/
 
@@ -61,14 +181,14 @@ p{
 //md
 @media (max-width: 1200px) {
 	body{
-		font-size: 14px;
+		font-size: 16px;
 	}
 }
 
 //sm
 @media (max-width: 992px) {
 	body{
-		font-size: 12px;
+		font-size: 14px;
 	}
 
 	// h1,.h1{
@@ -88,7 +208,7 @@ p{
 //xs
 @media (max-width: 767px) {
 	body{
-		font-size: 11px;
+		font-size: 12px;
 	}
 
 	// h1,.h1{
@@ -125,15 +245,19 @@ p{
 }
 
 .underline{
-	text-decoration: underline;
+	border-bottom:2px solid $light;
 }
 
-.centered{
+@include size-dependent( '.centered' ) {
 	text-align: center;
 }
 
-.righted{
+@include size-dependent( '.righted' ) {
 	text-align: right;
+}
+
+@include size-dependent( '.lefted' ) {
+	text-align: inherit;
 }
 
 .bold{
@@ -146,6 +270,10 @@ p{
 
 .white{
 	color: white;
+}
+
+.light {
+	color: $light;
 }
 
 .dark{
