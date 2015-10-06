@@ -60,6 +60,7 @@ header .sync, footer .sync {
 
 	&:hover {
 		color: $brand;
+		@include transition(all, $transition-duration / 2);
 	}
 }
 
@@ -137,6 +138,7 @@ $closed-X: -200%;
 
 menu {
 	position: fixed;
+	padding:0px;
 	width:95%;
 	max-height:95%;
 	z-index:150;
@@ -160,7 +162,7 @@ menu {
 
 /********** @SIDEBAR *********/
 
-#sidebar {
+#sidebar, .sidebar {
 	height:100%;
 	padding-left:4%;
 	@extend .mr0;
@@ -193,6 +195,28 @@ aside {
 
 }
 
+.sidebar-active-heading {
+	@extend .brand;
+	@extend .m2;
+	border-bottom: 2px solid $brand;
+}
+
+.sidebar-active-subheading {
+	@extend .brand;
+	@extend .m1;
+}
+
+.sidebar-passive-heading {
+ 	@extend .dark;
+	@extend .m2;
+	border-bottom: 2px solid $dark;
+}
+
+.sidebar-passive-subheading {
+ 	@extend .dark;
+	@extend .m1;
+}
+
 .sort-key {
 	cursor: pointer;
 
@@ -221,12 +245,6 @@ hr {
 
 	border-bottom:1px solid $medium;
 
-	//@include transform(translate(-15px,0)); // -ish
-
-	//@extend .mb1;
-	//@extend .mt1;
-	//@extend .ml1;
-
 	&.hr-light {
 		border-bottom-color:$medium-light;
 	}
@@ -244,6 +262,7 @@ hr {
 		border-bottom-color:$medium-light;
 	}
 
+
 /********** .image-overlay ********/
 
 .image-overlay {
@@ -258,12 +277,37 @@ hr {
 
 .project-tile {
 	
-	&:hover img {
-		//@include transform( skewX( $closed-skew ) translateX( 5px ) );
-		//@include transition( transform, $transition-duration / 2 );
+	&:hover {
+		
+		@include transition(all, $transition-duration / 2);
 
 	}
 }
+
+.project-tint {
+	position: relative;
+	float: left;
+	cursor: pointer;
+	
+
+	& figure:before {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: none;
+		opacity: .5;
+		@include transition(all, $transition-duration / 2);
+	}
+
+	&:hover figure:before {
+		background: $brand;
+	}
+}
+
 
 .project-tile-title {
 	@extend h4;
@@ -274,8 +318,8 @@ hr {
 	@include box-shadow( 0, 0, 1px, $dark);
 }
 
-#projects, #news {
-	border-bottom:1px solid $medium-light;
+.projects-rule {
+	border-top:2px solid $brand;
 }
 
 /********** NEWS ********/
@@ -288,10 +332,6 @@ hr {
 .news-tile {
 
 
-}
-
-#news {
-	border-bottom:1px solid $medium-light;
 }
 
 
@@ -327,8 +367,13 @@ hr {
 //xs
 @media ($xs-query) {
 
+
 	.news-rule {
 		border-top:none;
+	}
+
+	*[aside-enter] {
+		padding-top: 0em !important;
 	}
 
 }
@@ -338,4 +383,6 @@ hr {
 		padding-top: 6em !important;
 	}
 }
+
+
 
