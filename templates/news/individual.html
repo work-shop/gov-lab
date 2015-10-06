@@ -9,28 +9,31 @@
   <div class="container-fluid">
   <div class="row">
 
-    <div id="sidebar" class="col-sm-3" aside-enter>{# right place ?? #}
+    <div id="sidebar" class="col-sm-3 hidden-xs" aside-enter>{# right place ?? #}
     <aside class="mt2">
           <ul>
             
-            <li class="sidebar-item sidebar-region-sort mb4">
+            <li class="sidebar-item mb2">
               <ul>
-                <li class="h5 uppercase bold sidebar-heading">Sort By</li>
-                <hr class="hr-brand" />
-
-                {% for category in cms.newscategories %}
-
-                  <li class="sort-key sidebar-item h6 uppercase" data-sort-key="{{ category.name|lower }}">{{ category.name }}</li>
-
-                {% endfor %}
+                <li class="h5 uppercase bold sidebar-passive-heading">{{ item.category.name }}</li>
               </ul>
             </li>
 
-            <li class="sidebar-item sidebar-region-sort">
+            <li class="sidebar-item mb2">
               <ul>
-                <li data-sort-key=" " class="sort-key h6 uppercase active sidebar-item">All Updates</li>
+               <li class="h5 uppercase bold sidebar-passive-subheading">Author</li>
+                <li class="h5 uppercase">{{ item.author.name }}</li>
               </ul>
             </li>
+
+            <li class="sidebar-item mb2">
+              <ul>
+               <li class="h5 uppercase bold sidebar-passive-subheading">Publication Date</li>
+                <li class="h5 uppercase">{{ item.publish_date|date('m / d / y') }}</li>
+              </ul>
+            </li>
+
+            
 
           </ul>
 
@@ -61,7 +64,7 @@
         <hr class="col-sm-offset-1 col-sm-10 hr-brand" />
         </div>
 
-        <div class="row mb2">
+        <div class="row">
           <div class="col-sm-offset-1 col-sm-10">
           {{ item.story|safe }}
           </div>
@@ -73,7 +76,7 @@
   </section>
 </article>
 
-<section id="back" class="bg-white padded news-rule" aside-exit>
+<section id="back" class="bg-white padded news-rule-xs" aside-exit>
   <div class="container">
   <div class="row">
     <div class="col-sm-offset-3 col-sm-6 centered">
