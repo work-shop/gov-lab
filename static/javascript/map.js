@@ -14,12 +14,14 @@ var data = projects.map( function( project ) {
 	};
 });
 
-// var zoom = d3.behavior.zoom()
-// 	.scaleExtent([1,9])
-// 	.on('zoom', move);
+var zoom = d3.behavior.zoom()
+	.scaleExtent([1,2])
+	.on('zoom', move);
 
-var width = window.innerWidth;
+var width = d3.select('#map').node().getBoundingClientRect().width;
 var height = width / 2;
+
+console.log( width, height );
 
 var topo, projection, path, svg, g;
 
@@ -32,11 +34,17 @@ function setup( width, height ) {
 
 	path = d3.geo.path().projection( projection );
 
+	console.log( zoom );
+
 	svg = d3.select('#map').append('svg')
 		.attr( 'width', width )
 		.attr( 'height', height )
-		//.call( zoom )
-		.append( 'g' );
+		.call( zoom )
+		.on("wheel.zoom", null)
+		.on("onwheel.zoom", null)
+		.on("mousewheel.zoom", null)
+		.on("onmousewheel.zoom", null);
+		
 
 	g = svg.append( 'g' );
 
@@ -68,7 +76,14 @@ function draw( topo ) {
 	projects.enter().append('a')
 		.attr('xlink:href', function( d ) { return '/' + d.link; })
 		.attr('class', 'map-project')
-		//.append()
+		.append('svg:circle')
+		.attr('transform', function( d ) {
+			var p = projection([d.longitude, d.latitude]);
+			var sx = .25, sy = .25, cx = p[0], cy = p[1];
+
+			return 'translate(' + projection([d.longitude, d.latitude]) + ')scale('+ 0.25 +')';
+		})
+		.attr('r', 50)
 		.on( 'mouseover', function( d ) {
 
 			var x = d3.event.x, y = d3.event.y;
@@ -98,16 +113,49 @@ function draw( topo ) {
 			console.log('out');
 			d3.select('#project-label').remove();
 
-		})
+		});
+
+	projects.enter().append('a')
+		.attr('xlink:href', function( d ) { return '/' + d.link; })
+		.attr('class', 'project-marker')
 		.append('polygon')
+		.attr('class', 'project-marker')
 		.attr('points', "61,37 43,37 43,19 37,19 37,37 19,37 19,43 37,43 37,61 43,61 43,43 61,43 ")
-		//.attr('transform-origin', '40 40')
-		//.attr('transform', function( d ) { return 'translate(' + projection([d.longitude, d.latitude]) + ')scale('+ 0.25 +')'; })
 		.attr('transform', function( d ) {
 			var p = projection([d.longitude, d.latitude]);
 			var sx = .25, sy = .25, cx = p[0], cy = p[1];
 
 			return 'translate(' + projection([d.longitude, d.latitude]) + ')scale('+ 0.25 +')translate('+[-40,-40]+')';
+		})
+		.on( 'mouseover', function( d ) {
+
+			var x = d3.event.x, y = d3.event.y;
+
+			d3	.select('#map')
+			 	.append('div')
+					.attr( 'id', 'project-label' )
+					.attr('class', 'project-label col-sm-3')
+					.style({
+						'position': 'absolute',
+						'top': (y - 30) + 'px',
+						'left': (x + 30) + 'px'
+					})
+					.append('h3')
+					.attr('class', 'map-project-title')
+					.text( d.name.toUpperCase() );
+
+			d3	.select('#project-label')
+				.append('h6')
+				.attr('class', 'map-project-summary')
+				.text( d.description );
+
+
+
+		})
+		.on( 'mouseout', function( d ) {
+			console.log('out');
+			d3.select('#project-label').remove();
+
 		});
 		
 		
@@ -130,18 +178,22 @@ function draw( topo ) {
 function redraw() {
 	width = document.getElementById('map').offsetWidth;
 	height = width / 2;
-	d3.select('svg').remove();
+	d3.select('#map > svg').remove();
 	setup( width, height );
 	draw( topo );
 }
+
+function clicked( d ) {
+	var x, y, k;
+
+
+}
+
 
 function move() {
 	var t = d3.event.translate;
 	var s = d3.event.scale;
 
-	console.log( d3.event );
-
-	zscale = s;
 
 	var h = height / 4;
 
