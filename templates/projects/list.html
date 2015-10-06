@@ -7,14 +7,14 @@
 
   {% set projects = cms.projects|sort('publish_date', true) %}
 
-  <section id="projects-introduction" class="bg-light block">
+  <section id="projects-introduction" class="bg-light block half-strict crop">
 
       {% include "templates/partials/map.html" %}
 
   </section>
 
 
-  <section id="projects" class="bg-white" aside-enter>
+  <section id="projects" class="bg-white mb6" aside-enter>
   <div class="container-fluid">
   <div class="row">
       <div id="sidebar" class="col-sm-2">
@@ -26,9 +26,14 @@
             {% if ( cms.topics.length > 0 ) %}
             <li class="sidebar-item sidebar-topic-sort mb2">
               <ul>
-                <li class="h5 uppercase bold sidebar-heading">Filter By Topic <hr class="hr-brand" /></li>
+                <li class="h5 uppercase bold sidebar-heading">Filter By Topic</li>
+                <li class=""><hr class="hr-brand" /></li>
+                <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb2">All Projects</li>
                 {% for topic in cms.topics %}
-                  <li data-sort-key="{{ topic.name|lower }}" class="sort-key sidebar-link h6 uppercase {% if ( loop.index == cms.topics|size ) %}mb2{% endif %}">{{ topic.name }}</li>
+
+                  {% if topic.projects_relationship %}
+                  <li data-sort-key="{{ topic.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.topics|size ) %}mb2{% endif %}">{{ topic.name }}</li>
+                  {% endif %}
                 {% endfor %}
               </ul>
             </li>
@@ -39,18 +44,13 @@
               <ul>
                 <li class="h5 uppercase bold sidebar-heading">Filter By Region</li>
                 <li class=""><hr class="hr-brand" /></li>
+                <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb2">All Projects</li>
                 {% for region in cms.regions %}
-                  <li data-sort-key="{{ region.name|lower }}" class="sort-key sidebar-link h6 uppercase {% if ( loop.index == cms.regions|size ) %}mb2{% endif %}">{{ region.name }}</li>
+                  <li data-sort-key="{{ region.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.regions|size ) %}mb2{% endif %}">{{ region.name }}</li>
                 {% endfor %}
               </ul>
             </li>
             {% endif %}
-
-            <li class="sidebar-item sidebar-region-sort">
-              <ul>
-                <li data-sort-key=" " class="sort-key h6 uppercase active sidebar-item">All Projects</li>
-              </ul>
-            </li>
 
           </ul>
 
@@ -59,7 +59,7 @@
       </div>
       
       <div class="col-sm-9">
-      <ul id="projects-list">
+      <ul id="projects-list" class="">
         
         {% for project in projects %}
 
@@ -67,10 +67,12 @@
         <div class="row padded">
         {% endif %}
 
-        <li id="project-{{ project.shortname|escape('url') }}" class="project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4-xs" data-publish-date="{{ project.publish_date }}" data-sort-value="{% for value in merge( project.topics, project.region ) %}{{ value.name|lower }} {% endfor %}"><a href="{{ url( project ) }}">
-          <img class="project-tile-image" src="{{ project.images|first|imageCrop(500, 350) }}" />
+        <li id="project-{{ project.shortname|escape('url') }}" class="project-tint project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4-xs" data-publish-date="{{ project.publish_date }}" data-sort-value="{% for value in merge( project.topics, project.region ) %}{{ value.name|lower }} {% endfor %}"><a href="{{ url( project ) }}">
+          <figure class=" mb2">
+            <img class="project-tile-image" src="{{ project.images|first|imageCrop(500, 350) }}" />
+          </figure>
           <h3 class="title project-tile-title">{{ project.name }}</h3>
-          <p>{{ project.summary }}</p>
+          <p class="mb4 hidden-xs">{{ project.summary }}</p>
           <hr class="hr-light">
           {% if ( project.topics )%}
           <ul class="project-tile-topics">
@@ -78,8 +80,8 @@
             {% for topic in project.topics %}
               
               <li class="inline sidebar-link h6 uppercase">
-              <a data-sort-key="{{topic.name|lower}}" href="/about#{{ topic.name|escape('url') }}">
-              {{ topic.name }}{% if ( loop.index < project.topics|size ) %}, {% endif %}
+              <a data-sort-key="{{topic.name|lower}}">
+                {{ topic.name }}{% if ( loop.index < project.topics|size ) %}, {% endif %}
               </a>
               </li>
 
@@ -101,7 +103,7 @@
     </div>
   </section>
 
-  <section id="back" class="bg-white padded" aside-exit>
+  <section id="back" class="bg-white padded news-rule-xs" aside-exit>
     <div class="container">
     <div class="row">
       <div class="col-sm-offset-3 col-sm-6 centered">

@@ -1,46 +1,37 @@
-{# ------------------------------------------------------- #}
-{# INDIVIDUAL VIEW FOR EACH projects #}
-{# This page can use any data from http:localhost:2000/cms/#/form/projects/ #}
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-{# ------------------------------------------------------- #}
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
 {% extends "templates/partials/base.html" %}
 
-{# This sets our page <title>. It will append this projects's name to the site title defined in base.html #}
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 
 {% block content %}
 <article id="project-{{ item.slug }}" class="bg-white">
 
   <section id="project-body" class="bg-light">
+  <div class="container-fluid">
+
     <div class="row">
-      <div id="sidebar" class="col-sm-3 hidden-xs">
+
+      <div id="sidebar" class="sidebar col-sm-3 hidden-xs" aside-enter>
         
         <aside>
           <ul>
             <li class="sidebar-item sidebar-metadata-items active">
               <ul>
-                <li class="h5 uppercase bold sidebar-heading">{{ item.shortname }}</li>
-                <li class="mb2"><hr class="hr-brand" /></li>
+                <li class="h5 uppercase bold sidebar-passive-heading">{{ item.shortname }}</li>
 
-                <li class="h6 uppercase bold sidebar-heading">Project Timeline</li>
-                <li class="h6 uppercase mb2">{{ item.project_timeline }}</li>
+                <li class="h5 uppercase bold sidebar-passive-subheading">Project Timeline</li>
+                <li class="h5 uppercase mb2">{{ item.project_timeline }}</li>
 
-                <li class="h6 uppercase bold sidebar-heading">Location</li>
-                <li class="h6 uppercase mb2">{{ item.region.name }}</li>
+                <li class="h5 uppercase bold sidebar-passive-subheading">Location</li>
+                <li class="h5 uppercase mb2">{{ item.region.name }}</li>
               </ul>
             </li>
 
             {% if ( item.team_members ) %}
             <li class="sidebar-item sidebar-team-members">
               <ul> 
-                <li class="h6 uppercase bold sidebar-heading">Team Members</li>
+                <li class="h5 uppercase bold sidebar-passive-subheading">Team Members</li>
                 {% for teammember in item.team_members %}
-                  <li class="h6 uppercase {% if ( loop.index == item.team_members|size ) %}mb2{% endif %}">{{ teammember.name }}</li>
+                  <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb2{% endif %}">{{ teammember.name }}</li>
                 {% endfor %}
               </ul>
             </li>
@@ -70,17 +61,36 @@
 
 
   
-            <li class="sidebar-item h6 uppercase bold sidebar-heading">Sponsors</li>
+          <a href="#sponsors" class="link"><li class="sidebar-item h6 uppercase bold sidebar-heading">Sponsors</li></a>
              
           </ul>
         </aside>
 
 
       </div>
+
       <div class="col-sm-9 bg-white">
 
+       <div class="row padded">
+          <div class="col-sm-offset-1 col-sm-10">
+            <h2 class="project-title bold">{{ item.name }}</h2>
+          </div>
+        </div>
+
+        <div class="row mb2">
+          <div class="col-sm-offset-1 col-sm-10">
+            <h4 class="project-summary">{{ item.summary }}</h4>
+          </div>
+        </div>
+
         <div class="row">
-          <div class="col-sm-12">
+          
+            <div class="projects-rule"></div>
+          
+        </div>
+
+        <div class="row mb2">
+          
             {% if ( item.images|size > 1 ) %}
 
               <div class="flexslider">
@@ -96,26 +106,10 @@
               <img src="{{ item.images|first|imageCrop(1000,500) }}">
 
             {% endif %}
-          </div>
+          
         </div>
 
-        <div class="row padded">
-          <div class="col-sm-offset-1 col-sm-10">
-            <h2 class="project-title">{{ item.name }}</h2>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-offset-1 col-sm-10">
-            <h4 class="project-summary">{{ item.summary }}</h4>
-          </div>
-        </div>
-  
-        <div class="row mb2">
-        <hr class="col-sm-offset-1 col-sm-10 hr-brand" />
-        </div>
-
-        <div class="row">
+        <div class="row mb4">
           <div class="col-sm-offset-1 col-sm-10">
           {{ item.body|safe }}
           </div>
@@ -123,12 +117,16 @@
 
       </div>
     </div>
+  </div>
   </section>
 
+
+
   {% if ( item.updates ) %}
-  <section id="project-updates" class="bg-light padded">
+  <section id="project-updates" class="bg-light">
+  <div class="container-fluid">
     <div class="row">
-    <div class="col-sm-offset-3 col-sm-9">
+    <div class="col-sm-offset-3 col-sm-9 bg-white pb4">
 
       <ul>
       {% for update in item.updates %}
@@ -147,23 +145,19 @@
           <h3 class="mt0">{{ update.title }}</h3>
           <p>{{ update.text }}</p>
         </div>
-        
-        {#
-        <div class="col-sm-offset-1 col-sm-1">
-
-        </div>
-        #}
 
       </li>
       {% endfor %}
       </ul>
 
     </div>
+  </div>
   </section>
   {% endif %}
 
-  {% if ( item.takeaways ) %}
+ {#  {% if ( item.takeaways ) %}
   <section id="project-takeaways" class="bg-white padded">
+  <div class="container-fluid">
         <div class="row">
           <div class="col-sm-offset-3 col-sm-9">
             <ul>
@@ -209,32 +203,88 @@
             </ul>  
           </div>
         </div>
+  </div>
+  </section>
+  {% endif %} #}
+
+
+  {% if ( item.team_members ) %}
+  <section id="project-teammembers" class="bg-light">
+  <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-sm-offset-3 col-sm-9 bg-white pb4">
+            <div class="row">
+            <div class="col-xs-offset-1 col-xs-10 mb2" >
+              <div class="projects-rule"></div>
+
+              <h4>Team</h4>
+            </div>
+            {% for teammember in item.team_members %}
+            <div class="teammember {% if ( loop.index0 % 2 == 0 ) %}col-xs-offset-1{% endif %} col-xs-5 mb1">
+              <img class="teammember-image mb1" src="{{ teammember.image|imageSize(500,auto) }}" />
+              <h4 class="teammember-name bold">{{ teammember.name }}</h4>
+              <p class="teammember-description mb1">{{ teammember.bio }}</p>
+              <a href="mailto:{{ teammember.email }}">{{ teammember.email }}</a>
+            </div>
+            {% endfor %}
+            </div>  
+          </div>
+        </div>
+  </div>
   </section>
   {% endif %}
 
-  <section id="project-sponsors" class="bg-light padded">
+
+  {% if (item.collaborators or item.sponsors) %}
+  <section id="project-sponsors" class="bg-light">
+  <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-offset-3 col-sm-9">
-            <ul>
-            {% for sponsor in merge(item.collaborators, item.funders) %}
-              <li class="fade-in {% if ( loop.index0 % 3 == 0 ) %} col-sm-offset-1 {% endif %} col-sm-3">
-                <a href="{{ sponsor.website }}"><img src="{{ sponsor.logo|imageSize(400) }}" alt=""></a>
-              </li>
-            {% endfor %}
-            </ul>  
+          <div class="col-sm-offset-3 col-sm-9 bg-white pb6">
+          <div class="row">
+
+            <div class="col-xs-offset-1 col-xs-5">
+              <div class="projects-rule"></div>
+              <h4 class="mb2">Sponsors</h4>
+              {% if item.sponsors %}
+              <ul>
+              {% for sponsor in item.sponsors %}
+                <li><a class="uppercase" href="{{ sponsor.website }}">{{ sponsor.name }}</li>
+              {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+
+            <div class="col-xs-5">
+              <div class="projects-rule"></div>
+              <h4 class="mb2">Collaborators</h4>
+              {% if item.collaborators %}
+              <ul>
+              {% for collaborator in item.collaborators %}
+                <li><a class="uppercase bold" href="{{ collaborator.website }}">{{ collaborator.name }}</li>
+              {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+
+          </div>
           </div>
         </div>
+  </div>
   </section>
+  {% endif %}
 
 </article>
 
-<section id="back" class="bg-brand">
+<section id="back" class="bg-white padded news-rule-xs" aside-exit>
+  <div class="container">
   <div class="row">
-    <div class="col-sm-offset-3 col-sm-6 padded">
-      <h3>
-        Back To Home
-      </h3>
+    <div class="col-sm-offset-3 col-sm-6 centered">
+      <a class="sync" href="/projects"><h5 class="back-to-home">
+        Back To Projects
+      </h5></a>
     </div>
+  </div>
   </div>
 </section>
 {% endblock %}
