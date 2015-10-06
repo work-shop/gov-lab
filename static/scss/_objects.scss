@@ -67,6 +67,24 @@ flexslider
   }
 }
 
+@for $i from 0 through 9 {
+  .pb#{$i} { 
+  	padding-bottom: 1em * $i;
+  }
+}
+
+@for $i from 0 through 9 {
+  .pl#{$i} { 
+  	padding-left: 1em * $i;
+  }
+}
+
+@for $i from 0 through 9 {
+  .pr#{$i} { 
+  	padding-right: 1em * $i;
+  }
+}
+
 .padded-less{
 	padding-top: 2.5%;
 	padding-bottom: 2.5%;
