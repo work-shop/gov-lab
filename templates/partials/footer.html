@@ -5,7 +5,7 @@
 
 	<div class="row bg-light padded">
 		<div class="col-xs-4 col-sm-offset-4 col-sm-2">
-			<a class="sync" href="/about"><h5 class="bold">About</h5></a>
+			<h4 class="bold mb2"><a class="sync" href="/about">About</a></h4>
 			<ul>
 				<li><h5><a class="sync" href="/about#what-we-do">What We Do</a></h5></li>
 				<li><h5><a class="sync" href="/about#our-team">Our Team</a></h5></li>
@@ -14,25 +14,25 @@
 			</ul>
 		</div>
 		<div class="col-xs-4 col-sm-3">
-			<h5 class="bold">Projects <a class="uppercase more" href="/projects">See All</a></h5>
+			<h4 class="bold mb2"><a class="sync" href="/projects">Projects</a></h4>
 			<ul>
 			{% for project in cms.projects|slice(0,length) %}
-				<li><h5><a class="sync" {% if  ( getCurrentUrl() == url( project ) ) %}class="active" {% endif %} href="{{ url( project ) }}">{{ project.shortname }}</a></h5></li>
+				<li><h5><a class="sync {% if  ( getCurrentUrl() == url( project ) ) %} active {% endif %}" href="{{ url( project ) }}">{{ project.shortname }}</a></h5></li>
 			{% endfor %}
 			</ul>
 		</div>
 		<div class="col-xs-4 col-sm-3">
-			<h5 class="bold">News <a class="uppercase more" href="/news">See All</a></h5>
+			<h4 class="bold mb2"><a class="sync" href="/news">News</a></h4>
 			<ul>
 			{% for news in cms.news|slice(0,length) %}
-				<li><h5><a class="sync" {% if  ( getCurrentUrl() == url( news ) ) %}class="active" {% endif %} href="{{ url( news ) }}">{{ news.name }}</a></h5></li>
+				<li><h5><a class="sync {% if  ( getCurrentUrl() == url( news ) ) %} active{% endif %}" href="{{ url( news ) }}">{{ news.name }}</a></h5></li>
 			{% endfor %}
 			</ul>
 		</div>
 	</div>
 
 	<div class="row bg-dark padded">
-			<div class="col-xs-12 col-sm-offset-1 col-sm-3"><a href="/"><span class="white">MIT GOV/LAB</span></a></div>
+			<div class="col-xs-12 col-sm-offset-1 col-sm-3 hidden-xs"><a href="/"><span class="white">MIT GOV/LAB</span></a></div>
 			<div class="col-xs-6 col-sm-4 white">
 				<address id="office-address" class="mt1">
 					<h5 class="bold uppercase mb2"><span class="underline">Visit Us</span></h5>
