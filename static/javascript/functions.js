@@ -5,13 +5,16 @@ var loaded = false;
 var state = 'intro';
 var moving = false;
 
-$(document).on('dom-is-sized', function() {
-	$('#loading-background').fadeOut(350, function() { $(this).remove(); });
+/**
+ * 'dom-is-sized' is triggered when the sizing module finishes a 
+ * resize. We listen for the first of these, and remove the "curtain"
+ * which 
+ */
+$(document).one('dom-is-sized', function() {
+	$('#loading-background').fadeOut(600, function() { $(this).remove(); });
 });
 
-function stopAnimationProgress( ) {
-		
-}
+
 
 //initial events, and general event binding
 jQuery(document).ready(function($) {
@@ -51,31 +54,6 @@ jQuery(document).ready(function($) {
 	//document.addEventListener("touchmove", scrollStart, false);	
 
 });//end document.ready
-
-
-//called when the user resizes the window
-$(window).resize(function() {
-
-	view();	
-	
-});//end window.resize
-
-
-$(window).scroll(function() { 
-
-	//number of pixels after which we consider the user to have begun to scroll
-	var after = 60;
-	       
-	if($(this).scrollTop() >= after && $("body").hasClass('before')){
-		$("body").removeClass('before').addClass('after');
-		console.log('adding after');
-	} 
-	else if($(this).scrollTop() < after && $("body").hasClass('after')){
-		$("body").removeClass('after').addClass('before');	
-		console.log('removing after');
-	} 
-		
-});//end window.scroll
 
 
 /** ----------- MENU RELATED FUNCTIONALITY --------------------------------- */
@@ -126,11 +104,13 @@ function ScrollObserver( watched ) {
 	var diffed = {};
 
 	/**
-	 * [observe description]
-	 * @param  {[type]} selector   [description]
-	 * @param  {[type]} callbackID [description]
-	 * @param  {[type]} predicate  [description]
-	 * @return {[type]}            [description]
+	 * The observe routine observes the position of an element with respect to the 
+	 * current window frame, and triggers an event on the window when the predicate
+	 * is fulfilled
+	 * 
+	 * @param  {string} selector   a DOM selector to observe
+	 * @param  {string} callbackID the name of an event to fire on the satisfaction of predicate
+	 * @param  {Object -> Boolean} a boolean-valued function indicating whether to trigger callbackID
 	 */
 	self.observe = function( selector, callbackID, predicate ) {
 
@@ -364,8 +344,6 @@ function ScrollObserver( watched ) {
 var observer;
 
 
-
-
 /** ----------- DOCUMENT LISTENERS --------------------------------- */
 
 
@@ -397,10 +375,14 @@ $( document ).ready( function( ) {
 });
 
 
+
+
 /** ----------- SIDEBAR ACTIONS --------------------------------- */
 
 $( document).ready( function() {
 	if ( !observer ) observer = ScrollObserver();
+
+	$('aside').css({'top': 0 + "px"});
 
 	observer.observeOnce('*[aside-enter]', 'aside-fixed', function( observation ) {
 		return observation.top >= 0;
@@ -423,7 +405,8 @@ $( window ).on( 'aside-absolute', function() {
 
 	//area = $('aside').offset().top;
 
-	$('aside').animate({'position': 'absolute', 'top': 0 + "px"});
+	$('aside').animate({'position': 'absolute', 'top': 20 + "px"});
+	//$('aside').animate({'position': 'absolute', 'top':  "px"});
 	$('aside').css({'position': 'absolute'});
 
 	observer.observeOnce('*[aside-enter]', 'aside-fixed', function( observation ) {
@@ -434,11 +417,18 @@ $( window ).on( 'aside-absolute', function() {
 $( window ).on( 'aside-fixed', function() {
 	console.log('aside-fixed');
 
-	area = ($('aside').offset().top - $('*[aside-enter]').offset().top);//+ $('header').outerHeight();
 
-	//area = $('aside').offset().top;
+	
+	//var area = ($('aside').offset().top) - $('*[aside-enter]').offset().top + $('header').outerHeight();//+ $('header').outerHeight();
+	
+	var area = $('header').outerHeight();
 
-	$('aside').animate({'position': 'fixed', 'top': area+"px"});
+	//area = $('aside').offset().top + 20;
+	//
+	
+	$('aside').animate({'top': area+"px"});
+
+	//$('aside').animate({'top': (area+20)+"px"});
 	$('aside').css({'position': 'fixed'});
 
 	observer.observeOnce('*[aside-enter]', 'aside-absolute', function( observation ) {
@@ -447,8 +437,6 @@ $( window ).on( 'aside-fixed', function() {
 });
 
 $( window ).on( 'aside-unfix', function( e ) {
-	console.log('aside-unfix');
-
 	if ( asideFresh ) {
 
 		$('aside').delay( 750 ).queue( function( next ) {
@@ -511,7 +499,7 @@ $( window ).on('header-unfix', function() {
 
 	$('#header-shadow').remove();
 
-	header.width( "inherit" );
+	//header.width( "inherit" );
 
 	header.css({'position': 'static'});
 	header.css({'top': '-25%'});

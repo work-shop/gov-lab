@@ -172,12 +172,13 @@ menu {
 
 aside {
 	position: absolute;
+	z-index: 25;
 
-	@include transform( skewX( $closed-skew ) translateX( $closed-X ) translateY( 5% ) );
+	@include transform( skewX( $closed-skew ) translateX( $closed-X ) );
 	@include transition( transform, $transition-duration );
 
 	&.open {
-		@include transform( skewX( $open-skew ) translateX( $open-X ) translateY( 5% ) );
+		@include transform( skewX( $open-skew ) translateX( $open-X ) );
 	}
 	
 	& .sidebar-heading {

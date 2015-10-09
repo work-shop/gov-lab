@@ -61,6 +61,40 @@ d3.json('/static/geometry/world.json', function( err, world ) {
 
 var radius = 3.5;
 
+function mouseOver( d ) {
+	var x = d3.event.x, y = d3.event.y;
+
+	var map = 		d3.select('#map');
+
+	var box = 		map
+	 			.append('div')
+					.attr( 'id', 'project-label' )
+					.attr('class', 'project-label col-sm-3');
+
+	box	.append('h3')
+			.attr('class', 'map-project-title')
+			.text( d.name.toUpperCase() );
+
+	box	.append('h6')
+			.attr('class', 'map-project-summary')
+			.text( d.description );
+
+	var left = (map.node().getBoundingClientRect().width / 2) - (box.node().getBoundingClientRect().width / 2);
+	var top = (map.node().getBoundingClientRect().height / 4) - (box.node().getBoundingClientRect().height / 4);
+
+	box	.style({
+			'position': 'absolute',
+			'top': top + 'px',
+			'left': left + 'px',
+			'z-index': 200
+		});
+
+}
+
+function mouseOut( d ) {
+	d3.select('#project-label').remove();
+}
+
 function draw( topo ) {
 	
 	var projects = g.selectAll('.map-project').data( data );
@@ -84,36 +118,8 @@ function draw( topo ) {
 			return 'translate(' + projection([d.longitude, d.latitude]) + ')scale('+ 0.25 +')';
 		})
 		.attr('r', 50)
-		.on( 'mouseover', function( d ) {
-
-			var x = d3.event.x, y = d3.event.y;
-
-			d3	.select('#map')
-			 	.append('div')
-					.attr( 'id', 'project-label' )
-					.attr('class', 'project-label col-sm-3')
-					.style({
-						'position': 'absolute',
-						'top': (y - 30) + 'px',
-						'left': (x + 30) + 'px'
-					})
-					.append('h3')
-					.attr('class', 'map-project-title')
-					.text( d.name.toUpperCase() );
-
-			d3	.select('#project-label')
-				.append('h6')
-				.attr('class', 'map-project-summary')
-				.text( d.description );
-
-
-
-		})
-		.on( 'mouseout', function( d ) {
-			console.log('out');
-			d3.select('#project-label').remove();
-
-		});
+		.on( 'mouseover', mouseOver)
+		.on( 'mouseout', mouseOut );
 
 	projects.enter().append('a')
 		.attr('xlink:href', function( d ) { return '/' + d.link; })
@@ -127,36 +133,8 @@ function draw( topo ) {
 
 			return 'translate(' + projection([d.longitude, d.latitude]) + ')scale('+ 0.25 +')translate('+[-40,-40]+')';
 		})
-		.on( 'mouseover', function( d ) {
-
-			var x = d3.event.x, y = d3.event.y;
-
-			d3	.select('#map')
-			 	.append('div')
-					.attr( 'id', 'project-label' )
-					.attr('class', 'project-label col-sm-3')
-					.style({
-						'position': 'absolute',
-						'top': (y - 30) + 'px',
-						'left': (x + 30) + 'px'
-					})
-					.append('h3')
-					.attr('class', 'map-project-title')
-					.text( d.name.toUpperCase() );
-
-			d3	.select('#project-label')
-				.append('h6')
-				.attr('class', 'map-project-summary')
-				.text( d.description );
-
-
-
-		})
-		.on( 'mouseout', function( d ) {
-			console.log('out');
-			d3.select('#project-label').remove();
-
-		});
+		.on( 'mouseover', mouseOver )
+		.on( 'mouseout', mouseOut );
 		
 		
 

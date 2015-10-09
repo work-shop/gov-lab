@@ -2020,11 +2020,12 @@ menu.open {
 
 aside {
   position: absolute;
-  transform: skewX(-5deg) translateX(-200%) translateY(5%);
-  -moz-transform: skewX(-5deg) translateX(-200%) translateY(5%);
-  -webkit-transform: skewX(-5deg) translateX(-200%) translateY(5%);
-  -o-transform: skewX(-5deg) translateX(-200%) translateY(5%);
-  -ms-transform: skewX(-5deg) translateX(-200%) translateY(5%);
+  z-index: 25;
+  transform: skewX(-5deg) translateX(-200%);
+  -moz-transform: skewX(-5deg) translateX(-200%);
+  -webkit-transform: skewX(-5deg) translateX(-200%);
+  -o-transform: skewX(-5deg) translateX(-200%);
+  -ms-transform: skewX(-5deg) translateX(-200%);
   transition: transform 0.75s 0s ease;
   -moz-transition: transform 0.75s 0s ease;
   -webkit-transition: transform 0.75s 0s ease;
@@ -2032,11 +2033,11 @@ aside {
   -ms-transition: transform 0.75s 0s ease;
 }
 aside.open {
-  transform: skewX(0deg) translateX(2.5%) translateY(5%);
-  -moz-transform: skewX(0deg) translateX(2.5%) translateY(5%);
-  -webkit-transform: skewX(0deg) translateX(2.5%) translateY(5%);
-  -o-transform: skewX(0deg) translateX(2.5%) translateY(5%);
-  -ms-transform: skewX(0deg) translateX(2.5%) translateY(5%);
+  transform: skewX(0deg) translateX(2.5%);
+  -moz-transform: skewX(0deg) translateX(2.5%);
+  -webkit-transform: skewX(0deg) translateX(2.5%);
+  -o-transform: skewX(0deg) translateX(2.5%);
+  -ms-transform: skewX(0deg) translateX(2.5%);
 }
 aside .active {
   border-color: #d65839 !important;
