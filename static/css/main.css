@@ -9,12 +9,12 @@ body:before {
 
 ::selection {
   color: white;
-  background: #d65839;
+  background: #a31f34;
 }
 
 ::-moz-selection {
   color: white;
-  background: #d65839;
+  background: #a31f34;
 }
 
 img, video, svg {
@@ -28,7 +28,7 @@ a {
   text-decoration: none;
 }
 a:hover, a:focus {
-  color: #d65839;
+  color: #a31f34;
   text-decoration: none;
   outline: none;
 }
@@ -69,7 +69,7 @@ flexslider
 */
 /********** @COLORS ********************/
 .brand, .back-to-home, aside .sidebar-heading, .sidebar-active-heading, .sidebar-active-subheading, .sort-key.active {
-  color: #d65839;
+  color: #a31f34;
 }
 
 /********** @MARGINS AND PADDING *********/
@@ -748,7 +748,7 @@ flexslider
   }
 }
 .bg-brand {
-  background: #d65839;
+  background: #a31f34;
 }
 
 .bg-dark {
@@ -833,7 +833,7 @@ flexslider
 }
 
 .border-brand {
-  border: 2px solid #d65839;
+  border: 2px solid #a31f34;
 }
 
 /********** @STRUCTURE AND POSITION *********/
@@ -1298,7 +1298,7 @@ flexslider
 /********** @FORMS *********/
 input, textarea {
   padding: 5px;
-  border: 1px solid #d65839;
+  border: 1px solid #a31f34;
   outline: none;
   width: 100%;
   max-width: 300px;
@@ -1306,12 +1306,12 @@ input, textarea {
 }
 input:focus, textarea:focus {
   outline: none;
-  border: 2px solid #d65839;
+  border: 2px solid #a31f34;
 }
 input[type="submit"], textarea[type="submit"] {
   background: white;
   padding: 10px 15px;
-  color: #d65839;
+  color: #a31f34;
   width: auto;
   text-align: center;
 }
@@ -1354,7 +1354,7 @@ gform_wrapper .gfield_checkbox li {
   margin-bottom: 5px;
 }
 gform_wrapper .gfield_required {
-  color: #d65839;
+  color: #a31f34;
   margin-left: 5px;
 }
 
@@ -1393,7 +1393,7 @@ img.gform_ajax_spinner {
 }
 .flexslider-direction .icon:before {
   font-size: 90px;
-  color: #d65839;
+  color: #a31f34;
 }
 .flexslider-direction.previous {
   right: auto;
@@ -1440,7 +1440,7 @@ img.gform_ajax_spinner {
   cursor: pointer;
 }
 .flexslider-controls li a.flex-active {
-  background: #d65839;
+  background: #a31f34;
 }
 
 @font-face {
@@ -1694,7 +1694,7 @@ p {
 }
 
 .brand, .back-to-home, aside .sidebar-heading, .sidebar-active-heading, .sidebar-active-subheading, .sort-key.active {
-  color: #d65839;
+  color: #a31f34;
 }
 
 .righted {
@@ -1783,7 +1783,7 @@ p {
 }
 
 .project-marker {
-  fill: #d65839 !important;
+  fill: #a31f34 !important;
 }
 
 #map {
@@ -1869,7 +1869,7 @@ figure[data-type=image].wy-figure-small {
 }
 
 figure[data-type=quote] {
-  color: #d65839;
+  color: #a31f34;
   position: relative;
 }
 figure[data-type=quote] blockquote {
@@ -1950,30 +1950,30 @@ html, body {
 
 /********** @<a>s ***********/
 a:hover {
-  color: #d65839;
+  color: #a31f34;
 }
 
 .sync {
-  color: #d65839;
+  color: #a31f34;
   border-bottom: 2px solid transparent;
 }
 .sync.active {
   border-bottom: 2px solid #222222;
 }
 .sync:hover {
-  border-bottom: 2px solid #d65839;
+  border-bottom: 2px solid #a31f34;
   line-height: 1.5em;
 }
 
 header a, footer a {
-  color: #d65839;
+  color: #a31f34;
 }
 
 header .sync, footer .sync {
   color: #222222;
 }
 header .sync:hover, footer .sync:hover {
-  color: #d65839;
+  color: #a31f34;
   transition: all 0.375s 0s ease;
   -moz-transition: all 0.375s 0s ease;
   -webkit-transition: all 0.375s 0s ease;
@@ -2089,7 +2089,7 @@ aside.open {
   -ms-transform: skewX(0deg);
 }
 aside .active {
-  border-color: #d65839 !important;
+  border-color: #a31f34 !important;
 }
 @media (max-width: 992px) {
   aside {
@@ -2107,7 +2107,7 @@ aside .active {
 
 .sidebar-active-heading {
   display: inline-block;
-  border-bottom: 2px solid #d65839;
+  border-bottom: 2px solid #a31f34;
 }
 
 .sidebar-active-subheading {
@@ -2150,7 +2150,7 @@ hr.hr-dark {
   border-bottom: 2px solid #555555;
 }
 hr.hr-brand {
-  border-bottom: 2px solid #d65839;
+  border-bottom: 2px solid #a31f34;
 }
 
 .hr-light {
@@ -2194,7 +2194,7 @@ hr.hr-brand {
   -ms-transition: all 0.375s 0s ease;
 }
 .project-tint:hover figure:before {
-  background: #d65839;
+  background: #a31f34;
 }
 
 .project-tile-image, .news-tile-image {
@@ -2206,7 +2206,7 @@ hr.hr-brand {
 }
 
 .projects-rule {
-  border-top: 2px solid #d65839;
+  border-top: 2px solid #a31f34;
 }
 
 /********** NEWS ********/
