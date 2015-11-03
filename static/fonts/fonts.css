@@ -8,113 +8,24 @@
     font-style: normal;
 }
 
+
 @font-face {
-	font-family: "ModernPictograms";
-	src: url('modernpictogramspro_2-webfont.eot');
-	src: url('modernpictogramspro_2-webfont.eot?#iefix') format('opentype'),
-		url('modernpictogramspro_2-webfont.woff') format('woff'),
-		url('modernpictogramspro_2-webfont.svg') format('svg');
+	font-family: "SimplonNormLight";
+	src: url('SimplonNorm-Light-WebS.eot');
+	src: url('SimplonNorm-Light-WebS.eot?#iefix') format('opentype'),
+		url('SimplonNorm-Light-WebS.woff') format('woff');
 
 	font-weight: normal;
 	font-style: normal;
 }
 
-@font-face {
-	font-family: "SimplonNormBold";
-	src: url('SimplonNorm-Bold-WebTrial.eot');
-	src: url('SimplonNorm-Bold-WebTrial.eot?#iefix') format('opentype'),
-		url('SimplonNorm-Bold-WebTrial.woff') format('woff');
-
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: "SimplonNormBold";
-	src: url('SimplonNorm-BoldItalic-WebTrial.eot');
-	src: url('SimplonNorm-BoldItalic-WebTrial.eot?#iefix') format('opentype'),
-		url('SimplonNorm-BoldItalic-WebTrial.woff') format('woff');
-
-	font-weight: normal;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: "SimplonNormLight";
-	src: url('SimplonNorm-Light-WebTrial.eot');
-	src: url('SimplonNorm-Light-WebTrial.eot?#iefix') format('opentype'),
-		url('SimplonNorm-Light-WebTrial.woff') format('woff');
-
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: "SimplonNormLight";
-	src: url('SimplonNorm-LightItalic-WebTrial.eot');
-	src: url('SimplonNorm-LightItalic-WebTrial.eot?#iefix') format('opentype'),
-		url('SimplonNorm-LightItalic-WebTrial.woff') format('woff');
-
-	font-weight: normal;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: "SimplonNormLight";
-	src: url('SimplonNorm-Light-WebTrial.eot');
-	src: url('SimplonNorm-Light-WebTrial.eot?#iefix') format('opentype'),
-		url('SimplonNorm-Light-WebTrial.woff') format('woff');
-
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: "SimplonNormLight";
-	src: url('SimplonNorm-LightItalic-WebTrial.eot');
-	src: url('SimplonNorm-LightItalic-WebTrial.eot?#iefix') format('opentype'),
-		url('SimplonNorm-LightItalic-WebTrial.woff') format('woff');
-
-	font-weight: normal;
-	font-style: italic;
-}
 
 @font-face {
 	font-family: "SimplonNormMedium";
-	src: url('SimplonNorm-Medium-WebTrial.eot');
-	src: url('SimplonNorm-Medium-WebTrial.eot?#iefix') format('opentype'),
-		url('SimplonNorm-Medium-WebTrial.woff') format('woff');
+	src: url('SimplonNorm-Medium-WebS.eot');
+	src: url('SimplonNorm-Medium-WebS.eot?#iefix') format('opentype'),
+		url('SimplonNorm-Medium-WebS.woff') format('woff');
 
 	font-weight: normal;
 	font-style: normal;
-}
-
-@font-face {
-	font-family: "SimplonNormMedium";
-	src: url('SimplonNorm-MediumItalic-WebTrial.eot');
-	src: url('SimplonNorm-MediumItalic-WebTrial.eot?#iefix') format('opentype'),
-		url('SimplonNorm-MediumItalic-WebTrial.woff') format('woff');
-
-	font-weight: normal;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: "SimplonNormRegular";
-	src: url('SimplonNorm-Regular-WebTrial.eot');
-	src: url('SimplonNorm-Regular-WebTrial.eot?#iefix') format('opentype'),
-		url('SimplonNorm-Regular-WebTrial.woff') format('woff');
-
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: "SimplonNormRegular";
-	src: url('SimplonNorm-RegularItalic-WebTrial.eot');
-	src: url('SimplonNorm-RegularItalic-WebTrial.eot?#iefix') format('opentype'),
-		url('SimplonNorm-RegularItalic-WebTrial.woff') format('woff');
-
-	font-weight: normal;
-	font-style: italic;
 }

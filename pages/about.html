@@ -56,8 +56,8 @@
 
 		<div class="col-sm-offset-2 col-sm-9">
 			<div class="row">
-				<div class="col-xs-offset-1 col-xs-10 centered">
-					<h3>
+				<div class="col-xs-offset-1 col-xs-10 col-lg-6 col-lg-offset-3 col-md-offset-2 col-md-8 centered">
+					<h3 class="mb2">
 						We've build a network of dedicated academics, researchers, graduate students, and partners.
 					</h3>
 				</div>
@@ -66,10 +66,10 @@
 			<div class="row">
 				{% for person in cms.people %}
 
-					<div class="teammember {% if ( loop.index0 % 2 == 0 ) %}col-xs-offset-1{% endif %} col-xs-5 mb1">
+					<div class="teammember mb3  col-xs-5 col-sm-5 col-sm-offset-1 col-md-4 col-lg-3 col-lg-offset-2 {% if ( loop.index0 % 2 == 0 ) %}col-xs-offset-1 col-md-offset-2{% endif %}">
 						<img class="teammember-image mb1" src="{{ person.image|imageSize(500,auto) }}" />
 						<h4 class="teammember-name bold">{{ person.name }}</h4>
-						<p class="teammember-description mb1">{{ person.bio }}</p>
+						<p class="teammember-description mb0">{{ person.bio }}</p>
 						<a href="mailto:{{ person.email }}">{{ person.email }}</a>
 					</div>
 
@@ -86,8 +86,8 @@
 		<div class="col-sm-offset-2 col-sm-9">
 		
 			<div class="row">
-				<div class="col-xs-offset-1 col-xs-10 centered">
-					<h3>
+				<div class="col-xs-offset-1 col-xs-10 col-lg-6 col-lg-offset-3 col-md-offset-2 col-md-8 centered">
+					<h3 class="mb2">
 						We've build a network of dedicated academics, researchers, graduate students, and partners.
 					</h3>
 				</div>
@@ -95,7 +95,7 @@
 
 			<div class="row">
 				{% for collaborator in cms.collaborators %}
-					<div class="collaborator bg-light p1 {% if ( loop.index0 % 4 == 0 ) %}col-xs-offset-1{% endif %} col-xs-5 mb1">
+					<div class="collaborator bg-light p1 {% if ( loop.index0 % 4 == 0 ) %}col-xs-offset-1{% endif %} col-xs-5 col-sm-4 col-sm-offset-1 col-lg-3 col-lg-offset-2 mb2">
 						<a href="{{ collaborator.website }}"><img class="collaborator-logo mb1" src="{{ collaborator.logo|imageSize(200,auto) }}" /></a>
 					</div>
 
@@ -107,14 +107,14 @@
 	</div>
 </section>
 
-<section id="funders">
+<section id="funders" class="padded">
 	<div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-offset-2 col-sm-9">
 
 			<div class="row">
-				<div class="col-xs-offset-1 col-xs-10 centered">
-					<h3>
+				<div class="col-xs-offset-1 col-xs-10 col-lg-6 col-lg-offset-3 col-md-offset-2 col-md-8 centered">
+					<h3 class="mb2">
 						We're sponsored by groups that share our vision and provide support across the globe.
 					</h3>
 				</div>
