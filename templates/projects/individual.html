@@ -5,7 +5,7 @@
 {% block content %}
 <article id="project-{{ item.slug }}" class="bg-white">
 
-  <section id="project-body" class="bg-light">
+  <section id="project-body" class="bg-light bg-white-xs">
   <div class="container-fluid">
 
     <div class="row">
@@ -16,7 +16,7 @@
           <ul>
             <li class="sidebar-item sidebar-metadata-items active">
               <ul>
-                <li class="h5 uppercase bold sidebar-passive-heading">{{ item.shortname }}</li>
+                <li class="h5 uppercase bold sidebar-active-heading">{{ item.shortname }}</li>
 
                 <li class="h5 uppercase bold sidebar-passive-subheading">Project Timeline</li>
                 <li class="h5 uppercase mb2">{{ item.project_timeline }}</li>
@@ -72,13 +72,13 @@
       <div class="col-sm-9 bg-white">
 
        <div class="row padded">
-          <div class="col-sm-offset-1 col-sm-10">
+          <div class="col-xs-offset-1 col-xs-10 centered-xs">
             <h2 class="project-title bold">{{ item.name }}</h2>
           </div>
         </div>
 
         <div class="row mb2">
-          <div class="col-sm-offset-1 col-sm-10">
+          <div class="col-xs-offset-1 col-xs-10">
             <h4 class="project-summary">{{ item.summary }}</h4>
           </div>
         </div>
@@ -109,9 +109,9 @@
           
         </div>
 
-        <div class="row mb4">
-          <div class="col-sm-offset-1 col-sm-10">
-          {{ item.body|safe }}
+        <div class="row pb4">
+          <div class="col-xs-offset-1 col-xs-10">
+            {{ item.body|safe }}
           </div>
         </div>
 
@@ -132,15 +132,15 @@
       {% for update in item.updates %}
       <li class="row mb3">
       
-        <div class="col-sm-offset-1 col-sm-10">
+        <div class="col-xs-offset-1 col-xs-10">
           <h6 class="bold uppercase right">{{ update.date|date('m / d / y') }}</h6>
         </div>
 
-        <div class="col-sm-offset-1 col-sm-4">
+        <div class="col-xs-offset-1 col-xs-4 hidden-xs">
           <img src="{{ update.image|imageSize(300) }}" alt="">
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-6">
           <hr class="hr-light mt0" >
           <h3 class="mt0">{{ update.title }}</h3>
           <p>{{ update.text }}</p>

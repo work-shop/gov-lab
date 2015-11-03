@@ -26,8 +26,7 @@
             {% if ( cms.topics.length > 0 ) %}
             <li class="sidebar-item sidebar-topic-sort mb2">
               <ul>
-                <li class="h5 uppercase bold sidebar-heading">Filter By Topic</li>
-                <li class=""><hr class="hr-brand" /></li>
+                <li class="h5 uppercase bold sidebar-active-heading">Filter By Topic</li>
                 <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb2">All Projects</li>
                 {% for topic in cms.topics %}
 
@@ -42,8 +41,7 @@
             {% if ( cms.regions.length > 0 ) %}
             <li class="sidebar-item sidebar-region-sort mb4">
               <ul>
-                <li class="h5 uppercase bold sidebar-heading">Filter By Region</li>
-                <li class=""><hr class="hr-brand" /></li>
+                <li class="h5 uppercase bold sidebar-active-heading">Filter By Region</li>
                 <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb2">All Projects</li>
                 {% for region in cms.regions %}
                   <li data-sort-key="{{ region.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.regions|size ) %}mb2{% endif %}">{{ region.name }}</li>
