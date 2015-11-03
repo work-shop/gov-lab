@@ -99,26 +99,6 @@ header {
 	height: 100px;
 }
 
-@media ( $xs-query ) {
-
-	 header {
-	 	padding:20px 0px 12px 0px;
-	 	height: 70px;
-	 }
-
-	 #header-shadow{
-	 	height: 70px;
-	 }
-
-	 #logo{
-	 	a{
-	 		width: 90px;
-	 	}
-	 }
-
-}
-
-
 
 /********** @LOGO *********/
 
@@ -126,6 +106,8 @@ header {
 	display: block;
 	width: 140px;
 }
+
+
 
 
 
@@ -193,7 +175,8 @@ menu {
 
 aside {
 		
-	@extend .mt1;
+	overflow: scroll;	
+	//@extend .mt1;
 	@extend .pl2;
 	@extend .pr1;
 	//@extend .bg-white;
@@ -244,8 +227,7 @@ aside {
 
 .sidebar-active-heading {
 	@extend .brand;
-	@extend .m2;
-
+	@extend .m1;
 	display:inline-block;
 	border-bottom: 2px solid $brand;
 }
@@ -259,7 +241,7 @@ aside {
 
 .sidebar-passive-heading {
  	@extend .dark;
-	@extend .m2;
+	@extend .m1;
 
 	display:inline-block;
 	border-bottom: 2px solid $dark;
@@ -282,6 +264,10 @@ aside {
 	}
 }
 
+.sidebar-link{
+	font-size: 16px;
+	line-height: 1.1;
+}
 
 
 /********** @FOOTER *********/
@@ -421,6 +407,27 @@ hr {
 
 //xs
 @media ($xs-query) {
+
+	 header {
+	 	padding:10px 0px 12px 0px;
+	 	height: 70px;
+	 }
+
+	 #header-shadow{
+	 	height: 70px;
+	 }
+
+	 #logo{
+	 	a{
+	 		width: 110px;
+	 	}
+	 }
+
+	.menu-item{
+		margin-top: 5px;
+		position: relative;
+		left: -15px;
+	}		
 
 
 	.news-rule {

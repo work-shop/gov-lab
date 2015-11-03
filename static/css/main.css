@@ -78,12 +78,12 @@ flexslider
   margin-top: 0em;
 }
 
-.m1, .sidebar-active-subheading, .sidebar-passive-subheading {
+.m1, .sidebar-active-heading, .sidebar-active-subheading, .sidebar-passive-heading, .sidebar-passive-subheading {
   margin-bottom: 1em;
   margin-top: 1em;
 }
 
-.m2, .sidebar-active-heading, .sidebar-passive-heading {
+.m2 {
   margin-bottom: 2em;
   margin-top: 2em;
 }
@@ -367,7 +367,7 @@ flexslider
   margin-top: 0em;
 }
 
-.mt1, aside {
+.mt1 {
   margin-top: 1em;
 }
 
@@ -2045,20 +2045,6 @@ header.fixed {
   height: 100px;
 }
 
-@media (max-width: 767px) {
-  header {
-    padding: 20px 0px 12px 0px;
-    height: 70px;
-  }
-
-  #header-shadow {
-    height: 70px;
-  }
-
-  #logo a {
-    width: 90px;
-  }
-}
 /********** @LOGO *********/
 #logo a {
   display: block;
@@ -2115,6 +2101,7 @@ menu.open {
 }
 
 aside {
+  overflow: scroll;
   position: absolute;
   z-index: 25;
   width: 200px;
@@ -2181,6 +2168,11 @@ aside .active {
   -webkit-transition: font-weight 0.375s 0s ease;
   -o-transition: font-weight 0.375s 0s ease;
   -ms-transition: font-weight 0.375s 0s ease;
+}
+
+.sidebar-link {
+  font-size: 16px;
+  line-height: 1.1;
 }
 
 /********** @FOOTER *********/
@@ -2265,6 +2257,25 @@ hr.hr-brand {
 
 /********** @RESPONSIVE *********/
 @media (max-width: 767px) {
+  header {
+    padding: 10px 0px 12px 0px;
+    height: 70px;
+  }
+
+  #header-shadow {
+    height: 70px;
+  }
+
+  #logo a {
+    width: 110px;
+  }
+
+  .menu-item {
+    margin-top: 5px;
+    position: relative;
+    left: -15px;
+  }
+
   .news-rule {
     border-top: none;
   }
