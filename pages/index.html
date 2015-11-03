@@ -43,6 +43,42 @@
 </section>
 
 <section id="home-callouts" class="bg-white padded">
+  <div class="container block"> 
+
+  <div class="row one-quarter">
+    <div class="col-sm-12">
+      <!--<div class="row one-quarter"> -->
+
+        <div class="block-background visible-xs" style="background: url({{ cms.about.about_image|imageSize(2500,500)}}); background-size:cover; background-position:center center;"> </div>
+
+        <div class="col-sm-6 centered p5">
+              <h4 class="mb2 hidden-xs">We collaborate on meaningful interventions with <span class="bold">measurable outcomes</span>.</h4>
+              <a class="uppercase sync" href="/about">Read More</a>
+        </div>
+
+        <div class="col-sm-6 hidden-xs crop">
+
+          <img src="{{ cms.about.about_image|imageCrop(650,450)}}" />
+          <div class="image-overlay col-xs-12 col-sm-offset-1 col-sm-10 centered">
+            <h4 class="mb2 hidden-xs">We engage under-resourced groups and their governments in <span class="bold">challenging contexts</span>.</h4>
+            <a class="uppercase sync" href="/about">Latest updates and publications</a>
+          </div>
+
+        </div>
+
+      <!-- </div> -->
+    </div>
+  </div>
+  
+  </div>
+
+</section>
+
+
+
+<section id="latest" class="">
+  {% set latest = cms.news|first %}
+
   <div class="container">
 
   <div class="row">
@@ -51,17 +87,10 @@
 
       <div class="row crop">
 
-        <div class="col-sm-12 ">
+        <div class="col-sm-12">
           <figure>
-            <img src="{{ cms.about.about_image|imageCrop(500,350)}}" />
+            <img src="{{ latest.cover_image|imageCrop(500,350)}}" />
           </figure>
-        </div>
-
-        <div class="image-overlay col-xs-12 col-sm-offset-1 col-sm-10 centered mt1">
-
-          <h4 class="mb2 hidden-xs">We collaborate on meaningful interventions with <span class="bold">measurable outcomes</span>.</h4>
-          <a class="uppercase sync" href="/about">Learn About Us</a>
-
         </div>
 
       </div>
@@ -70,13 +99,12 @@
 
     <div class="col-xs-6 col-sm-6">
 
-      <div class="row crop"> <!-- BG COLOR ISSUE -->
+      <div class="row crop">
 
           <div class="image-overlay col-xs-12 col-sm-offset-1 col-sm-10 centered mt1">
-            <h4 class="dark mb2 hidden-xs">We engage under-resourced groups and their governments in <span class="bold">challenging contexts</span>.</h4>
-            <a class="uppercase sync" href="/about">Latest updates and publications</a>
+            <h4 class="dark mb2 hidden-xs">{{ latest.summary }}</h4>
+            <a class="uppercase sync" href="{{ url( latest ) }}">Read More</a>
           </div>
-
       
       </div>  
 
@@ -84,29 +112,6 @@
 
   </div>
 
-  </div>
-</section>
-
-{% set latest = cms.news|first %}
-
-<section id="latest" class="">
-  <div class="container block">
-
-  <div class="row one-quarter">
-    <div class="col-sm-12">
-      <div class="row one-quarter">
-        <div class="block-background visible-xs" style="background: url({{ cms.about.about_image|imageSize(2500,500)}}); background-size:cover; background-position:center center;"> </div>
-        <div class="col-sm-6 centered p5"> <!-- BG COLOR ISSUE -->
-              <h4 class="">{{ latest.summary }}</h4>
-              <a class="sync" href="{{ url( latest ) }}">Read More</a>
-        </div>
-        <div class="col-sm-6 hidden-xs">
-          <img src="{{ cms.about.about_image|imageCrop(650,450)}}" />
-        </div>
-      </div>
-    </div>
-  </div>
-  
   </div>
 </section>
 
