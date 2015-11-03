@@ -104,12 +104,13 @@ flexslider
 
 /********** @BACKGROUNDS *********/
 
-.bg-white{
-	background: $ultra-light;
+
+@include size-dependent( ".bg-light" ) {
+	background: $light;
 }
 
-.bg-light{
-	background: $light;
+@include size-dependent( ".bg-white" ) {
+	background: $ultra-light;
 }
 
 .bg-brand{
