@@ -69,7 +69,7 @@ function mouseOver( d ) {
 	var box = 		map
 	 			.append('div')
 					.attr( 'id', 'project-label' )
-					.attr('class', 'project-label col-xs-4');
+					.attr('class', 'project-label');
 
 	box	.append('h3')
 			.attr('class', 'map-project-title')
