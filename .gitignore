@@ -8,6 +8,8 @@ lib-cov
 *.gz
 .DS_Store
 
+*.css.map
+
 pids
 logs
 results
