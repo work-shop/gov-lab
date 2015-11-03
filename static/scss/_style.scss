@@ -75,47 +75,58 @@ header .sync, footer .sync {
 	}
 }
 
-/********** @HEADER *********/
+/********** @HEADER  *********/
 
 header {
 	padding:42px 0px 30px 0px;
-	border-bottom:1px solid $medium-light;
+	border-bottom:1px solid $medium-light;	
+	z-index:50;
+	height: 100px;
+	left: 0;
+	width: 100%;
+	top: -25%;
+	@include transition(all,.25s);
+	
+	&.fixed {
+		left: 0;
+		width: 100%;
+	}
+
 }
 
-header {
-	z-index:50;
-
-	top:-25%;
-	
-	&.header-fixed {
-		@include transition(top, $transition-duration);
-		top:0px;
-	}
-
-	svg {
-		position: relative;
-		top:-2px;
-	}
+#header-shadow{
+	width: 100%;
+	height: 100px;
 }
 
 @media ( $xs-query ) {
 
-	header {
-		padding:20px 0px 12px 0px;
+	 header {
+	 	padding:20px 0px 12px 0px;
+	 	height: 70px;
+	 }
 
-		svg {
-			width:200px;
-		}
+	 #header-shadow{
+	 	height: 70px;
+	 }
 
-		#logo {
-			height:50px;
-		}
-	}
+	 #logo{
+	 	a{
+	 		width: 90px;
+	 	}
+	 }
 
 }
 
 
-/********** @NAV *********/
+
+/********** @LOGO *********/
+
+#logo a{
+	display: block;
+	width: 140px;
+}
+
 
 
 /********** @MENU *********/

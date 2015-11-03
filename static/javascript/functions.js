@@ -464,7 +464,7 @@ $( window ).on( 'aside-fix', function( e ) {
 // HEADER ACTUAL LOGIC
 
 $( window ).on('resize', function() {
-	$('header').width( window.innerWidth );
+	//$('header').width( window.innerWidth );
 });
 
 $( window ).on( 'header-fix', function() {
@@ -474,11 +474,10 @@ $( window ).on( 'header-fix', function() {
 	var w = header.outerWidth();
 	var h = header.outerHeight();
 
-	header.width( w );
+	//header.width( w );
 
 	var shadowElement = $('<div>')
 		.attr('id', 'header-shadow')
-		.width( w )
 		.height( h );
 
 	header.css({'position': 'fixed'});
@@ -486,6 +485,9 @@ $( window ).on( 'header-fix', function() {
 	header.animate({
 		top: 0,
 	});
+
+	header.removeClass('unfixed').addClass('fixed');
+	$('body').removeClass('header-unfixed').addClass('header-fixed');		
 
 	observer.observeOnce('#header-shadow', 'header-unfix', function( o ) {return o.top <= 0.05;});
 });
@@ -499,6 +501,9 @@ $( window ).on('header-unfix', function() {
 
 	header.css({'position': 'static'});
 	header.css({'top': '-25%'});
+
+	header.removeClass('fixed').addClass('unfixed');
+	$('body').removeClass('header-fixed').addClass('header-unfixed');
 
 	observer.observeOnce('header', 'header-fix', function( o ) { return o.top >= 1; });
 });
