@@ -135,26 +135,7 @@
 	</div>
 </section>
 
-
-
-<section id="subscribe" class="padded" aside-exit>
-  <div class="container">
-
-  <div class="row">
-
-    <div class="col-sm-12">
-      <div class="bg-brand skew-field">
-        <h3 class="white centered p1">
-          <span class="bold">Subscribe</span> to our mailing list to watch our progress!
-        </h3>
-      </div>
-
-    </div>
-
-  </div>
-
-  </div>
-</section>
+{% include 'templates/partials/subscribe.html' %}
 
 {% set returnTo = {to: "Home", url: "/" } %}
 {% include 'templates/partials/prefooter.html' %}
