@@ -43,16 +43,17 @@ a {
 	@extend .bold;
 	color: $brand;
 	border-bottom:2px solid transparent;
+	display: inline-block;
+	@include transition(all,.1s);
 
 	&.active {
 		border-bottom:2px solid $dark;
 	}
 
 	&:hover {
-
+		@include transform( skewX($closed-skew));		
 		border-bottom:2px solid $brand;
 		line-height: 1.5em;
-
 	}
 
 }
