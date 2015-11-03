@@ -401,7 +401,7 @@ $( window ).on( 'aside-absolute', function() {
 
 	//area = $('aside').offset().top;
 
-	$('aside').animate({'position': 'absolute', 'top': 20 + "px"});
+	$('aside').animate({'position': 'absolute', 'top': 0 + "px"});
 	//$('aside').animate({'position': 'absolute', 'top':  "px"});
 	$('aside').css({'position': 'absolute'});
 
