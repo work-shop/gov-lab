@@ -124,10 +124,11 @@ function draw( topo ) {
 	projects.enter().append('a')
 		.attr('xlink:href', function( d ) { return '/' + d.link; })
 		.attr('class', 'project-marker')
-		.append('polygon')
+		.append('circle')
 		.attr('class', 'project-marker')
-		.attr('points', "61,37 43,37 43,19 37,19 37,37 19,37 19,43 37,43 37,61 43,61 43,43 61,43 ")
-		.attr('transform', function( d ) {
+		//.attr('points', "61,37 43,37 43,19 37,19 37,37 19,37 19,43 37,43 37,61 43,61 43,43 61,43 ")
+       .attr('r', 20)
+       .attr('transform', function( d ) {
 			var p = projection([d.longitude, d.latitude]);
 			var sx = .25, sy = .25, cx = p[0], cy = p[1];
 
@@ -185,6 +186,8 @@ function move() {
 	d3.selectAll('.country').style('stroke-width', 0.5 / s );
 
 	d3.selectAll('.project-label').style('font-size', 16 / s );
+
+  d3.selectAll('.project-marker').attr('r', 20 / s );
 
 }
 
