@@ -62,7 +62,9 @@ d3.json('/static/geometry/world.json', function( err, world ) {
 var radius = 3.5;
 
 function mouseOver( d ) {
-	var x = d3.event.x, y = d3.event.y;
+   var padding = 10;
+
+	
 
 	var map = 		d3.select('#map');
 
@@ -79,15 +81,41 @@ function mouseOver( d ) {
 			.attr('class', 'map-project-summary')
 			.text( d.description );
 
-	var left = (map.node().getBoundingClientRect().width / 2) - (box.node().getBoundingClientRect().width / 2);
-	var top = (map.node().getBoundingClientRect().height / 4) - (box.node().getBoundingClientRect().height / 4);
+   var  bX = d3.event.x, 
+        bY = d3.event.y,
+        bW = d3.select('#project-label').node().getBoundingClientRect().width,
+        bH = d3.select('#project-label').node().getBoundingClientRect().height;
+
+
+
+
+  var  mX = map.node().offsetLeft,
+       mY = map.node().offsetTop;
+
+   var mW = map.node().getBoundingClientRect().width;
+   var mH = map.node().getBoundingClientRect().height; 
+
+     console.log( mW, mH );
+    console.log('bX', bX);
+     console.log('bY', bY);
+
+
+     console.log('top', bY + bH >= mY + mH - padding );
+     console.log('bX', bX);
 
 	box	.style({
-			'position': 'absolute',
-			'top': top + 'px',
-			'left': left + 'px',
+			'position': 'fixed',
+			'top': ((bY + bH >= mY + mH - padding) ?  bY - bH - padding : bY + padding ) + 'px',
+			'left': ((bX + bW >= mX + mW - padding) ? bX - bW - padding : bX + padding )  + 'px',
 			'z-index': 200
 		});
+   
+   // box .style({
+   //   'position': 'fixed',
+   //   'top': bY + padding + 'px',
+   //   'left': bX + padding + 'px',
+   //   'z-index': 200
+   // }); 
 
 }
 
