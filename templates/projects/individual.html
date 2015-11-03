@@ -222,17 +222,9 @@
 
 </article>
 
-<section id="back" class="bg-white padded news-rule-xs" aside-exit>
-  <div class="container">
-  <div class="row">
-    <div class="col-sm-offset-3 col-sm-6 centered">
-      <a class="sync" href="/projects"><h5 class="back-to-home">
-        Back To Projects
-      </h5></a>
-    </div>
-  </div>
-  </div>
-</section>
+{% set returnTo = {to: "Projects", url: "/projects" } %}
+{% include 'templates/partials/prefooter.html' %}
+
 {% endblock %}
 
 

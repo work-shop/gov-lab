@@ -1,7 +1,6 @@
 
 {% extends "templates/partials/base.html" %}
 
-{# This sets our page <title>. It will append news to the site title defined in base.html #}
 {% block title %}{% parent %} - News{% endblock %}
 
 {% block content %}
@@ -97,16 +96,7 @@
   </div>
 </section>
 
-<section id="back" class="bg-white padded news-rule-xs" aside-exit>
-  <div class="container">
-  <div class="row">
-    <div class="col-sm-offset-3 col-sm-6 centered">
-      <a class="sync" href="/"><h5 class="back-to-home">
-        Back To Home
-      </h5></a>
-    </div>
-  </div>
-  </div>
-</section>
+{% set returnTo = {to: "Home", url: "/" } %}
+{% include 'templates/partials/prefooter.html' %}
 
 {% endblock %}
