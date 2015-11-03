@@ -9,35 +9,9 @@
   <div class="container-fluid">
   <div class="row">
 
-    <div id="sidebar" class="col-sm-3 hidden-xs" aside-enter>{# right place ?? #}
-    <aside class="mt2">
-          <ul>
-            
-            <li class="sidebar-item mb2">
-              <ul>
-                <li class="h5 uppercase bold sidebar-passive-heading">{{ item.category.name }}</li>
-              </ul>
-            </li>
-
-            <li class="sidebar-item mb2">
-              <ul>
-               <li class="h5 uppercase bold sidebar-passive-subheading">Author</li>
-                <li class="h5 uppercase">{{ item.author.name }}</li>
-              </ul>
-            </li>
-
-            <li class="sidebar-item mb2">
-              <ul>
-               <li class="h5 uppercase bold sidebar-passive-subheading">Publication Date</li>
-                <li class="h5 uppercase">{{ item.publish_date|date('m / d / y') }}</li>
-              </ul>
-            </li>
-
-            
-
-          </ul>
-
-        </aside>     
+    <div id="sidebar" class="col-sm-3 hidden-xs" aside-enter> 
+      {% set page = "news-item" %}
+      {% include "templates/partials/aside.html" %} 
     </div>
 
     <div class="col-sm-9 bg-white">

@@ -29,30 +29,8 @@
 
 
     <div id="sidebar" class="col-sm-2 bg-white hidden-xs">
-      <aside class="mt2">
-          <ul>
-            
-            <li class="sidebar-item sidebar-region-sort mb4">
-              <ul>
-                <li class="h5 uppercase bold sidebar-heading">Filter By Category</li>
-                <hr class="hr-brand" />
-
-                <a class="link" href="#news"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb2">All Updates</li></a>
-
-                {% for category in cms.newscategories %}
-                  {% if category.news_category %}
-
-                  <a class="link" href="#news"><li class="sort-key sidebar-item uppercase mb1" data-sort-key="{{ category.name|lower }}">{{ category.name }}</li></a>
-
-                  {% endif %}
-
-                {% endfor %}
-              </ul>
-            </li>
-
-          </ul>
-
-        </aside>
+      {% set page = "news" %}
+      {% include "templates/partials/aside.html" %}
     </div>
 
 

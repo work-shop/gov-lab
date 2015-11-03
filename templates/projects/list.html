@@ -17,43 +17,10 @@
   <section id="projects" class="bg-white mb6" aside-enter>
   <div class="container-fluid">
   <div class="row">
-      <div id="sidebar" class="col-sm-2">
-
-
-       <aside class="hidden-xs">
-          <ul>
-            
-            {% if ( cms.topics.length > 0 ) %}
-            <li class="sidebar-item sidebar-topic-sort mb2">
-              <ul>
-                <li class="h5 uppercase bold sidebar-active-heading">Filter By Topic</li>
-                <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb2">All Projects</li>
-                {% for topic in cms.topics %}
-
-                  {% if topic.projects_relationship %}
-                  <li data-sort-key="{{ topic.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.topics|size ) %}mb2{% endif %}">{{ topic.name }}</li>
-                  {% endif %}
-                {% endfor %}
-              </ul>
-            </li>
-            {% endif %}
-
-            {% if ( cms.regions.length > 0 ) %}
-            <li class="sidebar-item sidebar-region-sort mb4">
-              <ul>
-                <li class="h5 uppercase bold sidebar-active-heading">Filter By Region</li>
-                <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb2">All Projects</li>
-                {% for region in cms.regions %}
-                  <li data-sort-key="{{ region.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.regions|size ) %}mb2{% endif %}">{{ region.name }}</li>
-                {% endfor %}
-              </ul>
-            </li>
-            {% endif %}
-
-          </ul>
-
-        </aside>
-
+      
+      <div id="sidebar"  class="col-sm-2">
+      {% set page = "projects" %}
+      {% include "templates/partials/aside.html" %}
       </div>
       
       <div class="col-sm-9">

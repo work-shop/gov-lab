@@ -1,0 +1,135 @@
+
+			 <aside>
+
+			   {% if page == "about" %} {# ------------------------------------------------- #}
+
+		          <ul>
+				
+
+		            	<li class="sidebar-item sidebar-region-sort">
+		              <ul>
+		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#what-we-do">About GOV/LAB</a></li>
+		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#people">People</a></li>
+		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#collaborators">Collaborators</a></li>
+		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#funders">Funders</a></li>
+		              </ul>
+		            </li>
+
+		          </ul>
+
+
+		          {% elseif page == "projects" %} {# ------------------------------------------------- #}
+
+		          <ul>
+		            
+		            {% if ( cms.topics.length > 0 ) %}
+		            <li class="sidebar-item sidebar-topic-sort mb2">
+		              <ul>
+		                <li class="h5 uppercase bold sidebar-active-heading">Filter By Topic</li>
+		                <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb2">All Projects</li>
+		                {% for topic in cms.topics %}
+
+		                  {% if topic.projects_relationship %}
+		                  <li data-sort-key="{{ topic.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.topics|size ) %}mb2{% endif %}">{{ topic.name }}</li>
+		                  {% endif %}
+		                {% endfor %}
+		              </ul>
+		            </li>
+		            {% endif %}
+
+		            {% if ( cms.regions.length > 0 ) %}
+		            <li class="sidebar-item sidebar-region-sort mb4">
+		              <ul>
+		                <li class="h5 uppercase bold sidebar-active-heading">Filter By Region</li>
+		                <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb2">All Projects</li>
+		                {% for region in cms.regions %}
+		                  <li data-sort-key="{{ region.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.regions|size ) %}mb2{% endif %}">{{ region.name }}</li>
+		                {% endfor %}
+		              </ul>
+		            </li>
+		            {% endif %}
+
+		          </ul>
+
+
+		          {% elseif page == "project" %} {# ------------------------------------------------- #}
+
+		          <ul>
+		            <li class="sidebar-item sidebar-metadata-items active">
+		              <ul>
+		                <li class="h5 uppercase bold sidebar-active-heading">{{ item.shortname }}</li>
+
+		                <li class="h5 uppercase bold sidebar-passive-subheading">Project Timeline</li>
+		                <li class="h5 uppercase mb2">{{ item.project_timeline }}</li>
+
+		                <li class="h5 uppercase bold sidebar-passive-subheading">Location</li>
+		                <li class="h5 uppercase mb2">{{ item.region.name }}</li>
+		              </ul>
+		            </li>
+
+		            {% if ( item.team_members ) %} {# ------------------------------------------------- #}
+		            <li class="sidebar-item sidebar-team-members">
+		              <ul> 
+		                <li class="h5 uppercase bold sidebar-passive-subheading">Team Members</li>
+		                {% for teammember in item.team_members %}
+		                  <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb2{% endif %}">{{ teammember.name }}</li>
+		                {% endfor %}
+		              </ul>
+		            </li>
+		            {% endif %}
+
+		 
+		          {% elseif page == "news" %} {# ------------------------------------------------- #}
+
+		          <ul>
+		            
+		            <li class="sidebar-item sidebar-region-sort mb4">
+		              <ul>
+		                <li class="h5 uppercase bold sidebar-heading">Filter By Category</li>
+		                <hr class="hr-brand" />
+
+		                <a class="link" href="#news"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb2">All Updates</li></a>
+
+		                {% for category in cms.newscategories %}
+		                  {% if category.news_category.length %}
+
+		                  <a class="link" href="#news"><li class="sort-key sidebar-item uppercase mb1" data-sort-key="{{ category.name|lower }}">{{ category.name }}</li></a>
+
+		                  {% endif %}
+
+		                {% endfor %}
+		              </ul>
+		            </li>
+
+		          </ul>	
+
+
+		          {% elseif page == "news-item" %} {# ------------------------------------------------- #}
+
+			    <ul>
+            
+		            <li class="sidebar-item mb2">
+		              <ul>
+		                <li class="h5 uppercase bold sidebar-passive-heading">{{ item.category.name }}</li>
+		              </ul>
+		            </li>
+
+		            <li class="sidebar-item mb2">
+		              <ul>
+		               <li class="h5 uppercase bold sidebar-passive-subheading">Author</li>
+		                <li class="h5 uppercase">{{ item.author.name }}</li>
+		              </ul>
+		            </li>
+
+		            <li class="sidebar-item mb2">
+		              <ul>
+		               <li class="h5 uppercase bold sidebar-passive-subheading">Publication Date</li>
+		                <li class="h5 uppercase">{{ item.publish_date|date('m / d / y') }}</li>
+		              </ul>
+		            </li>
+		            
+		          </ul>
+
+		          {% endif %} {# ------------------------------------------------- #}
+
+		        </aside>

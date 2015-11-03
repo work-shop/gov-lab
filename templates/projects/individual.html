@@ -10,63 +10,9 @@
 
     <div class="row">
 
-      <div id="sidebar" class="sidebar col-sm-3 hidden-xs" aside-enter>
-        
-        <aside>
-          <ul>
-            <li class="sidebar-item sidebar-metadata-items active">
-              <ul>
-                <li class="h5 uppercase bold sidebar-active-heading">{{ item.shortname }}</li>
-
-                <li class="h5 uppercase bold sidebar-passive-subheading">Project Timeline</li>
-                <li class="h5 uppercase mb2">{{ item.project_timeline }}</li>
-
-                <li class="h5 uppercase bold sidebar-passive-subheading">Location</li>
-                <li class="h5 uppercase mb2">{{ item.region.name }}</li>
-              </ul>
-            </li>
-
-            {% if ( item.team_members ) %}
-            <li class="sidebar-item sidebar-team-members">
-              <ul> 
-                <li class="h5 uppercase bold sidebar-passive-subheading">Team Members</li>
-                {% for teammember in item.team_members %}
-                  <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb2{% endif %}">{{ teammember.name }}</li>
-                {% endfor %}
-              </ul>
-            </li>
-            {% endif %}
-
-            {% if ( item.updates ) %}
-            <li class="sidebar-item sidebar-updates">
-              <ul>
-                <a href="#project-updates" class="h5 uppercase bold"><li class="h6 uppercase bold sidebar-heading">Updates</li></a>
-                {% for update in item.updates %}
-                  <li class="h6 uppercase {% if ( loop.index == item.updates|size ) %}mb2{% endif %}">{{ update.date|date('m / d / y')  }}</li>
-                {% endfor %}
-              </ul>
-            </li>
-            {% endif %}
-
-            {% if ( item.takeaways ) %}
-            <li class="sidebar-item sidebar-updates">
-              <ul>
-                <a href="#project-updates" class="h5 uppercase bold"><li class="h6 uppercase bold sidebar-heading">Takeaways</li></a>
-                {% for takeaway in item.takeaways %}
-                  <li class="h6 uppercase {% if ( loop.index == item.updates|size ) %}mb2{% endif %}">{{ takeaway.name  }}</li>
-                {% endfor %}
-              </ul>
-            </li>
-            {% endif %}
-
-
-  
-          <a href="#sponsors" class="link"><li class="sidebar-item h6 uppercase bold sidebar-heading">Sponsors</li></a>
-             
-          </ul>
-        </aside>
-
-
+      <div id="sidebar" class="sidebar col-sm-3 hidden-xs" aside-enter>  
+      {% set page = "project" %}
+      {% include "templates/partials/aside.html" %}
       </div>
 
       <div class="col-sm-9 bg-white">

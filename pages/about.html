@@ -26,26 +26,11 @@
 <section id="what-we-do" class="bg-light padded" aside-enter>
 	<div class="container-fluid">
 	<div class="row">
-
-		 <div id="sidebar" class="col-sm-2">
-			 <aside class="hidden-xs mt2">
-		          <ul>
-		            
-		       
-		            <li class="sidebar-item sidebar-region-sort">
-		              <ul>
-		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#what-we-do">About GOV/LAB</a></li>
-		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#people">People</a></li>
-		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#collaborators">Collaborators</a></li>
-		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#funders">Funders</a></li>
-		              </ul>
-		            </li>
-
-		          </ul>
-
-		        </aside>
-	      </div>
-
+		
+		<div id="sidebar" class="sidebar col-sm-3 hidden-xs">
+		{% set page = 'about' %}
+		{% include 'templates/partials/aside.html' %}
+		</div>
 
 	      <div class="col-sm-9">
 
