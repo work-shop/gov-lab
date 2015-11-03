@@ -74,9 +74,10 @@
 
 </section>
 
-
+{% if cms.news.length %}
 
 <section id="latest" class="">
+
   {% set latest = cms.news|first %}
 
   <div class="container">
@@ -113,7 +114,10 @@
   </div>
 
   </div>
+  
 </section>
+
+{% endif %}
 
 {% include "templates/partials/subscribe.html" %}
 
