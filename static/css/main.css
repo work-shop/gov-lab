@@ -78,12 +78,12 @@ flexslider
   margin-top: 0em;
 }
 
-.m1, .sidebar-active-subheading, .sidebar-passive-subheading {
+.m1, .sidebar-active-heading, .sidebar-active-subheading, .sidebar-passive-heading, .sidebar-passive-subheading {
   margin-bottom: 1em;
   margin-top: 1em;
 }
 
-.m2, .sidebar-active-heading, .sidebar-passive-heading {
+.m2 {
   margin-bottom: 2em;
   margin-top: 2em;
 }
@@ -367,7 +367,7 @@ flexslider
   margin-top: 0em;
 }
 
-.mt1, aside {
+.mt1 {
   margin-top: 1em;
 }
 
@@ -1770,6 +1770,7 @@ p {
   color: #222;
   text-decoration: none;
   border: 1px solid #444;
+  width: 480px;
 }
 .project-label h3 {
   line-height: 1.2;
@@ -1796,11 +1797,11 @@ p {
 
 #map-instructions {
   position: absolute;
-  right: 15px;
-  top: 15px;
-  width: 130px;
+  right: 30px;
+  top: 30px;
+  width: 140px;
   text-align: right;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1;
 }
 
@@ -1809,10 +1810,26 @@ p {
   top: 15px;
   left: 15px;
 }
+#map-callout h3 {
+  line-height: 1.3;
+}
 #map-callout p {
   font-size: 16px;
 }
 
+@media (max-width: 767px) {
+  .project-label {
+    width: 300px;
+  }
+
+  #map-instructions {
+    display: none;
+  }
+
+  #map-callout {
+    top: 0;
+  }
+}
 figure {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -2003,41 +2020,37 @@ header .sync:hover, footer .sync:hover {
   -ms-transition: all 0.375s 0s ease;
 }
 
-/********** @HEADER *********/
+/********** @HEADER  *********/
 header {
   padding: 42px 0px 30px 0px;
   border-bottom: 1px solid #bebebe;
-}
-
-header {
   z-index: 50;
+  height: 100px;
+  left: 0;
+  width: 100%;
   top: -25%;
+  transition: all 0.25s 0s ease;
+  -moz-transition: all 0.25s 0s ease;
+  -webkit-transition: all 0.25s 0s ease;
+  -o-transition: all 0.25s 0s ease;
+  -ms-transition: all 0.25s 0s ease;
 }
-header.header-fixed {
-  transition: top 0.75s 0s ease;
-  -moz-transition: top 0.75s 0s ease;
-  -webkit-transition: top 0.75s 0s ease;
-  -o-transition: top 0.75s 0s ease;
-  -ms-transition: top 0.75s 0s ease;
-  top: 0px;
-}
-header svg {
-  position: relative;
-  top: -2px;
+header.fixed {
+  left: 0;
+  width: 100%;
 }
 
-@media (max-width: 767px) {
-  header {
-    padding: 20px 0px 12px 0px;
-  }
-  header svg {
-    width: 200px;
-  }
-  header #logo {
-    height: 50px;
-  }
+#header-shadow {
+  width: 100%;
+  height: 100px;
 }
-/********** @NAV *********/
+
+/********** @LOGO *********/
+#logo a {
+  display: block;
+  width: 140px;
+}
+
 /********** @MENU *********/
 #overlay {
   display: none;
@@ -2088,6 +2101,7 @@ menu.open {
 }
 
 aside {
+  overflow: scroll;
   position: absolute;
   z-index: 25;
   width: 200px;
@@ -2154,6 +2168,11 @@ aside .active {
   -webkit-transition: font-weight 0.375s 0s ease;
   -o-transition: font-weight 0.375s 0s ease;
   -ms-transition: font-weight 0.375s 0s ease;
+}
+
+.sidebar-link {
+  font-size: 16px;
+  line-height: 1.1;
 }
 
 /********** @FOOTER *********/
@@ -2238,6 +2257,25 @@ hr.hr-brand {
 
 /********** @RESPONSIVE *********/
 @media (max-width: 767px) {
+  header {
+    padding: 10px 0px 12px 0px;
+    height: 70px;
+  }
+
+  #header-shadow {
+    height: 70px;
+  }
+
+  #logo a {
+    width: 110px;
+  }
+
+  .menu-item {
+    margin-top: 5px;
+    position: relative;
+    left: -15px;
+  }
+
   .news-rule {
     border-top: none;
   }

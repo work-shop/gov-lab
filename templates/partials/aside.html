@@ -26,7 +26,7 @@
 		            <li class="sidebar-item sidebar-topic-sort mb2">
 		              <ul>
 		                <li class="h5 uppercase bold sidebar-active-heading">Filter By Topic</li>
-		                <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb2">All Projects</li>
+		                <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All Projects</li>
 		                {% for topic in cms.topics %}
 
 		                  {% if topic.projects_relationship %}
@@ -41,7 +41,7 @@
 		            <li class="sidebar-item sidebar-region-sort mb4">
 		              <ul>
 		                <li class="h5 uppercase bold sidebar-active-heading">Filter By Region</li>
-		                <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb2">All Projects</li>
+		                <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All Projects</li>
 		                {% for region in cms.regions %}
 		                  <li data-sort-key="{{ region.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.regions|size ) %}mb2{% endif %}">{{ region.name }}</li>
 		                {% endfor %}
@@ -59,20 +59,20 @@
 		              <ul>
 		                <li class="h5 uppercase bold sidebar-active-heading">{{ item.shortname }}</li>
 
-		                <li class="h5 uppercase bold sidebar-passive-subheading">Project Timeline</li>
-		                <li class="h5 uppercase mb2">{{ item.project_timeline }}</li>
+		                <li class="h5 uppercase bold sidebar-passive-subheading mb0">Project Timeline</li>
+		                <li class="h5 uppercase mb1 mt0">{{ item.project_timeline }}</li>
 
-		                <li class="h5 uppercase bold sidebar-passive-subheading">Location</li>
-		                <li class="h5 uppercase mb2">{{ item.region.name }}</li>
+		                <li class="h5 uppercase bold sidebar-passive-subheading mb0">Location</li>
+		                <li class="h5 uppercase mb1 mt0">{{ item.region.name }}</li>
 		              </ul>
 		            </li>
 
 		            {% if ( item.team_members ) %} {# ------------------------------------------------- #}
 		            <li class="sidebar-item sidebar-team-members">
 		              <ul> 
-		                <li class="h5 uppercase bold sidebar-passive-subheading">Team Members</li>
+		                <li class="h5 uppercase bold sidebar-passive-subheading mb0">Team Members</li>
 		                {% for teammember in item.team_members %}
-		                  <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb2{% endif %}">{{ teammember.name }}</li>
+		                  <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}">{{ teammember.name }}</li>
 		                {% endfor %}
 		              </ul>
 		            </li>
@@ -88,7 +88,7 @@
 		                <li class="h5 uppercase bold sidebar-heading">Filter By Category</li>
 		                <hr class="hr-brand" />
 
-		                <a class="link" href="#news"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb2">All Updates</li></a>
+		                <a class="link" href="#news"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All Updates</li></a>
 
 		                {% for category in cms.newscategories %}
 		                  {% if category.news_category.length %}
@@ -107,6 +107,12 @@
 		          {% elseif page == "news-item" %} {# ------------------------------------------------- #}
 
 			    <ul>
+
+		            <li class="sidebar-item mb2">
+		              <ul>
+		                <li class="h5 uppercase bold sidebar-active-heading">{{ item.name }}</li>
+		              </ul>
+		            </li>			    
             
 		            <li class="sidebar-item mb2">
 		              <ul>
@@ -116,15 +122,15 @@
 
 		            <li class="sidebar-item mb2">
 		              <ul>
-		               <li class="h5 uppercase bold sidebar-passive-subheading">Author</li>
-		                <li class="h5 uppercase">{{ item.author.name }}</li>
+		               <li class="h5 uppercase bold sidebar-passive-subheading mb0">Author</li>
+		                <li class="h5 uppercase mt0">{{ item.author.name }}</li>
 		              </ul>
 		            </li>
 
 		            <li class="sidebar-item mb2">
 		              <ul>
-		               <li class="h5 uppercase bold sidebar-passive-subheading">Publication Date</li>
-		                <li class="h5 uppercase">{{ item.publish_date|date('m / d / y') }}</li>
+		               <li class="h5 uppercase bold sidebar-passive-subheading mb0">Publication Date</li>
+		                <li class="h5 uppercase mt0">{{ item.publish_date|date('m / d / y') }}</li>
 		              </ul>
 		            </li>
 		            

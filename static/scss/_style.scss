@@ -75,47 +75,40 @@ header .sync, footer .sync {
 	}
 }
 
-/********** @HEADER *********/
+/********** @HEADER  *********/
 
 header {
 	padding:42px 0px 30px 0px;
-	border-bottom:1px solid $medium-light;
-}
-
-header {
+	border-bottom:1px solid $medium-light;	
 	z-index:50;
-
-	top:-25%;
+	height: 100px;
+	left: 0;
+	width: 100%;
+	top: -25%;
+	@include transition(all,.25s);
 	
-	&.header-fixed {
-		@include transition(top, $transition-duration);
-		top:0px;
-	}
-
-	svg {
-		position: relative;
-		top:-2px;
-	}
-}
-
-@media ( $xs-query ) {
-
-	header {
-		padding:20px 0px 12px 0px;
-
-		svg {
-			width:200px;
-		}
-
-		#logo {
-			height:50px;
-		}
+	&.fixed {
+		left: 0;
+		width: 100%;
 	}
 
 }
 
+#header-shadow{
+	width: 100%;
+	height: 100px;
+}
 
-/********** @NAV *********/
+
+/********** @LOGO *********/
+
+#logo a{
+	display: block;
+	width: 140px;
+}
+
+
+
 
 
 /********** @MENU *********/
@@ -182,7 +175,8 @@ menu {
 
 aside {
 		
-	@extend .mt1;
+	overflow: scroll;	
+	//@extend .mt1;
 	@extend .pl2;
 	@extend .pr1;
 	//@extend .bg-white;
@@ -233,8 +227,7 @@ aside {
 
 .sidebar-active-heading {
 	@extend .brand;
-	@extend .m2;
-
+	@extend .m1;
 	display:inline-block;
 	border-bottom: 2px solid $brand;
 }
@@ -248,7 +241,7 @@ aside {
 
 .sidebar-passive-heading {
  	@extend .dark;
-	@extend .m2;
+	@extend .m1;
 
 	display:inline-block;
 	border-bottom: 2px solid $dark;
@@ -271,6 +264,10 @@ aside {
 	}
 }
 
+.sidebar-link{
+	font-size: 16px;
+	line-height: 1.1;
+}
 
 
 /********** @FOOTER *********/
@@ -410,6 +407,27 @@ hr {
 
 //xs
 @media ($xs-query) {
+
+	 header {
+	 	padding:10px 0px 12px 0px;
+	 	height: 70px;
+	 }
+
+	 #header-shadow{
+	 	height: 70px;
+	 }
+
+	 #logo{
+	 	a{
+	 		width: 110px;
+	 	}
+	 }
+
+	.menu-item{
+		margin-top: 5px;
+		position: relative;
+		left: -15px;
+	}		
 
 
 	.news-rule {
