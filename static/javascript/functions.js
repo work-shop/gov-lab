@@ -42,6 +42,8 @@ jQuery(document).ready(function($) {
 		return false;
 	});
 
+	resizeAside();
+
 	// this set of listeners breaks out of the animation gracefully if the user scrolls.
 	$(window).on( "mousewheel", function() { $('html, body').stop(); });
 	$(window).on( "touchmove", function() { $('html, body').stop(); });
@@ -396,6 +398,8 @@ $( document).ready( function() {
 
 var asideFresh = true;
 
+$( window ).on( 'resize', resizeAside );
+
 $( window ).on( 'aside-absolute', function() {
 	console.log('aside-absolute');
 
@@ -409,6 +413,8 @@ $( window ).on( 'aside-absolute', function() {
 		return observation.top >= 0;
 	});
 });
+
+
 
 $( window ).on( 'aside-fixed', function() {
 	console.log('aside-fixed');
@@ -621,4 +627,11 @@ function flexsliderSetup(){
 	      controlNav: true
 	 });	 		 
 	 	 	
+}
+
+function resizeAside() {
+	var aside = $('aside');
+	if ( aside.length ) {
+		$('aside').height( $( window ).height() - 150 );
+	}
 }

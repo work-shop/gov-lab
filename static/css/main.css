@@ -2023,6 +2023,7 @@ menu.open {
 }
 
 aside {
+  cursor: ns-resize;
   overflow: scroll;
   position: absolute;
   z-index: 25;
