@@ -35,7 +35,7 @@ jQuery(document).ready(function($) {
 
 	$('a.link').click(function(){
 		$('html, body').animate({
-			scrollTop: $( $.attr(this, 'href') ).offset().top - 50
+			scrollTop: $( $.attr(this, 'href') ).offset().top - $('header').height()
 		}, 750);
 
 

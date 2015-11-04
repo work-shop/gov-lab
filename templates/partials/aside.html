@@ -27,11 +27,11 @@
 		            <li class="sidebar-item sidebar-topic-sort mb2">
 		              <ul>
 		                <li class="h5 uppercase bold sidebar-active-heading">Filter By Topic</li>
-		                <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All Projects</li>
+		                <a class="link" href="#projects"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All Projects</li></a>
 		                {% for topic in cms.topics %}
 
 		                  {% if topic.projects_relationship %}
-		                  <li data-sort-key="{{ topic.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.topics|size ) %}mb2{% endif %}">{{ topic.name }}</li>
+		                  <a class="link" href="#projects"><li data-sort-key="{{ topic.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.topics|size ) %}mb2{% endif %}">{{ topic.name }}</li></a>
 		                  {% endif %}
 		                {% endfor %}
 		              </ul>
@@ -42,9 +42,9 @@
 		            <li class="sidebar-item sidebar-region-sort mb4">
 		              <ul>
 		                <li class="h5 uppercase bold sidebar-active-heading">Filter By Region</li>
-		                <li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All Projects</li>
+		                <a class="link" href="#projects"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All Projects</li></a>
 		                {% for region in cms.regions %}
-		                  <li data-sort-key="{{ region.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.regions|size ) %}mb2{% endif %}">{{ region.name }}</li>
+		                  <a class="link" href="#projects"><li data-sort-key="{{ region.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.regions|size ) %}mb2{% endif %}">{{ region.name }}</li></a>
 		                {% endfor %}
 		              </ul>
 		            </li>
