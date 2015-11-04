@@ -6,6 +6,10 @@ function height_strict( target, selector ) {
 	selector.css({ 'height': $(window).height() * target }); 
 }
 
+function height_lax( target, selector ) { 
+	selector.css({ 'max-height': $(window).height() * target }); 
+}
+
 function width( target, selector ) { 
 	selector.css({ 'width': $(window).width() * target }); 
 }
@@ -43,6 +47,7 @@ function equal_width( target, selector ) {
 		'.forty-five': {callback:height, target: 0.45},
 		'.half': {callback:height_strict, target: 0.5},
 		'.half-strict': {callback:height_strict, target: 0.5},
+		'.half-lax': {callback:height_lax, target: 0.5},
 		'.half-h': {callback:width, target: 0.5},
 		'.ninety': {callback: height, target: 0.9},
 		'.ninety-h': {callback:width, target: 0.9},

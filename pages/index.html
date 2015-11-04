@@ -31,7 +31,7 @@
 </div>
 </section>
 
-<section id="home-map" class="bg-light block half-strict crop">
+<section id="home-map" class="bg-light block half-lax crop">
 
       {% include "templates/partials/map.html" %}
 
@@ -52,7 +52,7 @@
         <div class="block-background visible-xs" style="background: url({{ cms.about.about_image|imageSize(2500,500)}}); background-size:cover; background-position:center center;"> </div>
 
         <div class="col-sm-6 centered p5">
-              <h4 class="mb2 hidden-xs">We collaborate on meaningful interventions with <span class="bold">measurable outcomes</span>.</h4>
+              <h4 class="mb2 ">We collaborate on meaningful interventions with <span class="bold">measurable outcomes</span>.</h4>
               <a class="uppercase sync" href="/about">Read More</a>
         </div>
 
@@ -103,7 +103,7 @@
       <div class="row crop">
 
           <div class="image-overlay col-xs-12 col-sm-offset-1 col-sm-10 centered mt1">
-            <h4 class="dark mb2 hidden-xs">{{ latest.summary }}</h4>
+            <h4 class="dark mb2">{{ latest.summary }}</h4>
             <a class="uppercase sync" href="{{ url( latest ) }}">Read More</a>
           </div>
       

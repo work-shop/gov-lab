@@ -554,8 +554,17 @@ function activate( key ) {
 	key.addClass('active');
 }
 
+function maxHeightedSortValue() {
+	var max = -Infinity;
+
+	$('*[data-sort-value]').height( 'auto' ).each( function() {
+		max = ( $(this).height() > max ) ? $(this).height() : max;
+	}).height( max );
+}
+
 $(document).ready( function() {
 
+	maxHeightedSortValue();
 	
 
 	$('*[data-sort-key]').on('click', function() {
@@ -566,11 +575,7 @@ $(document).ready( function() {
 
 	});
 
-	// $(window).resize( function() {
-	// 	// ['#projects-list', '#news-list'].forEach( function( list ) {
-	// 	// 	$( list ).height( $( list ).height() );
-	// 	// });
-	// });
+	$(window).resize( maxHeightedSortValue );
 });
 
 
