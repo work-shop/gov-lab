@@ -17,35 +17,42 @@
 
     <div class="col-sm-9 bg-white">
 
-      <div class="row">
-        <div class="col-sm-12">
-          <img class="fade-in" src="{{ item.cover_image|imageCrop(1000,500)}}">
-        </div>
-      </div>
-
        <div class="row padded">
-          <div class="col-sm-offset-1 col-sm-10">
-            <h2 class="project-title">{{ item.name }}</h2>
+          <div class="col-xs-offset-1 col-xs-10 centered-xs">
+            <h2 class="project-title bold">{{ item.name }}</h2>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-sm-offset-1 col-sm-10">
+        <div class="row mb2">
+          <div class="col-xs-offset-1 col-xs-10">
             <h4 class="project-summary">{{ item.summary }}</h4>
           </div>
         </div>
-  
-        <div class="row mb2">
-        <hr class="col-sm-offset-1 col-sm-10 hr-brand" />
-        </div>
 
         <div class="row">
-          <div class="col-sm-offset-1 col-sm-10">
-          {{ item.story|safe }}
+          
+            <div class="projects-rule"></div>
+          
+        </div>
+
+        <div class="row mb2">
+          
+            {% if ( item.cover_image ) %}
+  
+              <img src="{{ item.cover_image|imageCrop(1000,500) }}">
+
+            {% endif %}
+          
+        </div>
+
+        <div class="row pb4">
+          <div class="col-xs-offset-1 col-xs-10">
+            {{ item.story|safe }}
           </div>
         </div>
 
-    </div>
+      </div>
+
   </div>
   </div>
   </section>
