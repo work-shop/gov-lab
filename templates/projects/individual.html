@@ -67,46 +67,68 @@
   </section>
 
 
-
   {% if ( item.updates ) %}
   <section id="project-updates" class="bg-light">
   <div class="container-fluid">
     <div class="row">
-    <div class="col-sm-offset-3 col-sm-9 bg-white pb4">
 
-      <ul>
-      {% for update in item.updates %}
-      <li class="row mb3">
-      
-        <div class="col-xs-offset-1 col-xs-10">
-          <h6 class="bold uppercase right">{{ update.date|date('m / d / y') }}</h6>
+    <div class="col-sm-offset-3 col-sm-9 bg-white padded">
+      <div class="row">
+
+        <div class="col-xs-offset-1 col-xs-10 mb2" >
+          <div class="projects-rule"></div>
+
+          <h4>Updates</h4>
         </div>
 
-        <div class="col-xs-offset-1 col-xs-4 hidden-xs">
-          <img src="{{ update.image|imageSize(300) }}" alt="">
-        </div>
+        <ul class="col-sm-offset-1 col-sm-10">
+        {% for update in item.updates %}
 
-        <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-6">
-          <hr class="hr-light mt0" >
-          <h3 class="mt0">{{ update.title }}</h3>
+        <li class="row mb2">
+          <div class="col-sm-12">
+          <span class="block news-rule-xs"></span>
+          </div>
+
+          <div class="col-xs-10 col-sm-4 mt1 pt1">
+          {% if ( update.image ) %}
+          <figure>
+            <img class="news-tile-image" src="{{ update.image|imageCrop(300,300) }}" alt="">
+          </figure>
+          {% endif %}
+          </div>
+
+          <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-5 pt2">
+          <h5 class="mb1 mt0 bold">{{ update.title }}</h5>
           <p>{{ update.text }}</p>
-        </div>
+          </div>
 
-      </li>
-      {% endfor %}
-      </ul>
+          <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-2  pt1 righted">
+          <h6 class="bold uppercase">{{ update.date|date('m / d / y') }}</h6> 
+          </div>  
+
+        </li>
+        {% endfor %}
+        </ul>
 
     </div>
   </div>
   </section>
   {% endif %}
 
- {#  {% if ( item.takeaways ) %}
-  <section id="project-takeaways" class="bg-white padded">
+  {% if ( item.takeaways ) %}
+  <section id="project-takeaways" class="bg-light">
   <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-offset-3 col-sm-9">
-            <ul>
+          <div class="col-sm-offset-3 col-sm-9 bg-white padded">
+            <div class="row">
+
+            <div class="col-xs-offset-1 col-xs-10 mb2" >
+              <div class="projects-rule"></div>
+
+              <h4>Takeaways</h4>
+            </div>
+
+            <ul class="col-sm-offset-1 col-sm-10">
 
             {% for takeaway in item.takeaways %}
 
@@ -114,29 +136,28 @@
 
               {% if ( takeaway.team_member ) %}
 
-                <div class="col-sm-offset-1 col-sm-4">
-                  <img class="teammember-image mb1" src="{% if ( takeaway.image ) %}{{ takeaway.image|imageSize(400)}}{% else %}{{ takeaway.team_member.image|imageSize(400) }}{% endif %}" alt="">
-                  <h4 class="teammember-name bold">{{ takeaway.team_member.name }}</h4>
-                  <p class="teammember-description mb1">{{ takeaway.team_member.bio }}</p>
-                  <a href="mailto:{{ takeaway.team_member.email }}">{{ takeaway.team_member.email }}</a>
+                <div class="col-sm-4">
+                  <img class="teammember-image mb1" src="{% if ( takeaway.image ) %}{{ takeaway.image|imageCrop(400,400)}}{% else %}{{ takeaway.team_member.image|imageCrop(400,400) }}{% endif %}" alt="">
+                  
                 </div>
 
-                <div class="col-sm-6">
-                  <p>{{ takeaway.text }}</p>
+                <div class="col-sm-8">
+                  <p class="h4 mb1">{{ takeaway.text }}</p>
+                  <h4 class="teammember-name bold"> – {{ takeaway.team_member.name }}</h4>
                 </div>
 
               {% elseif ( takeaway.image ) %}
 
-                <div class="col-sm-offset-1 col-sm-4">
-                  <img src="{{ takeaway.image|imageSize(400)}}" alt="">
+                <div class="col-sm-4">
+                  <img src="{{ takeaway.image|imageSize(400,400)}}" alt="">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-8">
                   <p class="h4">{{ takeaway.text }}</p>
                 </div>
 
               {% else %}
 
-                <div class="col-sm-offset-1 col-sm-10">
+                <div class="col-sm-12">
                   <p class="h4">{{ takeaway.text }}</p>
                 </div>
 
@@ -151,7 +172,7 @@
         </div>
   </div>
   </section>
-  {% endif %} #}
+  {% endif %}
 
 
   {% if ( item.team_members ) %}
