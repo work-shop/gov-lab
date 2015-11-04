@@ -24,7 +24,7 @@
         </div>
 
         <div class="row mb2">
-          <div class="col-xs-offset-1 col-xs-10">
+          <div class="col-xs-offset-1 col-xs-10 centered-xs">
             <h4 class="project-summary">{{ item.summary }}</h4>
           </div>
         </div>
@@ -115,7 +115,7 @@
   </section>
   {% endif %}
 
-  {% if ( item.takeaways ) %}
+  {% if ( item.takeaways.length ) %}
   <section id="project-takeaways" class="bg-light">
   <div class="container-fluid">
         <div class="row">
@@ -175,7 +175,7 @@
   {% endif %}
 
 
-  {% if ( item.team_members ) %}
+  {% if ( item.team_members.length ) %}
   <section id="project-teammembers" class="bg-light">
   <div class="container-fluid">
         <div class="row">
@@ -187,14 +187,18 @@
 
                 <h4>Team</h4>
               </div>
+              </div>
+
 
             {% for teammember in item.team_members %}
+            {% if loop.index0 % 2 == 0 %}<div class="row">{% endif %}
             <div class="teammember col-xs-offset-1 col-xs-4 mb1">
               {% if teammember.image %}<img class="teammember-image mb1" src="{{ teammember.image|imageCrop(500,500) }}" />{% endif %}
               <h4 class="teammember-name bold">{{ teammember.name }}</h4>
               <p class="teammember-description mb1">{{ teammember.bio }}</p>
               <a href="mailto:{{ teammember.email }}">{{ teammember.email }}</a>
             </div>
+            {% if (loop.index0 % 2 == 1 || loop.index == item.team_members.length) %}</div>{% endif %}
             {% endfor %}
 
             </div>  
@@ -205,13 +209,13 @@
   {% endif %}
 
 
-  {% if (item.collaborators or item.sponsors) %}
+  {% if (item.collaborators.length or item.sponsors.length) %}
    <section id="project-sponsors" class="bg-light">
    <div class="container-fluid">
    <div class="row">
                   <div class="col-sm-offset-3 col-sm-9 bg-white pb6">
                   <div class="row">
-    {% if (item.collaborators and item.sponsors) %} 
+    {% if (item.collaborators.length and item.sponsors.length) %} 
           
 
                     <div class="col-xs-offset-1 col-xs-5">
@@ -235,7 +239,7 @@
                     </div>
 
 
-    {% elseif (item.collaborators) %}
+    {% elseif (item.collaborators.length) %}
 
                     <div class="col-xs-offset-1 col-xs-10">
                       <div class="projects-rule"></div>
