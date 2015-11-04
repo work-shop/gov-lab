@@ -11,9 +11,9 @@
 
 @font-face {
 	font-family: "SimplonNormLight";
-	src: url('SimplonNorm-Light-WebS.eot');
-	src: url('SimplonNorm-Light-WebS.eot?#iefix') format('opentype'),
-		url('SimplonNorm-Light-WebS.woff') format('woff');
+	src: url('/static/fonts/SimplonNorm-Light-WebS.eot');
+	src: url('/static/fonts/SimplonNorm-Light-WebS.eot?#iefix') format('opentype'),
+		url('/static/fonts/SimplonNorm-Light-WebS.woff') format('woff');
 
 	font-weight: normal;
 	font-style: normal;
@@ -22,9 +22,9 @@
 
 @font-face {
 	font-family: "SimplonNormMedium";
-	src: url('SimplonNorm-Medium-WebS.eot');
-	src: url('SimplonNorm-Medium-WebS.eot?#iefix') format('opentype'),
-		url('SimplonNorm-Medium-WebS.woff') format('woff');
+	src: url('/static/fonts/SimplonNorm-Medium-WebS.eot');
+	src: url('/static/fonts/SimplonNorm-Medium-WebS.eot?#iefix') format('opentype'),
+		url('/static/fonts/SimplonNorm-Medium-WebS.woff') format('woff');
 
 	font-weight: normal;
 	font-style: normal;
