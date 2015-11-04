@@ -58,9 +58,8 @@ d3.json('/static/geometry/world.json', function( err, world ) {
 var radius = 3.5;
 
 function mouseOver( d ) {
-   var padding = 10;
+   var padding = 30;
 
-	
 
 	var map = 		d3.select('#map');
 
@@ -77,26 +76,46 @@ function mouseOver( d ) {
 			.attr('class', 'map-project-summary')
 			.text( d.description );
 
-   var  bX = d3.event.x, 
-        bY = d3.event.y,
-        bW = d3.select('#project-label').node().getBoundingClientRect().width,
-        bH = d3.select('#project-label').node().getBoundingClientRect().height;
+    var mW = map.node().getBoundingClientRect().width;
+    var mX = $('#map').offset().left;
+    var mH = map.node().getBoundingClientRect().height;
+    var mY = $('#map').offset().top;
 
 
 
+    console.log( 'Visible Rect: (%d,%d) -- (%d,%d)', mW, mX );
 
-  var  mX = map.node().offsetLeft,
-       mY = map.node().offsetTop;
+    var bW = box.node().getBoundingClientRect().width;
+    var bX = d3.event.x;
+    var bH = box.node().getBoundingClientRect().height;
+    var bY = d3.event.y - map.node().getBoundingClientRect().top;
 
-   var mW = map.node().getBoundingClientRect().width;
-   var mH = map.node().getBoundingClientRect().height; 
+    console.log( map.node().getBoundingClientRect().top );
 
-	box	.style({
-			'position': 'fixed',
-			'top': ((bY + bH >= mY + mH - padding) ?  bY - bH - padding : bY + padding ) + 'px',
-			'left': ((bX + bW >= mX + mW - padding) ? bX - bW - padding : bX + padding )  + 'px',
-			'z-index': 200
-		});
+    console.log( 'bW = %d, bX = %d', bW, bX );
+    console.log( 'bH = %d, bY = %d', bH, bY );
+
+    if ( bX + bW + padding >= mX + mW + padding ) {
+
+        box .style({
+            'position': 'absolute',
+            'bottom': padding + 'px',
+            'left': padding + 'px',
+            'z-index': 200
+        });
+
+    } else {
+       box .style({
+            'position': 'absolute',
+            'bottom': padding + 'px',
+            'right': padding + 'px',
+            'z-index': 200
+        });
+    }
+
+	
+
+
    
    // box .style({
    //   'position': 'fixed',
