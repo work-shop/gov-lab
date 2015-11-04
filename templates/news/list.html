@@ -40,7 +40,7 @@
       {% for news in cms.news|sort('publish_date') %}
 
       
-      <li class="col-xs-12 mb2 project-tint" data-sort-value="{% if ( news.category ) %}{{ news.category.name|lower }}{% endif %} ">
+      <li id="{{ news.name|lower|replace(' ', '-', 'g') }}"class="col-xs-12 mb2 project-tint" data-sort-value="{% if ( news.category ) %}{{ news.category.name|lower }}{% endif %} ">
           <div class="row">
 
           {% if ( news.category ) %}

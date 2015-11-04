@@ -27,7 +27,7 @@
         
         {% for project in projects %}
 
-        <li id="project-{{ project.shortname|escape('url') }}" class="project-tint project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4" data-publish-date="{{ project.publish_date }}" data-sort-value="{% for value in merge( project.topics, project.region ) %}{{ value.name|lower }} {% endfor %}"><a href="{{ url( project ) }}">
+        <li id="project-{{ project.shortname|lower|replace(' ', '-', 'g') }}" class="project-tint project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4" data-publish-date="{{ project.publish_date }}" data-sort-value="{% for value in merge( project.topics, project.region ) %}{{ value.name|lower }} {% endfor %}"><a href="{{ url( project ) }}">
           <figure class=" mb2">
             <img class="project-tile-image" src="{{ project.images|first|imageCrop(500, 350) }}" />
           </figure>
