@@ -34,13 +34,14 @@
 
 
     <div class="col-sm-9 bg-white">
-      <ul id="news-list">
+      <ul id="news-list" class="row">
+
 
       {% for news in cms.news|sort('publish_date') %}
 
       
-      <li class="row mb2 project-tint" data-sort-value="{% if ( news.category ) %}{{ news.category.name|lower }}{% endif %} ">
-          
+      <li class="col-xs-12 mb2 project-tint" data-sort-value="{% if ( news.category ) %}{{ news.category.name|lower }}{% endif %} ">
+          <div class="row">
 
           {% if ( news.category ) %}
           <div class="col-xs-offset-1 col-sm-offset-10 col-xs-10 col-sm-2 righted mb1">
@@ -87,6 +88,7 @@
           </div>
           </a>
 
+      </div>
       </li>
 
       {% endfor %}
