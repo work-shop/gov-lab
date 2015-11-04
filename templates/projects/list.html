@@ -40,7 +40,7 @@
             {% for topic in project.topics %}
               
               <li class="inline sidebar-link h6">
-              <a data-sort-key="{{topic.name|lower}}">
+              <a class="link" href="#projects" data-sort-key="{{topic.name|lower}}">
                 {{ topic.name }}{% if ( loop.index < project.topics|size ) %}, {% endif %}
               </a>
               </li>
