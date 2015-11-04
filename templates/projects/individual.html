@@ -168,7 +168,7 @@
             </div>
             {% for teammember in item.team_members %}
             <div class="teammember {% if ( loop.index0 % 2 == 0 ) %}col-xs-offset-1{% endif %} col-xs-5 mb1">
-              <img class="teammember-image mb1" src="{{ teammember.image|imageSize(500,auto) }}" />
+              {% if teammember.image %}<img class="teammember-image mb1" src="{{ teammember.image|imageCrop(500,500) }}" />{% endif %}
               <h4 class="teammember-name bold">{{ teammember.name }}</h4>
               <p class="teammember-description mb1">{{ teammember.bio }}</p>
               <a href="mailto:{{ teammember.email }}">{{ teammember.email }}</a>

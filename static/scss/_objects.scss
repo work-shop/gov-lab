@@ -16,6 +16,12 @@ flexslider
 	color:$brand;
 }
 
+.grayscale {
+	filter: gray;
+	filter: grayscale(1);
+	-webkit-filter:grayscale(1);
+}
+
 /********** @MARGINS AND PADDING *********/
 
 @for $i from 0 through 9 {

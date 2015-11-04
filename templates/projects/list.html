@@ -27,23 +27,19 @@
         
         {% for project in projects %}
 
-        {% if (loop.index0 % 2 == 0) %}
-        <div class="row padded">
-        {% endif %}
-
-        <li id="project-{{ project.shortname|escape('url') }}" class="project-tint project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4-xs" data-publish-date="{{ project.publish_date }}" data-sort-value="{% for value in merge( project.topics, project.region ) %}{{ value.name|lower }} {% endfor %}"><a href="{{ url( project ) }}">
+        <li id="project-{{ project.shortname|escape('url') }}" class="project-tint project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4" data-publish-date="{{ project.publish_date }}" data-sort-value="{% for value in merge( project.topics, project.region ) %}{{ value.name|lower }} {% endfor %}"><a href="{{ url( project ) }}">
           <figure class=" mb2">
             <img class="project-tile-image" src="{{ project.images|first|imageCrop(500, 350) }}" />
           </figure>
           <h3 class="title project-tile-title">{{ project.name }}</h3>
-          <p class="mb4 hidden-xs">{{ project.summary }}</p>
-          <hr class="hr-light">
+          <p class="mb2 hidden-xs">{{ project.summary }}</p>
+          <hr class="hr-light mb0">
           {% if ( project.topics )%}
           <ul class="project-tile-topics">
             
             {% for topic in project.topics %}
               
-              <li class="inline sidebar-link h6 uppercase">
+              <li class="inline sidebar-link h6">
               <a data-sort-key="{{topic.name|lower}}">
                 {{ topic.name }}{% if ( loop.index < project.topics|size ) %}, {% endif %}
               </a>
@@ -54,10 +50,6 @@
           </ul>
           {% endif %}
        </a></li>
-
-        {% if (loop.index0 % 2 == 1 || loop.index == projects|size ) %}
-        </div>
-        {% endif %}
 
         {% endfor %}
         </div>

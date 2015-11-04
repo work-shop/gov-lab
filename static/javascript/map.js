@@ -21,8 +21,6 @@ var zoom = d3.behavior.zoom()
 var width = d3.select('#map').node().getBoundingClientRect().width;
 var height = width / 2;
 
-console.log( width, height );
-
 var topo, projection, path, svg, g;
 
 setup( width, height );
@@ -33,8 +31,6 @@ function setup( width, height ) {
 		.scale( width / 2 / Math.PI );
 
 	path = d3.geo.path().projection( projection );
-
-	console.log( zoom );
 
 	svg = d3.select('#map').append('svg')
 		.attr( 'width', width )
@@ -94,14 +90,6 @@ function mouseOver( d ) {
 
    var mW = map.node().getBoundingClientRect().width;
    var mH = map.node().getBoundingClientRect().height; 
-
-     console.log( mW, mH );
-    console.log('bX', bX);
-     console.log('bY', bY);
-
-
-     console.log('top', bY + bH >= mY + mH - padding );
-     console.log('bX', bX);
 
 	box	.style({
 			'position': 'fixed',
