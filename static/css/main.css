@@ -729,7 +729,7 @@ flexslider
     background: #f1f1f1;
   }
 }
-.bg-white {
+.bg-white, #subscribe-box input[type="text"], #subscribe-box input[type="email"] {
   background: #fafafa;
 }
 
@@ -1304,77 +1304,22 @@ flexslider
 /********** @FORMS *********/
 input, textarea {
   padding: 5px;
-  border: 1px solid #cc3333;
   outline: none;
   width: 100%;
-  max-width: 300px;
-  background: white;
+  background: #ffffff;
+  color: #222222;
+  font-size: 1.6em;
 }
 input:focus, textarea:focus {
   outline: none;
   border: 2px solid #cc3333;
 }
 input[type="submit"], textarea[type="submit"] {
-  background: white;
+  border: 0;
+  outline: none;
   padding: 10px 15px;
-  color: #cc3333;
   width: auto;
   text-align: center;
-}
-input[type="checkbox"], textarea[type="checkbox"] {
-  max-width: 30px;
-  display: inline;
-}
-
-label {
-  font-size: 15px;
-  margin-bottom: 4px;
-  display: block;
-}
-
-gform_wrapper .gfield {
-  margin-bottom: 20px;
-}
-gform_wrapper .gfield.gform_validation_container {
-  display: none;
-}
-gform_wrapper .validation_error {
-  font-size: 18px;
-  padding: 15px 0;
-  border-bottom: 3px solid #ff4a4a;
-  margin-bottom: 15px;
-}
-gform_wrapper .gfield_error {
-  border-bottom: 2px solid #ff4a4a;
-}
-gform_wrapper .validation_message {
-  font-weight: bold;
-  font-size: 11px;
-  padding: 5px 0;
-}
-gform_wrapper .gfield_checkbox label {
-  display: inline;
-  max-width: none;
-}
-gform_wrapper .gfield_checkbox li {
-  margin-bottom: 5px;
-}
-gform_wrapper .gfield_required {
-  color: #cc3333;
-  margin-left: 5px;
-}
-
-.gform_confirmation_message {
-  font-size: 30px;
-}
-.gform_confirmation_message h1 {
-  font-size: 30px;
-  color: white;
-  padding: 5px;
-}
-
-img.gform_ajax_spinner {
-  display: none !important;
 }
 
 /********** @FLEXSLIDER *********/
@@ -1595,7 +1540,7 @@ p {
     text-align: inherit;
   }
 }
-.bold, .back-to-home, figure[data-type=quote], figure[data-type=quote] blockquote, figure[data-type=quote] figcaption, figure[data-type=quote] cite, a.active, .sync, header a:hover, footer a:hover, .sort-key.active, .project-tile-title {
+.bold, input:focus, textarea:focus, input[type="submit"], textarea[type="submit"], .back-to-home, figure[data-type=quote], figure[data-type=quote] blockquote, figure[data-type=quote] figcaption, figure[data-type=quote] cite, a.active, .sync, header a:hover, footer a:hover, .sort-key.active, .project-tile-title {
   font-family: "SimplonNormMedium", Helvetica, arial, sans-serif;
 }
 
@@ -2119,6 +2064,51 @@ aside .active {
   filter: none;
   filter: grayscale(0);
   -webkit-filter: grayscale(0);
+}
+
+/********** @SUBSCRIBE ***********/
+#subscribe-box {
+  position: fixed;
+  padding: 0px;
+  width: 95%;
+  max-height: 95%;
+  z-index: 150;
+  top: 2.5%;
+  left: 0;
+  overflow: scroll;
+  transform: skewX(-5deg) translateX(-200%);
+  -moz-transform: skewX(-5deg) translateX(-200%);
+  -webkit-transform: skewX(-5deg) translateX(-200%);
+  -o-transform: skewX(-5deg) translateX(-200%);
+  -ms-transform: skewX(-5deg) translateX(-200%);
+  transition: transform 0.75s 0s ease;
+  -moz-transition: transform 0.75s 0s ease;
+  -webkit-transition: transform 0.75s 0s ease;
+  -o-transition: transform 0.75s 0s ease;
+  -ms-transition: transform 0.75s 0s ease;
+}
+#subscribe-box.closed {
+  transform: skewX(-5deg) translateX(-200%);
+  -moz-transform: skewX(-5deg) translateX(-200%);
+  -webkit-transform: skewX(-5deg) translateX(-200%);
+  -o-transform: skewX(-5deg) translateX(-200%);
+  -ms-transform: skewX(-5deg) translateX(-200%);
+}
+#subscribe-box.open {
+  position: fixed;
+  transform: skewX(0deg) translateX(2.5%);
+  -moz-transform: skewX(0deg) translateX(2.5%);
+  -webkit-transform: skewX(0deg) translateX(2.5%);
+  -o-transform: skewX(0deg) translateX(2.5%);
+  -ms-transform: skewX(0deg) translateX(2.5%);
+}
+#subscribe-box input[type="text"], #subscribe-box input[type="email"] {
+  display: block;
+  border: 0px;
+  border-bottom: 2px solid #cc3333;
+}
+#subscribe-box .email {
+  width: 100%;
 }
 
 /********** @FEATURE *********/

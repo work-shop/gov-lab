@@ -371,98 +371,97 @@ $slide-distance-vertical: 20px;
 /********** @FORMS *********/
 
 input,textarea{
-	//@include transition(all,.25s);
+
 	padding: 5px;
-	border: 1px solid $brand;
 	outline: none;
 	width: 100%;
-	max-width: 300px;
-	background: white;
+	background: $white;
+	color: $dark;
+
+	font-size:1.6em;
 
 	&:focus{
+		@extend .bold;
 		outline: none;
 		border: 2px solid $brand;
 	}
 	
 	&[type="submit"]{
-		background: white;
+		@extend .bold;
+		border:0;
+		outline: none;
 		padding: 10px 15px;
-		color: $brand;
 		width: auto;
 		text-align: center;
-	}
-	
-	&[type="checkbox"]{
-		max-width: 30px;
-		display: inline;
+
 	}	
 	
 }
 
-label{
-	font-size: 15px;
-	margin-bottom: 4px;
-	display: block;
-}
+// label{
+// 	font-size: 15px;
+// 	margin-bottom: 4px;
+// 	display: block;
+// }
 
-gform_wrapper{
+// gform_wrapper{
 	
-	.gfield{
-		margin-bottom: 20px;
-	}
+// 	.gfield{
+// 		margin-bottom: 20px;
+// 	}
 	
-	.gfield.gform_validation_container{
-		display: none;
-	}	
+// 	.gfield.gform_validation_container{
+// 		display: none;
+// 	}	
 	
-	.validation_error{
-		font-size: 18px;
-		padding: 15px 0;
-		border-bottom: 3px solid $error;
-		margin-bottom: 15px;
-	}
+// 	.validation_error{
+// 		font-size: 18px;
+// 		padding: 15px 0;
+// 		border-bottom: 3px solid $error;
+// 		margin-bottom: 15px;
+// 	}
 	
-	.gfield_error{
-		border-bottom: 2px solid $error;
-	}
+// 	.gfield_error{
+// 		border-bottom: 2px solid $error;
+// 	}
 	
-	.validation_message{
-		font-weight: bold;
-		font-size: 11px;
-		padding: 5px 0;
-	}
+// 	.validation_message{
+// 		font-weight: bold;
+// 		font-size: 11px;
+// 		padding: 5px 0;
+// 	}
 	
-	.gfield_checkbox{
-		label{
-			display: inline;
-			max-width: none;
-		}
+// 	.gfield_checkbox{
+// 		label{
+// 			display: inline;
+// 			max-width: none;
+// 		}
 		
-		li{
-			margin-bottom: 5px;
-		}
-	}	
+// 		li{
+// 			margin-bottom: 5px;
+// 		}
+// 	}	
 	
-	.gfield_required{
-		color: $brand;
-		margin-left: 5px;
-	}
+// 	.gfield_required{
+// 		color: $brand;
+// 		margin-left: 5px;
+// 	}
 	
-}
+// }
 
-.gform_confirmation_message{
-	h1{
-		font-size: 30px;
-		color: white;
-		padding: 5px;
-	}
+// .gform_confirmation_message{
+// 	h1{
+// 		font-size: 30px;
+// 		color: white;
+// 		padding: 5px;
+// 	}
 	
-	font-size: 30px;
-}
+// 	font-size: 30px;
+// }
 
-img.gform_ajax_spinner {
-    display: none !important;
-}
+// img.gform_ajax_spinner {
+//     display: none !important;
+// }
 
 
 /********** @FLEXSLIDER *********/

@@ -288,6 +288,47 @@ aside {
 	}
 }
 
+/********** @SUBSCRIBE ***********/
+
+#subscribe-box {
+
+	position: fixed;
+	padding:0px;
+	width:95%;
+	max-height:95%;
+	z-index:150;
+	top:2.5%;
+	left:0;
+	
+	overflow:scroll;
+
+	@include transform( skewX( $closed-skew ) translateX( $closed-X ) );
+	@include transition( transform, $transition-duration );
+
+	&.closed {
+		@include transform( skewX( $closed-skew ) translateX( $closed-X ) );
+	}
+
+	&.open {
+		position: fixed;
+		@include transform( skewX( $open-skew ) translateX( $open-X ) );
+	}
+
+	input[type="text"], input[type="email"] {
+		@extend .bg-white;
+		display:block;
+		border:0px;
+		border-bottom:2px solid $brand;
+	}
+
+	.email {
+		width:100%;
+
+	} 
+
+}
+
+
 /********** @FEATURE *********/
 
 /********** @active ***********/
