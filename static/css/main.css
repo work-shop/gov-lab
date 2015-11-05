@@ -843,6 +843,10 @@ flexslider
 }
 
 /********** @STRUCTURE AND POSITION *********/
+.huge {
+  font-size: 6em;
+}
+
 .full {
   width: 100%;
 }
