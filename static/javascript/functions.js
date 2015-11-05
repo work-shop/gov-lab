@@ -575,7 +575,6 @@ function maxHeightedSortValue( selector ) {
 $(document).ready( function() {
 
 	maxHeightedSortValue( '*[data-sort-value]' )();
-	
 
 	$('*[data-sort-key]').on('click', function() {
 
