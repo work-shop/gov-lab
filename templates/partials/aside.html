@@ -83,7 +83,8 @@
 
 		 
 		          {% elseif page == "news" %} {# ------------------------------------------------- #}
-
+				
+			   {% if cms.news.length %}
 		          <ul>
 		            
 		            <li class="sidebar-item sidebar-region-sort mb4">
@@ -92,7 +93,7 @@
 		                <hr class="hr-brand" />
 
 		                <a class="link" href="#news"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All Updates</li></a>
-
+				  
 		                {% for category in cms.newscategories %}
 		                  {% if category.news_category.length %}
 
@@ -104,7 +105,8 @@
 		              </ul>
 		            </li>
 
-		          </ul>	
+		          </ul>
+		          {% endif %}	
 
 
 		          {% elseif page == "news-item" %} {# ------------------------------------------------- #}
