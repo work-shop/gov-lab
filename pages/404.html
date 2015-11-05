@@ -1,21 +1,28 @@
 
 {% extends "templates/partials/base.html" %}
 
+{% block title %}{% parent %} - 404{% endblock %}
+
 {% block content %}
 
 <section id="four-oh-four-introduction">
 	<div class="block-background" style="background: url({{ cms.about.about_image|imageSize(1000,1000)}}); background-size:cover; background-position:center center;"> </div>
 
-	  <div class="container half-strict block">
-
+	  <div class="container block">
+	  	<div class="row">
+			<div class="col-sm-offset-3 col-sm-6 mt6 mb6">
+				<h2 class="white bold centered"><span class="icon pictogram h1">&#172;</span></h2>
+			</div>
+		</div>
 	  </div>
 </section>
 
-<section id="four-oh-four-body">
+<section id="four-oh-four-body" class="bg-white padded">
 	<div class="container-fluid">
        <div id="news-empty" class="row">
-        <div class="col-xs-offset-1 col-xs-10 col-sm-6">
-          <h3 class="centered">Looks like there isn't any news right now. Check back later!</h3>
+        <div class="col-xs-offset-1 col-sm-offset-3 col-xs-10 col-sm-6">
+          <h3 class="centered mb2">We couldn't find anything at this url.</h3>
+          <h5 class="centered">But maybe you'd like to look at our <a class="sync" href="/projects">projects</a>?</h5>
         </div> 
        </div>
        </div>

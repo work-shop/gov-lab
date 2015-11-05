@@ -1613,6 +1613,10 @@ p {
   }
 }
 /********** @ICONS *********/
+.pictogram {
+  font-family: "modern_pictograms_proregular";
+}
+
 .icon:before {
   content: attr(data-icon);
   font-family: "modern_pictograms_proregular";
