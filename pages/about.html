@@ -63,7 +63,10 @@
 			{% for topic in cms.topics %}
 			{% if loop.index0 % 3 == 0 %} <div class="row"> {% endif %}
 
-			<div class="topic {% if loop.index0 % 3 == 0 %}col-xs-offset-2{% endif %} col-xs-3 bold"><h5>{{ topic.name }}</h5></div>
+			<div class="topic {% if loop.index0 % 3 == 0 %}col-xs-offset-2{% endif %} col-xs-3 centered">
+				<h5 class="bold">{{ topic.name }}</h5>
+				{% if topic.description %}<p class="h6">{{ topic.description }}</p>{% endif %}
+			</div>
 
 			{% if loop.index0 % 3 == 2 || loop.index == cms.topics.length %} </div> {% endif %}
 			{% endfor %}
@@ -124,7 +127,7 @@
 			<div class="row">
 				{% for collaborator in cms.collaborators %}
 					<div class="collaborator bg-light p1 {% if ( loop.index0 % 4 == 0 ) %}col-xs-offset-1{% endif %} col-xs-5 col-sm-4 col-sm-offset-1 col-lg-3 col-lg-offset-2 mb2">
-						<a href="{{ collaborator.website }}"><img class="collaborator-logo mb1" src="{{ collaborator.logo|imageSize(200,auto) }}" /></a>
+						<a target="_blank" href="{{ collaborator.website }}"><img class="collaborator-logo mb1" src="{{ collaborator.logo|imageSize(200,auto) }}" /></a>
 					</div>
 
 				{% endfor %}
@@ -152,7 +155,7 @@
 				{% for funder in cms.funders %}
 
 					<div class="funder {% if ( loop.index0 % 3 == 0 ) %}col-xs-offset-1{% endif %} col-xs-3 mb1">
-						<a href="{{ funder.website }}"><img class="funder-logo mb1" src="{{ funder.logo|imageSize(auto,200) }}" /></a>
+						<a target="_blank"  href="{{ funder.website }}"><img class="funder-logo mb1" src="{{ funder.logo|imageSize(auto,200) }}" /></a>
 					</div>
 
 				{% endfor %}
