@@ -352,29 +352,29 @@ var observer;
 
 $( document ).ready( function( ) {
 
-	function cycle( element ) {
+	function cycle( clicked, element ) {
 		return function( e ) {
 			e.preventDefault( e );
 
 			if ( $(element).hasClass( 'open' ) ) {
 
 				$( element ).removeClass( 'open' ).addClass('closed');
-				$('#overlay').fadeOut( $('menu').css('transition-duration') );
+				$('.overlay' + clicked ).removeClass( 'closed' ).addClass('open').fadeOut( $( element ).css('transition-duration') );
 				$( document.body ).css({overflow: 'scroll'});
 
 			} else {
 
 				$( element ).removeClass( 'closed' ).addClass('open');
-				$('#overlay').fadeIn( $('menu').css('transition-duration') );
+				$('.overlay' + clicked ).removeClass( 'closed' ).addClass('open').fadeIn( $( element ).css('transition-duration') );
 				$( document.body ).css({overflow: 'hidden'});
 
 			}
 		}
 	}
 
-	$('.menu-trigger').on('click', cycle('menu') );
+	$('.menu-trigger').on('click', cycle( '.menu-trigger', 'menu') );
 
-	$('.subscribe-trigger').on('click', cycle('#subscribe-box'));
+	$('.subscribe-trigger').on('click', cycle( '.subscribe-trigger', '#subscribe-box'));
 });
 
 

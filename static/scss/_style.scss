@@ -116,7 +116,7 @@ header {
 $open-X: 2.5%;
 $closed-X: -200%;
 
-#overlay {
+.overlay {
 
 	//@include transition( all, $transition-duration );
 
@@ -125,6 +125,8 @@ $closed-X: -200%;
 	width:100%;
 	height: 100%;
 	opacity:.75;
+	top:0;
+	left:0;
 
 	z-index:100;
 
