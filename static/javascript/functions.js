@@ -351,25 +351,30 @@ var observer;
 
 
 $( document ).ready( function( ) {
-	function cycleMenu( e ) {
-		e.preventDefault();
 
-		if ( $('menu').hasClass( 'open' ) ) {
+	function cycle( element ) {
+		return function( e ) {
+			e.preventDefault( e );
 
-			$('menu').removeClass( 'open' ).addClass('closed');
-			$('#overlay').fadeOut( $('menu').css('transition-duration') );
-			$( document.body ).css({overflow: 'scroll'});
+			if ( $(element).hasClass( 'open' ) ) {
 
-		} else {
+				$( element ).removeClass( 'open' ).addClass('closed');
+				$('#overlay').fadeOut( $('menu').css('transition-duration') );
+				$( document.body ).css({overflow: 'scroll'});
 
-			$('menu').removeClass( 'closed' ).addClass('open');
-			$('#overlay').fadeIn( $('menu').css('transition-duration') );
-			$( document.body ).css({overflow: 'hidden'});
+			} else {
 
+				$( element ).removeClass( 'closed' ).addClass('open');
+				$('#overlay').fadeIn( $('menu').css('transition-duration') );
+				$( document.body ).css({overflow: 'hidden'});
+
+			}
 		}
 	}
 
-	$('.menu-trigger').on('click', cycleMenu);
+	$('.menu-trigger').on('click', cycle('menu') );
+
+	$('.subscribe-trigger').on('click', cycle('#subscribe-box'));
 });
 
 
