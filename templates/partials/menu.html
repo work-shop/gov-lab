@@ -1,3 +1,5 @@
+{% set limit = 10 %}
+
 <div id="overlay" class="overlay bg-dark off menu-trigger"></div>
 
 <menu class="bg-light" >
@@ -38,7 +40,7 @@
 
 			{% for project in cms.projects|slice(cms.projects|size / 2, cms.projects|size) %}
 
-			<li><a {% if ( getCurrentUrl() == url( project ) ) %} class="active" {% endif %} href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
+			<li class="nav-item-link"><a {% if ( getCurrentUrl() == url( project ) ) %} class="active" {% endif %} href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
 
 			{% endfor %}
 
@@ -48,7 +50,7 @@
 
 			{% for project in cms.projects|slice(0, cms.projects|size / 2) %}
 
-			<li><a {% if ( getCurrentUrl() == url( project ) ) %} class="active" {% endif %} href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
+			<li class="nav-item-link"><a {% if ( getCurrentUrl() == url( project ) ) %} class="active" {% endif %} href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
 
 			{% endfor %}
 
@@ -63,7 +65,7 @@
 
 			{% for news in cms.news|slice(cms.news|size / 2, cms.news|size) %}
 
-			<li><a {% if ( getCurrentUrl() == url( news ) ) %} class="active" {% endif %} href="{{ url( news ) }}"><h5>{{ news.name }}</h5></a></li>
+			<li class="nav-item-link"><a {% if ( getCurrentUrl() == url( news ) ) %} class="active" {% endif %} href="{{ url( news ) }}"><h5>{{ news.name }}</h5></a></li>
 
 			{% endfor %}
 			
@@ -73,7 +75,7 @@
 
 			{% for news in cms.news|slice(0, cms.news|size / 2) %}
 
-			<li><a {% if ( getCurrentUrl() == url( news ) ) %} class="active" {% endif %} href="{{ url( news ) }}"><h5>{{ news.name }}</h5></a></li>
+			<li class="nav-item-link"><a {% if ( getCurrentUrl() == url( news ) ) %} class="active" {% endif %} href="{{ url( news ) }}"><h5>{{ news.name }}</h5></a></li>
 
 			{% endfor %}
 			

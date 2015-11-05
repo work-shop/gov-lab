@@ -19,14 +19,14 @@
 
 function close_form_overlay_success( msg ) {
 	console.log('success callback');
-	transition_form_overlay();
-	replace_with( 'success', msg );
+	//transition_form_overlay();
+	replace_with( 'success', 'Thanks!' );
 	
 }
 
 function close_form_overlay_failure( msg ) {
 	console.log('failure callback');
-	transition_form_overlay();
+	//transition_form_overlay();
 	replace_with( 'failure', msg );
 }
 
@@ -35,7 +35,7 @@ function transition_form_overlay() {
 }
 
 function replace_with( status, text )	{
-	$('#subscribe-button' ).replaceWith(
+	$('#mc-embedded-subscribe-form' ).replaceWith(
 		$('<div>').addClass( status )
 			     .addClass('col-sm-8')
 			     .addClass( 'col-sm-offset-2')

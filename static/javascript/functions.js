@@ -50,6 +50,9 @@ jQuery(document).ready(function($) {
 
 	/* for touch scrolling, this event fires when touch point is moved*/
 	//document.addEventListener("touchmove", scrollStart, false);	
+	
+	maxHeightedSortValue('.nav-item-link')();
+	$(window).on('resize', maxHeightedSortValue('.nav-item-link') );
 
 });//end document.ready
 
@@ -559,17 +562,19 @@ function activate( key ) {
 	key.addClass('active');
 }
 
-function maxHeightedSortValue() {
-	var max = -Infinity;
+function maxHeightedSortValue( selector ) {
+	return function() {
+		var max = -Infinity;
 
-	$('*[data-sort-value]').height( 'auto' ).each( function() {
-		max = ( $(this).height() > max ) ? $(this).height() : max;
-	}).height( max );
+		$( selector ).height( 'auto' ).each( function() {
+			max = ( $(this).height() > max ) ? $(this).height() : max;
+		}).height( max );
+	}	
 }
 
 $(document).ready( function() {
 
-	maxHeightedSortValue();
+	maxHeightedSortValue( '*[data-sort-value]' )();
 	
 
 	$('*[data-sort-key]').on('click', function() {
@@ -580,7 +585,7 @@ $(document).ready( function() {
 
 	});
 
-	$(window).resize( maxHeightedSortValue );
+	$(window).resize( maxHeightedSortValue( '*[data-sort-value]' ) );
 });
 
 
