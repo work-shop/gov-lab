@@ -61,11 +61,15 @@
 		              <ul>
 		                <li class="h5 uppercase bold sidebar-active-heading">{{ item.shortname }}</li>
 
+				  {% if item.project_timeline %}
 		                <li class="h5 uppercase bold sidebar-passive-subheading mb0">Project Timeline</li>
 		                <li class="h5 uppercase mb1 mt0">{{ item.project_timeline }}</li>
+		                {% endif %}
 
+				  {% if item.region.length %}
 		                <li class="h5 uppercase bold sidebar-passive-subheading mb0">Region</li>
 		                <li class="h5 uppercase mb1 mt0">{{ item.region.name }}</li>
+		                {% endif %}
 		              </ul>
 		            </li>
 
