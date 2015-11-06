@@ -84,7 +84,7 @@
 		 
 		          {% elseif page == "news" %} {# ------------------------------------------------- #}
 				
-			   {% if cms.news.length %}
+			   {% if cms.news.length and cms.news_category.length %}
 		          <ul>
 		            
 		            <li class="sidebar-item sidebar-region-sort mb4">
