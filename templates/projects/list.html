@@ -4,7 +4,7 @@
 
 {% block content %}
 
-  {% set projects = cms.projects|sort('publish_date', true) %}
+  {% set projects = cms.projectsorder.projects_order %}
 
   <section id="projects-introduction" class="bg-light block half-lax crop">
 
