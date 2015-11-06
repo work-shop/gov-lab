@@ -83,7 +83,13 @@
 
           <div class="hidden-xs col-xs-10 col-sm-offset-0 col-sm-2  pt1 righted">
 
-          <h6 class="bold uppercase">{{ news.publish_date|date('m / d / y') }}</h6> 
+          <h6 class="bold uppercase">
+            {% if news.news_date %}
+              {{ news.news_date|date('m / d / y') }}
+            {% else %}
+              {{ news.publish_date|date('m / d / y') }}
+            {% endif %}
+          </h6> 
           {% if ( news.author ) %} <h6 class="bold uppercase">{{ news.author.name }}</h6> {% endif %}
 
           </div>

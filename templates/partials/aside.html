@@ -122,12 +122,14 @@
 		                <li class="h5 uppercase bold sidebar-active-heading">{{ item.name }}</li>
 		              </ul>
 		            </li>			    
-            
+            			
+            		      {% if ( item.news_category.length ) %}
 		            <li class="sidebar-item mb2">
 		              <ul>
 		                <li class="h5 uppercase bold sidebar-passive-heading">{{ item.category.name }}</li>
 		              </ul>
 		            </li>
+		            {% endif %}
 
 		            <li class="sidebar-item mb2">
 		              <ul>
@@ -139,8 +141,15 @@
 		            <li class="sidebar-item mb2">
 		              <ul>
 		               <li class="h5 uppercase bold sidebar-passive-subheading mb0">Publication Date</li>
-		                <li class="h5 uppercase mt0">{{ item.publish_date|date('m / d / y') }}</li>
+		                <li class="h5 uppercase mt0">
+		                	{% if ( item.news_date ) %}
+		               		{{ item.news_date|date('m / d / y') }}
+		               	{% else %}
+						{{ item.publish_date|date('m / d / y') }}
+		               	{% endif %}
+		                </li>
 		              </ul>
+		               	
 		            </li>
 		            
 		          </ul>
