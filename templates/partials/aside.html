@@ -140,12 +140,12 @@
 
 		            <li class="sidebar-item mb2">
 		              <ul>
-		               <li class="h5 uppercase bold sidebar-passive-subheading mb0">Publication Date</li>
+		               <li class="h5 uppercase bold sidebar-passive-subheading mb0"> Date</li>
 		                <li class="h5 uppercase mt0">
 		                	{% if ( item.news_date ) %}
-		               		{{ item.news_date|date('m / d / y') }}
+		               		{{ item.news_date|date('F Y') }}
 		               	{% else %}
-						{{ item.publish_date|date('m / d / y') }}
+						{{ item.publish_date|date('F Y') }}
 		               	{% endif %}
 		                </li>
 		              </ul>
