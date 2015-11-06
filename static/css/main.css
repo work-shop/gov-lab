@@ -1677,6 +1677,7 @@ p {
 
 #map {
   position: relative;
+  cursor: move;
 }
 
 #map-instructions {
