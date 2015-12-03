@@ -51,7 +51,8 @@ jQuery(document).ready(function($) {
 	/* for touch scrolling, this event fires when touch point is moved*/
 	//document.addEventListener("touchmove", scrollStart, false);	
 	
-	maxHeightedSortValue('.nav-item-link')();
+	maxHeightedSortValue('.news-nav-item-link')();
+	maxHeightedSortValue('.project-nav-item-link')();
 	$(window).on('resize', maxHeightedSortValue('.nav-item-link') );
 
 });//end document.ready
