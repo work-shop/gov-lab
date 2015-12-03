@@ -39,10 +39,10 @@
             
             {% for topic in project.topics %}
               
-              <li class="inline sidebar-link h6">
-              <a class="link" href="#projects" data-sort-key="{{topic.name|lower}}">
-                {{ topic.name }}{% if ( loop.index < project.topics|size ) %}, {% endif %}
-              </a>
+              <li class="inline sidebar-link h6 hidden-xs">
+                <a class="link" href="#projects" data-sort-key="{{topic.name|lower}}">
+                  {{ topic.name }}{% if ( loop.index < project.topics|size ) %}, {% endif %}
+                </a>
               </li>
 
             {% endfor %}
