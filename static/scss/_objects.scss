@@ -230,9 +230,12 @@ flexslider
 }
 
 .inline {
-	display: inline;
+	display: inline !important;
 }
 
+@include size-dependent( ".hidden" ) {
+	display: none;
+}
 
 
 /********** @ANIMATIONS *********/
