@@ -86,10 +86,10 @@
 
     <div class="col-xs-6 col-sm-6 project-tint">
 
-      <div class="row crop">
+      <div class="row">
 
         <div class="col-xs-12">
-          <figure>
+          <figure class="">
             <img src="{{ latest.cover_image|imageCrop(auto,350)}}" />
           </figure>
         </div>
@@ -100,9 +100,9 @@
 
     <div class="col-xs-6 col-sm-6">
 
-      <div class="row crop">
+      <div class="row">
 
-          <div class="image-overlay col-xs-12 col-sm-offset-1 col-sm-10 centered mt1">
+          <div class=" col-xs-12 col-sm-offset-1 col-sm-10 centered mt1">
             <h4 class="dark mb2">{{ latest.summary }}</h4>
             <a class="uppercase sync" href="{{ url( latest ) }}">Read More</a>
           </div>
