@@ -1,4 +1,5 @@
-{% set length = 5 %}
+{% set projectLength = 5 %}
+{% set newsLength = 4 %}
 
 <footer>
 	<div class="container-fluid">
@@ -20,17 +21,17 @@
 			</ul>
 		</div>
 		<div class="col-xs-4 col-sm-3">
-			<h4 class="bold mb2"><a class="sync" href="/projects">Projects</a></h4>
+			<h4 class="bold mb2"><a class="sync" href="/projects">Selected Projects</a></h4>
 			<ul>
-			{% for project in cms.projects|slice(0,length) %}
+			{% for project in cms.projects|slice(0,projectLength) %}
 				<li><h5><a class="sync {% if  ( getCurrentUrl() == url( project ) ) %} active {% endif %}" href="{{ url( project ) }}">{{ project.shortname }}</a></h5></li>
 			{% endfor %}
 			</ul>
 		</div>
 		<div class="col-xs-4 col-sm-3">
-			<h4 class="bold mb2"><a class="sync" href="/news">News</a></h4>
+			<h4 class="bold mb2"><a class="sync" href="/news">Featured News</a></h4>
 			<ul>
-			{% for news in cms.news|slice(0,length) %}
+			{% for news in cms.news|slice(0,newsLength) %}
 				<li><h5><a class="sync {% if  ( getCurrentUrl() == url( news ) ) %} active{% endif %}" href="{{ url( news ) }}">{{ news.name }}</a></h5></li>
 			{% endfor %}
 			</ul>
@@ -42,7 +43,7 @@
 				<address id="office-address" class="mt1">
 					<h5 class="bold uppercase mb2"><span class="underline">Visit Us</span></h5>
 					<h5>30 Wadsworth Street</h5>
-					<h5>Building E53-430</h5>
+					<h5>Building E53-416</h5>
 					<h5>Cambridge, MA 02142</h5>
 				</address>
 			</div>
@@ -50,7 +51,7 @@
 				<address id="mailing-address" class="mt1">
 					<h5 class="bold uppercase mb2"><span class="underline">Send Us Mail</span></h5>
 					<h5>77 Massachusetts Avenue</h5>
-					<h5>Building E53-430</h5>
+					<h5>Building E53-416</h5>
 					<h5>Cambridge, MA 02139</h5>
 				</address>	
 			</div>
