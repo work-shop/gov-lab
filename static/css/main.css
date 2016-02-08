@@ -927,9 +927,33 @@ flexslider
 }
 
 .inline {
-  display: inline;
+  display: inline !important;
 }
 
+.hidden {
+  display: none;
+}
+
+@media (min-width: 1201px) {
+  .hidden-lg {
+    display: none;
+  }
+}
+@media (max-width: 1200px) {
+  .hidden-md {
+    display: none;
+  }
+}
+@media (max-width: 992px) {
+  .hidden-sm {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .hidden-xs {
+    display: none;
+  }
+}
 /********** @ANIMATIONS *********/
 .skew-field {
   transition: transform 0.25s 0s ease;
@@ -1460,7 +1484,12 @@ p {
 }
 @media (max-width: 767px) {
   body {
-    font-size: 16px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 400px) {
+  body {
+    font-size: 10px;
   }
 }
 /********** @FORMATTING *********/
@@ -2212,6 +2241,10 @@ hr.hr-brand {
 
   #logo a {
     width: 110px;
+  }
+
+  #map {
+    cursor: auto;
   }
 
   .menu-item {
