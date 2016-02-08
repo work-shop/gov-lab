@@ -223,7 +223,12 @@
                       <h4 class="mb2">Sponsors</h4>
                       <ul>
                       {% for sponsor in item.sponsors %}
-                        <li><a target="_blank" class="uppercase" href="{{ sponsor.website }}">{{ sponsor.name }}</li>
+
+                        <li>
+                          {% if sponsor.website %}<a target="_blank"  href="{{ sponsor.website }}">{% endif %}
+                            <span class="uppercase bold">{{ sponsor.name }}</span>
+                          {% if sponsor.website %}</a>{% endif %}
+                        </li>
                       {% endfor %}
                       </ul>
                     </div>
@@ -233,7 +238,11 @@
                       <h4 class="mb2">Collaborators</h4>
                       <ul>
                       {% for collaborator in item.collaborators %}
-                        <li><a target="_blank" class="uppercase bold" href="{{ collaborator.website }}">{{ collaborator.name }}</li>
+                        <li>
+                          {% if collaborator.website %}<a target="_blank"  href="{{ collaborator.website }}">{% endif %}
+                            <span class="uppercase bold">{{ collaborator.name }}</span>
+                          {% if collaborator.website %}</a>{% endif %}
+                        </li>
                       {% endfor %}
                       </ul>
                     </div>
@@ -246,7 +255,12 @@
                       <h4 class="mb2">Collaborators</h4>
                       <ul>
                       {% for collaborator in item.collaborators %}
-                        <li><a target="_blank" class="uppercase bold" href="{{ collaborator.website }}">{{ collaborator.name }}</li>
+
+                        <li>
+                          {% if collaborator.website %}<a target="_blank"  href="{{ collaborator.website }}">{% endif %}
+                            <span class="uppercase bold">{{ collaborator.name }}</span>
+                          {% if collaborator.website %}</a>{% endif %}
+                        </li>
                       {% endfor %}
                       </ul>
                     </div>
@@ -258,7 +272,11 @@
                       <h4 class="mb2">Sponsors</h4>
                       <ul>
                       {% for sponsor in item.sponsors %}
-                        <li><a target="_blank" class="uppercase bold" href="{{ sponsor.website }}">{{ sponsor.name }}</li>
+                        <li>
+                          {% if sponsor.website %}<a target="_blank"  href="{{ sponsor.website }}">{% endif %}
+                            <span class="uppercase bold">{{ sponsor.name }}</span>
+                          {% if sponsor.website %}</a>{% endif %}
+                        </li>
                       {% endfor %}
                       </ul>
                     </div>
