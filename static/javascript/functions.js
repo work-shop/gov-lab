@@ -31,6 +31,16 @@ jQuery(document).ready(function($) {
 		scrollLink(href);	
 	});
 
+	$('.wysiwyg').find('a').on('click', function( event ) {
+
+		event.preventDefault();
+
+		window.open( $(this).attr('href'), '_blank');
+
+		return false;
+
+	});
+
 
 
 	$('a.link').click(function(){
