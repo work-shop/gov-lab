@@ -40,6 +40,11 @@
 	fill: $brand !important;
 }
 
+#home-map .project-marker {
+	fill: transparent !important;
+
+}
+
 #map {
 	position: relative;
 	cursor: move;

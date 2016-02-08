@@ -1484,12 +1484,12 @@ p {
 }
 @media (max-width: 767px) {
   body {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   body {
-    font-size: 10px;
+    font-size: 13px;
   }
 }
 /********** @FORMATTING *********/
@@ -1702,6 +1702,10 @@ p {
 
 .project-marker {
   fill: #cc3333 !important;
+}
+
+#home-map .project-marker {
+  fill: transparent !important;
 }
 
 #map {
