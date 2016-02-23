@@ -1735,7 +1735,7 @@ p {
   display: inline-block;
   width: 32px;
   height: 32px;
-  cursor: pointer;
+  cursor: default;
   color: #bebebe;
   background-color: white;
   text-align: center;
@@ -1747,6 +1747,7 @@ p {
   margin-right: 2em;
 }
 .map-button.clickable {
+  cursor: pointer;
   color: #cc3333;
   border: 2px solid #cc3333;
 }
@@ -1770,6 +1771,11 @@ p {
 
   #map-callout {
     top: 0;
+    text-align: center;
+  }
+
+  #map {
+    opacity: .25;
   }
 }
 figure {
