@@ -16,12 +16,12 @@ var data = projects.map( function( project ) {
 
 var zoom = d3.behavior.zoom()
 	.scaleExtent([1,2])
-	.on('zoom', move);
+	.on('zoom', captureMove);
 
 var width = d3.select('#map').node().getBoundingClientRect().width;
 var height = width / 2;
 
-var topo, projection, path, svg, g;
+var topo, projection, path, svg, g, zoom_in, zoom_out;
 
 setup( width, height );
 
@@ -40,7 +40,24 @@ function setup( width, height ) {
 		.on("onwheel.zoom", null)
 		.on("mousewheel.zoom", null)
 		.on("onmousewheel.zoom", null);
-		
+
+    zoom_in = d3  .select('#map-zoom-in').on( 'click', 
+      function( d ) {
+        if ( zoom_in.classed('clickable') ) {
+          zoom.scale( 2 );
+          zoom.event( svg );
+        }
+      } 
+    );
+
+    zoom_out = d3  .select('#map-zoom-out').on( 'click', 
+      function() {
+        if ( zoom_out.classed('clickable') ) {
+          zoom.scale( 1 );
+          zoom.event( svg );
+        }
+      } 
+    );		
 
 	g = svg.append( 'g' );
 
@@ -61,39 +78,30 @@ function mouseOver( d ) {
    var padding = 30;
 
 
-	var map = 		d3.select('#map');
+  var map =     d3.select('#map');
 
-	var box = 		map
-	 			.append('div')
-					.attr( 'id', 'project-label' )
-					.attr('class', 'project-label');
+  var box =     map
+        .append('div')
+          .attr( 'id', 'project-label' )
+          .attr('class', 'project-label');
 
-	box	.append('h3')
-			.attr('class', 'map-project-title')
-			.text( d.name.toUpperCase() );
+  box .append('h3')
+      .attr('class', 'map-project-title')
+      .text( d.name.toUpperCase() );
 
-	box	.append('h6')
-			.attr('class', 'map-project-summary')
-			.text( d.description );
+  box .append('h6')
+      .attr('class', 'map-project-summary')
+      .text( d.description );
 
     var mW = map.node().getBoundingClientRect().width;
     var mX = $('#map').offset().left;
     var mH = map.node().getBoundingClientRect().height;
     var mY = $('#map').offset().top;
 
-
-
-    console.log( 'Visible Rect: (%d,%d) -- (%d,%d)', mW, mX );
-
     var bW = box.node().getBoundingClientRect().width;
     var bX = d3.event.x;
     var bH = box.node().getBoundingClientRect().height;
     var bY = d3.event.y - map.node().getBoundingClientRect().top;
-
-    console.log( map.node().getBoundingClientRect().top );
-
-    console.log( 'bW = %d, bX = %d', bW, bX );
-    console.log( 'bH = %d, bY = %d', bH, bY );
 
     if ( bX + bW + padding >= mX + mW + padding ) {
 
@@ -112,17 +120,6 @@ function mouseOver( d ) {
             'z-index': 200
         });
     }
-
-	
-
-
-   
-   // box .style({
-   //   'position': 'fixed',
-   //   'top': bY + padding + 'px',
-   //   'left': bX + padding + 'px',
-   //   'z-index': 200
-   // }); 
 
 }
 
@@ -161,13 +158,12 @@ function draw( topo ) {
 		.attr('class', 'project-marker')
 		.append('circle')
 		.attr('class', 'project-marker')
-		//.attr('points', "61,37 43,37 43,19 37,19 37,37 19,37 19,43 37,43 37,61 43,61 43,43 61,43 ")
-       .attr('r', 17)
-       .attr('transform', function( d ) {
+		.attr('r', 15)
+		.attr('transform', function( d ) {
 			var p = projection([d.longitude, d.latitude]);
 			var sx = .25, sy = .25, cx = p[0], cy = p[1];
 
-			return 'translate(' + projection([d.longitude, d.latitude]) + ')scale('+ 0.25 +')';
+			return 'translate(' + projection([d.longitude, d.latitude]) + ')scale('+ 0.25 +')translate('+[-40,-40]+')';
 		})
 		.on( 'mouseover', mouseOver )
 		.on( 'mouseout', mouseOut );
@@ -176,6 +172,17 @@ function draw( topo ) {
 
 	var offsetL = document.getElementById('map').offsetLeft;
 	var offsetT = document.getElementById('map').offsetTop;
+
+	country
+		.on('mousemove', function(d,i) {
+
+			var mouse = d3.mouse( svg.node() ).map( function(d) { return parseInt( d ); } );
+
+			 // tooltip.classed('hidden', false)
+				// .attr('style', 'left:' + (mouse[0] + offsetL) + 'px;top:' + (mouse[1] + offsetT) + 'px;' )
+			 // 	.html( d.properties.name );
+
+		});
 }
 
 function redraw() {
@@ -186,17 +193,12 @@ function redraw() {
 	draw( topo );
 }
 
-function clicked( d ) {
-	var x, y, k;
 
-
+function captureMove() {
+  move( d3.event.translate, d3.event.scale );
 }
 
-
-function move() {
-	var t = d3.event.translate;
-	var s = d3.event.scale;
-
+function move( t, s ) {
 
 	var h = height / 4;
 
@@ -211,7 +213,14 @@ function move() {
 
 	d3.selectAll('.project-label').style('font-size', 16 / s );
 
-  d3.selectAll('.project-marker').attr('r', 20 / s );
+   if ( s > 1.5 ) {
+      zoom_out.classed('clickable', true);
+      zoom_in.classed('clickable', false);
+   } else {
+      zoom_out.classed('clickable', false);
+      zoom_in.classed('clickable', true);  
+   }
+
 
 }
 

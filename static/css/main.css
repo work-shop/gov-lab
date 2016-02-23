@@ -1573,7 +1573,7 @@ p {
     text-align: inherit;
   }
 }
-.bold, input:focus, textarea:focus, input[type="submit"], textarea[type="submit"], .back-to-home, figure[data-type=quote], figure[data-type=quote] blockquote, figure[data-type=quote] figcaption, figure[data-type=quote] cite, a.active, .sync, header a:hover, footer a:hover, .sort-key.active, .project-tile-title {
+.bold, input:focus, textarea:focus, input[type="submit"], textarea[type="submit"], .back-to-home, .map-button, figure[data-type=quote], figure[data-type=quote] blockquote, figure[data-type=quote] figcaption, figure[data-type=quote] cite, a.active, .sync, header a:hover, footer a:hover, .sort-key.active, .project-tile-title {
   font-family: "SimplonNormMedium", Helvetica, arial, sans-serif;
 }
 
@@ -1704,10 +1704,6 @@ p {
   fill: #cc3333 !important;
 }
 
-#home-map .project-marker {
-  fill: transparent !important;
-}
-
 #map {
   position: relative;
   cursor: move;
@@ -1735,9 +1731,37 @@ p {
   font-size: 16px;
 }
 
+.map-button {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  color: #bebebe;
+  background-color: white;
+  text-align: center;
+  padding-top: .35em;
+  border: 2px solid #bebebe;
+  font-size: 1.5em;
+}
+.map-button:first-child {
+  margin-right: 2em;
+}
+.map-button.clickable {
+  color: #cc3333;
+  border: 2px solid #cc3333;
+}
+.map-button.clickable:hover {
+  background-color: #cc3333;
+  color: white;
+}
+
 @media (max-width: 767px) {
   .project-label {
     width: 300px;
+  }
+
+  #home-map .project-marker {
+    fill: transparent !important;
   }
 
   #map-instructions {
