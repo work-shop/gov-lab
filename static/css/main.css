@@ -1761,10 +1761,6 @@ p {
     width: 300px;
   }
 
-  #home-map .project-marker {
-    fill: transparent !important;
-  }
-
   #map-instructions {
     display: none;
   }
@@ -1774,7 +1770,7 @@ p {
     text-align: center;
   }
 
-  #map {
+  #home-map #map {
     opacity: .25;
   }
 }
@@ -2265,8 +2261,8 @@ hr.hr-brand {
 /********** @RESPONSIVE *********/
 @media (max-width: 767px) {
   header {
-    padding: 10px 0px 12px 0px;
-    height: 70px;
+    padding: 15px 0px 12px 0px;
+    height: 85px;
   }
 
   #header-shadow {

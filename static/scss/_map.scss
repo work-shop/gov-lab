@@ -117,7 +117,7 @@
 	}
 
 	#home-map .project-marker {
-		fill: transparent !important;
+		//fill: $brand !important;
 	}
 
 	#map-instructions{
@@ -129,7 +129,7 @@
 		text-align:center;
 	}
 
-	#map {
+	#home-map #map {
 		opacity: .25;
 	}
 
