@@ -21,39 +21,19 @@
 
   </div>
 
+  {{ o.opportunities("Jobs", cms.opportunities.jobs_introductory_text, cms.opportunities.jobs ) }}
+
+  {{ o.opportunities("Internships", cms.opportunities.internships_introductory_text, cms.opportunities.internship_opportunities ) }}
+
+  {{ o.opportunities("Consulting", cms.opportunities.consulting_introductory_text, cms.opportunities.consulting_opportunities ) }}
+
+  {{ o.opportunities("Research Funding", cms.opportunities.research_funding_introductory_text, cms.opportunities.research_funding_opportunities ) }}
+
+  {{ o.opportunities("Partnerships", cms.opportunities.partnerships_introductory_text, cms.opportunities.partnership_opportunities ) }}
+
 </section>
 
-{% if cms.opportunities.jobs.length > 0 || cms.opportunities.jobs_introductory_text %}
 
-<section id="jobs" class="padded">
-  <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-offset-2 col-sm-10">
-  
-      {% if cms.opportunities.jobs_introductory_text %}
-      
-        {{ o.header( "Jobs", cms.opportunities.jobs_introductory_text )}}
-
-      {% endif %}
-
-      {% if cms.opportunities.jobs.length > 0 %}
-        {% for job in cms.opportunities.jobs %}
-
-        {{ o.listing( job.name, job.description, job.link ) }}
-
-        {% endfor %}
-      {% endif %}
-
-      <div class="col-xs-offset-1 col-xs-9">
-          <span class="block news-rule-xs"></span>
-      </div>
-    </div>
-              
-  </div>
-  </div>
-</section>
-
-{% endif %}
 
 {% include 'templates/partials/subscribe.html' %}
 
