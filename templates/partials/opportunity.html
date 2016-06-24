@@ -1,0 +1,41 @@
+{% macro listing( name, description, link ) %}
+
+        <div class="row mb2">
+
+          <div class="col-sm-offset-1 col-sm-3">
+            <h5 class="bold">{{ name }}</h5>
+          </div>
+
+          <div class="col-sm-offset-1 col-sm-5">
+            <p>{{ description }}</p>
+          </div>
+    
+          {% if link %}
+          <div class="col-sm-offset-5 col-sm-2">
+            <a class="sync uppercase brand h6" href="{{link}}">read more</a>
+          </div>
+          {% endif %}
+
+        </div>
+
+{% endmacro %}
+
+{% macro header( section, description ) %}
+
+ 	<div class="row">
+        <div class="col-xs-offset-1 col-xs-10 col-sm-3">
+          <h4 class="mb2 brand bold uppercase">
+            {{ section }}
+          </h4>
+        </div>
+
+        <div class="col-xs-offset-2 col-xs-10 col-sm-5 col-sm-offset-1">
+          <h4 class="mb2">
+            
+              {{ description }}
+
+          </h4>
+        </div>
+      </div>
+
+{% endmacro %}
