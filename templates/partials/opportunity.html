@@ -1,17 +1,23 @@
+{# These macros implement different DOM components of the opportunities page #}
+
+{# listing : string, string, URL --> opportunity listing 
+ # given a name, description and link, this macro produces an offset description
+ # of an opportunity in a certain category.
+ #}
 {% macro listing( name, description, link ) %}
 
         <div class="row mb2">
 
-          <div class="col-sm-offset-1 col-sm-3">
+          <div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-3">
             <h5 class="bold">{{ name }}</h5>
           </div>
 
-          <div class="col-sm-offset-1 col-sm-5">
+          <div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-5">
             <p>{{ description }}</p>
           </div>
     
           {% if link %}
-          <div class="col-sm-offset-5 col-sm-2">
+          <div class="col-xs-offset-1 col-xs-10 col-sm-offset-5 col-sm-2">
             <a class="sync uppercase brand h6" href="{{link}}">read more</a>
           </div>
           {% endif %}
@@ -20,16 +26,20 @@
 
 {% endmacro %}
 
+{# header : string, string --> opportunity header 
+ # given a name, description and link, this macro produces an offset description
+ # of an opportunity in a certain category.
+ #}
 {% macro header( section, description ) %}
 
  	<div class="row">
-        <div class="col-xs-offset-1 col-xs-10 col-sm-3">
-          <h4 class="mb2 brand bold uppercase">
+        <div class="col-xs-12 col-sm-offset-1 col-sm-3">
+          <h4 class="mb2 brand bold uppercase centered">
             {{ section }}
           </h4>
         </div>
 
-        <div class="col-xs-offset-2 col-xs-10 col-sm-5 col-sm-offset-1">
+        <div class="col-sm-5 col-sm-offset-1">
           <h4 class="mb2">
             
               {{ description }}
@@ -40,12 +50,15 @@
 
 {% endmacro %}
 
-
-{% macro opportunities(name, description, collection) %}
+{# opportunities : string, string, [opportunity] --> opportunity listing 
+ # given a name, description, and an array of listings in the category, this
+ # macro produces a 
+ #}
+{% macro opportunities(name, description, collection, classes) %}
 
 	{% if collection.length > 0 || description %}
 
-	<section id="jobs" class="bg-white padded">
+	<section id="jobs" class="{{ classes }} padded">
 	  <div class="container-fluid">
 	  <div class="row">
 	    <div class="col-sm-offset-2 col-sm-10">
