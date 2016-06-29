@@ -4,21 +4,31 @@
  # given a name, description and link, this macro produces an offset description
  # of an opportunity in a certain category.
  #}
-{% macro listing( name, description, link ) %}
+{% macro listing( name, description, link, linktext ) %}
 
-        <div class="row mb2">
+        <div class="row mb3">
 
-          <div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-3">
+          <div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-3 centered-xs">
             <h5 class="bold">{{ name }}</h5>
           </div>
 
-          <div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-5">
+          <div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-5 centered-xs">
             <p>{{ description }}</p>
           </div>
     
-          {% if link %}
-          <div class="col-xs-offset-1 col-xs-10 col-sm-offset-5 col-sm-2">
-            <a class="sync uppercase brand h6" href="{{link}}">read more</a>
+          {% if link || linktext %}
+          <div class="col-xs-offset-1 col-xs-10 col-sm-offset-5 col-sm-5 centered-xs">
+            
+            {% if link %}<a class="sync uppercase brand h6" href="{{link}}"> {% else %}<p class="uppercase h6">{% endif %}
+
+              {% if linktext %}
+                {{ linktext }}
+              {% else %}
+                Learn More
+              {% endif %}
+
+             {% if link %}</a>{% else %}</p>{% endif %}
+
           </div>
           {% endif %}
 
@@ -32,9 +42,9 @@
  #}
 {% macro header( section, description ) %}
 
- 	<div class="row">
+ 	<div class="row mb2">
         <div class="col-xs-12 col-sm-offset-1 col-sm-3">
-          <h4 class="mb2 brand bold uppercase centered">
+          <h4 class="mb2 brand bold uppercase centered-xs">
             {{ section }}
           </h4>
         </div>
@@ -72,7 +82,7 @@
 	      {% if collection.length > 0 %}
 	        {% for opportunity in collection %}
 
-	        {{ listing( opportunity.name, opportunity.description, opportunity.link ) }}
+	        {{ listing( opportunity.name, opportunity.description, opportunity.link, opportunity.link_text ) }}
 
 	        {% endfor %}
 	      {% endif %}
