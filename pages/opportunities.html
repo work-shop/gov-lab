@@ -14,7 +14,7 @@
 
     <div class="row vertical-center">
       <div class="col-sm-offset-1 col-sm-10 white centered">
-      <h2 class="bold">Explore opportunities to collaborate with us.</h2>
+      <h2 class="bold">{{ cms.opportunities.opportunities_header_text }}</h2>
       <h3>{{ cms.opportunities.opportunities_introductory_text }}</h3>
       </div>
     </div>
@@ -23,16 +23,12 @@
 
   {{ o.opportunities("Jobs", cms.opportunities.jobs_introductory_text, cms.opportunities.jobs, "bg-white" ) }}
 
-  {{ o.opportunities("Internships", cms.opportunities.internships_introductory_text, cms.opportunities.internship_opportunities, "bg-light" ) }}
-
-  {{ o.opportunities("Consulting", cms.opportunities.consulting_introductory_text, cms.opportunities.consulting_opportunities, "bg-white" ) }}
-
-  {{ o.opportunities("Research Funding", cms.opportunities.research_funding_introductory_text, cms.opportunities.research_funding_opportunities, "bg-light" ) }}
-
-  {{ o.opportunities("Partnerships", cms.opportunities.partnerships_introductory_text, cms.opportunities.partnership_opportunities, "bg-white" ) }}
 
 </section>
 
+<section id="opportunities-footer" class="bg-light block">
+
+</section>
 
 
 {% include 'templates/partials/subscribe.html' %}
