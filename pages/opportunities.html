@@ -7,27 +7,54 @@
 
 {% block content %}
 
+<script type="text/javascript">console.log({{ cms.opportunities.opportunities_background_image|json|safe  }});</script>
+
 <section id="opportunities-introduction" class="bg-light block">
-  <div class="block-background" style="background-color:gray; background-size:cover; background-position:center center;"> </div>
+  <div class="block-background" style="background: {% if cms.opportunities.opportunities_background_image %} url({{ cms.opportunities.opportunities_background_image|imageSize(2500,500)}}) {% else %} white {% endif %}; background-size:cover; background-position:center center;"> </div>
 
   <div class="container half-strict block">
 
     <div class="row vertical-center">
-      <div class="col-sm-offset-1 col-sm-10 white centered">
+      <div class="col-sm-offset-1 col-sm-10 {% if cms.opportunities.opportunities_background_image %}white{% else %}dark{% endif %} centered">
       <h2 class="bold">{{ cms.opportunities.opportunities_header_text }}</h2>
       <h3>{{ cms.opportunities.opportunities_introductory_text }}</h3>
       </div>
     </div>
 
+
+
   </div>
+
+   {% if !cms.opportunities.opportunities_background_image %}
+   <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="projects-rule"></div>
+      </div>
+    </div>
+    </div>
+  {%endif %}
 
   {{ o.opportunities("Jobs", cms.opportunities.jobs_introductory_text, cms.opportunities.jobs, "bg-white" ) }}
 
 
 </section>
 
-<section id="opportunities-footer" class="bg-light block">
-
+<section id="opportunities-footer" class="bg-white block centered">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8">
+      <h5 class="bold">
+        Don't see a position that's right for you?
+      </h5>
+      </div>
+       <div class="col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6">
+      <p>
+        Our research needs are constantly evolving and growing. Please email us (<a href="mailto:info@mitgovlab.org">info@mitgovlab.edu</a>) with your resume and a brief introduction. We will be in touch with future opportunities.
+      </p>
+      </div>
+    </div>
+  </div>
 </section>
 
 
