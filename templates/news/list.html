@@ -2,7 +2,7 @@
 
 {% extends "templates/partials/base.html" %}
 
-{% block title %}{% parent %} - News{% endblock %}
+{% block title %}{% parent %} - Updates{% endblock %}
 
 {% block content %}
 
@@ -105,7 +105,7 @@
        {% else %}
        <div id="news-empty" class="row">
         <div class="col-xs-offset-1 col-xs-12 col-sm-6">
-          <h3 class="centered">Looks like there isn't any news right now. Check back later!</h3>
+          <h3 class="centered">Looks like there aren't any updates right now. Check back later!</h3>
         </div> 
        </div>
        {% endif %}
@@ -115,7 +115,9 @@
 
 </section>
 
-{% set returnTo = {to: "Home", url: "/" } %}
+{% include 'templates/partials/subscribe.html' %}
+
+{% set returnTo = {to: "Home", url: "/", aside: false } %}
 {% include 'templates/partials/prefooter.html' %}
 
 {% endblock %}
