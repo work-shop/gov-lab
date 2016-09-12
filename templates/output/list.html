@@ -1,0 +1,59 @@
+{% import "templates/partials/output.html" as o %}
+
+{% extends "templates/partials/base.html" %}
+
+{% block title %}{% parent %} - Projects{% endblock %}
+
+{% block content %}
+
+  {% set output = cms.output %}
+
+  <section id="output-introduction" class="bg-light block">
+    <div class="block-background hidden" style="background: url({{ cms.about.news_image|imageSize(2500,500)}}); background-size:cover; background-position:center center;"> </div>
+
+    <div class="container half-strict block">
+
+      <div class="row vertical-center">
+        <div class="col-sm-offset-3 col-sm-7 centered">
+        <h2 class="bold">Take a look at some of our research output.</h2>
+        <h3>
+    GOV/LAB publish research about
+{% for topic in cms.topics %}{% if loop.index > 1 %}, {% if loop.index == cms.topics.length %}and {% endif %}{% endif %}<a class="link" href="#output"><span data-sort-key="{{ topic.name|lower|replace(' ', '-', 'g') }}" class="header-topic">{{ topic.name }}</span></a>{% endfor %}.
+        </h3>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="output" class="bg-white mb6" aside-enter>
+  <div class="container-fluid">
+  <div class="row">
+
+      <div id="sidebar"  class="col-sm-2">
+      {% set page = "output" %}
+      {% include "templates/partials/aside.html" %}
+      </div>
+
+      <div class="col-sm-9">
+      <ul id="output-list" class="">
+
+        {% for outputItem in output %}
+
+            {{ o.outputcard( outputItem ) }}
+
+        {% endfor %}
+        </div>
+      </ul>
+      </div>
+    </div>
+    </div>
+  </section>
+
+{% set returnTo = {to: "Home", url: "/", aside: true } %}
+{% include 'templates/partials/prefooter.html' %}
+
+
+{% endblock %}
