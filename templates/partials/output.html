@@ -1,0 +1,30 @@
+{# This is a collection of macros dealing with output content #}
+
+{# this macro generates a card for an output item given an
+ # output item in JSON.
+ #}
+{% macro outputcard( item ) %}
+
+<li id="output-{{ item.name|lower|replace(' ', '-', 'g') }}" class="project-tint project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.research_topics, item.output_type ) %}{{ value.name|lower }} {% endfor %}"><a href="{{ url( item ) }}">
+      <h6 class="">{{ item.output_type.name }}</h6>
+      <h3 class="title project-tile-title">{{ item.name }}</h3>
+      <p class="mb2 hidden-xs">{{ item.summary }}</p>
+      <hr class="hr-light mb0 hidden-xs">
+      {% if ( item.research_topics ) %}
+      <ul class="project-tile-topics hidden-xs">
+
+        {% for topic in item.research_topics %}
+
+          <li class="inline sidebar-link h6 hidden-xs">
+            <a class="link" href="#output" data-sort-key="{{ topic.name|lower }}">
+              {{ topic.name }}{% if ( loop.index < project.topics|size ) %}, {% endif %}
+            </a>
+          </li>
+
+        {% endfor %}
+
+      </ul>
+      {% endif %}
+    </a></li>
+
+{% endmacro %}
