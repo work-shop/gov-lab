@@ -1921,6 +1921,12 @@ html, body {
 }
 
 /********** @<a>s ***********/
+a {
+  border-bottom: 1px dotted #cc3333;
+}
+a.link {
+  border-bottom: 0;
+}
 a:hover {
   color: #cc3333;
 }
@@ -2071,6 +2077,9 @@ aside.open {
   -o-transform: skewX(0deg);
   -ms-transform: skewX(0deg);
 }
+aside .sidebar-item {
+  font-size: .9em;
+}
 aside .active {
   border-color: #cc3333 !important;
 }
@@ -2118,7 +2127,6 @@ aside .active {
 }
 
 .sidebar-link {
-  font-size: 16px;
   line-height: 1.1;
 }
 

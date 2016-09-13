@@ -29,6 +29,13 @@ html, body {
 /********** @<a>s ***********/
 
 a {
+
+    border-bottom: 1px dotted $brand;
+
+    &.link {
+        border-bottom:0;
+    }
+
 	&.active {
 		@extend .bold;
 	}
@@ -36,7 +43,7 @@ a {
 	&:hover {
 		color: $brand;
 	}
-	
+
 }
 
 .sync {
@@ -51,7 +58,7 @@ a {
 	}
 
 	&:hover {
-		@include transform( skewX($closed-skew));		
+		@include transform( skewX($closed-skew));
 		border-bottom:2px solid $brand;
 		line-height: 1.5em;
 	}
@@ -79,14 +86,14 @@ header .sync, footer .sync {
 
 header {
 	padding:42px 0px 30px 0px;
-	border-bottom:1px solid $medium-light;	
+	border-bottom:1px solid $medium-light;
 	z-index:50;
 	height: 100px;
 	left: 0;
 	width: 100%;
 	top: -25%;
 	@include transition(all,.25s);
-	
+
 	&.fixed {
 		left: 0;
 		width: 100%;
@@ -148,7 +155,7 @@ menu {
 	width:95%;
 	max-height:95%;
 	z-index:150;
-	
+
 	overflow:scroll;
 
 	@include transform( skewX( $closed-skew ) translateX( $closed-X ) );
@@ -177,8 +184,8 @@ menu {
 
 aside {
 	cursor:ns-resize;
-		
-	overflow: scroll;	
+
+	overflow: scroll;
 	//@extend .mt1;
 	@extend .pl2;
 	@extend .pr1;
@@ -198,14 +205,13 @@ aside {
 		left:30px;
 		@include transform( skewX( $open-skew ) );
 	}
-	
+
 	& .sidebar-heading {
 		@extend .brand;
 	}
 
 	& .sidebar-item {
-		//position: relative;
-		//@include transform( translateY( 100px ) );
+		font-size: .9em;
 	}
 
 	& .active {
@@ -268,7 +274,6 @@ aside {
 }
 
 .sidebar-link{
-	font-size: 16px;
 	line-height: 1.1;
 }
 
@@ -299,7 +304,7 @@ aside {
 	z-index:150;
 	top:2.5%;
 	left:0;
-	
+
 	overflow:scroll;
 
 	@include transform( skewX( $closed-skew ) translateX( $closed-X ) );
@@ -324,7 +329,7 @@ aside {
 	.email {
 		width:100%;
 
-	} 
+	}
 
 }
 
@@ -374,9 +379,9 @@ hr {
 /********** PROJECTS ********/
 
 .project-tile {
-	
+
 	&:hover {
-		
+
 		@include transition(all, $transition-duration / 2);
 
 	}
@@ -386,7 +391,7 @@ hr {
 	position: relative;
 	float: left;
 	cursor: pointer;
-	
+
 
 	& figure:before {
 		content: "";
@@ -438,8 +443,8 @@ hr {
 @media (min-width: 768px) {
 
 
-	
-}	
+
+}
 
 //lg
 @media ($lg-query) {
@@ -460,7 +465,7 @@ hr {
 
 
 //hi
-} 
+}
 
 //xs
 @media ($xs-query) {
@@ -488,7 +493,7 @@ hr {
 		margin-top: 5px;
 		position: relative;
 		left: -15px;
-	}		
+	}
 
 
 	.news-rule {
@@ -506,6 +511,3 @@ hr {
 		padding-top: 6em !important;
 	}
 }
-
-
-
