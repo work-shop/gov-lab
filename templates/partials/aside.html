@@ -60,7 +60,7 @@
 		          <ul>
 		            <li class="sidebar-item sidebar-metadata-items active">
 		              <ul>
-		                <li class="h5 uppercase bold sidebar-active-heading">{{ item.shortname }}</li>
+		                <li class="h5 uppercase bold sidebar-active-heading hidden">{{ item.shortname }}</li>
 
 				  {% if item.project_timeline %}
 		                <li class="h5 uppercase bold sidebar-passive-subheading mb0">Project Timeline</li>
@@ -190,6 +190,51 @@
                   </ul>
 
                   {% elseif page == "output-item" %}
+
+                    <ul class="pt3">
+                    <li class="sidebar-item sidebar-metadata-items active">
+                      <ul>
+                        <li class="h5 uppercase bold sidebar-active-heading">{{ item.output_type.name }}</li>
+                      </ul>
+                    </li>
+                    {% if ( item.authors ) %}
+                    <li class="sidebar-item sidebar-team-members">
+                      <ul>
+                        <li class="h5 uppercase bold sidebar-passive-subheading mb0">Author{{ item.authors|pluralize('s') }}</li>
+                        {% for teammember in item.authors %}
+                          <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}">{{ teammember.name }}</li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                    {% endif %}
+
+                    {% if ( item.research_topics ) %}
+                    <li class="sidebar-item sidebar-team-members">
+                      <ul>
+                        <li class="h5 uppercase bold sidebar-passive-subheading mb0">Topic{{ item.research_topics|pluralize('s') }}</li>
+                        {% for topic in item.research_topics %}
+                        <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}">{{ topic.name }}</li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                    {% endif %}
+
+                    {% if ( item.file ) %}
+                    <li class="sidebar-item sidebar-team-members">
+                      <ul>
+                        <li class="h5 uppercase bold sidebar-passive-subheading mb0"><a href="{{ item.file }}">Download Content</a></li>
+                      </ul>
+                    </li>
+                    {% elseif ( item.link ) %}
+                    <li class="sidebar-item sidebar-team-members">
+                      <ul>
+                        <li class="h5 uppercase bold sidebar-passive-subheading mb0"><a href="{{ item.link }}">View Link</a></li>
+                      </ul>
+                    </li>
+                    {% endif %}
+
+
+                    </ul>
 
 		          {% endif %} {# ------------------------------------------------- #}
 
