@@ -33,7 +33,7 @@ a {
     border-bottom: 1px dotted $brand;
 
     &.link {
-        border-bottom:0;
+        border-bottom:1px solid transparent;
     }
 
 	&.active {
@@ -185,7 +185,9 @@ menu {
 aside {
 	cursor:ns-resize;
 
-	overflow: scroll;
+	overflow-x: hidden;
+    overflow-y: hidden;
+
 	//@extend .mt1;
 	@extend .pl2;
 	@extend .pr1;
@@ -437,6 +439,18 @@ hr {
 
 }
 
+
+/********** OUTPUT ********/
+
+.output-link {
+    @extend .bold;
+
+    font-size: 1.2em;
+    color:$brand;
+
+    border-bottom:2px solid transparent;
+
+}
 
 /********** @RESPONSIVE *********/
 
