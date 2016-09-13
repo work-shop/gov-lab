@@ -13,12 +13,24 @@
 
     <div class="container half-strict block">
 
+        {% set relevantTopics = 0 %}
+        {% set renderedTopics = 0%}
+        {% for topic in cms.topics %}
+            {% if topic.output_research_topics %}{% set relevantTopics = relevantTopics + 1 %}{%endif%}
+        {% endfor %}
+
       <div class="row vertical-center">
         <div class="col-sm-offset-3 col-sm-7 centered">
         <h2 class="bold">Take a look at some of our research output.</h2>
         <h3>
-    GOV/LAB publishes research about
-{% for topic in cms.topics %}{% if loop.index > 1 %}, {% if loop.index == cms.topics.length %}and {% endif %}{% endif %}<a class="" href="#output"><span data-sort-key="{{ topic.name|lower|replace(' ', '-', 'g') }}" class="header-topic">{{ topic.name }}</span></a>{% endfor %}.
+                    GOV/LAB has published research about
+                    {% for topic in cms.topics %}
+                        {% if topic.output_research_topics %}
+                        {% if renderedTopics > 0 %}, {% if renderedTopics == relevantTopics - 1 %}and {% endif %}{% endif %}
+                            <a class="" href="#output"><span data-sort-key="{{ topic.name|lower|replace(' ', '-', 'g') }}" class="header-topic">{{ topic.name }}</span></a>
+                            {% set renderedTopics = renderedTopics + 1 %}
+                        {% endif %}
+                    {% endfor %}.
         </h3>
         </div>
       </div>
