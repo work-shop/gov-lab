@@ -2,7 +2,7 @@
 
 {% extends "templates/partials/base.html" %}
 
-{% block title %}{% parent %} - Projects{% endblock %}
+{% block title %}{% parent %} - Output{% endblock %}
 
 {% block content %}
 
@@ -17,8 +17,8 @@
         <div class="col-sm-offset-3 col-sm-7 centered">
         <h2 class="bold">Take a look at some of our research output.</h2>
         <h3>
-    GOV/LAB publish research about
-{% for topic in cms.topics %}{% if loop.index > 1 %}, {% if loop.index == cms.topics.length %}and {% endif %}{% endif %}<a class="link" href="#output"><span data-sort-key="{{ topic.name|lower|replace(' ', '-', 'g') }}" class="header-topic">{{ topic.name }}</span></a>{% endfor %}.
+    GOV/LAB publishes research about
+{% for topic in cms.topics %}{% if loop.index > 1 %}, {% if loop.index == cms.topics.length %}and {% endif %}{% endif %}<a class="" href="#output"><span data-sort-key="{{ topic.name|lower|replace(' ', '-', 'g') }}" class="header-topic">{{ topic.name }}</span></a>{% endfor %}.
         </h3>
         </div>
       </div>
@@ -28,7 +28,7 @@
   </section>
 
 
-  <section id="output" class="bg-white mb6" aside-enter>
+  <section id="output" class="bg-white pb6" aside-enter>
   <div class="container-fluid">
   <div class="row">
 
