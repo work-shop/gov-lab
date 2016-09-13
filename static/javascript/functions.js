@@ -6,9 +6,9 @@ var state = 'intro';
 var moving = false;
 
 /**
- * 'dom-is-sized' is triggered when the sizing module finishes a 
+ * 'dom-is-sized' is triggered when the sizing module finishes a
  * resize. We listen for the first of these, and remove the "curtain"
- * which 
+ * which
  */
 $(document).one('dom-is-sized', function() {
 	$('#loading-background').fadeOut(600, function() { $(this).remove(); });
@@ -18,7 +18,7 @@ $(document).one('dom-is-sized', function() {
 
 //initial events, and general event binding
 jQuery(document).ready(function($) {
-	
+
 	$('#backtotop').click(function(event) {
 	  	event.preventDefault();
 		$('body,html').animate({scrollTop:0},2000);
@@ -28,7 +28,7 @@ jQuery(document).ready(function($) {
 		e.preventDefault();
 		var href = $(this).attr("href");
 		href = href.toLowerCase();
-		scrollLink(href);	
+		scrollLink(href);
 	});
 
 	$('.wysiwyg').find('a').on('click', function( event ) {
@@ -59,8 +59,8 @@ jQuery(document).ready(function($) {
 	$(window).on( "touchmove", function() { $('html, body').stop(); });
 
 	/* for touch scrolling, this event fires when touch point is moved*/
-	//document.addEventListener("touchmove", scrollStart, false);	
-	
+	//document.addEventListener("touchmove", scrollStart, false);
+
 	maxHeightedSortValue('.news-nav-item-link')();
 	maxHeightedSortValue('.project-nav-item-link')();
 	$(window).on('resize', maxHeightedSortValue('.nav-item-link') );
@@ -71,13 +71,13 @@ jQuery(document).ready(function($) {
 /** ----------- MENU RELATED FUNCTIONALITY --------------------------------- */
 
 /**
- * This class implements fine-grained scrolling control. 
+ * This class implements fine-grained scrolling control.
  * Given an array of elements to watch, the observer sets up
  * events on the dom that fire when requested elements pass
- * specified predicates. 
+ * specified predicates.
  *
- * @param {Map[Selector -> Map[String -> -1 <= x <= 1]} watched. 
- * A map from selectors to maps from callback names to percentage values. 
+ * @param {Map[Selector -> Map[String -> -1 <= x <= 1]} watched.
+ * A map from selectors to maps from callback names to percentage values.
  * The callbacks are installed and fire when that percentage of the element
  * has passed either the top ( for specified x > 0 ) or bottom of the frame (for x < 0 ).
  */
@@ -99,13 +99,13 @@ function ScrollObserver( watched ) {
 
 	$(window).on( 'resize', function( e ) {  self.offset = window.innerHeight; });
 
-	$(window).on( 'scroll', function( e ) { 
+	$(window).on( 'scroll', function( e ) {
 		var scrollTop = $(window).scrollTop();
 
 		if ( self.base < scrollTop ) { self.direction = 1; }
 		else { self.direction = -1; }
 
-		self.base = $(window).scrollTop(); 
+		self.base = $(window).scrollTop();
 	});
 
 
@@ -116,10 +116,10 @@ function ScrollObserver( watched ) {
 	var diffed = {};
 
 	/**
-	 * The observe routine observes the position of an element with respect to the 
+	 * The observe routine observes the position of an element with respect to the
 	 * current window frame, and triggers an event on the window when the predicate
 	 * is fulfilled
-	 * 
+	 *
 	 * @param  {string} selector   a DOM selector to observe
 	 * @param  {string} callbackID the name of an event to fire on the satisfaction of predicate
 	 * @param  {Object -> Boolean} a boolean-valued function indicating whether to trigger callbackID
@@ -130,7 +130,7 @@ function ScrollObserver( watched ) {
 
 			observed[ selector ] = {};
 
-		} 
+		}
 
 		observed[ selector ][ callbackID ] = predicate;
 
@@ -166,7 +166,7 @@ function ScrollObserver( watched ) {
 			observed = {};
 
 		}
-		
+
 	};
 
 
@@ -175,7 +175,7 @@ function ScrollObserver( watched ) {
 
 			diffed[ selectorA ] = {};
 
-		} 
+		}
 
 		if ( !diffed[ selectorA ][ selectorB ] ) {
 
@@ -218,7 +218,7 @@ function ScrollObserver( watched ) {
 
 			diffed = {};
 		}
-		
+
 	};
 
 
@@ -265,9 +265,9 @@ function ScrollObserver( watched ) {
 
 								for ( var trigger in diffed[ selectorA ][ selectorB ] ) {
 
-									if ( diffed[ selectorA ][ selectorB ][ trigger ]( elementAttributes ) ) { 
-										$( window ).trigger( trigger, A, B ); 
-									} 
+									if ( diffed[ selectorA ][ selectorB ][ trigger ]( elementAttributes ) ) {
+										$( window ).trigger( trigger, A, B );
+									}
 
 								}
 
@@ -326,9 +326,9 @@ function ScrollObserver( watched ) {
 
 						};
 
-						if ( observed[ selector ][ trigger ]( elementAttributes ) ) { 
-							$( window ).trigger( trigger, element ); 
-						} 
+						if ( observed[ selector ][ trigger ]( elementAttributes ) ) {
+							$( window ).trigger( trigger, element );
+						}
 					}
 
 				});
@@ -344,7 +344,7 @@ function ScrollObserver( watched ) {
 	$( window ).on( 'scroll', triggerObserved );
 	$( window ).on( 'scroll', triggerDiffed );
 
-	// 
+	//
 	$( window ).on( 'resize', triggerObserved );
 	$( window ).on( 'scroll', triggerDiffed );
 
@@ -383,7 +383,7 @@ $( document ).ready( function( ) {
 				$( document.body ).css({overflow: 'hidden'});
 
 			}
-		}
+		};
 	}
 
 	$('.menu-trigger').on('click', cycle( '.menu-trigger', 'menu') );
@@ -412,7 +412,7 @@ $( document).ready( function() {
 	observer.observeOnce('header', 'header-fix', function( observation ) {
 		return observation.top >= 1;
 	});
-	
+
 });
 
 var asideFresh = true;
@@ -439,14 +439,14 @@ $( window ).on( 'aside-fixed', function() {
 	console.log('aside-fixed');
 
 
-	
+
 	//var area = ($('aside').offset().top) - $('*[aside-enter]').offset().top + $('header').outerHeight();//+ $('header').outerHeight();
-	
+
 	var area = $('header').outerHeight();
 
 	//area = $('aside').offset().top + 20;
 	//
-	
+
 	$('aside').animate({'top': area+"px"});
 
 	//$('aside').animate({'top': (area+20)+"px"});
@@ -472,7 +472,7 @@ $( window ).on( 'aside-unfix', function( e ) {
 		$('aside').addClass('open');
 
 	}
-	
+
 	observer.diffOnce('aside', '*[aside-exit]', 'aside-fix', function( diff ) {
 		return diff.bottom.top <= 50;
 	});
@@ -512,7 +512,7 @@ $( window ).on( 'header-fix', function() {
 	});
 
 	header.removeClass('unfixed').addClass('fixed');
-	$('body').removeClass('header-unfixed').addClass('header-fixed');		
+	$('body').removeClass('header-unfixed').addClass('header-fixed');
 
 	observer.observeOnce('#header-shadow', 'header-unfix', function( o ) {return o.top <= 0.05;});
 });
@@ -580,7 +580,7 @@ function maxHeightedSortValue( selector ) {
 		$( selector ).height( 'auto' ).each( function() {
 			max = ( $(this).height() > max ) ? $(this).height() : max;
 		}).height( max );
-	}	
+	};
 }
 
 $(document).ready( function() {
@@ -602,61 +602,63 @@ $(document).ready( function() {
 
 //FUNCTIONS
 
-//keyboard pressed m or M	
+//keyboard pressed m or M
 
-//keyboard pressed up arrow	
+//keyboard pressed up arrow
 $(document).keypress(function(e) {
-	if(e.which == 38){	
+	if(e.which == 38){
 		if($("input:focus")){
 			var elem = document.activeElement;
-			if (! elem.type ){ 
+			if (! elem.type ){
 
 			}
 		}
-	}	
-});	
+	}
+});
 
-//keyboard pressed left arrow	
+//keyboard pressed left arrow
 $(document).keypress(function(e) {
-	if(e.which == 37) {	
+	if(e.which == 37) {
 		if($("input:focus")){
 			var elem = document.activeElement;
-			if (! elem.type ){ 
+			if (! elem.type ){
 
 			}
 		}
-	}	
-});			
+	}
+});
 
 
-//keyboard pressed right arrow	
+//keyboard pressed right arrow
 $(document).keypress(function(e) {
-	if(e.which == 39) {	
+	if(e.which == 39) {
 		if($("input:focus")){
 			var elem = document.activeElement;
-			if (! elem.type ){ 
+			if (! elem.type ){
 
 			}
 		}
-	}	
-});			
+	}
+});
 
 
 //initialize flexslider slideshows
 function flexsliderSetup(){
-	$('.flexslider').flexslider({	
+	$('.flexslider').flexslider({
 	      animation: 'fade',
-	      slideshowSpeed: 8000,           
+	      slideshowSpeed: 8000,
 		  animationSpeed: 700,
 	      directionNav: true,
 	      controlNav: true
-	 });	 		 
-	 	 	
+	 });
+
 }
 
 function resizeAside() {
 	var aside = $('aside');
 	if ( aside.length ) {
-		$('aside').height( $( window ).height() - 150 );
+		$('aside').css({
+            "max-height":$( window ).height() - 150
+        });
 	}
 }
