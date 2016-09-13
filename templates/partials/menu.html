@@ -3,110 +3,96 @@
 <div id="overlay" class="overlay bg-dark off menu-trigger"></div>
 
 <menu class="bg-light" >
+    <div class="outer-container">
 
-	<div class="row">
-		<div class="col-sm-2 col-sm-offset-1 hidden-xs">
-			<a href="/about"><h3>About</h3></a>
-		</div>
-		<div class="col-sm-4  hidden-xs">
-			<a href="/projects"><h3>Projects</h3></a>
-		</div>
-		<div class="col-sm-4  hidden-xs">
-			<a href="/news"><h3>Updates</h3></a>
-		</div>
-		<div class="col-xs-1 hidden-xs"><a href="" class="menu-trigger"><h3 class="pictogram bold">’</h3></a></div>
-	</div>
-		
+        <div class="row">
+            <div class="col-xs-offset-11 col-xs-1 hidden-xs"><a href="" class="menu-trigger"><h3 class="pictogram bold">’</h3></a></div>
+        </div>
 
-	<div class="row hidden hidden-xs">
-		<hr class="col-sm-10 hr-light">
-	</div>
+        <div class="row mt2 mb2">
+            <div class="col-sm-offset-1 col-sm-2">
+                <h3><a class="bold link" href="{{ url(cms.about) }}">Projects</a></h3>
+            </div>
+            <div class="col-sm-9 mt2">
+                {% for project in cms.projects|slice(0, limit) %}
+                {% if loop.index0 % 3 == 0 %} <div class="row mb1"> {% endif %}
+                    <div class="col-sm-3"><a class="" href="{{ url( project ) }}">{{ project.shortname }}</a></div>
+                {% if loop.index0 % 3 == 2 %} </div> {% endif %}
+                {% endfor %}
+            </div>
+        </div>
 
-	<div class="row">
-		<ul class="about-items col-xs-offset-1 col-xs-9 col-sm-offset-1 col-sm-2">
-			<li class="visible-xs"><a href="/about"><h3>About</h3></a></li>
-			
-			<li> <a href="/about#what-we-do"><h5>What We Do</h5></a></li>
-			<li> <a href="/about#our-team"><h5>Our Team</h5></a></li>
-			<li> <a href="/about#collaborators"><h5>Collaborators</h5></a> </li>
-			<li> <a href="/about#funders"><h5>Funders</h5></a> </li>
-			<li> <a href="/opportunities"><h5>Opportunities</h5></a></li>
-		</ul>
 
-		<div class="col-xs-1 visible-xs"><a href="" class="menu-trigger"><h3 class="pictogram bold">’</h3></a></div>
 
-		<hr class="hr-light col-xs-12 visible-xs">
-		
-		<div class="col-xs-offset-1 col-xs-10 visible-xs"><a href="/projects"><h3>Projects</h3></a></div>
+        <div class="row mb2">
+            <div class="col-sm-offset-1 col-sm-2">
+                <h3><a class="bold link" href="{{ url(cms.about) }}">Output</a></h3>
+            </div>
+            <div class="col-sm-9 mt2">
+            {% for output in cms.output|slice(0, limit) %}
+            {% if loop.index0 % 3 == 0 %} <div class="row mb1"> {% endif %}
+                <div class="col-sm-3"><a class="" href="{{ url( output ) }}">{{ output.name }}</a></div>
+            {% if loop.index0 % 3 == 2 %} </div> {% endif %}
+            {% endfor %}
+            </div>
+        </div>
 
-		<ul class="projects-left-items col-xs-offset-1 col-xs-5 col-sm-offset-0 col-sm-2">
-			
+        <div class="row mb2">
+            <div class="col-sm-offset-1 col-sm-2">
+                <h3><a class="bold link" href="{{ url(cms.about) }}">Updates</a></h3>
+            </div>
+            <div class="col-sm-9 mt2">
+            {% for update in cms.news|slice(0, limit) %}
+            {% if loop.index0 % 3 == 0 %} <div class="row mb1"> {% endif %}
+                <div class="col-sm-3"><a class="" href="{{ url( update ) }}">{{ update.name }}</a></div>
+            {% if loop.index0 % 3 == 2 %} </div> {% endif %}
+            {% endfor %}
+            </div>
+        </div>
 
-			{% for project in cms.projects|slice(cms.projects|size / 2, cms.projects|size) %}
+        <div class="row">
+            <hr class="col-sm-12 hr-light">
+        </div>
 
-			<li class="project-nav-item-link nav-item-link"><a {% if ( getCurrentUrl() == url( project ) ) %} class="active" {% endif %} href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
+        <div class="row mb2">
+            <div class="col-sm-offset-1 col-sm-2">
+                <h3><a class="bold link" href="{{ url(cms.about) }}">About</a></h3>
+            </div>
+            <div class="col-sm-9 mt1">
+                <div class="row">
+                    <div class=" col-sm-2"><h5><a class="bold link" href="{{ url(cms.about) }}#people">People</a></h5></div>
+                    <div class=" col-sm-2"><h5><a class="bold link" href="{{ url(cms.about) }}#collaborators">Collaborators</a></h5></div>
+                    <div class=" col-sm-2"><h5><a class="bold link" href="{{ url(cms.about) }}#funders">Funders</a></h5></div>
+                    <div class=" col-sm-2"><h5><a class="bold link" href="{{ url(cms.opportunities ) }}">Opportunities</a></h5></div>
+                </div>
+            </div>
+        </div>
 
-			{% endfor %}
+    	<div class="row">
+    		<hr class="col-sm-12 hr-light">
+    	</div>
 
-		</ul>
+    	<div class="row mb2 bg-medium">
+    		<div class="hidden-xs col-sm-2 col-sm-offset-1">
+    			<h3 class="">Contact</h3>
+    		</div>
+    		<address id="office-address" class=" col-xs-offset-1 col-xs-5 col-sm-offset-0 col-sm-4">
+    			<h6 class="bold uppercase mb2">Office:</h6>
+    			<h6>30 Wadsworth Street</h6>
+    			<h6>Building E53-416</h6>
+    			<h6>Cambridge, MA 02142</h6>
+    		</address>
+    		<address id="mailing-address" class=" col-xs-5 col-sm-4">
+    			<h6 class="bold uppercase mb2">Mail:</h6>
+    			<h6>77 Massachusetts Avenue</h6>
+    			<h6>Building E53-416</h6>
+    			<h6>Cambridge, MA 02139</h6>
+    		</address>
+    	</div>
 
-		<ul class="projects-right-items col-xs-5 col-sm-2">
+    	<div class="hidden row bg-white mb2">
+    		<div class="col-sm-10 centered"><a class="uppercase" href='/about'>Learn About Us</a></div>
+    	</div>
 
-			{% for project in cms.projects|slice(0, cms.projects|size / 2) %}
-
-			<li class="project-nav-item-link nav-item-link"><a {% if ( getCurrentUrl() == url( project ) ) %} class="active" {% endif %} href="{{ url( project ) }}"><h5>{{ project.shortname }}</h5></a></li>
-
-			{% endfor %}
-
-		</ul>
-
-		<div class="col-xs-offset-1 col-xs-10 visible-xs"><a href="/news"><h3>Updates</h3></a></div>
-
-		<ul class="news-left-items col-xs-offset-1 col-xs-5 col-sm-offset-0 col-sm-2">
-			
-
-			{% for news in cms.news|slice(cms.news|size / 2, cms.news|size) %}
-
-			<li class="news-nav-item-link nav-item-link"><a {% if ( getCurrentUrl() == url( news ) ) %} class="active" {% endif %} href="{{ url( news ) }}"><h5>{{ news.name }}</h5></a></li>
-
-			{% endfor %}
-			
-		</ul>
-
-		<ul class="news-right-items col-xs-5 col-sm-2">
-
-			{% for news in cms.news|slice(0, cms.news|size / 2) %}
-
-			<li class="news-nav-item-link nav-item-link"><a {% if ( getCurrentUrl() == url( news ) ) %} class="active" {% endif %} href="{{ url( news ) }}"><h5>{{ news.name }}</h5></a></li>
-
-			{% endfor %}
-			
-		</ul>
-	</div>
-
-	<div class="row">
-		<hr class="col-sm-12 hr-light">
-	</div>	
-
-	<div class="row mb2 bg-medium">
-		<div class="hidden-xs col-sm-2 col-sm-offset-1">
-			<h3>Contact</h3>
-		</div>
-		<address id="office-address" class="mt1 col-xs-offset-1 col-xs-5 col-sm-offset-0 col-sm-4">
-			<h6 class="bold uppercase mb2">Office:</h6>
-			<h6>30 Wadsworth Street</h6>
-			<h6>Building E53-416</h6>
-			<h6>Cambridge, MA 02142</h6>
-		</address>
-		<address id="mailing-address" class="mt1 col-xs-5 col-sm-4">
-			<h6 class="bold uppercase mb2">Mail:</h6>
-			<h6>77 Massachusetts Avenue</h6>
-			<h6>Building E53-416</h6>
-			<h6>Cambridge, MA 02139</h6>
-		</address>	
-	</div>
-
-	<div class="hidden row bg-white mb2">
-		<div class="col-sm-10 centered"><a class="uppercase" href='/about'>Learn About Us</a></div>
-	</div>
+    </div>
 </menu>

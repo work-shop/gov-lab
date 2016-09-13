@@ -29,7 +29,7 @@
 		            <li class="sidebar-item sidebar-topic-sort mb2">
 		              <ul>
 		                <li class="h5 uppercase bold sidebar-active-heading">Topics</li>
-		                <a class="link" href="#projects"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All Projects</li></a>
+		                <a class="link" href="#projects"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All</li></a>
 		                {% for topic in cms.topics %}
 
 		                  {% if topic.projects_relationship %}
@@ -44,7 +44,7 @@
 		            <li class="sidebar-item sidebar-region-sort mb4">
 		              <ul>
 		                <li class="h5 uppercase bold sidebar-active-heading">Countries</li>
-		                <a class="link" href="#projects"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All Projects</li></a>
+		                <a class="link" href="#projects"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All</li></a>
 		                {% for region in cms.regions|sort('name') %}
 		                  <a class="link" href="#projects"><li data-sort-key="{{ region.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.regions|size ) %}mb2{% endif %}">{{ region.name }}</li></a>
 		                {% endfor %}
@@ -163,7 +163,7 @@
                         <li class="sidebar-item sidebar-topic-sort mb2">
                           <ul>
                             <li class="h5 uppercase bold sidebar-active-heading">Topics</li>
-                            <a class="link" href="#output"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All Topics</li></a>
+                            <a class="link" href="#output"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All</li></a>
                             {% for topic in cms.topics %}
 
                               {% if topic.output_research_topics %}

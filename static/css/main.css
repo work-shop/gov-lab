@@ -2024,7 +2024,7 @@ menu {
   width: 95%;
   max-height: 95%;
   z-index: 150;
-  overflow: scroll;
+  overflow-x: hidden;
   transform: skewX(-5deg) translateX(-200%);
   -moz-transform: skewX(-5deg) translateX(-200%);
   -webkit-transform: skewX(-5deg) translateX(-200%);

@@ -157,7 +157,7 @@ menu {
 	max-height:95%;
 	z-index:150;
 
-	overflow:scroll;
+	overflow-x:hidden;
 
 	@include transform( skewX( $closed-skew ) translateX( $closed-X ) );
 	@include transition( transform, $transition-duration );
