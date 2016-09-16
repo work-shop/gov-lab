@@ -23,14 +23,14 @@
         <div class="col-sm-offset-3 col-sm-7 centered">
         <h2 class="bold">Take a look at some of our research output.</h2>
         <h3>
-                    GOV/LAB has published research about
-                    {% for topic in cms.topics %}
-                        {% if topic.output_research_topics %}
-                        {% if renderedTopics > 0 %}, {% if renderedTopics == relevantTopics - 1 %}and {% endif %}{% endif %}
-                            <a class="" href="#output"><span data-sort-key="{{ topic.name|lower|replace(' ', '-', 'g') }}" class="header-topic">{{ topic.name }}</span></a>
-                            {% set renderedTopics = renderedTopics + 1 %}
-                        {% endif %}
-                    {% endfor %}.
+            GOV/LAB has published research about
+            {% for topic in cms.topics %}
+                {% if topic.output_research_topics %}
+                {% if renderedTopics > 0 %}, {% if renderedTopics == relevantTopics - 1 %}and {% endif %}{% endif %}
+                    <a class="" href="#output"><span data-sort-key="{{ topic.name|lower|replace(' ', '-', 'g') }}" class="header-topic">{{ topic.name }}</span></a>
+                    {% set renderedTopics = renderedTopics + 1 %}
+                {% endif %}
+            {% endfor %}.
         </h3>
         </div>
       </div>

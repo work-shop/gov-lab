@@ -15,7 +15,7 @@
       {% include "templates/partials/aside.html" %}
       </div>
 
-      <div class="col-sm-9 bg-white">
+      <div class="col-sm-9 bg-white pb2">
 
        <div class="row padded">
           <div class="col-xs-offset-1 col-xs-10 centered-xs">
@@ -30,31 +30,19 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row {% if !item.image %} mb2{% endif %}">
 
             <div class="projects-rule"></div>
 
         </div>
 
+        {% if item.image %}
         <div class="row mb2">
 
-            {% if ( item.images|size > 1 ) %}
-
-              <div class="flexslider">
-              <ul class="slides">
-                {% for image in project.images %}
-                  <li><img src="{{ image|imageCrop(1000,500) }}"></li>
-                {% endfor %}
-              </ul>
-              </div>
-
-            {% else %}
-
-              <img src="{{ item.images|first|imageCrop(1000,500) }}">
-
-            {% endif %}
+              <img src="{{ item.image|first|imageCrop(1000,500) }}">
 
         </div>
+        {% endif %}
 
         <div class="row pb4">
           <div class="col-xs-offset-1 col-xs-10 wysiwyg">
@@ -65,7 +53,8 @@
         {% if item.file || item.link %}
             {% if item.file %}
                 <div class="col-xs-offset-1 col-xs-5 pb6 centered">
-                    <a target="_blank" class="sync output-link" href="{{ item.file }}">Download Content</a>
+                    <a target="_blank" class="sync output-link" type="{{ item.file.type }}" href="{{ item.file.url }}">Download Content</a>
+                    <script>console.log({{ item.file|json|safe }});</script>
                 </div>
             {% endif %}
             {% if item.link %}
