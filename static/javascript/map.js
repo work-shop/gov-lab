@@ -6,12 +6,16 @@ d3.select( window ).on( 'resize', throttle );
 
 var data = projects.map( function( project ) {
 	return {
-		latitude: project.location.latitude,
-		longitude: project.location.longitude,
+		latitude: (typeof project.location !== "undefined") ? project.location.latitude : undefined,
+		longitude: (typeof project.location !== "undefined") ? project.location.longitude : undefined,
 		name: project.shortname,
 		link: project.slug,
 		description: project.summary
 	};
+}).filter( function( project ) {
+  console.log( "coordinates for " + project.name );
+  console.log( project.latitude, project.longitude );
+  return (typeof project.latitude !== "undefined") && (typeof project.longitude !== "undefined");
 });
 
 var zoom = d3.behavior.zoom()
