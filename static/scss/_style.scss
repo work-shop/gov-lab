@@ -30,7 +30,7 @@ html, body {
 
 a {
 
-    border-bottom: 1px dotted $brand;
+    border-bottom: 1px solid $dark;
 
     &.link {
         border-bottom:1px solid transparent;
@@ -42,6 +42,7 @@ a {
 
 	&:hover {
 		color: $brand;
+        border-color: $brand;
 	}
 
 }
@@ -450,6 +451,45 @@ hr {
 
     border-bottom:2px solid transparent;
 
+}
+
+.output-publish-date {
+    text-align: right;
+}
+
+.cover-image {
+    background-color: $brand;
+    position: relative;
+    text-align: center;
+
+    &:hover {
+
+        img {
+            opacity:.75;
+            border-color:$brand;
+        }
+
+        .cover-image-prompt {
+            color:$brand;
+        }
+
+    }
+}
+
+.cover-image img {
+    border:2px solid $dark;
+}
+
+.cover-image-prompt {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    font-weight:800;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    color:$dark;
 }
 
 /********** @RESPONSIVE *********/

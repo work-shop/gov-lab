@@ -5,8 +5,20 @@
  #}
 {% macro outputcard( item ) %}
 
-<li id="output-{{ item.name|lower|replace(' ', '-', 'g') }}" class="project-tint project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.research_topics, item.output_type ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}"><a href="{{ url( item ) }}">
-    <h6 class="">{{ item.output_type.name }}</h6>
+<li id="output-{{ item.name|lower|replace(' ', '-', 'g') }}" class="project-tint project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.research_topics, item.output_type ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}">
+    <a href="{{ url( item ) }}">
+
+    <div class="row">
+        <h6 class="output-type brand col-sm-6">{{ item.output_type.name }}</h6>
+        <h6 class="output-publish-date col-sm-6">
+            {% if item.publication_date %}
+                {{ item.publication_date|date('F Y') }}
+            {% else %}
+                {{ item.publish_date|date('F Y') }}
+            {% endif %}
+
+        </h6>
+    </div>
     <h3 class="title project-tile-title">{{ item.name }}{% if item.subtitle %}:{% endif %}</h3>
     {% if item.subtitle %}<h4 class="italic">{{ item.subtitle }}</h4>{% endif %}
     <p class="mb2">{{ item.summary }}</p>
@@ -15,12 +27,10 @@
     <hr class="hr-light mb0">
     <ul class="project-tile-topics hidden-xs">
 
-    {% for topic in item.research_topics %}
+    {% for author in item.authors %}
 
       <li class="inline sidebar-link h6 hidden-xs">
-        <a class="link" href="#output" data-sort-key="{{ topic.name|lower|replace(' ', '-', 'g') }}">
-    {{ topic.name }}{% if ( loop.index < item.research_topics|size ) %}, {% endif %}
-        </a>
+        <a class="link" href="/about#people">{{ author.name }}{% if ( loop.index < item.research_topics|size ) %}, {% endif %}</a>
       </li>
 
     {% endfor %}

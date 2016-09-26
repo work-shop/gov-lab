@@ -9,7 +9,9 @@
   {% set output = cms.output %}
 
   <section id="output-introduction" class="bg-light block">
-    <div class="block-background hidden" style="background: url({{ cms.about.news_image|imageSize(2500,500)}}); background-size:cover; background-position:center center;"> </div>
+    {% if cms.about.output_image %}
+        <div class="block-background" style="background: url({{ cms.about.output_image|imageSize(2500,500)}}); background-size:cover; background-position:center center;"> </div>
+    {% endif %}
 
     <div class="container half-strict block">
 
@@ -23,6 +25,9 @@
         <div class="col-sm-offset-3 col-sm-7 centered">
         <h2 class="bold">Take a look at some of our research output.</h2>
         <h3>
+            {% if cms.about.output_intro_text %}
+                {{ cms.about.output_intro_text }}
+            {% else %}
             GOV/LAB has published research about
             {% for topic in cms.topics %}
                 {% if topic.output_research_topics %}
@@ -31,6 +36,7 @@
                     {% set renderedTopics = renderedTopics + 1 %}
                 {% endif %}
             {% endfor %}.
+            {% endif %}
         </h3>
         </div>
       </div>

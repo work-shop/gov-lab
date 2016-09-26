@@ -192,11 +192,23 @@
                   {% elseif page == "output-item" %}
 
                     <ul class="pt3">
-                    <li class="sidebar-item sidebar-metadata-items active">
+
+                    <li class="sidebar-item sidebar-metadata-items active mb2">
                       <ul>
                         <li class="h5 uppercase bold sidebar-active-heading">{{ item.output_type.name }}</li>
                       </ul>
                     </li>
+
+                    {% if item.cover_image %}
+                        <li class="sidebar-item cover-image mb1">
+                        {% if item.file || item.link %}<a target="_blank" href="{% if item.file %}{{ item.file }}{% elseif item.link %}{{ item.link }}{% endif %}">{% endif %}
+                            <img src="{{ item.cover_image|imageSize(500) }}" />
+                            <p class="cover-image-prompt">Download Now</p>
+                            {% if item.file || item.link %}</a>{% endif %}
+                        </li>
+                    {% endif %}
+
+
                     {% if ( item.authors ) %}
                     <li class="sidebar-item sidebar-team-members">
                       <ul>
@@ -218,21 +230,6 @@
                       </ul>
                     </li>
                     {% endif %}
-
-                    {% if ( item.file ) %}
-                    <li class="sidebar-item sidebar-team-members">
-                      <ul>
-                        <li class="h5 uppercase bold sidebar-passive-subheading mb0"><a href="{{ item.file }}">Download Content</a></li>
-                      </ul>
-                    </li>
-                    {% elseif ( item.link ) %}
-                    <li class="sidebar-item sidebar-team-members">
-                      <ul>
-                        <li class="h5 uppercase bold sidebar-passive-subheading mb0"><a href="{{ item.link }}">View Link</a></li>
-                      </ul>
-                    </li>
-                    {% endif %}
-
 
                     </ul>
 
