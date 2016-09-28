@@ -10,7 +10,7 @@
 
   <section id="output-introduction" class="bg-light block">
     {% if cms.about.output_image %}
-        <div class="block-background" style="background: url({{ cms.about.output_image|imageSize(2500,500)}}); background-size:cover; background-position:center center;"> </div>
+        <div class="block-background" style="background: url({{ cms.about.output_image.url }}); background-size: cover; background-position:center center;"> </div>
     {% endif %}
 
     <div class="container half-strict block">
@@ -23,7 +23,7 @@
 
       <div class="row vertical-center">
         <div class="col-sm-offset-3 col-sm-7 centered">
-        <h2 class="bold">Take a look at some of our research output.</h2>
+        <h2 class="bold">Take a look at some of our latest research on governance and accountability.</h2>
         <h3>
             {% if cms.about.output_intro_text %}
                 {{ cms.about.output_intro_text }}
@@ -57,7 +57,6 @@
 
       <div class="col-sm-9">
       <ul id="output-list" class="">
-
         {% for outputItem in output %}
 
             {{ o.outputcard( outputItem ) }}

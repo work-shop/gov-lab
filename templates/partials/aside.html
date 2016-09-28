@@ -199,13 +199,15 @@
                       </ul>
                     </li>
 
-                    {% if item.cover_image %}
-                        <li class="sidebar-item cover-image mb1">
-                        {% if item.file || item.link %}<a target="_blank" href="{% if item.file %}{{ item.file }}{% elseif item.link %}{{ item.link }}{% endif %}">{% endif %}
-                            <img src="{{ item.cover_image|imageSize(500) }}" />
+                    {% if item.file || item.link %}
+                    <li class="sidebar-item cover-image mb1 {% if item.cover_image %}bg-brand{% else %}bg-real-white{% endif %}">
+
+                        <a target="_blank" href="{% if item.file %}{{ item.file }}{% elseif item.link %}{{ item.link }}{% endif %}">
+                            {% if item.cover_image %}<img src="{{ item.cover_image|imageSize(500) }}" />{% endif %}
                             <p class="cover-image-prompt">Download Now</p>
-                            {% if item.file || item.link %}</a>{% endif %}
-                        </li>
+                        </a>
+
+                    </li>
                     {% endif %}
 
 

@@ -458,15 +458,17 @@ hr {
 }
 
 .cover-image {
-    background-color: $brand;
     position: relative;
     text-align: center;
+    border:2px solid $dark;
+
+    min-height: 185px;
 
     &:hover {
+        border-color:$brand;
 
         img {
             opacity:.75;
-            border-color:$brand;
         }
 
         .cover-image-prompt {
@@ -477,7 +479,7 @@ hr {
 }
 
 .cover-image img {
-    border:2px solid $dark;
+
 }
 
 .cover-image-prompt {

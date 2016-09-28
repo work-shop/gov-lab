@@ -59,7 +59,7 @@ ol, ul {
 /*
 OBJECTS
 colors
-margins and padding	
+margins and padding
 structure and position
 backgrounds
 animations
@@ -753,6 +753,10 @@ flexslider
     background: #fafafa;
   }
 }
+.bg-real-white {
+  background-color: white;
+}
+
 .bg-brand {
   background: #cc3333;
 }
@@ -2280,20 +2284,19 @@ hr.hr-brand {
 }
 
 .cover-image {
-  background-color: #cc3333;
   position: relative;
   text-align: center;
+  border: 2px solid #222222;
+  min-height: 185px;
+}
+.cover-image:hover {
+  border-color: #cc3333;
 }
 .cover-image:hover img {
   opacity: .75;
-  border-color: #cc3333;
 }
 .cover-image:hover .cover-image-prompt {
   color: #cc3333;
-}
-
-.cover-image img {
-  border: 2px solid #222222;
 }
 
 .cover-image-prompt {
