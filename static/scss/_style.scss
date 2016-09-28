@@ -506,8 +506,11 @@ hr {
     color:$dark;
 }
 
-.no-image .cover-image-prompt {
-    font-weight: normal;
+
+/********** @TEAM-PAGES *********/
+
+.bio-image {
+    border:2px solid $dark;
 }
 
 /********** @RESPONSIVE *********/
