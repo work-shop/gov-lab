@@ -19,6 +19,13 @@
 
        <div class="row padded">
           <div class="col-xs-offset-1 col-xs-10 centered-xs">
+            <h6>
+                {% if item.publication_date %}
+                    {{ item.publication_date|date('F Y') }}
+                {% else %}
+                    {{ item.publish_date|date('F Y') }}
+                {% endif %}
+            </h6>
             <h2 class="project-title bold">{{ item.name }}{% if item.subtitle%}:{% endif %}</h2>
             {% if item.subtitle%}<h3 class="italic">{{ item.subtitle }}</h>{% endif %}
           </div>
