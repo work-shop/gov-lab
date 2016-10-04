@@ -9,8 +9,8 @@
     <a href="{{ url( item ) }}">
 
     <div class="row">
-        <h6 class="output-type brand col-sm-6">{{ item.output_type.name }}</h6>
-        <h6 class="output-publish-date col-sm-6">
+        <h6 class="output-type brand bold col-sm-6">{{ item.output_type.name }}</h6>
+        <h6 class="output-publish-date col-sm-6 uppercase bold">
             {% if item.publication_date %}
                 {{ item.publication_date|date('F Y') }}
             {% else %}
@@ -30,7 +30,7 @@
     {% for author in item.authors %}
 
       <li class="inline sidebar-link h6 hidden-xs">
-        <a class="link" href="/about#people">{{ author.name }}{% if ( loop.index < item.authors|size ) %}, {% endif %}</a>
+  <a class="link uppercase bold" href="/about#people">{{ author.name }}</a>{% if ( loop.index < item.authors|size ) %}, {% endif %}
       </li>
 
     {% endfor %}
