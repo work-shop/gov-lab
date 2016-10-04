@@ -200,7 +200,7 @@
                     </li>
 
                     {% if item.file || item.link %}
-                    <li class="sidebar-item cover-image mb1 {% if item.cover_image %}bg-brand{% else %}bg-real-white bordered{% endif %}">
+                    <li class="sidebar-item cover-image mb1 {% if item.cover_image %}bg-brand{% else %}bg-real-white no-image{% endif %}">
 
                         <a target="_blank" href="{% if item.file %}{{ item.file }}{% elseif item.link %}{{ item.link }}{% endif %}">
                             {% if item.cover_image %}<img src="{{ item.cover_image|imageSize(500) }}" />{% endif %}
