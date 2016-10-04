@@ -2286,24 +2286,28 @@ hr.hr-brand {
 .cover-image {
   position: relative;
   text-align: center;
+  background-color: white;
+}
+.cover-image.no-image {
+  border: 1px solid #222222;
   min-height: 185px;
 }
-.cover-image.bordered {
-  border: 1px solid #222222;
+.cover-image img {
+  opacity: .75;
+  border: 2px solid #222222;
 }
 .cover-image:hover {
+  background-color: #cc3333;
   border-color: #cc3333;
 }
 .cover-image:hover img {
-  opacity: .75;
   border-color: #cc3333;
 }
 .cover-image:hover .cover-image-prompt {
   color: #cc3333;
 }
-
-.cover-image img {
-  border: 1px solid #222222;
+.cover-image.no-image:hover {
+  background-color: white;
 }
 
 .cover-image-prompt {
@@ -2314,7 +2318,12 @@ hr.hr-brand {
   text-align: center;
   font-size: 1.3em;
   text-transform: uppercase;
+  font-weight: bold;
   color: #222222;
+}
+
+.no-image .cover-image-prompt {
+  font-weight: normal;
 }
 
 /********** @RESPONSIVE *********/
