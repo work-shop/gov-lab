@@ -461,18 +461,23 @@ hr {
     position: relative;
     text-align: center;
 
-    &.bordered {
+    background-color: white;
+
+    &.no-image {
         border:1px solid $dark;
+        min-height: 185px;
     }
 
-
-    min-height: 185px;
+    img {
+        opacity:.75;
+        border:2px solid $dark;
+    }
 
     &:hover {
+        background-color: $brand;
         border-color:$brand;
 
         img {
-            opacity:.75;
             border-color: $brand;
         }
 
@@ -481,11 +486,13 @@ hr {
         }
 
     }
+
+    &.no-image:hover {
+        background-color: white;
+    }
 }
 
-.cover-image img {
-    border:1px solid $dark;
-}
+
 
 .cover-image-prompt {
     position: absolute;
@@ -495,7 +502,12 @@ hr {
     text-align: center;
     font-size: 1.3em;
     text-transform: uppercase;
+    font-weight: bold;
     color:$dark;
+}
+
+.no-image .cover-image-prompt {
+    font-weight: normal;
 }
 
 /********** @RESPONSIVE *********/
