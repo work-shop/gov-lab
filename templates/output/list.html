@@ -2,15 +2,15 @@
 
 {% extends "templates/partials/base.html" %}
 
-{% block title %}{% parent %} - Output{% endblock %}
+{% block title %}{% parent %} - Research{% endblock %}
 
 {% block content %}
 
   {% set output = cms.output %}
 
   <section id="output-introduction" class="bg-light block">
-    {% if cms.about.output_image %}
-        <div class="block-background" style="background: url({{ cms.about.output_image.url }}); background-size: cover; background-position:center center;"> </div>
+    {% if cms.about.research_image %}
+        <div class="block-background" style="background: url({{ cms.about.research_image.url }}); background-size: cover; background-position:center center;"> </div>
     {% endif %}
 
     <div class="container half-strict block">
