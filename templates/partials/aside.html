@@ -79,7 +79,7 @@
 		              <ul>
 		                <li class="h5 uppercase bold sidebar-passive-subheading mb0">Team Members</li>
 		                {% for teammember in item.team_members %}
-		                  <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}">{{ teammember.name }}</li>
+                        <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}"><a href="{{ url(teammember) }}">{{ teammember.name }}</a></li>
 		                {% endfor %}
 		              </ul>
 		            </li>
@@ -116,28 +116,24 @@
 
 		          {% elseif page == "news-item" %} {# ------------------------------------------------- #}
 
-			    <ul>
+			    <ul class="pt3">
 
+            	    {% if ( item.news_category.length ) %}
 		            <li class="sidebar-item mb2">
 		              <ul>
-		                <li class="h5 uppercase bold sidebar-active-heading">{{ item.name }}</li>
-		              </ul>
-		            </li>
-
-            		      {% if ( item.news_category.length ) %}
-		            <li class="sidebar-item mb2">
-		              <ul>
-		                <li class="h5 uppercase bold sidebar-passive-heading">{{ item.category.name }}</li>
+		                <li class="h5 uppercase bold sidebar-active-heading">{{ item.category.name }}</li>
 		              </ul>
 		            </li>
 		            {% endif %}
 
+                    {% if ( item.author ) %}
 		            <li class="sidebar-item mb2">
 		              <ul>
 		               <li class="h5 uppercase bold sidebar-passive-subheading mb0">Author</li>
-		                <li class="h5 uppercase mt0">{{ item.author.name }}</li>
+		                <li class="h5 uppercase mt0"><a href="{{ url( item.author ) }}">{{ item.author.name }}</a></li>
 		              </ul>
 		            </li>
+                    {% endif %}
 
 		            <li class="sidebar-item mb2">
 		              <ul>
@@ -216,7 +212,7 @@
                       <ul>
                         <li class="h5 uppercase bold sidebar-passive-subheading mb0">Author{{ item.authors|pluralize('s') }}</li>
                         {% for teammember in item.authors %}
-                          <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}">{{ teammember.name }}</li>
+                        <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}"><a href="{{ url( teammember ) }}">{{ teammember.name }}</a></li>
                         {% endfor %}
                       </ul>
                     </li>
