@@ -1,3 +1,72 @@
+/********** @VARIABLES *********/
+/********** @MIXINS *********/
+/********** @RESET *********/
+body:before {
+  background: yellow;
+  display: block;
+  padding: 15px;
+}
+
+::selection {
+  color: white;
+  background: #cc3333;
+}
+
+::-moz-selection {
+  color: white;
+  background: #cc3333;
+}
+
+img, video, svg {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: #222222;
+  text-decoration: none;
+}
+a:hover, a:focus {
+  color: #cc3333;
+  text-decoration: none;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ol, ul {
+  -webkit-padding-start: 0px;
+}
+
+* {
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+/********** @RESPONSIVE RESET *********/
+@media (max-width: 767px) {
+  .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
+/*
+OBJECTS
+colors
+margins and padding
+structure and position
+backgrounds
+animations
+forms
+fancy objects
+flexslider
+*/
 /********** @COLORS ********************/
 .brand, .back-to-home, aside .sidebar-heading, .sidebar-active-heading, .sidebar-active-subheading, .sort-key.active {
   color: #cc3333;
@@ -1955,7 +2024,7 @@ menu {
   width: 95%;
   max-height: 95%;
   z-index: 150;
-  overflow: scroll;
+  overflow-x: hidden;
   transform: skewX(-5deg) translateX(-200%);
   -moz-transform: skewX(-5deg) translateX(-200%);
   -webkit-transform: skewX(-5deg) translateX(-200%);
@@ -2217,17 +2286,28 @@ hr.hr-brand {
 .cover-image {
   position: relative;
   text-align: center;
-  border: 2px solid #222222;
+  background-color: white;
+}
+.cover-image.no-image {
+  border: 1px solid #222222;
   min-height: 185px;
 }
+.cover-image img {
+  opacity: .75;
+  border: 2px solid #222222;
+}
 .cover-image:hover {
+  background-color: #cc3333;
   border-color: #cc3333;
 }
 .cover-image:hover img {
-  opacity: .75;
+  border-color: #cc3333;
 }
 .cover-image:hover .cover-image-prompt {
   color: #cc3333;
+}
+.cover-image.no-image:hover {
+  background-color: white;
 }
 
 .cover-image-prompt {
@@ -2236,9 +2316,9 @@ hr.hr-brand {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-weight: 800;
   font-size: 1.3em;
   text-transform: uppercase;
+  font-weight: bold;
   color: #222222;
 }
 
@@ -2285,3 +2365,5 @@ hr.hr-brand {
     padding-top: 6em !important;
   }
 }
+
+/*# sourceMappingURL=main.css.map */

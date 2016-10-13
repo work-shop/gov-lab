@@ -13,7 +13,7 @@
   <div class="container three-quarter-strict block">
 
     <div class="row vertical-center">
-      <div class="col-sm-offset-6 col-sm-5 white centered">
+      <div class="col-sm-offset-3 col-sm-7 white centered">
       <h2 class="bold">Where are we researching now?</h2>
       <h2>Follow our latest news, project updates, and research publications, <br class="hidden-xs"> or subscribe to our newsletter.</h2>
       </div>
@@ -38,10 +38,10 @@
       {% if cms.news.length %}
       <ul id="news-list" class="row">
 
-      
+
       {% for news in cms.news|sort('news_date', true) %}
 
-      
+
       <li id="{{ news.name|lower|replace(' ', '-', 'g') }}"class="col-xs-12 mb2 project-tint" data-sort-value="{% if ( news.category ) %}{{ news.category.name|lower }}{% endif %} ">
           <div class="row">
 
@@ -57,12 +57,12 @@
             <span class="block news-rule-xs"></span>
           </div>
 
-          
+
           <div class="col-xs-12 col-sm-4 mt1 pt1">
 
             <figure>
             {% if ( news.cover_image ) %}
-           
+
               <img class="news-tile-image" src="{{ news.cover_image|imageSize(300) }}" alt="">
 
             {% else %}
@@ -90,7 +90,7 @@
             {% else %}
               {{ news.publish_date|date('F Y') }}
             {% endif %}
-          </h6> 
+          </h6>
           {% if ( news.author ) %} <h6 class="bold uppercase">{{ news.author.name }}</h6> {% endif %}
 
           </div>
@@ -106,7 +106,7 @@
        <div id="news-empty" class="row">
         <div class="col-xs-offset-1 col-xs-12 col-sm-6">
           <h3 class="centered">Looks like there aren't any updates right now. Check back later!</h3>
-        </div> 
+        </div>
        </div>
        {% endif %}
     </div>
