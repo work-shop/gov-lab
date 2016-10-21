@@ -23,9 +23,9 @@
     {% if item.subtitle %}<h4 class="italic">{{ item.subtitle }}</h4>{% endif %}
     <p class="mb2">{{ item.summary }}</p>
 
-    {% if ( item.research_topics ) %}
+    {% if ( item.authors ) %}
     <hr class="hr-light mb0">
-    <ul class="project-tile-topics hidden-xs">
+    <ul class="project-tile-topics">
 
     {% for author in item.authors %}
 
