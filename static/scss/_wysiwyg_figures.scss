@@ -1,3 +1,14 @@
+.wysiwyg {
+    h3 {
+        @extend .bold;
+    }
+
+    h4 {
+        @extend .bold;
+    }
+}
+
+
 figure {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -58,9 +69,6 @@ figure[data-type=image].wy-figure-small {
 }
 
 figure[data-type=quote] {
-  @extend .mt2;
-  @extend .mb2;
-  @extend .p2;
   @extend .bold;
   color:$brand;
   position: relative;
@@ -122,4 +130,3 @@ figure[data-type=quote] cite:before {
     height: auto !important;
   }
 }
-
