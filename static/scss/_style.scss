@@ -45,6 +45,10 @@ a {
         border-color: $brand;
 	}
 
+    &.link:hover {
+        border-bottom:1px solid transparent;
+    }
+
 }
 
 .sync {
