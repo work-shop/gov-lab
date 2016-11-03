@@ -10,12 +10,18 @@
 <section id="news-introduction" class="bg-light block">
   <div class="block-background" style="background: url({{ cms.about.news_image|imageSize(2500,500)}}); background-size:cover; background-position:center center;"> </div>
 
-  <div class="container three-quarter-strict block">
+  <div class="container half-strict block">
 
     <div class="row vertical-center">
-      <div class="col-sm-offset-3 col-sm-7 white centered">
-      <h2 class="bold">Where are we researching now?</h2>
-      <h2>Follow our latest news, project updates, and research publications, <br class="hidden-xs"> or subscribe to our newsletter.</h2>
+      <div class="col-sm-offset-3 col-sm-7 centered">
+      <h2 class="bold">{{ cms.about.updates_intro_callout }}</h2>
+      <h2>
+        {% if cms.about.updates_intro_text %}
+            {{ cms.about.updates_intro_text }}
+        {% else %}
+          Follow our latest news, project updates, and research publications, <br class="hidden-xs"> or subscribe to our newsletter.
+        {% endif %}
+      </h2>
       </div>
     </div>
 
