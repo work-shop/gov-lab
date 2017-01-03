@@ -1650,7 +1650,7 @@ p {
   }
 }
 /********** @ICONS *********/
-.pictogram {
+.pictogram, .search-button {
   font-family: "modern_pictograms_proregular";
 }
 
@@ -1978,6 +1978,14 @@ header .sync:hover, footer .sync:hover {
   -ms-transition: all 0.375s 0s ease;
 }
 
+header .pictogram, header .search-button, footer .pictogram, footer .search-button {
+  color: #222222;
+  text-decoration: none;
+}
+header .pictogram:hover, header .search-button:hover, footer .pictogram:hover, footer .search-button:hover {
+  font-weight: normal;
+}
+
 /********** @HEADER  *********/
 header {
   padding: 42px 0px 30px 0px;
@@ -2021,7 +2029,7 @@ header.fixed {
   z-index: 100;
 }
 
-menu {
+menu, #search-box {
   position: fixed;
   padding: 0px;
   width: 95%;
@@ -2039,20 +2047,33 @@ menu {
   -o-transition: transform 0.75s 0s ease;
   -ms-transition: transform 0.75s 0s ease;
 }
-menu.closed {
+menu.closed, #search-box.closed {
   transform: skewX(-5deg) translateX(-200%);
   -moz-transform: skewX(-5deg) translateX(-200%);
   -webkit-transform: skewX(-5deg) translateX(-200%);
   -o-transform: skewX(-5deg) translateX(-200%);
   -ms-transform: skewX(-5deg) translateX(-200%);
 }
-menu.open {
+menu.open, #search-box.open {
   position: fixed;
   transform: skewX(0deg) translateX(2.5%);
   -moz-transform: skewX(0deg) translateX(2.5%);
   -webkit-transform: skewX(0deg) translateX(2.5%);
   -o-transform: skewX(0deg) translateX(2.5%);
   -ms-transform: skewX(0deg) translateX(2.5%);
+}
+
+#search-box {
+  position: fixed;
+  padding: 0px;
+  top: 2.5vh;
+  width: 95vw;
+  height: 95vh;
+  z-index: 150;
+  overflow-x: hidden;
+}
+#search-box.open {
+  left: 0%;
 }
 
 /********** @SIDEBAR *********/
@@ -2324,6 +2345,43 @@ hr.hr-brand {
   text-transform: uppercase;
   font-weight: bold;
   color: #222222;
+}
+
+/********** SEARCH ********/
+#search-input {
+  border: 0px;
+  border-bottom: 2px solid #cc3333;
+  height: 100px;
+}
+
+.close-button {
+  float: right;
+  font-weight: bold;
+}
+
+.header-bar {
+  border-bottom: 2px solid #222222;
+}
+
+.search-button {
+  border: 0px;
+  text-decoration: none;
+}
+.search-button:hover {
+  border: 0px;
+  text-decoration: none;
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.search-gov-lab {
+  color: #d8d8d8;
+}
+
+.result-set {
+  max-height: 67.5vh;
+  overflow: scroll;
+  cursor: ns-resize;
 }
 
 /********** @TEAM-PAGES *********/

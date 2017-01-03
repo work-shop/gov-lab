@@ -556,7 +556,7 @@ hr {
 
 .search-button {
     @extend .pictogram;
-    
+
 	border:0px;
 	text-decoration: none;
 
@@ -573,7 +573,7 @@ hr {
 }
 
 .result-set {
-	max-height: 55vh;
+	max-height: 67.5vh;
 	overflow:scroll;
 	cursor:ns-resize;
 
