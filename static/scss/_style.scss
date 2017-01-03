@@ -87,6 +87,15 @@ header .sync, footer .sync {
 	}
 }
 
+header .pictogram, footer .pictogram {
+    color: $dark;
+    text-decoration: none;
+
+	&:hover {
+		font-weight: normal;
+	}
+}
+
 /********** @HEADER  *********/
 
 header {
@@ -154,7 +163,7 @@ $closed-X: -200%;
 
 
 
-menu {
+menu, #search-box {
 	position: fixed;
 	padding:0px;
 	width:95%;
@@ -176,6 +185,22 @@ menu {
 		@include transform( skewX( $open-skew ) translateX( $open-X ) );
 		//@include animation( menu-open, 5s, both);
 	}
+}
+
+#search-box {
+    position: fixed;
+	padding:0px;
+    top:2.5vh;
+	width:95vw;
+	height:95vh;
+	z-index:150;
+
+	overflow-x:hidden;
+
+    &.open {
+        left:0%;
+    }
+
 }
 
 /********** @SIDEBAR *********/
@@ -511,11 +536,57 @@ hr {
 }
 
 
+
+/********** SEARCH ********/
+
+#search-input {
+	border:0px;
+	border-bottom:2px solid $brand;
+	height:100px;
+}
+
+.close-button {
+	float:right;
+	font-weight: bold;
+}
+
+.header-bar {
+	border-bottom: 2px solid $dark;
+}
+
+.search-button {
+    @extend .pictogram;
+    
+	border:0px;
+	text-decoration: none;
+
+	&:hover {
+		border:0px;
+		text-decoration: none;
+		font-style: normal;
+		font-weight: inherit;
+	}
+}
+
+.search-gov-lab {
+	color:darken($light,10);
+}
+
+.result-set {
+	max-height: 55vh;
+	overflow:scroll;
+	cursor:ns-resize;
+
+}
+
+
 /********** @TEAM-PAGES *********/
 
 .bio-image {
     border:1px solid $dark;
 }
+
+
 
 /********** @RESPONSIVE *********/
 
