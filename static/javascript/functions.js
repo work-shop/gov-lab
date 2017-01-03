@@ -389,6 +389,8 @@ $( document ).ready( function( ) {
 	$('.menu-trigger').on('click', cycle( '.menu-trigger', 'menu') );
 
 	$('.subscribe-trigger').on('click', cycle( '.subscribe-trigger', '#subscribe-box'));
+
+    $('.search-trigger').on('click', cycle( '.search-trigger', '#search-box'));
 });
 
 
