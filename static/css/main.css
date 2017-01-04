@@ -2384,6 +2384,18 @@ hr.hr-brand {
   cursor: ns-resize;
 }
 
+.search-result {
+  transition: opacity 2s 0s ease;
+  -moz-transition: opacity 2s 0s ease;
+  -webkit-transition: opacity 2s 0s ease;
+  -o-transition: opacity 2s 0s ease;
+  -ms-transition: opacity 2s 0s ease;
+  opacity: 1;
+}
+.search-result.invisible {
+  opacity: 0;
+}
+
 /********** @TEAM-PAGES *********/
 .bio-image {
   border: 1px solid #222222;
