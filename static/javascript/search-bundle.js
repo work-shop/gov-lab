@@ -4,19 +4,46 @@
 console.log('[search] index module required.');
 
 var lunr = require('lunr');
+var moment = require('moment');
 
 module.exports = function( documents ) {
 
+    function reverseChronological( items ) {
+        return items.sort( function( a,b ) {
+            var aDate = moment( a.date ), bDate = moment( b.date );
+
+            return bDate.unix() - aDate.unix();
+
+        });
+    }
+
+    /**
+     * The resolveDocuments routine takes a set of result indices and scores
+     * from ```lunr``` and reconstitutes them as the original documents.
+     */
     function resolveDocuments( queryScores ) {
         return queryScores.map( function( score ) {
+            documents[ score.ref ].score = score.score * 10;
             return documents[ score.ref ];
         });
     }
 
-    function partition( relation, items, postprocessor ) {
+    /**
+     * The partition function divides the result set of a given query into
+     * a user-defined relation, optionally preprocessor the results according
+     * to a user-defined sorting routine.
+     */
+    function partition( relation, items, preprocessor ) {
         var result = {};
 
-        items.forEach( function( item ) {
+        preprocessor = preprocessor || function( x ) { return x; };
+
+        preprocessor( items ).forEach( function( item ) {
+            console.log( item.title );
+            console.log( item.date );
+            console.log( item.score );
+            console.log( '===\n' );
+
             if ( typeof result[ item[ relation ] ] === "undefined" ) {
 
                 result[ item[relation] ] = [ item ];
@@ -32,6 +59,11 @@ module.exports = function( documents ) {
         return result;
     }
 
+    /**
+     * The query manager class implements a query method
+     * which executes a query against the set of documents
+     * and returns a sorted and partitioned set for rendering.
+     */
     function QueryManager() {
 
 
@@ -53,7 +85,7 @@ module.exports = function( documents ) {
 
         self.query = function( searchterms ) {
 
-            return partition( 'type', resolveDocuments( index.search( searchterms ) ) );
+            return partition( 'type', resolveDocuments( index.search( searchterms ) ), reverseChronological );
 
         };
 
@@ -63,7 +95,7 @@ module.exports = function( documents ) {
     return QueryManager;
 };
 
-},{"lunr":5}],2:[function(require,module,exports){
+},{"lunr":5,"moment":6}],2:[function(require,module,exports){
 "use strict";
 
 console.log('[search] lift module required.');
@@ -128,13 +160,19 @@ module.exports = function( data ) {
            team_members: team_members,
            region: region,
            image: image,
+           timeline: project.project_timeline,
            title: project.name,
+           date: project._sort_last_updated,
            shortname: project.shortname,
            summary: project.summary,
            body: striptags( project.body ),
            tags: funders.concat( team_members ).concat( [ region ] )
                  .filter( function ( o ) { return typeof o !== 'undefined'; } )
-                 .join(' ')
+                 .join(' '),
+            sorting: {
+                updated: project._sort_last_updated,
+                published: project._sort_publish_date,
+            }
         };
     }
 
@@ -146,6 +184,7 @@ module.exports = function( data ) {
         var interpolator = function( candidate ) { return candidate.name; };
 
         var author = resolveWith( interpolator )( news.author );
+        var image = (typeof news.cover_image !== 'undefined') ? news.cover_image.resize_url : undefined;
 
         return {
            type: news._type,
@@ -155,8 +194,13 @@ module.exports = function( data ) {
            date: news.news_date,
            title: news.name,
            summary: news.summary,
+           image: image,
            body: striptags( news.story ),
-           tags: author
+           tags: author,
+           sorting: {
+               updated: news._sort_last_updated,
+               published: news._sort_publish_date,
+           }
         };
     }
 
@@ -169,6 +213,7 @@ module.exports = function( data ) {
 
         var authors = research.authors.map( resolveWith( interpolator ) );
         var outputType = resolveWith( interpolator)( research.output_type );
+        var image = (typeof research.cover_image !== 'undefined') ? research.cover_image.resize_url : undefined;
 
         return {
            type: research._type,
@@ -178,8 +223,14 @@ module.exports = function( data ) {
            outputType: outputType,
            title: research.name,
            summary: research.summary,
+           image: image,
+           date: research.publication_date || research.publish_date,
            body: striptags( research.description ),
-           tags: authors.concat([ outputType ]).join(' ')
+           tags: authors.concat([ outputType ]).join(' '),
+           sorting: {
+               updated: research._sort_last_updated,
+               published: research._sort_publish_date,
+           }
         };
     }
 
@@ -213,71 +264,15 @@ module.exports = function( search ) {
     var queryResultCount = $('#result-count');
     var cutoff = 2;
 
+    var typeOrder = ['projects', 'output', 'news' ];
+
     /**
      * This object contains header rendering methods divided by type
      *
      */
-    var renderHeader = {
-        "projects": function(  ) {
-            return $('<li>').attr('class', 'invisible col-xs-12 mt4 mb2').append( $('<h3>').attr('class', "results-header  header-bar small uppercase bold").text( "Projects" ) );
-        },
-        "news": function(  ) {
-            return $('<li>').attr('class', 'invisible col-xs-12 mt4 mb2').append($('<h3>').attr('class', "results-header  header-bar small uppercase bold").text( "News" ) );
-        },
-        "output": function(  ) {
-            return $('<li>').attr('class', 'invisible col-xs-12 mt4 mb2').append( $('<h3>').attr('class', "results-header  header-bar small uppercase bold").text( "Research" ) );
-        }
-    };
+    //var renderHeader = require('./template-headers.js');
 
-    var render = {
-
-        "projects": function( result ) {
-            if ( typeof result.image !== "undefined" ) {
-                return $('<li>').attr('class', "invisible col-xs-12 project-result search-result mb3")
-                       .append( $('<a>').attr('href', result.slug).attr('class', 'link')
-                                .append( $('<div>').attr('class', 'col-sm-3').append($('<img>').attr('class','bio-image').attr('src', [result.image,'=w300-h200'].join('') ))
-                                )
-                                .append( $('<div>').attr('class', 'col-sm-9')
-                                         .append( $('<h4>').attr('class', "bold mt0").text( result.title ) )
-                                         .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.summary ) )
-                                )
-                        );
-
-            } else {
-                return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb2")
-                       .append( $('<a>').attr('href', result.slug).attr('class', 'link')
-                                .append( $('<div>').attr('class', 'col-sm-12')
-                                         .append( $('<h4>').attr('class', "bold mt0").text( result.title ) )
-                                         .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.summary ) )
-                                )
-                        );
-            }
-        },
-        "news": function( result ) {
-            return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb2")
-                   .append( $('<a>').attr('href', result.slug).attr('class', 'link')
-                            .append( $('<div>').attr('class', 'col-sm-12')
-                                     .append( $('<h6>').attr('class', "bold uppercase").text( moment( result.date ).format('MMMM Y') ) )
-                                     .append( $('<h4>').attr('class', "bold mt0").text( result.title ) )
-                                     .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.summary ) )
-                                     .append( $('<div>').attr('class', "block news-rule-xs mt2 mb1") )
-                                     .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.author ) )
-                            )
-                    );
-        },
-        "output": function( result ) {
-            return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb2")
-                   .append( $('<a>').attr('href', result.slug).attr('class', 'link')
-                            .append( $('<div>').attr('class', 'col-sm-12')
-                                     .append( $('<h6>').attr('class', "output-type bold brand mt0").text( result.outputType ) )
-                                     .append( $('<h4>').attr('class', "bold").text( result.title ) )
-                                //   .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.summary ) )
-                                     .append( $('<div>').attr('class', "block news-rule-xs mt2 mb1") )
-                                     .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.authors.join(', ') ) )
-                            )
-                    );
-        }
-    };
+    var render = require('./template-cards.js');
 
     function describe( count, type ) {
         switch ( type ) {
@@ -300,20 +295,14 @@ module.exports = function( search ) {
 
         queryOutput.children().remove();
 
-        ['projects', 'news', 'output'].forEach( function( type ) {
+        typeOrder.forEach( function( type ) {
             if ( typeof results[ type ] !== "undefined" ) {
                 var resultCount = results[ type ].length;
 
                 queryResultCount.find( ['.', type, '-count' ].join('') ).addClass('bold').addClass('brand').text( resultCount );
                 queryResultCount.find( ['.', type, '-postfix' ].join('') ).addClass('bold').text( describe( resultCount, type ) );
 
-                results[ type ].forEach( function( result, i ) {
-
-                    if ( i === 0 ) {
-                        var header = renderHeader[ type ]()
-                        queryOutput.append( header );
-                        header.removeClass('invisible');
-                    }
+                results[ type ].forEach( function( result ) {
 
                     var renderedResult = render[ type ]( result );
 
@@ -347,7 +336,7 @@ module.exports = function( search ) {
 
 };
 
-},{"moment":6}],4:[function(require,module,exports){
+},{"./template-cards.js":8,"moment":6}],4:[function(require,module,exports){
 console.log('[search] search module required.');
 
 var lift = require('./document-lift.js');
@@ -6998,4 +6987,110 @@ return hooks;
     return striptags;
 }));
 
-},{}]},{},[4]);
+},{}],8:[function(require,module,exports){
+"use strict";
+
+var moment = require('moment');
+
+module.exports = {
+
+    "projects": function( result ) {
+        if ( typeof result.image !== "undefined" ) {
+            return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb3")
+                   .append( $('<a>').attr('href', result.slug).attr('class', 'link')
+                            .append( $('<div>').attr('class', 'col-sm-2')
+
+                                .append($('<img>').attr('class','bio-image').attr('src', [result.image,'=w300-h200'].join('') ))
+                            )
+                            .append( $('<div>').attr('class', 'col-sm-10')
+                                     .append( $('<span>').attr('class', "h6 uppercase output-type bold mt0").text( "Project" ) )
+                                     .append( $('<span>').attr('class', "h6 bold uppercase gray mt0").text( ', ' + result.timeline ) )
+                                     .append( $('<h4>').attr('class', "bold mt0").text( result.title ) )
+                                     .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.summary ) )
+                            )
+                    );
+
+        } else {
+            return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb3")
+                   .append( $('<a>').attr('href', result.slug).attr('class', 'link')
+                            .append( $('<h6>').attr('class', "output-type uppercase bold brand mt0").text( "Project" ) )
+                            .append( $('<div>').attr('class', 'col-sm-12')
+                                     .append( $('<h6>').attr('class', "bold uppercase mt0").text( ', ' + result.timeline ) )
+                                     .append( $('<h4>').attr('class', "bold mt0").text( result.title ) )
+                                     .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.summary ) )
+                            )
+                    );
+        }
+    },
+
+    "news": function( result ) {
+
+        if ( typeof result.image !== "undefined" ) {
+            return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb3")
+                .append( $('<a>').attr('href', result.slug).attr('class', 'link')
+                        .append( $('<div>').attr('class', 'col-sm-2 hidden-xs')
+                            .append( $('<div>').attr('class', 'search-cover-image').append(
+                                $('<img>').attr('class','bio-image').attr('src', [result.image,'=w300-h200'].join('') )
+                            )
+                        ))
+                        .append( $('<div>').attr('class', 'col-sm-10 col-xs-12')
+                                 .append( $('<span>').attr('class', "h6 output-type uppercase bold mt0").text( "Update" ) )
+                                 .append( $('<span>').attr('class', "h6 gray bold uppercase mt0").text( ', ' + moment( result.date ).format('MMMM Y') ) )
+                                 .append( $('<h4>').attr('class', "bold mt0").text( result.title ) )
+                                 .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.summary ) )
+                                // .append( $('<div>').attr('class', "block news-rule-xs mt2 mb1") )
+                                // .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.author ) )
+                        )
+                );
+        } else {
+            return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb3")
+                    .append( $('<a>').attr('href', result.slug).attr('class', 'link')
+                        .append( $('<h6>').attr('class', "col-sm-12 output-type bold brand mt0").text( "Update" ) )
+                        .append( $('<div>').attr('class', 'col-sm-12 col-xs-12')
+                                 .append( $('<h6>').attr('class', "bold uppercase mt0").text( moment( result.date ).format('MMMM Y') ) )
+                                 .append( $('<h4>').attr('class', "bold mt0").text( result.title ) )
+                                 .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.summary ) )
+                                // .append( $('<div>').attr('class', "block news-rule-xs mt2 mb1") )
+                                // .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.author ) )
+                        )
+                );
+        }
+    },
+
+    "output": function( result ) {
+        if ( typeof result.image !== "undefined" ) {
+            return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb3")
+                   .append( $('<a>').attr('href', result.slug).attr('class', 'link')
+                               .append( $('<div>').attr('class', 'col-sm-2 hidden-xs')
+                                   .append( $('<div>').attr('class', 'search-cover-image').append(
+                                       $('<img>').attr('class','').attr('src', [result.image,'=w300-h200'].join('') )
+                                   )
+                               ))
+
+                            .append( $('<div>').attr('class', 'col-sm-10 col-xs-12')
+                            .append( $('<span>').attr('class', "h6 output-type uppercase bold mt0").text( result.outputType ) )
+                            .append( $('<span>').attr('class', "h6 gray bold uppercase mt0").text( ', ' + moment( result.date ).format('MMMM Y') ) )
+                                     .append( $('<h4>').attr('class', "bold mt0").text( result.title ) )
+                                     .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.summary ) )
+                                    // .append( $('<div>').attr('class', "block news-rule-xs mt2 mb1") )
+                                    // .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.authors.join(', ') ) )
+                            )
+                    );
+        } else {
+            return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb3")
+                   .append( $('<a>').attr('href', result.slug).attr('class', 'link')
+                            .append( $('<h6>').attr('class', "col-sm-12  output-type bold brand mt0").text( ["Research", result.outputType ].join(' ') ) )
+                            .append( $('<div>').attr('class', 'col-sm-12 col-xs-12')
+                                     .append( $('<h6>').attr('class', "bold uppercase mt0").text( moment( result.date ).format('MMMM Y') ) )
+                                     .append( $('<h4>').attr('class', "bold mt0").text( result.title ) )
+                                     .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.summary ) )
+                                    // .append( $('<div>').attr('class', "block news-rule-xs mt2 mb1") )
+                                    // .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.authors.join(', ') ) )
+                            )
+                    );
+
+        }
+    }
+};
+
+},{"moment":6}]},{},[4]);

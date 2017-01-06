@@ -72,6 +72,10 @@ flexslider
   color: #cc3333;
 }
 
+.gray {
+  color: #aaa;
+}
+
 .grayscale {
   filter: gray;
   filter: grayscale(1);
@@ -1650,7 +1654,7 @@ p {
   }
 }
 /********** @ICONS *********/
-.pictogram, .search-button {
+.pictogram, #search-trigger-button:hover, .search-button {
   font-family: "modern_pictograms_proregular";
 }
 
@@ -1978,11 +1982,11 @@ header .sync:hover, footer .sync:hover {
   -ms-transition: all 0.375s 0s ease;
 }
 
-header .pictogram, header .search-button, footer .pictogram, footer .search-button {
+header .pictogram, header #search-trigger-button:hover, header .search-button, footer .pictogram, footer #search-trigger-button:hover, footer .search-button {
   color: #222222;
   text-decoration: none;
 }
-header .pictogram:hover, header .search-button:hover, footer .pictogram:hover, footer .search-button:hover {
+header .pictogram:hover, header #search-trigger-button:hover, header .search-button:hover, footer .pictogram:hover, footer #search-trigger-button:hover, footer .search-button:hover {
   font-weight: normal;
 }
 
@@ -2348,6 +2352,22 @@ hr.hr-brand {
 }
 
 /********** SEARCH ********/
+#search-trigger-button {
+  position: relative;
+  top: -0.25em;
+  font-size: 1.5em;
+  transition: all 0.2s 0s ease;
+  -moz-transition: all 0.2s 0s ease;
+  -webkit-transition: all 0.2s 0s ease;
+  -o-transition: all 0.2s 0s ease;
+  -ms-transition: all 0.2s 0s ease;
+}
+#search-trigger-button:hover {
+  top: -0.35em;
+  font-size: 1.75em;
+  color: #cc3333 !important;
+}
+
 #search-input {
   border: 0px;
   border-bottom: 2px solid #cc3333;
@@ -2399,6 +2419,12 @@ hr.hr-brand {
 /********** @TEAM-PAGES *********/
 .bio-image {
   border: 1px solid #222222;
+}
+
+.search-cover-image {
+  max-height: 100px;
+  border: 1px solid #222222;
+  overflow: hidden;
 }
 
 /********** @RESPONSIVE *********/
