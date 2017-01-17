@@ -1,5 +1,7 @@
 {% extends "templates/partials/base.html" %}
 
+{% import "templates/partials/row-cards.html" as row %}
+
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 
 {% block content %}
@@ -80,6 +82,39 @@
     </div>
   </div>
   </section>
+
+  {% if ( item.projects_team_members.length || item.news_author.length || item.output_author.length ) %}
+  <section id="project-related" class="bg-light">
+  <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-offset-3 col-sm-9 bg-white pb4 pt2">
+            <div class="row">
+              <div class="col-xs-offset-1 col-xs-10 mb2" >
+                <div class="projects-rule"></div>
+                    <h4>Related Work</h4>
+              </div>
+            </div>
+
+            <div class="row">
+            <ul class="mb2">
+                {% for projectItem in item.projects_team_members %}
+                    {{ row.project( projectItem ) }}
+                {% endfor %}
+                {% for researchItem in item.output_author %}
+                    {{ row.research( researchItem ) }}
+                {% endfor %}
+                {% for updateItem in item.news_author %}
+                    {{ row.update( updateItem ) }}
+                {% endfor %}
+            </ul>
+            </div>
+
+          </div>
+
+        </div>
+  </div>
+  </section>
+  {% endif %}
 
 </article>
 
