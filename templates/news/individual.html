@@ -1,6 +1,8 @@
 
 {% extends "templates/partials/base.html" %}
 
+{% import "templates/partials/row-cards.html" as row %}
+
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 
 {% block content %}
@@ -10,9 +12,9 @@
   <div class="container-fluid">
   <div class="row">
 
-    <div id="sidebar" class="col-sm-3 hidden-xs" aside-enter> 
+    <div id="sidebar" class="col-sm-3 hidden-xs" aside-enter>
       {% set page = "news-item" %}
-      {% include "templates/partials/aside.html" %} 
+      {% include "templates/partials/aside.html" %}
     </div>
 
     <div class="col-sm-9 bg-white">
@@ -30,19 +32,19 @@
         </div>
 
         <div class="row">
-          
+
             <div class="projects-rule"></div>
-          
+
         </div>
 
         <div class="row mb2">
-          
+
             {% if ( item.cover_image ) %}
-  
+
               <img src="{{ item.cover_image|imageCrop(1000,500) }}">
 
             {% endif %}
-          
+
         </div>
 
         <div class="row pb4">
@@ -56,6 +58,38 @@
   </div>
   </div>
   </section>
+
+  {% if ( item.related_projects.length || item.related_research.length ) %}
+  <section id="project-related" class="bg-light">
+  <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-sm-offset-3 col-sm-9 bg-white pb4">
+            <div class="row">
+              <div class="col-xs-offset-1 col-xs-10 mb2" >
+                <div class="projects-rule"></div>
+            <h4>Related {% if item.related_projects %}Project{{ item.related_projects|pluralize('s')}} {% if item.related_research %} and {% endif %} {% endif %} {% if item.related_research %}Research{% endif %}</h4>
+              </div>
+            </div>
+
+            <div class="row">
+            <ul class="mb2">
+            {% for projectItem in item.related_projects %}
+                {{ row.project( projectItem ) }}
+            {% endfor %}
+            {% for researchItem in item.related_research %}
+                {{ row.update( researchItem ) }}
+            {% endfor %}
+            </ul>
+            </div>
+
+          </div>
+
+        </div>
+  </div>
+  </section>
+  {% endif %}
+
 </article>
 
 {% set returnTo = {to: "Updates", url: "/news", aside: true } %}

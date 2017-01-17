@@ -1,5 +1,7 @@
 {% extends "templates/partials/base.html" %}
 
+{% import "templates/partials/row-cards.html" as row %}
+
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 
 {% block content %}
@@ -75,6 +77,37 @@
     </div>
   </div>
   </section>
+
+  {% if ( item.related_projects.length || item.related_updates.length ) %}
+  <section id="project-related" class="bg-light">
+  <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-sm-offset-3 col-sm-9 bg-white pb4">
+            <div class="row">
+              <div class="col-xs-offset-1 col-xs-10 mb2" >
+                <div class="projects-rule"></div>
+            <h4>Related {% if item.related_projects %}Project{{ item.related_projects|pluralize('s')}} {% if item.related_updates %} and {% endif %} {% endif %} {% if item.related_updates %}Update{{ item.related_updates|pluralize('s') }}{% endif %}</h4>
+              </div>
+            </div>
+
+            <div class="row">
+            <ul class="mb2">
+            {% for projectItem in item.related_projects %}
+                {{ row.project( projectItem ) }}
+            {% endfor %}
+            {% for updateItem in item.related_updates %}
+                {{ row.update( updateItem ) }}
+            {% endfor %}
+            </ul>
+            </div>
+
+          </div>
+
+        </div>
+  </div>
+  </section>
+  {% endif %}
 
 </article>
 
