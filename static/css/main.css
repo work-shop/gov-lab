@@ -2088,7 +2088,7 @@ menu.open, #search-box.open {
 aside {
   cursor: ns-resize;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: scroll;
   position: absolute;
   z-index: 25;
   width: 200px;
