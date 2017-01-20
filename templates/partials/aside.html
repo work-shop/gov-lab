@@ -1,342 +1,43 @@
+<aside class="hidden-xs" dir="rtl">
+    <div dir="ltr">
 
-			 <aside class="hidden-xs" dir="rtl">
-			 <div dir="ltr">
-
-			   {% if page == "about" %} {# ------------------------------------------------- #}
-
-		          <ul>
-
-
-		            	<li class="sidebar-item sidebar-region-sort">
-		              <ul>
-		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#what-we-do">About GOV/LAB</a></li>
-		                <li class="h5 uppercase bold sidebar-heading hidden"><a class="sync link" href="#research-topics">Research Topics</a></li>
-		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#people">People</a></li>
-		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#collaborators">Collaborators</a></li>
-		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#funders">Funders</a></li>
-		                <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="/opportunities">Opportunities</a></li>
-		              </ul>
-		            </li>
-
-		          </ul>
-
-
-		          {% elseif page == "projects" %} {# ------------------------------------------------- #}
-
-		          <ul>
-
-		            {% if ( cms.topics.length > 0 ) %}
-		            <li class="sidebar-item sidebar-topic-sort mb2">
-		              <ul>
-		                <li class="h5 uppercase bold sidebar-active-heading">Topics</li>
-		                <a class="link" href="#projects"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All</li></a>
-		                {% for topic in cms.topics %}
-
-		                  {% if topic.projects_relationship %}
-		                  <a class="link" href="#projects"><li data-sort-key="{{ topic.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.topics|size ) %}mb2{% endif %}">{{ topic.name }}</li></a>
-		                  {% endif %}
-		                {% endfor %}
-		              </ul>
-		            </li>
-		            {% endif %}
-
-		            {% if ( cms.regions.length > 0 ) %}
-		            <li class="sidebar-item sidebar-region-sort mb4">
-		              <ul>
-		                <li class="h5 uppercase bold sidebar-active-heading">Countries</li>
-		                <a class="link" href="#projects"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All</li></a>
-		                {% for region in cms.regions|sort('name') %}
-		                  <a class="link" href="#projects"><li data-sort-key="{{ region.name|lower }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.regions|size ) %}mb2{% endif %}">{{ region.name }}</li></a>
-		                {% endfor %}
-		              </ul>
-		            </li>
-		            {% endif %}
-
-		          </ul>
-
-
-		          {% elseif page == "project" %} {# ------------------------------------------------- #}
-
-		          <ul>
-		            <li class="sidebar-item sidebar-metadata-items active">
-		              <ul>
-		                <li class="h5 uppercase bold sidebar-active-heading hidden">{{ item.shortname }}</li>
-
-				  {% if item.project_timeline %}
-		                <li class="h5 uppercase bold sidebar-passive-subheading mb0">Project Timeline</li>
-		                <li class="h5 uppercase mb1 mt0">{{ item.project_timeline }}</li>
-		                {% endif %}
-
-				  {% if item.region.length %}
-		                <li class="h5 uppercase bold sidebar-passive-subheading mb0">Region</li>
-		                <li class="h5 uppercase mb1 mt0">{{ item.region.name }}</li>
-		                {% endif %}
-		              </ul>
-		            </li>
-
-		            {% if ( item.team_members ) %} {# ------------------------------------------------- #}
-		            <li class="sidebar-item sidebar-team-members">
-		              <ul>
-		                <li class="h5 uppercase bold sidebar-passive-subheading mb0">Team Members</li>
-		                {% for teammember in item.team_members %}
-                        <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}"><a href="{{ url(teammember) }}">{{ teammember.name }}</a></li>
-		                {% endfor %}
-		              </ul>
-		            </li>
-		            {% endif %}
-
-                    {% if item.related_research %}
-                      <li class="sidebar-item sidebar-team-members">
-                        <ul>
-                          <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Related Research</li>
-                          {% for research in item.related_research %}
-                          <li class="h5 uppercase {% if ( loop.index == item.related_research|size ) %}mb1 mt0{% endif %}"><a href="{{ url( research ) }}">{{ research.name }}</a></li>
-                          {% endfor %}
-                        </ul>
-                      </li>
-                    {% endif %}
-
-                    {% if item.related_updates %}
-                      <li class="sidebar-item sidebar-team-members">
-                        <ul>
-                          <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Related Update{{ item.related_updates|pluralize('s') }}</li>
-                          {% for update in item.related_updates %}
-                          <li class="h5 uppercase {% if ( loop.index == item.related_updates|size ) %}mb1 mt0{% endif %}"><a href="{{ url( update ) }}">{{ update.name }}</a></li>
-                          {% endfor %}
-                        </ul>
-                      </li>
-                    {% endif %}
-
-
-		           </ul>
-
-
-		          {% elseif page == "news" %} {# ------------------------------------------------- #}
-
-			   {% if cms.news.length and cms.news_category.length %}
-		          <ul>
-
-		            <li class="sidebar-item sidebar-region-sort mb4">
-		              <ul>
-		                <li class="h5 uppercase bold sidebar-heading">Categories</li>
-		                <hr class="hr-brand" />
-
-		                <a class="link" href="#news"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All Updates</li></a>
-
-		                {% for category in cms.newscategories %}
-		                  {% if category.news_category.length %}
-
-		                  <a class="link" href="#news"><li class="sort-key sidebar-item uppercase mb1" data-sort-key="{{ category.name|lower }}">{{ category.name }}</li></a>
-
-		                  {% endif %}
-
-		                {% endfor %}
-		              </ul>
-		            </li>
-
-		          </ul>
-		          {% endif %}
-
-
-		          {% elseif page == "news-item" %} {# ------------------------------------------------- #}
-
-			    <ul class="pt3">
-
-            	    {% if ( item.news_category.length ) %}
-		            <li class="sidebar-item mb2">
-		              <ul>
-		                <li class="h5 uppercase bold sidebar-active-heading">{{ item.category.name }}</li>
-		              </ul>
-		            </li>
-		            {% endif %}
-
-                    {% if ( item.author ) %}
-		            <li class="sidebar-item mb2">
-		              <ul>
-		               <li class="h5 uppercase bold sidebar-passive-subheading mb0">Author</li>
-		                <li class="h5 uppercase mt0"><a href="{{ url( item.author ) }}">{{ item.author.name }}</a></li>
-		              </ul>
-		            </li>
-                    {% endif %}
-
-		            <li class="sidebar-item mb2">
-		              <ul>
-		               <li class="h5 uppercase bold sidebar-passive-subheading mb0"> Date</li>
-		                <li class="h5 uppercase mt0">
-		                	{% if ( item.news_date ) %}
-		               		{{ item.news_date|date('F Y') }}
-		               	{% else %}
-						{{ item.publish_date|date('F Y') }}
-		               	{% endif %}
-		                </li>
-		              </ul>
-
-		            </li>
-
-                    {% if item.related_projects %}
-                      <li class="sidebar-item sidebar-team-members">
-                        <ul>
-                          <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Related Project{{ item.related_projects|pluralize('s') }}</li>
-                          {% for project in item.related_projects %}
-                          <li class="h5 uppercase {% if ( loop.index == item.related_projects|size ) %}mb1 mt0{% endif %}"><a href="{{ url( project ) }}">{{ project.name }}</a></li>
-                          {% endfor %}
-                        </ul>
-                      </li>
-                    {% endif %}
-
-                    {% if item.related_research %}
-                      <li class="sidebar-item sidebar-team-members">
-                        <ul>
-                          <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Related Update{{ item.related_updates|pluralize('s') }}</li>
-                          {% for update in item.related_updates %}
-                          <li class="h5 uppercase {% if ( loop.index == item.related_updates|size ) %}mb1 mt0{% endif %}"><a href="{{ url( update ) }}">{{ update.name }}</a></li>
-                          {% endfor %}
-                        </ul>
-                      </li>
-                    {% endif %}
-
-		          </ul>
-
-                  {% elseif page == "output" %}
-
-                  <ul>
-
-                        {% if ( cms.topics.length > 0 ) %}
-                        <li class="sidebar-item sidebar-topic-sort mb2">
-                          <ul>
-                            <li class="h5 uppercase bold sidebar-active-heading">Topics</li>
-                            <a class="link" href="#output"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All</li></a>
-                            {% for topic in cms.topics %}
-
-                              {% if topic.output_research_topics %}
-                              <a class="link" href="#projects"><li data-sort-key="{{ topic.name|lower|replace(' ', '-', 'g') }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.topics|size ) %}mb2{% endif %}">{{ topic.name }}</li></a>
-                              {% endif %}
-
-                            {% endfor %}
-                          </ul>
-                        </li>
-                        {% endif %}
-
-                        {% if ( cms.outputtypes.length > 0 ) %}
-                        <li class="sidebar-item sidebar-region-sort mb4">
-                          <ul>
-                            <li class="h5 uppercase bold sidebar-active-heading">Media</li>
-                            <a class="link" href="#projects"><li data-sort-key=" " class="sort-key uppercase active sidebar-item mb1">All</li></a>
-                            {% for outputType in cms.outputtypes|sort('name') %}
-                            <a class="link" href="#output"><li data-sort-key="{{ outputType.name|lower|replace(' ', '-', 'g') }}" class="sort-key sidebar-link uppercase mb1 {% if ( loop.index == cms.outputtypes|size ) %}mb2{% endif %}">{{ outputType.name }}</li></a>
-                            {% endfor %}
-                          </ul>
-                        </li>
-                        {% endif %}
-
-                  </ul>
-
-                  {% elseif page == "output-item" %}
-
-                    <ul class="pt3">
-
-                    <li class="sidebar-item sidebar-metadata-items active mb2">
-                      <ul>
-                        <li class="h5 uppercase bold sidebar-active-heading">{{ item.output_type.name }}</li>
-                      </ul>
-                    </li>
-
-                    {% if item.file || item.link %}
-                    <li class="sidebar-item cover-image mb1 {% if item.cover_image %}bg-brand{% else %}bg-real-white no-image{% endif %}">
-
-                        <a target="_blank" href="{% if item.file %}{{ item.file }}{% elseif item.link %}{{ item.link }}{% endif %}">
-                            {% if item.cover_image %}<img src="{{ item.cover_image|imageSize(500) }}" />{% endif %}
-
-                        </a>
-
-                    </li>
-                    {% endif %}
-
-
-                    {% if ( item.authors ) %}
-                    <li class="sidebar-item sidebar-team-members">
-                      <ul>
-                        <li class="h5 uppercase bold sidebar-passive-subheading mb0">Author{{ item.authors|pluralize('s') }}</li>
-                        {% for teammember in item.authors %}
-                        <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}"><a href="{{ url( teammember ) }}">{{ teammember.name }}</a></li>
-                        {% endfor %}
-                      </ul>
-                    </li>
-                    {% endif %}
-
-                    {% if ( item.research_topics ) %}
-                    <li class="sidebar-item sidebar-team-members">
-                      <ul>
-                        <li class="h5 uppercase bold sidebar-passive-subheading mb0">Topic{{ item.research_topics|pluralize('s') }}</li>
-                        {% for topic in item.research_topics %}
-                        <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}">{{ topic.name }}</li>
-                        {% endfor %}
-                      </ul>
-                    </li>
-                    {% endif %}
-
-                    {% if item.related_projects %}
-                      <li class="sidebar-item sidebar-team-members">
-                        <ul>
-                          <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Related Project{{ item.related_projects|pluralize('s') }}</li>
-                          {% for project in item.related_projects %}
-                          <li class="h5 uppercase {% if ( loop.index == item.related_projects|size ) %}mb1 mt0{% endif %}"><a href="{{ url( project ) }}">{{ project.name }}</a></li>
-                          {% endfor %}
-                        </ul>
-                      </li>
-                    {% endif %}
-
-                    {% if item.related_updates %}
-                      <li class="sidebar-item sidebar-team-members">
-                        <ul>
-                          <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Related Update{{ item.related_updates|pluralize('s') }}</li>
-                          {% for update in item.related_updates %}
-                          <li class="h5 uppercase {% if ( loop.index == item.related_updates|size ) %}mb1 mt0{% endif %}"><a href="{{ url( update ) }}">{{ update.name }}</a></li>
-                          {% endfor %}
-                        </ul>
-                      </li>
-                    {% endif %}
-
-                    </ul>
-
-                  {% elseif page == "person" %}
-                  <ul class="pt2">
-
-                    {% if item.projects_team_members %}
-                      <li class="sidebar-item sidebar-team-members">
-                        <ul>
-                          <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Project{{ item.projects_team_members|pluralize('s') }}</li>
-                          {% for project in item.projects_team_members %}
-                          <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}"><a href="{{ url( project ) }}">{{ project.shortname }}</a></li>
-                          {% endfor %}
-                        </ul>
-                      </li>
-                    {% endif %}
-
-                    {% if item.output_author %}
-                      <li class="sidebar-item sidebar-team-members">
-                        <ul>
-                          <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Output</li>
-                          {% for output in item.output_author %}
-                          <li class="h5 uppercase {% if ( loop.index == item.output_author|size ) %}mb1 mt0{% endif %}"><a href="{{ url( output ) }}">{{ output.name }}</a></li>
-                          {% endfor %}
-                        </ul>
-                      </li>
-                    {% endif %}
-
-                    {% if item.news_author %}
-                      <li class="sidebar-item sidebar-team-members">
-                        <ul>
-                          <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">News</li>
-                          {% for news in item.news_author %}
-                          <li class="h5 uppercase {% if ( loop.index == item.news_author|size ) %}mb1 mt0{% endif %}"><a href="{{ url( news ) }}">{{ news.name }}</a></li>
-                          {% endfor %}
-                        </ul>
-                      </li>
-                    {% endif %}
-
-                  </ul>
-		          {% endif %} {# ------------------------------------------------- #}
-
-			</div>
-		</aside>
+        {% if page == "about" %}
+
+            {% include "templates/partials/asides/aside-about.html" %}
+
+        {% elseif page == "projects" %}
+
+            {% include "templates/partials/asides/aside-projects.html" %}
+
+        {% elseif page == "project" %}
+
+            {% include "templates/partials/asides/aside-project.html" %}
+
+        {% elseif page == "news" %}
+
+            {% include "templates/partials/asides/aside-news.html" %}
+
+        {% elseif page == "news-item" %}
+
+            {% include "templates/partials/asides/aside-news-item.html" %}
+
+        {% elseif page == "output" %}
+
+            {% include "templates/partials/asides/aside-output.html" %}
+
+        {% elseif page == "output-item" %}
+
+            {% include "templates/partials/asides/aside-output-item.html" %}
+
+        {% elseif page == "person" %}
+
+            {% include "templates/partials/asides/aside-person.html" %}
+
+        {% else %}
+
+            {% include "templates/partials/asides/aside-error.html" %}
+
+        {% endif %}
+
+    </div>
+</aside>

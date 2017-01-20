@@ -1,0 +1,62 @@
+<ul>
+    <li class="sidebar-item sidebar-metadata-items active">
+        <ul>
+            <li class="h5 uppercase bold sidebar-active-heading hidden">{{ item.shortname }}</li>
+
+            {% if item.project_timeline %}
+            <li class="h5 uppercase bold sidebar-passive-subheading mb0">Project Timeline</li>
+            <li class="h5 uppercase mb1 mt0">{{ item.project_timeline }}</li>
+            {% endif %}
+
+            {% if item.region.length %}
+            <li class="h5 uppercase bold sidebar-passive-subheading mb0">Region</li>
+            <li class="h5 uppercase mb1 mt0">{{ item.region.name }}</li>
+            {% endif %}
+        </ul>
+    </li>
+
+    {% if ( item.team_members ) %} {# ------------------------------------------------- #}
+    <li class="sidebar-item sidebar-team-members">
+        <ul>
+            <li class="h5 uppercase bold sidebar-passive-subheading mb0">Team Members</li>
+            {% for teammember in item.team_members %}
+                <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}"><a href="{{ url(teammember) }}">{{ teammember.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endif %}
+
+    {% if item.related_projects %}
+        <li class="sidebar-item sidebar-team-members">
+            <ul>
+                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Related Project{{ item.related_projects|pluralize('s') }}</li>
+                {% for project in item.related_projects %}
+                    <li class="h5 uppercase {% if ( loop.index == item.related_projects|size ) %}mb1 mt0{% endif %}"><a href="{{ url( project ) }}">{{ project.shortname }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endif %}
+
+    {% if item.related_research %}
+        <li class="sidebar-item sidebar-team-members">
+            <ul>
+                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Related Research</li>
+                {% for research in item.related_research %}
+                    <li class="h5 uppercase {% if ( loop.index == item.related_research|size ) %}mb1 mt0{% endif %}"><a href="{{ url( research ) }}">{{ research.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endif %}
+
+    {% if item.related_updates %}
+        <li class="sidebar-item sidebar-team-members">
+            <ul>
+                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Related Update{{ item.related_updates|pluralize('s') }}</li>
+                {% for update in item.related_updates %}
+                    <li class="h5 uppercase {% if ( loop.index == item.related_updates|size ) %}mb1 mt0{% endif %}"><a href="{{ url( update ) }}">{{ update.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endif %}
+
+</ul>
