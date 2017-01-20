@@ -78,7 +78,7 @@
   </div>
   </section>
 
-  {% if ( item.related_projects.length || item.related_updates.length ) %}
+  {% if ( item.related_projects.length || item.related_updates.length || item.related_research.length ) %}
   <section id="project-related" class="bg-light">
   <div class="container-fluid">
         <div class="row">
@@ -95,6 +95,9 @@
             <ul class="mb2">
             {% for projectItem in item.related_projects %}
                 {{ row.project( projectItem ) }}
+            {% endfor %}
+            {% for researchItem in item.related_updates %}
+                {{ row.research( researchItem ) }}
             {% endfor %}
             {% for updateItem in item.related_updates %}
                 {{ row.update( updateItem ) }}
