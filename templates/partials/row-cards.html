@@ -2,7 +2,6 @@
 
 {# this macro generates a row representation for an update JSON structure. #}
 {% macro update( item ) %}
-    <script type="text/javascript">console.log({{ item|json|safe }});</script>
     <li class="p0 col-sm-offset-1 col-sm-10 project-result search-result mb3">
         <a href="{{ url( item ) }}" class="link">
             <div class="col-sm-2 hidden-xs">
@@ -22,7 +21,6 @@
 
 {# this macro generates a row representation for an project JSON structure. #}
 {% macro project( item ) %}
-    <script type="text/javascript">console.log({{ item|json|safe }});</script>
     <li class="p0 col-sm-offset-1 col-sm-10 project-result search-result mb3">
         <a href="{{ url( item ) }}" class="link">
             <div class="col-sm-2 hidden-xs">
@@ -44,12 +42,14 @@
 {% macro research( item ) %}
     <li class="p0 col-sm-offset-1 col-sm-10 project-result search-result mb3">
         <a href="{{ url( item ) }}" class="link">
-            <div class="col-sm-2 hidden-xs">
-                <div class="search-cover-image">
-                    <img src="{{ item.cover_image|imageSize(500) }}" />
+            {% if item.cover_image %}
+                <div class="col-sm-2 hidden-xs">
+                    <div class="search-cover-image">
+                        <img src="{{ item.cover_image|imageSize(500) }}" />
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-10 col-xs-12">
+            {% endif %}
+        <div class="{% if !item.cover_image %}col-sm-offset-2 {% endif %}col-sm-10 col-xs-12">
                 <span class="h6 output-type uppercase bold mt0">{{ item.output_type.name }}</span>
                 <span class="h6 uppercase gray bold mt0">{{ item.publication_date|date('F Y') }}</span>
                 <h4 class="bold mt0">{{ item.name }}</h4>
