@@ -6,7 +6,7 @@
 
 {% block content %}
 
-  {% set output = cms.output %}
+  {% set output = cms.output|sort('publication_date', true) %}
 
   <section id="output-introduction" class="bg-light block">
     {% if cms.about.research_image %}
