@@ -4,10 +4,8 @@
 {% macro update( item ) %}
     <li class="p0 col-sm-offset-1 col-sm-10 project-result search-result mb3">
         <a href="{{ url( item ) }}" class="link">
-            <div class="col-sm-2 hidden-xs">
-                <div class="search-cover-image">
-                    <img src="{{ item.cover_image|imageSize(500) }}" />
-                </div>
+            <div class="col-sm-2 hidden-xs related-image-block-container">
+                <div class="related-image-block" style="background-image:url('{{ item.cover_image|imageSize(250) }}');"></div>
             </div>
             <div class="col-sm-10 col-xs-12">
                 <span class="h6 output-type uppercase bold mt0">Update</span>
@@ -23,10 +21,8 @@
 {% macro project( item ) %}
     <li class="p0 col-sm-offset-1 col-sm-10 project-result search-result mb3">
         <a href="{{ url( item ) }}" class="link">
-            <div class="col-sm-2 hidden-xs">
-                <div class="search-cover-image">
-                    <img src="{{ item.images[0]|imageSize(500) }}" />
-                </div>
+            <div class="col-sm-2 hidden-xs related-image-block-container">
+                <div class="related-image-block" style="background-image:url('{{ item.images[0]|imageSize(250) }}');"></div>
             </div>
             <div class="col-sm-10 col-xs-12">
                 <span class="h6 output-type uppercase bold mt0">Project</span>
@@ -43,10 +39,8 @@
     <li class="p0 col-sm-offset-1 col-sm-10 project-result search-result mb3">
         <a href="{{ url( item ) }}" class="link">
             {% if item.cover_image %}
-                <div class="col-sm-2 hidden-xs">
-                    <div class="search-cover-image">
-                        <img src="{{ item.cover_image|imageSize(500) }}" />
-                    </div>
+                <div class="col-sm-2 hidden-xs related-image-block-container">
+                    <div class="related-image-block" style="background-image:url('{{ item.cover_image|imageSize(250) }}'); background-position:center 0%;"></div>
                 </div>
             {% endif %}
         <div class="{% if !item.cover_image %}col-sm-offset-2 {% endif %}col-sm-10 col-xs-12">

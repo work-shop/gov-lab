@@ -405,6 +405,23 @@ hr {
 	top: 50px;
 }
 
+.related-image-block-container {
+    position: relative;
+}
+
+.related-image-block {
+    height:9vw;
+    width: 100%;
+
+    margin-top:.5em;
+    border:1px solid $medium-dark;
+
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
 /********** PROJECTS ********/
 
 
@@ -642,8 +659,6 @@ hr {
 
 //sm
 @media ($sm-query) {
-
-
 //hi
 }
 
