@@ -2223,6 +2223,12 @@ aside .active {
 
 /********** @FEATURE *********/
 /********** @active ***********/
+/********** about *************/
+.about-callout {
+  position: relative;
+  top: -15%;
+}
+
 /********** @<hr>s *************/
 hr {
   position: relative;

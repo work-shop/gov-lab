@@ -5,22 +5,44 @@
 
 {% block content %}
 
-<section id="introduction">
-	<div class="block-background" style="background: url({{ cms.about.about_image|imageSize(1000,1000)}}); background-size:cover; background-position:center center;"> </div>
-
-	  <div class="container half-strict block">
-
-	  </div>
+<section id="introduction bg-gray">
+    <div class="container block">
+        <div class="row"><img src="{{ cms.about.about_image|imageSize(2500,500)}}" /></div>
+    </div>
 </section>
 
-<section id="what-we-do" class="bg-light padded" aside-enter>
+{% if cms.about.about_page_optional_callout %}
+
+<section id="callout" class="bg-light pb1 pt1" aside-enter>
+    <div class="container-fluid">
+
+        <div id="sidebar" class="sidebar col-sm-2 hidden-xs">
+            {% set page = 'about' %}
+            {% include 'templates/partials/aside.html' %}
+        </div>
+
+        <div class="row bg-light relative">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-7 col-sm-offset-3 bg-brand p2 about-callout">
+                <h4 class="white bold p0">
+                    {{ cms.about.about_page_optional_callout }}
+                </h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endif %}
+
+<section id="what-we-do" class="bg-light pb2" {% if !cms.about.about_page_optional_callout %} aside-enter{% endif %}>
 	<div class="container-fluid">
 	<div class="row">
 
-		<div id="sidebar" class="sidebar col-sm-2 hidden-xs">
-		{% set page = 'about' %}
-		{% include 'templates/partials/aside.html' %}
-		</div>
+        {% if !cms.about.about_page_optional_callout %}
+            <div id="sidebar" class="sidebar col-sm-2 hidden-xs">
+                {% set page = 'about' %}
+                {% include 'templates/partials/aside.html' %}
+            </div>
+        {% endif %}
 
 		<div class="col-sm-offset-2 col-sm-9">
 			<div class="row">
