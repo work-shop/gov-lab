@@ -103,7 +103,7 @@
                 {% for researchItem in item.output_author %}
                     {{ row.research( researchItem ) }}
                 {% endfor %}
-                {% for updateItem in item.news_author %}
+                {% for updateItem in merge( item.news_author, item.updates )|uniq %}
                     {{ row.update( updateItem ) }}
                 {% endfor %}
             </ul>
