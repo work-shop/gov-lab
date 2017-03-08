@@ -1,17 +1,17 @@
-function height( target, selector ) { 
-	selector.css({ 'min-height': $(window).height() * target }); 
+function height( target, selector ) {
+	selector.css({ 'min-height': $(window).height() * target });
 }
 
-function height_strict( target, selector ) { 
-	selector.css({ 'height': $(window).height() * target }); 
+function height_strict( target, selector ) {
+	selector.css({ 'height': $(window).height() * target });
 }
 
-function height_lax( target, selector ) { 
-	selector.css({ 'max-height': $(window).height() * target }); 
+function height_lax( target, selector ) {
+	selector.css({ 'max-height': $(window).height() * target });
 }
 
-function width( target, selector ) { 
-	selector.css({ 'width': $(window).width() * target }); 
+function width( target, selector ) {
+	selector.css({ 'width': $(window).width() * target });
 }
 
 function equal_height( target, selector ) {
@@ -27,18 +27,18 @@ function equal_width( target, selector ) {
 		for ( var selector in actionmap ) {
 			var els = $(selector);
 			if ( els.length > 0 ) {
-				actionmap[ selector ].callback( 
+				actionmap[ selector ].callback(
 					actionmap[ selector ].target,
 					els
-				); 
-			}	
+				);
+			}
 		}
 
 		$(document).trigger('dom-is-sized');
 	}
 
 	var actionmap = 
-	{ 
+	{
 		'.five': {callback:height, target: 0.05},
 		'.ten': {callback:height, target: 0.1},
 		'.ten-strict': {callback:height_strict, target: 0.1},
@@ -53,6 +53,7 @@ function equal_width( target, selector ) {
 		'.ninety-h': {callback:width, target: 0.9},
 		'.three-quarter': {callback: height, target: 0.75},
 		'.three-quarter-strict': {callback: height_strict, target: 0.75},
+		'.three-quarter-lax': {callback: height_lax, target: 0.75},
 		'.all': {callback: height, target: 1},
 		'.all-h': {callback:width, target: 1},
 		'.all-strict': {callback:height_strict, target: 1},
@@ -68,9 +69,6 @@ function equal_width( target, selector ) {
 		recalculate();
 	});
 
-	
-	
+
+
 })( jQuery );
-
-
-
