@@ -95,6 +95,10 @@ flexslider
   }
 }
 
+.p-min {
+    padding: .5em;
+}
+
 .padded-less{
 	padding-top: 2.5%;
 	padding-bottom: 2.5%;
@@ -200,6 +204,11 @@ flexslider
 
 .border-brand{
 	border: 2px solid $brand;
+}
+
+
+.border-brand-bottom {
+	border-bottom: 2px solid $brand;
 }
 
 

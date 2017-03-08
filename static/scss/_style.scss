@@ -481,6 +481,9 @@ hr {
 
 /********** NEWS ********/
 
+.header-image {
+    z-index: -1;
+}
 
 .news-rule, .news-rule-xs {
 	border-top:1px solid $medium-light;
@@ -489,6 +492,11 @@ hr {
 .news-tile {
 
 
+}
+
+.relative-bottom {
+    position: absolute;
+    bottom: 6em;
 }
 
 
@@ -650,25 +658,40 @@ hr {
 
 //lg
 @media ($lg-query) {
-
-
-
+    .header-box {
+        overflow-y: hidden;
+    }
 }
 
 //md
 @media ($md-query) {
-
-
-
+    .header-box {
+        overflow-y: hidden;
+    }
 }
 
 //sm
 @media ($sm-query) {
-//hi
+    .header-box {
+        overflow-y: hidden;
+    }
 }
 
 //xs
 @media ($xs-query) {
+    .header-box {
+        overflow-y: visible;
+    }
+
+    .relative-bottom {
+        position: absolute;
+        bottom: 10em;
+    }
+
+    .p-min {
+        padding: .25em;
+    }
+
 
 	 header {
 	 	padding:15px 0px 12px 0px;
@@ -707,6 +730,11 @@ hr {
 }
 
 @media (min-width: $xs-size) {
+    .relative-bottom {
+        position: absolute;
+        bottom: 10em;
+    }
+
 	*[aside-enter] {
 		padding-top: 6em !important;
 	}

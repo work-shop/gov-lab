@@ -4,8 +4,8 @@
 
 body{
 	font-size: 16px;
-	font-family:"SimplonNormLight", Helvetica, Arial, sans-serif; 
-	font-weight:normal; 
+	font-family:"SimplonNormLight", Helvetica, Arial, sans-serif;
+	font-weight:normal;
 	font-style:normal;
 }
 
@@ -47,6 +47,10 @@ p{
 	line-height: 1.6;
 }
 
+.caption {
+    @extend .h6;
+}
+
 .back-to-home {
 	@extend .brand;
 	@extend .bold;
@@ -85,7 +89,7 @@ p{
 	// 	font-size: 1.1em;
 	// }
 
-} 
+}
 
 //xs
 @media (max-width: 767px) {
@@ -218,9 +222,9 @@ p{
 	font-size: 30px;
 	line-height: 100%;
 	vertical-align: middle;
-	position: relative;	
+	position: relative;
 	}
-	
+
 	&.large:before{
 		font-size: 72px;
 	}
