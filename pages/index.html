@@ -8,26 +8,33 @@
 
   <div class="block-background" style="background: url({{ cms.about.home_image|imageSize(2500,500)}}); background-size:cover; background-position:center center;"> </div>
 
-  <div class="container half-strict block">
+  <div class="container three-quarter-lax block">
 
-    <div class="row vertical-center">
+    <img src="{{ cms.about.home_image|imageSize(2500,500) }}">
+
+    <div class="row">
+        <div class="projects-rule"></div>
+    </div>
+
+    <div class="row vertical-center hidden">
       <div class="col-sm-10 col-sm-offset-1 centered white"><h2><span class="bold">Bridging the Gap</span><br /> between Citizens and the Government</h2></div>
     </div>
 
   </div>
 
 </section>
- 
+
 <section id="home-tagline" class="bg-white padded">
   <div class="container block">
 
   <div class="row">
     <div class="col-sm-offset-2 col-sm-8 centered">
-      <h3 class="tagline">The MIT GOV/LAB is a group of political scientists focusing on innovation in citizen engagement and government responsiveness.</h3>
+      <h2><span class="bold">Bridging the Gap</span><br /> between Citizens and the Government</h2>
+      <h3 class="tagline hidden">The MIT GOV/LAB is a group of political scientists focusing on innovation in citizen engagement and government responsiveness.</h3>
     </div>
 
   </div>
-  
+
 </div>
 </section>
 
@@ -43,7 +50,7 @@
 </section>
 
 <section id="home-callouts" class="bg-white padded">
-  <div class="container block"> 
+  <div class="container block">
 
   <div class="row one-quarter">
     <div class="col-sm-12">
@@ -52,6 +59,7 @@
         <div class="block-background hidden" style="background: url({{ cms.about.about_image|imageSize(2500,500)}}); background-size:cover; background-position:center center;"> </div>
 
         <div class="col-sm-6 centered p2">
+              <h3 class="dark mb2">About GOV/LAB</h3>
               {% if cms.about.home_page_about_callout %}<h4 class="mb2 ">{{ cms.about.home_page_about_callout }}</h4>{% endif %}
               <a class="uppercase sync" href="/about">Read More About Us</a>
         </div>
@@ -69,7 +77,7 @@
       <!-- </div> -->
     </div>
   </div>
-  
+
   </div>
 
 </section>
@@ -103,11 +111,12 @@
       <div class="row">
 
           <div class=" col-xs-12 col-sm-offset-1 col-sm-10 centered mt1">
+            <h3 class="dark mb2">The Latest</h3>
             <h4 class="dark mb2">{{ latest.summary }}</h4>
             <a class="uppercase sync" href="{{ url( latest ) }}">Read More</a>
           </div>
-      
-      </div>  
+
+      </div>
 
     </div>
 
