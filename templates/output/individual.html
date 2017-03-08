@@ -45,13 +45,22 @@
 
         </div>
 
-        {% if item.image %}
-        <div class="row mb2">
+        {% set image = item.image %}
 
-              <img src="{{ item.image|imageCrop(1000,500) }}">
+        <div class="row {% if !image.caption %}mb2{% endif %}">
+
+              <img src="{{ image|imageCrop(1000,500) }}">
 
         </div>
+
+        {% if image.caption %}
+        <div class="row mb2">
+            <div class="col-sm-offset-6 col-sm-5">
+                <p class="caption gray righted p-min">{{ image.caption }}</p>
+            </div>
+        </div>
         {% endif %}
+
 
         <div class="row pb4">
           <div class="col-xs-offset-1 col-xs-10 wysiwyg">

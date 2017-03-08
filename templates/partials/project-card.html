@@ -1,0 +1,34 @@
+{% macro project( item ) %}
+
+<li id="project-{{ item.shortname|lower|replace(' ', '-', 'g') }}" class="project-tint project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.topics, item.region ) %}{{ value.name|lower }} {% endfor %}">
+    <a href="{{ url( item ) }}">
+
+        <figure class=" mb2">
+            <img class="project-tile-image" src="{{ item.images|first|imageCrop(500, 350) }}" />
+        </figure>
+
+        <h3 class="title project-tile-title">{{ item.name }} {{ item.ongoing }}</h3>
+
+        <p class="mb2 hidden-xs">{{ item.summary }}</p>
+
+        <hr class="hr-light mb0 hidden-xs">
+
+        {% if ( item.topics )%}
+            <ul class="project-tile-topics hidden-xs">
+
+            {% for topic in item.topics %}
+
+                <li class="inline sidebar-link h6 hidden-xs">
+                    <a class="link" href="#projects" data-sort-key="{{topic.name|lower}}">
+                        {{ topic.name }}{% if ( loop.index < project.topics|size ) %}, {% endif %}
+                    </a>
+                </li>
+
+            {% endfor %}
+
+            </ul>
+        {% endif %}
+    </a>
+</li>
+
+{% endmacro %}
