@@ -2139,6 +2139,10 @@ aside .active {
   }
 }
 
+.page-about {
+  width: 300px;
+}
+
 .sidebar-active-heading {
   display: inline-block;
   border-bottom: 2px solid #cc3333;

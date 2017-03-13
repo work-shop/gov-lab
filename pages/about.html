@@ -11,38 +11,15 @@
     </div>
 </section>
 
-{% if cms.about.about_page_optional_callout %}
 
-<section id="callout" class="bg-light pb1 pt1" aside-enter>
-    <div class="container-fluid">
-
-        <div id="sidebar" class="sidebar col-sm-2 hidden-xs">
-            {% set page = 'about' %}
-            {% include 'templates/partials/aside.html' %}
-        </div>
-
-        <div class="row bg-light relative">
-            <div class="col-xs-10 col-xs-offset-1 col-sm-7 col-sm-offset-3 bg-brand p2 about-callout">
-                <h4 class="white bold p0">
-                    {{ cms.about.about_page_optional_callout }}
-                </h4>
-            </div>
-        </div>
-    </div>
-</section>
-
-{% endif %}
-
-<section id="what-we-do" class="bg-light pb2" {% if !cms.about.about_page_optional_callout %} aside-enter{% endif %}>
+<section id="what-we-do" class="bg-light pb2" aside-enter>
 	<div class="container-fluid">
 	<div class="row">
 
-        {% if !cms.about.about_page_optional_callout %}
-            <div id="sidebar" class="sidebar col-sm-2 hidden-xs">
-                {% set page = 'about' %}
-                {% include 'templates/partials/aside.html' %}
-            </div>
-        {% endif %}
+        <div id="sidebar" class="sidebar col-sm-3 hidden-xs">
+            {% set page = 'about' %}
+            {% include 'templates/partials/aside.html' %}
+        </div>
 
 		<div class="col-sm-offset-2 col-sm-9">
 			<div class="row">
@@ -68,6 +45,30 @@
 	</div>
 </section>
 
+{% if cms.about.about_page_optional_callout %}
+
+<section id="callout" class="bg-light pb1 pt1">
+    <div class="container-fluid">
+    <div class="row">
+            <div class="col-sm-offset-2 col-sm-9">
+
+                <div class="row mb3">
+                    <div class="projects-rule col-sm-2 col-sm-offset-5"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1 about-callout">
+
+                        <p> {{ cms.about.about_page_optional_callout }}</p>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+</section>
+
+{% endif %}
 
 <section id="research-topics" class="bg-white padded hidden" >
 	<div class="container-fluid">

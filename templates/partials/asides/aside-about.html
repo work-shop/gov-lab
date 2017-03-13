@@ -3,6 +3,9 @@
     <li class="sidebar-item sidebar-region-sort">
         <ul>
             <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#what-we-do">About GOV/LAB</a></li>
+            {% if cms.about.about_page_optional_callout %}
+            <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#callout">Diversity Statement</a></li>
+            {% endif %}
             <li class="h5 uppercase bold sidebar-heading hidden"><a class="sync link" href="#research-topics">Research Topics</a></li>
             <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#people">People</a></li>
             <li class="h5 uppercase bold sidebar-heading"><a class="sync link" href="#collaborators">Collaborators</a></li>
