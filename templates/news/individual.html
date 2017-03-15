@@ -86,7 +86,7 @@
             {% for researchItem in item.related_research %}
                 {{ row.research( researchItem ) }}
             {% endfor %}
-            {% for updateItem in item.related_updates %}
+            {% for updateItem in item.related_updates|sort('news_date', true) %}
                 {{ row.update( updateItem ) }}
             {% endfor %}
             </ul>
