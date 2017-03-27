@@ -10,6 +10,12 @@ function height_lax( target, selector ) {
 	selector.css({ 'max-height': $(window).height() * target });
 }
 
+function height_xs( target, selector ) {
+    if ( window.innerWidth < 480 ) {
+	       selector.css({ 'max-height': $(window).height() * target });
+    }
+}
+
 function width( target, selector ) {
 	selector.css({ 'width': $(window).width() * target });
 }
@@ -37,7 +43,7 @@ function equal_width( target, selector ) {
 		$(document).trigger('dom-is-sized');
 	}
 
-	var actionmap = 
+	var actionmap =
 	{
 		'.five': {callback:height, target: 0.05},
 		'.ten': {callback:height, target: 0.1},
@@ -45,6 +51,7 @@ function equal_width( target, selector ) {
 		'.one-quarter': {callback:height, target: 0.25},
 		'.one-quarter-strict': {callback:height_strict, target: 0.25},
 		'.forty-five': {callback:height, target: 0.45},
+        '.half-min': {callback:height, target: 0.5},
 		'.half': {callback:height_strict, target: 0.5},
 		'.half-strict': {callback:height_strict, target: 0.5},
 		'.half-lax': {callback:height_lax, target: 0.5},
@@ -54,6 +61,7 @@ function equal_width( target, selector ) {
 		'.three-quarter': {callback: height, target: 0.75},
 		'.three-quarter-strict': {callback: height_strict, target: 0.75},
 		'.three-quarter-lax': {callback: height_lax, target: 0.75},
+        '.three-quarter-xs': {callback: height_xs, target: 0.75},
 		'.all': {callback: height, target: 1},
 		'.all-h': {callback:width, target: 1},
 		'.all-strict': {callback:height_strict, target: 1},

@@ -9,8 +9,8 @@
     <a href="{{ url( item ) }}">
 
     <div class="row">
-        <h6 class="output-type brand bold col-sm-6">{{ item.output_type.name }}</h6>
-        <h6 class="output-publish-date col-sm-6 uppercase bold">
+        <h6 class="output-type brand bold col-xs-6">{{ item.output_type.name }}</h6>
+        <h6 class="output-publish-date col-xs-6 uppercase bold">
             {% if item.publication_date %}
                 {{ item.publication_date|date('F Y') }}
             {% else %}

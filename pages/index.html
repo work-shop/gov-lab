@@ -52,6 +52,7 @@
         <div class="block-background hidden" style="background: url({{ cms.about.about_image|imageSize(2500,500)}}); background-size:cover; background-position:center center;"> </div>
 
         <div class="col-sm-6 centered p2">
+              <h4 class="brand">About GOV/LAB</h4>
               {% if cms.about.home_page_about_callout %}<h4 class="mb2 ">{{ cms.about.home_page_about_callout }}</h4>{% endif %}
               <a class="uppercase sync" href="/about">Read More About Us</a>
         </div>
@@ -60,7 +61,6 @@
 
           <img src="{{ cms.about.about_image|imageCrop(650,450)}}" />
           <div class="image-overlay col-xs-12 col-sm-offset-1 col-sm-10 centered">
-            <h4 class="brand">About GOV/LAB</h4>
             <p class="h5 mb2 hidden">We engage under-resourced groups and their governments in <span class="bold">challenging contexts</span>.</p>
             <a class="uppercase sync hidden" href="/about">Latest updates and publications</a>
           </div>

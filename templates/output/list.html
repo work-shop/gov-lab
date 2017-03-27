@@ -12,12 +12,12 @@
 
   {# {{ list.header('output', cms.about.research_image, cms.about.output_intro_callout, cms.about.output_intro_text ) }} #}
 
-  <section id="output-introduction" class="bg-light block">
+  <section id="output-introduction" class="bg-light block pb4 pt4">
     {% if cms.about.research_image %}
         <div class="block-background" style="background: url({{ cms.about.research_image.url }}); background-size: cover; background-position:center center;"> </div>
     {% endif %}
 
-    <div class="container half-strict block">
+    <div class="container half three-quarter-xs block pb4 pt4">
 
         {% set relevantTopics = 0 %}
         {% set renderedTopics = 0%}
