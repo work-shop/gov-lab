@@ -500,9 +500,33 @@ hr {
 
 .relative-bottom {
     position: absolute;
-    bottom: 6em;
+    bottom: 2em;
 }
 
+.relative-mid {
+    position: absolute;
+    top: 50%;
+}
+
+.header-overlay-dark {
+    background-color: $dark;
+    opacity:.5;
+    position: absolute;
+    height:inherit;
+    width:100%;
+}
+
+.header-height {
+    //height:40vh;
+    height:400px;
+}
+
+@media ($xs-query) {
+    .header-height {
+        //height:40vh;
+        height:320px;
+    }
+}
 
 /********** OUTPUT ********/
 
@@ -689,7 +713,7 @@ hr {
 
     .relative-bottom {
         position: absolute;
-        bottom: 10em;
+        bottom: 2em;
     }
 
     .p-min {
@@ -740,10 +764,10 @@ hr {
 @media (min-width: $xs-size) {
     .relative-bottom {
         position: absolute;
-        bottom: 10em;
+        bottom: 2em;
     }
 
 	*[aside-enter] {
-		padding-top: 6em !important;
+		padding-top: 2em !important;
 	}
 }

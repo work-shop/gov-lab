@@ -8,69 +8,33 @@
 
 {% block content %}
 
-  {% set output = cms.output|sort('publication_date', true) %}
+{% set output = cms.output|sort('publication_date', true) %}
 
-  {# {{ list.header('output', cms.about.research_image, cms.about.output_intro_callout, cms.about.output_intro_text ) }} #}
+{{ list.header('output', "Research", cms.about.research_image, cms.about.output_intro_callout, cms.about.output_intro_text ) }}
 
-  <section id="output-introduction" class="bg-light block pb4 pt4">
-    {% if cms.about.research_image %}
-        <div class="block-background" style="background: url({{ cms.about.research_image.url }}); background-size: cover; background-position:center center;"> </div>
-    {% endif %}
 
-    <div class="container half three-quarter-xs block pb4 pt4">
+<section id="output" class="bg-white pb6" aside-enter>
+<div class="container-fluid">
+<div class="row">
 
-        {% set relevantTopics = 0 %}
-        {% set renderedTopics = 0%}
-        {% for topic in cms.topics %}
-            {% if topic.output_research_topics %}{% set relevantTopics = relevantTopics + 1 %}{%endif%}
-        {% endfor %}
-
-      <div class="row vertical-center">
-        <div class="col-sm-offset-3 col-sm-7 centered">
-        <h2 class="bold">{{ cms.about.output_intro_callout }}</h2>
-        <h3 class="">
-            {% if cms.about.output_intro_text %}
-                {{ cms.about.output_intro_text }}
-            {% else %}
-            GOV/LAB has published research about
-            {% for topic in cms.topics %}
-                {% if topic.output_research_topics %}
-                {% if renderedTopics > 0 %}, {% if renderedTopics == relevantTopics - 1 %}and {% endif %}{% endif %}
-                    <a class="" href="#output"><span data-sort-key="{{ topic.name|lower|replace(' ', '-', 'g') }}" class="header-topic">{{ topic.name }}</span></a>
-                    {% set renderedTopics = renderedTopics + 1 %}
-                {% endif %}
-            {% endfor %}.
-            {% endif %}
-        </h3>
-        </div>
-      </div>
-
+    <div id="sidebar"  class="col-sm-2 hidden-xs">
+    {% set page = "output" %}
+    {% include "templates/partials/aside.html" %}
     </div>
 
-  </section>
-
-  <section id="output" class="bg-white pb6" aside-enter>
-  <div class="container-fluid">
-  <div class="row">
-
-      <div id="sidebar"  class="col-sm-2">
-      {% set page = "output" %}
-      {% include "templates/partials/aside.html" %}
-      </div>
-
-      <div class="col-sm-9">
-      <ul id="output-list" class="">
+    <div class="col-sm-9">
+        <ul id="output-list" class="">
         {% for outputItem in output %}
 
             {{ o.outputcard( outputItem ) }}
 
         {% endfor %}
-        </div>
-      </ul>
-      </div>
+        </ul>
     </div>
-    </div>
-  </section>
+
+</div>
+</div>
+</section>
 
 {% set returnTo = {to: "Home", url: "/", aside: true } %}
 {% include 'templates/partials/prefooter.html' %}
