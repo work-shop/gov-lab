@@ -1,3 +1,4 @@
+{% import "templates/partials/list-header.html" as list %}
 
 {% extends "templates/partials/base.html" %}
 
@@ -5,12 +6,13 @@
 
 {% block content %}
 
-<section id="introduction bg-gray">
+<!-- <section id="introduction bg-gray">
     <div class="container block">
         <div class="row"><img src="{{ cms.about.about_image|imageSize(2500,500)}}" /></div>
     </div>
-</section>
+</section> -->
 
+{{ list.header( 'about', "About", cms.about.about_image ) }}
 
 <section id="what-we-do" class="bg-light pb2" aside-enter>
 	<div class="container-fluid">
