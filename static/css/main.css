@@ -2342,7 +2342,7 @@ hr.hr-brand {
 
 .relative-bottom {
   position: absolute;
-  bottom: 2em;
+  bottom: 1em;
 }
 
 .relative-mid {
@@ -2516,7 +2516,7 @@ hr.hr-brand {
 
   .relative-bottom {
     position: absolute;
-    bottom: 2em;
+    bottom: 1em;
   }
 
   .p-min {
@@ -2557,7 +2557,7 @@ hr.hr-brand {
 @media (min-width: 767px) {
   .relative-bottom {
     position: absolute;
-    bottom: 2em;
+    bottom: 1em;
   }
 
   *[aside-enter] {

@@ -1,4 +1,4 @@
-{% macro header( type, title, image, intro, summary ) %}
+{% macro header( type, title, image, intro, summary, caption ) %}
 
     <section id="{{ type }}-introduction" class="bg-light block">
 
@@ -16,9 +16,9 @@
                             <h1 class="mt0 white">{{ title }}</h1>
                         </div>
 
-                        {% if image.caption %}
+                        {% if caption %}
                         <div class="col-xs-5 col-xs-offset-6 relative-bottom righted">
-                            <p class="mt0 white caption"><span>{{ image.caption }}</span></p>
+                            <p class="mt0 white caption"><span>{{ caption }}</span></p>
                         </div>
                         {% endif %}
 
