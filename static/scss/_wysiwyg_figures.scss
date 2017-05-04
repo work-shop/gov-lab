@@ -3,10 +3,6 @@
         @extend .bold;
     }
 
-    h1,h2 {
-        @extend .brand;
-    }
-
     h1 {
         @extend .h3;
     }
@@ -40,7 +36,6 @@
             content: "…";
             margin-left: 1em;
             margin-right: 1em;
-            color: $brand;
         }
 
         margin-left: 2em;
@@ -55,7 +50,6 @@
             content: counter(section) ".";
             margin-left: 1em;
             margin-right: 1em;
-            color: $brand;
             font-weight: bold;
         }
 
