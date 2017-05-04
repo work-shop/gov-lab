@@ -2340,6 +2340,27 @@ hr.hr-brand {
   border-top: 1px solid #bebebe;
 }
 
+.news-thumbnail-block {
+  height: 20vw;
+  width: 100%;
+  margin-top: 1.5em;
+  border: 1px solid #222222;
+  background-size: cover;
+  background-position: center center;
+}
+
+@media (min-width: 1201px) {
+  .news-thumbnail-block {
+    height: 15vw;
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .news-thumbnail-block {
+    height: 50vw;
+    width: 100%;
+  }
+}
 .relative-bottom {
   position: absolute;
   bottom: 1em;

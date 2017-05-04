@@ -2,6 +2,8 @@
 
 {% import "templates/partials/list-header.html" as list %}
 
+{% import "templates/partials/updates-card.html" as u %}
+
 {% block title %}{% parent %} - Updates{% endblock %}
 
 {% block content %}
@@ -26,62 +28,7 @@
 
       {% for news in cms.news|sort('news_date', true) %}
 
-
-      <li id="{{ news.name|lower|replace(' ', '-', 'g') }}"class="col-xs-12 mb2 project-tint" > <!-- data-sort-value="{% if ( news.category ) %}{{ news.category.name|lower }}{% endif %} " -->
-          <div class="row">
-
-          {% if ( news.category ) %}
-          <div class="col-sm-offset-9 col-xs-12 col-sm-2 righted mb1">
-            <a data-sort-key="{{ news.category.name|lower }}" class="h6 uppercase">{{ news.category.name }}</a>
-          </div>
-          {% endif %}
-
-          <a href="{{ url(news) }}">
-
-          <div class="col-sm-12 col-xs-12">
-            <span class="block news-rule-xs"></span>
-          </div>
-
-
-          <div class="col-xs-12 col-sm-4 mt1 pt1">
-
-            <figure>
-            {% if ( news.cover_image ) %}
-
-              <img class="news-tile-image" src="{{ news.cover_image|imageSize(300) }}" alt="">
-
-            {% else %}
-
-              <img src="{{ news.cover_image|imageSize(300) }}" alt="">
-
-            {% endif %}
-            </figure>
-
-          </div>
-
-
-          <div class="col-xs-12 col-sm-5 pt2 centered-xs">
-            <h3 class="mb1 mt0 bold">{{ news.name }}</h3>
-            <p>{{ news.summary }}</p>
-          </div>
-
-
-          <div class="hidden-xs col-xs-12 col-sm-offset-1 col-sm-2  pt1 righted">
-
-          <h6 class="bold uppercase">
-            {% if news.news_date %}
-              {{ news.news_date|date('F Y') }}
-            {% else %}
-              {{ news.publish_date|date('F Y') }}
-            {% endif %}
-          </h6>
-          {% if ( news.author ) %} <h6 class="bold uppercase">{{ news.author.name }}</h6> {% endif %}
-
-          </div>
-          </a>
-
-      </div>
-      </li>
+        {{ u.update( news ) }}
 
       {% endfor %}
 
