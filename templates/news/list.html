@@ -10,6 +10,8 @@
 
 {{ list.header( 'news', "Updates", cms.about.news_image, cms.about.updates_intro_callout, cms.about.updates_intro_text, cms.about.news_image_caption ) }}
 
+{% include 'templates/partials/subscribe.html' %}
+
 <section id="news" class="bg-white mb6" aside-enter>
   <div class="container-fluid">
   <div class="row">
@@ -45,8 +47,6 @@
   </div>
 
 </section>
-
-{% include 'templates/partials/subscribe.html' %}
 
 {% set returnTo = {to: "Home", url: "/", aside: false } %}
 {% include 'templates/partials/prefooter.html' %}
