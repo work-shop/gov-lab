@@ -77,7 +77,7 @@
 
 {% if cms.about.home_page_news_item %}
 
-<section id="latest" class="padded">
+<section id="latest" class="padded bg-white">
 
   {% set latest = cms.about.home_page_news_item %}
 
@@ -121,6 +121,8 @@
 
 {% endif %}
 
+<div class="pb3">
 {% include "templates/partials/subscribe.html" %}
+</div>
 
 {% endblock %}
