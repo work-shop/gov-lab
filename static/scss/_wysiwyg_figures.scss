@@ -1,11 +1,69 @@
 .wysiwyg {
-    h3 {
+    h1,h2,h3,h4,h5 {
         @extend .bold;
     }
 
-    h4 {
-        @extend .bold;
+    h1,h2 {
+        @extend .brand;
     }
+
+    h1 {
+        @extend .h3;
+    }
+
+    h2 {
+        @extend .h4;
+    }
+
+    h3 {
+        @extend .h5;
+    }
+
+    h4 {
+        @extend .h6;
+    }
+
+    h5, h6 {
+        @extend p;
+    }
+
+
+
+    ol,ul {
+        list-style: none;
+        counter-reset: section;
+    }
+
+    ul li {
+        &::before {
+            @extend .pictogram;
+            content: "…";
+            margin-left: 1em;
+            margin-right: 1em;
+            color: $brand;
+        }
+
+        margin-left: 2em;
+        margin-bottom: 1em;
+        text-indent: -2.5em;
+
+    }
+
+    ol li {
+        &::before {
+            counter-increment: section;
+            content: counter(section) ".";
+            margin-left: 1em;
+            margin-right: 1em;
+            color: $brand;
+            font-weight: bold;
+        }
+
+        margin-left: 2em;
+        margin-bottom: 1em;
+        text-indent: -2.5em;
+    }
+
 }
 
 
