@@ -2361,9 +2361,14 @@ hr.hr-brand {
     width: 100%;
   }
 }
+.relative {
+  position: relative;
+}
+
 .relative-bottom {
   position: absolute;
-  bottom: 1em;
+  bottom: 0;
+  right: 3%;
 }
 
 .relative-mid {
@@ -2535,11 +2540,6 @@ hr.hr-brand {
     overflow-y: visible;
   }
 
-  .relative-bottom {
-    position: absolute;
-    bottom: 1em;
-  }
-
   .p-min {
     padding: .25em;
   }
@@ -2576,11 +2576,6 @@ hr.hr-brand {
   }
 }
 @media (min-width: 767px) {
-  .relative-bottom {
-    position: absolute;
-    bottom: 1em;
-  }
-
   *[aside-enter] {
     padding-top: 2em !important;
   }

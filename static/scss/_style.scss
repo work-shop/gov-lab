@@ -521,11 +521,14 @@ hr {
     }
 }
 
-
+.relative {
+    position: relative;
+}
 
 .relative-bottom {
     position: absolute;
-    bottom: 1em;
+    bottom:0;
+    right:3%;
 }
 
 .relative-mid {
@@ -736,11 +739,6 @@ hr {
         overflow-y: visible;
     }
 
-    .relative-bottom {
-        position: absolute;
-        bottom: 1em;
-    }
-
     .p-min {
         padding: .25em;
     }
@@ -787,10 +785,6 @@ hr {
 }
 
 @media (min-width: $xs-size) {
-    .relative-bottom {
-        position: absolute;
-        bottom: 1em;
-    }
 
 	*[aside-enter] {
 		padding-top: 2em !important;
