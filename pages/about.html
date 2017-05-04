@@ -118,9 +118,7 @@
 
 				{% for person in cms.peopleorder.people_order %}
 
-					{% if loop.index0 % 2 == 0 %}<div class="row">{% endif %}
-
-					<div class="teammember mb3  col-xs-5 col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2 {% if ( loop.index0 % 2 == 0 ) %}col-xs-offset-1{% endif %}">
+					<div class="teammember max-height-bounded mb3 col-xs-5 col-sm-3 col-sm-offset-1 {% if ( loop.index0 % 2 == 0 ) %}col-xs-offset-1{% endif %}">
                         <a href="{{ url( person ) }}">
     						{% if person.image %}<img class="teammember-image mb1" src="{{ person.image|imageCrop(500,500) }}" />{% endif %}
     						<h4 class="teammember-name bold">{{ person.name }}</h4>
@@ -128,8 +126,6 @@
     						<a href="mailto:{{ person.email }}">{{ person.email }}</a>
                         </a>
 					</div>
-
-					{% if loop.index0 % 2 == 1 || loop.index == cms.peopleorder.people_order.length %}</div>{% endif %}
 
 				{% endfor %}
 
@@ -155,15 +151,13 @@
 
 
 			{% for collaborator in cms.collaborators %}
-				{% if loop.index0 % 2 == 0 %}<div class="row">{% endif %}
 
-				<div class="collaborator bg-light p1 {% if ( loop.index0 % 2 == 0 ) %}col-xs-offset-1{% endif %} col-xs-5 col-sm-4 col-sm-offset-1 col-lg-3 col-lg-offset-2 mb2">
+				<div class="collaborator max-height-bounded bg-light p1 {% if ( loop.index0 % 3 == 0 ) %}col-xs-offset-1{% endif %} col-xs-3 col-sm-3 col-sm-offset-1 mb2">
 					{% if collaborator.website %}<a target="_blank" class="link" href="{{ collaborator.website }}">{% endif %}
 					<img class="collaborator-logo mb1" src="{{ collaborator.logo|imageSize(200,auto) }}" />
 					{% if collaborator.website %}</a>{% endif %}
 				</div>
 
-				{% if loop.index0 % 2 == 1 %}</div>{% endif %}
 
 			{% endfor %}
 
@@ -189,9 +183,11 @@
 			<div class="row">
 				{% for funder in cms.funders %}
 
-					<div class="funder {% if ( loop.index0 % 3 == 0 ) %}col-xs-offset-1{% endif %} col-xs-3 mb1">
+					<div class="funder max-height-bounded col-xs-offset-1 col-xs-5 col-sm-2 col-sm-offset-1 mb1">
 						{% if funder.website %}<a target="_blank" class="link" href="{{ funder.website }}">{% endif %}
-							<img class="funder-logo mb1" src="{{ funder.logo|imageSize(auto,200) }}" />
+
+							<img class="funder-logo mb1" src="{{ funder.logo|imageSize(auto,400) }}" />
+
 						{% if funder.website %}</a>{% endif %}
 
 					</div>

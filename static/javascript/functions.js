@@ -588,6 +588,9 @@ function maxHeightedSortValue( selector ) {
 $(document).ready( function() {
 
 	maxHeightedSortValue( '*[data-sort-value]' )();
+    maxHeightedSortValue( '.teammember' )();
+    maxHeightedSortValue( '.collaborator' )();
+    maxHeightedSortValue( '.funder' )();
 
 	$('*[data-sort-key]').on('click', function() {
 
@@ -598,6 +601,10 @@ $(document).ready( function() {
 	});
 
 	$(window).resize( maxHeightedSortValue( '*[data-sort-value]' ) );
+    $(window).resize( maxHeightedSortValue( '.teammember' ) );
+    $(window).resize( maxHeightedSortValue( '.collaborator' ) );
+    $(window).resize( maxHeightedSortValue( '.funder' ) );
+
 });
 
 
