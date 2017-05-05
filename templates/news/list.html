@@ -1,5 +1,7 @@
 {% extends "templates/partials/base.html" %}
 
+{% import "templates/partials/subscribe.html" as s %}
+
 {% import "templates/partials/list-header.html" as list %}
 
 {% import "templates/partials/updates-card.html" as u %}
@@ -10,7 +12,7 @@
 
 {{ list.header( 'news', "Updates", cms.about.news_image, cms.about.updates_intro_callout, cms.about.updates_intro_text, cms.about.news_image_caption ) }}
 
-{% include 'templates/partials/subscribe.html' %}
+{{ s.subscribe() }}
 
 <section id="news" class="bg-white pb2" aside-enter>
   <div class="container-fluid">

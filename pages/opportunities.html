@@ -1,16 +1,21 @@
 
 {% import "templates/partials/opportunity.html" as o %}
 
+{% import "templates/partials/subscribe.html" as s %}
+
+{% import "templates/partials/list-header.html" as list %}
+
 {% extends "templates/partials/base.html" %}
 
 {% block title %}{% parent %} - {{ cms.about.name }}{% endblock %}
 
 {% block content %}
 
-<script type="text/javascript">console.log({{ cms.opportunities.opportunities_background_image|json|safe  }});</script>
 
-<section id="opportunities-introduction" class="bg-light block">
-  <div class="block-background" style="background: {% if cms.opportunities.opportunities_background_image %} url({{ cms.opportunities.opportunities_background_image|imageSize(2500,500)}}) {% else %} white {% endif %}; background-size:cover; background-position:center center;"> </div>
+{{ list.header('opportunities', "Opportunities", cms.opportunities.opportunities_background_image, cms.opportunities.opportunities_header_text, cms.opportunities.opportunities_introductory_text ) }}
+
+<section id="opportunities" class="bg-light block">
+  <!-- <div class="block-background" style="background: {% if cms.opportunities.opportunities_background_image %} url({{ cms.opportunities.opportunities_background_image|imageSize(2500,500)}}) {% else %} white {% endif %}; background-size:cover; background-position:center center;"> </div>
 
   <div class="container half-strict block">
 
@@ -33,14 +38,14 @@
       </div>
     </div>
   </div>
-  {%endif %}
+  {%endif %} -->
 
   {{ o.opportunities("Jobs", cms.opportunities.jobs_introductory_text, cms.opportunities.jobs, "bg-white" ) }}
 
 
 </section>
 
-<section id="opportunities-footer" class="padded block centered">
+<section id="opportunities-footer" class="padded bg-white block centered">
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8">
@@ -58,7 +63,7 @@
 </section>
 
 
-{% include 'templates/partials/subscribe.html' %}
+{{ s.subscribe( "padded" ) }}
 
 {% set returnTo = {to: "Home", url: "/" } %}
 {% include 'templates/partials/prefooter.html' %}

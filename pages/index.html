@@ -1,3 +1,5 @@
+{% import "templates/partials/subscribe.html" as s %}
+
 {% extends "templates/partials/base.html" %}
 
 {% block title %}{% parent %}{% endblock %}
@@ -121,8 +123,6 @@
 
 {% endif %}
 
-<div class="pb3">
-{% include "templates/partials/subscribe.html" %}
-</div>
+{{ s.subscribe('pb3') }}
 
 {% endblock %}

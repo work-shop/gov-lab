@@ -1,3 +1,5 @@
+{% import "templates/partials/subscribe.html" as s %}
+
 {% import "templates/partials/list-header.html" as list %}
 
 {% extends "templates/partials/base.html" %}
@@ -200,7 +202,7 @@
 	</div>
 </section>
 
-{% include 'templates/partials/subscribe.html' %}
+{{ s.subscribe('padded') }}
 
 {% set returnTo = {to: "Home", url: "/",  aside: false } %}
 {% include 'templates/partials/prefooter.html' %}
