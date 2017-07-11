@@ -122,7 +122,7 @@ function ScrollObserver( watched ) {
 	 *
 	 * @param  {string} selector   a DOM selector to observe
 	 * @param  {string} callbackID the name of an event to fire on the satisfaction of predicate
-	 * @param  {Object -> Boolean} a boolean-valued function indicating whether to trigger callbackID
+	 * @param  {Object -> Boolean} predicate a boolean-valued function indicating whether to trigger callbackID
 	 */
 	self.observe = function( selector, callbackID, predicate ) {
 
@@ -373,7 +373,7 @@ $( document ).ready( function( ) {
 			if ( $(element).hasClass( 'open' ) ) {
 
 				$( element ).removeClass( 'open' ).addClass('closed');
-				$('.overlay' + clicked ).removeClass( 'closed' ).addClass('open').fadeOut( $( element ).css('transition-duration') );
+				$('.overlay' + clicked ).removeClass( 'open' ).addClass('closed').fadeOut( $( element ).css('transition-duration') );
 				$( document.body ).css({overflow: 'scroll'});
 
 			} else {
@@ -391,6 +391,15 @@ $( document ).ready( function( ) {
 	$('.subscribe-trigger').on('click', cycle( '.subscribe-trigger', '#subscribe-box'));
 
     $('.search-trigger').on('click', cycle( '.search-trigger', '#search-box'));
+
+    $(document).keydown(function(e) {
+    	if(e.which == 27){
+            $('.overlay-box').removeClass( 'open' ).addClass('closed');
+            $('.overlay' ).removeClass( 'open' ).addClass('closed').fadeOut( $( '.overlay-box' ).css('transition-duration') );
+            $( document.body ).css({overflow: 'scroll'});
+        }
+    });
+
 });
 
 
@@ -610,6 +619,10 @@ $(document).ready( function() {
 
 
 //FUNCTIONS
+
+
+
+//keyboard pressed up arrow
 
 //keyboard pressed m or M
 
