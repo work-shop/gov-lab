@@ -1,5 +1,18 @@
 {# This is a collection of macros dealing with row content in the format of search results #}
 
+{# this macro generates a reverse chronological list of content, without regard for type. #}
+{% macro reverse_chronological( items ) %}
+    {% for item in items|sort('publish_date', true) %}
+        {% if item._type == "news" %}
+            {{ update( item ) }}
+        {% elseif item._type == "projects" %}
+            {{ project( item ) }}
+        {% elseif item._type == "output" %}
+            {{ research( item ) }}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
 {# this macro generates a row representation for an update JSON structure. #}
 {% macro update( item ) %}
     <li class="p0 col-sm-offset-1 col-sm-10 project-result search-result mb3">

@@ -48,6 +48,17 @@
         </li>
     {% endif %}
 
+    {% if item.related_research %}
+        <li class="sidebar-item sidebar-team-members">
+            <ul>
+                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Related Research</li>
+                {% for output in item.related_research %}
+                    <li class="h5 uppercase {% if ( loop.index == item.related_research|size ) %}mb1 mt0{% endif %}"><a href="{{ url( output ) }}">{{ output.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endif %}
+
     {% if item.related_updates %}
         <li class="sidebar-item sidebar-team-members">
             <ul>
