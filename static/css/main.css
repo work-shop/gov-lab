@@ -2016,9 +2016,6 @@ a:hover {
   color: #cc3333;
   border-color: #cc3333;
 }
-a.link:hover {
-  border-bottom: 1px solid transparent;
-}
 
 .sync {
   color: #cc3333;
@@ -2029,18 +2026,6 @@ a.link:hover {
   -webkit-transition: all 0.1s 0s ease;
   -o-transition: all 0.1s 0s ease;
   -ms-transition: all 0.1s 0s ease;
-}
-.sync.active {
-  border-bottom: 2px solid #222222;
-}
-.sync:hover {
-  transform: skewX(-5deg);
-  -moz-transform: skewX(-5deg);
-  -webkit-transform: skewX(-5deg);
-  -o-transform: skewX(-5deg);
-  -ms-transform: skewX(-5deg);
-  border-bottom: 2px solid #cc3333;
-  line-height: 1.5em;
 }
 
 header a, footer a {
@@ -2096,6 +2081,7 @@ header.fixed {
 #logo a {
   display: block;
   width: 140px;
+  border: none;
 }
 
 /********** @MENU *********/
@@ -2590,12 +2576,11 @@ hr.hr-brand {
   overflow: hidden;
 }
 
-/********** @RESPONSIVE *********/
-@media (min-width: 768px) {
-  #nav {
-    padding-top: 2px;
-  }
+#nav {
+  padding-top: 2px;
 }
+
+/********** @RESPONSIVE *********/
 @media (min-width: 1201px) {
   .header-box {
     overflow-y: hidden;
