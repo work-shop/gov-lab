@@ -95,6 +95,12 @@ flexslider
   }
 }
 
+@for $i from 0 through 9 {
+  .b#{$i} {
+  	border: 1em * $i;
+  }
+}
+
 .p-min {
     padding: .5em;
 }

@@ -694,6 +694,46 @@ flexslider
   padding-right: 9em;
 }
 
+.b0 {
+  border: 0em;
+}
+
+.b1 {
+  border: 1em;
+}
+
+.b2 {
+  border: 2em;
+}
+
+.b3 {
+  border: 3em;
+}
+
+.b4 {
+  border: 4em;
+}
+
+.b5 {
+  border: 5em;
+}
+
+.b6 {
+  border: 6em;
+}
+
+.b7 {
+  border: 7em;
+}
+
+.b8 {
+  border: 8em;
+}
+
+.b9 {
+  border: 9em;
+}
+
 .p-min {
   padding: .5em;
 }
@@ -1805,7 +1845,6 @@ p, .wysiwyg h5, .wysiwyg h6 {
   content: "…";
   margin-left: 1em;
   margin-right: 1em;
-  color: #cc3333;
 }
 .wysiwyg ol li {
   margin-left: 2em;
@@ -1817,7 +1856,6 @@ p, .wysiwyg h5, .wysiwyg h6 {
   content: counter(section) ".";
   margin-left: 1em;
   margin-right: 1em;
-  color: #cc3333;
   font-weight: bold;
 }
 
