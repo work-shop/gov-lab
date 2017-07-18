@@ -2591,6 +2591,11 @@ hr.hr-brand {
 }
 
 /********** @RESPONSIVE *********/
+@media (min-width: 768px) {
+  #nav {
+    padding-top: 2px;
+  }
+}
 @media (min-width: 1201px) {
   .header-box {
     overflow-y: hidden;
@@ -2618,6 +2623,10 @@ hr.hr-brand {
   header {
     padding: 15px 0px 12px 0px;
     height: 85px;
+  }
+
+  #nav {
+    padding-top: 10px;
   }
 
   #header-shadow {
