@@ -23,7 +23,7 @@
 			</ul>
 		</div>
 		<div class="col-xs-4 col-sm-3">
-			<h4 class="bold mb2"><a class="sync" href="/projects">Selected Projects</a></h4>
+			<h4 class="bold mb2"><a class="sync" href="/projects">Selected {{ projects_name }}</a></h4>
 			<ul>
 			{% for project in cms.projects|slice(0,projectLength) %}
 				<li><h5><a class="sync {% if  ( getCurrentUrl() == url( project ) ) %} active {% endif %}" href="{{ url( project ) }}">{{ project.shortname }}</a></h5></li>
@@ -31,7 +31,7 @@
 			</ul>
 		</div>
         <div class="col-xs-4 col-sm-3">
-			<h4 class="bold mb2"><a class="sync" href="/news">Featured Output</a></h4>
+			<h4 class="bold mb2"><a class="sync" href="/news">Featured {{ output_name }}</a></h4>
 			<ul>
 			{% for output in cms.output|slice(0,outputLength) %}
 				<li><h5><a class="sync {% if  ( getCurrentUrl() == url( output ) ) %} active{% endif %}" href="{{ url( output ) }}">{{ output.name }}</a></h5></li>
@@ -39,7 +39,7 @@
 			</ul>
 		</div>
 		<div class="col-xs-4 col-sm-3 hidden">
-			<h4 class="bold mb2"><a class="sync" href="/news">Featured Updates</a></h4>
+			<h4 class="bold mb2"><a class="sync" href="/news">Featured {{ news_name }}</a></h4>
 			<ul>
 			{% for news in cms.news|slice(0,newsLength) %}
 				<li><h5><a class="sync {% if  ( getCurrentUrl() == url( news ) ) %} active{% endif %}" href="{{ url( news ) }}">{{ news.name }}</a></h5></li>

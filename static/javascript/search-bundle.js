@@ -258,7 +258,7 @@ var moment = require('moment');
  * type, and render these results in the search window.
  *
  */
-module.exports = function( search ) {
+module.exports = function( search, names ) {
     var queryInput = $( '#search-input' );
     var queryOutput = $('#results');
     var queryResultCount = $('#result-count');
@@ -277,13 +277,13 @@ module.exports = function( search ) {
     function describe( count, type ) {
         switch ( type ) {
             case "projects":
-                return (count === 1) ? "Project" : "Projects";
+                return (count === 1) ? names.projects.singular : names.projects.plural;
 
             case "news":
-                return (count === 1) ? "Update" : "Updates";
+                return (count === 1) ? names.news.singular : names.news.plural;
 
             case "output":
-                return (count === 1) ? "Research Result" : "Research Results";
+                return (count === 1) ? names.output.singular : names.output.plural;
 
             default:
                 throw new Error('Search: Unrecognized Result Type (' + type + ').' );
@@ -304,7 +304,7 @@ module.exports = function( search ) {
 
                 results[ type ].forEach( function( result ) {
 
-                    var renderedResult = render[ type ]( result );
+                    var renderedResult = render[ type ]( result, names );
 
                     queryOutput.append( renderedResult );
                     renderedResult.removeClass('invisible');
@@ -336,9 +336,10 @@ module.exports = function( search ) {
 
 };
 
-},{"./template-cards.js":8,"moment":6}],4:[function(require,module,exports){
+},{"./template-cards.js":9,"moment":6}],4:[function(require,module,exports){
 console.log('[search] search module required.');
 
+var config = require('./package.json').names;
 var lift = require('./document-lift.js');
 var index = require('./document-index.js');
 var render = require('./document-render.js');
@@ -350,9 +351,9 @@ var render = require('./document-render.js');
 var Search = index( lift( data ) )();
 
 
-render( Search );
+render( Search, config );
 
-},{"./document-index.js":1,"./document-lift.js":2,"./document-render.js":3}],5:[function(require,module,exports){
+},{"./document-index.js":1,"./document-lift.js":2,"./document-render.js":3,"./package.json":8}],5:[function(require,module,exports){
 /**
  * lunr - http://lunrjs.com - A bit like Solr, but much smaller and not as bright - 0.7.2
  * Copyright (C) 2016 Oliver Nightingale
@@ -6988,6 +6989,58 @@ return hooks;
 }));
 
 },{}],8:[function(require,module,exports){
+module.exports={
+  "name": "gov-lab-search",
+  "version": "1.0.0",
+  "description": "Search module for the GOV/LAB website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watchify index.js -o ../gov-lab-site/static/javascript/search-bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/work-shop/gov-lab-seach.git"
+  },
+  "keywords": [
+    "search",
+    "gov-lab",
+    "webhook",
+    "client-side",
+    "browserify"
+  ],
+  "author": "nicschumann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/work-shop/gov-lab-seach/issues"
+  },
+  "homepage": "https://github.com/work-shop/gov-lab-seach#readme",
+  "devDependencies": {
+    "watchify": "^3.8.0"
+  },
+  "dependencies": {
+    "lunr": "^0.7.2",
+    "moment": "^2.17.1",
+    "spelling": "^1.0.0",
+    "striptags": "^2.1.1"
+  },
+  "names": {
+      "projects": {
+          "singular": "Research Project",
+          "plural": "Research Projects"
+      },
+      "output": {
+          "singular": "Resource",
+          "plural": "Resources"
+      },
+      "news": {
+          "singular": "Update",
+          "plural": "Updates"
+      }
+  }
+}
+
+},{}],9:[function(require,module,exports){
 "use strict";
 
 var moment = require('moment');
@@ -7009,7 +7062,7 @@ module.exports = {
     // </li>
 
 
-    "projects": function( result ) {
+    "projects": function( result, names ) {
         if ( typeof result.image !== "undefined" ) {
             return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb3")
                    .append( $('<a>').attr('href', result.slug).attr('class', 'link')
@@ -7017,7 +7070,7 @@ module.exports = {
                                 .append( $('<div>').attr('class', 'related-image-block').attr('style', ['background-image:url(\'', [result.image,'=w300-h200'].join(''), '\');'].join('') ) )
                             )
                             .append( $('<div>').attr('class', 'col-sm-10')
-                                     .append( $('<span>').attr('class', "h6 uppercase output-type bold mt0").text( "Project" ) )
+                                     .append( $('<span>').attr('class', "h6 uppercase output-type bold mt0").text( names.projects.singular ) )
                                      .append( $('<span>').attr('class', "h6 bold uppercase gray mt0").text( ', ' + result.timeline ) )
                                      .append( $('<h4>').attr('class', "bold mt0").text( result.title ) )
                                      .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.summary ) )
@@ -7027,7 +7080,7 @@ module.exports = {
         } else {
             return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb3")
                    .append( $('<a>').attr('href', result.slug).attr('class', 'link')
-                            .append( $('<h6>').attr('class', "output-type uppercase bold brand mt0").text( "Project" ) )
+                            .append( $('<h6>').attr('class', "output-type uppercase bold brand mt0").text( names.projects.singular ) )
                             .append( $('<div>').attr('class', 'col-sm-12')
                                      .append( $('<h6>').attr('class', "bold uppercase mt0").text( ', ' + result.timeline ) )
                                      .append( $('<h4>').attr('class', "bold mt0").text( result.title ) )
@@ -7037,7 +7090,7 @@ module.exports = {
         }
     },
 
-    "news": function( result ) {
+    "news": function( result, names ) {
 
         if ( typeof result.image !== "undefined" ) {
             return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb3")
@@ -7046,7 +7099,7 @@ module.exports = {
                             .append( $('<div>').attr('class', 'related-image-block').attr('style', ['background-image:url(\'', [result.image,'=w300-h200'].join(''), '\');'].join('') ) )
                         )
                         .append( $('<div>').attr('class', 'col-sm-10 col-xs-12')
-                                 .append( $('<span>').attr('class', "h6 output-type uppercase bold mt0").text( "Update" ) )
+                                 .append( $('<span>').attr('class', "h6 output-type uppercase bold mt0").text( names.news.singular ) )
                                  .append( $('<span>').attr('class', "h6 gray bold uppercase mt0").text( ', ' + moment( result.date ).format('MMMM Y') ) )
                                  .append( $('<h4>').attr('class', "bold mt0").text( result.title ) )
                                  .append( $('<p>').attr('class', "project-description small hidden-xs").text( result.summary ) )
@@ -7057,7 +7110,7 @@ module.exports = {
         } else {
             return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb3")
                     .append( $('<a>').attr('href', result.slug).attr('class', 'link')
-                        .append( $('<h6>').attr('class', "col-sm-12 output-type bold brand mt0").text( "Update" ) )
+                        .append( $('<h6>').attr('class', "col-sm-12 output-type bold brand mt0").text( names.news.singular ) )
                         .append( $('<div>').attr('class', 'col-sm-12 col-xs-12')
                                  .append( $('<h6>').attr('class', "bold uppercase mt0").text( moment( result.date ).format('MMMM Y') ) )
                                  .append( $('<h4>').attr('class', "bold mt0").text( result.title ) )
@@ -7069,7 +7122,7 @@ module.exports = {
         }
     },
 
-    "output": function( result ) {
+    "output": function( result, names ) {
         if ( typeof result.image !== "undefined" ) {
             return $('<li>').attr('class', "invisible p0 col-xs-12 project-result search-result mb3")
                    .append( $('<a>').attr('href', result.slug).attr('class', 'link')
