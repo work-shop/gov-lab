@@ -45,6 +45,11 @@ a {
         border-color: $brand;
 	}
 
+    &.skew-field:hover {
+        border-bottom:1px solid transparent;
+		color: $brand;
+	}
+
 }
 
 .sync {
@@ -79,7 +84,6 @@ header .sync, footer .sync {
 }
 
 header .pictogram, footer .pictogram {
-    color: $dark;
     text-decoration: none;
 
 	&:hover {

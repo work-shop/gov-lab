@@ -1,9 +1,12 @@
 {% set projectLength = 5 %}
 {% set newsLength = 4 %}
 {% set outputLength = 4 %}
+{% import "templates/partials/social.html" as s %}
 
 <footer>
 	<div class="container-fluid">
+
+    {{ s.socialfooter() }}
 
 	<div class="row bg-light padded">
 		<div id="footer-logo" class="col-sm-offset-1 col-sm-3 hidden-xs">
