@@ -1,3 +1,18 @@
+{% macro subscribeform( classes ) %}
+
+<div class="subscribe-box bg-light pt2">
+
+    {% include "templates/partials/subscribe-mce-form.html" %}
+
+</div>
+
+<div class="col-xs-offset-1 col-xs-10">
+    <div class="prjects-rule"></div>
+</div>
+
+{% endmacro %}
+
+
 {% macro subscribe( classes ) %}
 
     <div id="overlay" class="overlay bg-dark off subscribe-trigger"></div>

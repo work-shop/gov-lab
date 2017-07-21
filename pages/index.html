@@ -25,9 +25,9 @@
 
   <div class="row">
     <div class="col-sm-offset-2 col-sm-8 centered">
-      <h3 class="tagline">The MIT GOV/LAB is a group of political scientists focusing on innovation in citizen engagement and government responsiveness.</h3>
+      <h3 class="tagline mb1">The MIT GOV/LAB is a group of political scientists focusing on innovation in citizen engagement and government responsiveness.</h3>
+      <a class="uppercase sync" href="/about">Read more about us</a>
     </div>
-
   </div>
 
 </div>
@@ -40,7 +40,7 @@
     <div id="map-callout" class="col-sm-3 col-xs-12">
       <h3 class="mb1">Our work spans <br/> the globe.</h3>
       <p class="mb2 hidden-xs hidden-sm">We take a special interest in citizen engagement by under resourced groups and government accountability in challenging contexts.</p>
-      <a class="uppercase sync" href="/projects">See All Projects</a>
+      <a class="uppercase sync" href="/projects">See All {{ projects_name }}</a>
     </div>
 </section>
 
@@ -123,6 +123,6 @@
 
 {% endif %}
 
-{{ s.subscribe('pb3') }}
+{{ s.subscribeform('pb3') }}
 
 {% endblock %}
