@@ -1832,6 +1832,9 @@ p, .wysiwyg h5, .wysiwyg h6 {
     opacity: .25;
   }
 }
+.wysiwyg p, .wysiwyg h5, .wysiwyg h6 {
+  margin-bottom: 1.5em;
+}
 .wysiwyg ol, .wysiwyg ul {
   list-style: none;
   counter-reset: section;
