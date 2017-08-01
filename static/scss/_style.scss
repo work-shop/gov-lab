@@ -91,6 +91,17 @@ header .pictogram, footer .pictogram {
 	}
 }
 
+.home-page-icon {
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    color:darken($light, 10%);
+    font-size:7em;
+    z-index: -500;
+}
+
 /********** @HEADER  *********/
 
 header {

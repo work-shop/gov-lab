@@ -1,4 +1,5 @@
 {% import "templates/partials/subscribe.html" as s %}
+{% import "templates/partials/index-content-overview.html" as o %}
 
 {% extends "templates/partials/base.html" %}
 
@@ -32,6 +33,8 @@
 
 </div>
 </section>
+
+{{ o.contentoverview() }}
 
 <section id="home-map" class="bg-light block half-lax crop">
 

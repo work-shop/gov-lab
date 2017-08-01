@@ -2058,6 +2058,16 @@ header .pictogram:hover, header .wysiwyg ul li:hover::before, .wysiwyg ul header
   font-weight: normal;
 }
 
+.home-page-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: #d8d8d8;
+  font-size: 7em;
+  z-index: -500;
+}
+
 /********** @HEADER  *********/
 header {
   padding: 42px 0px 30px 0px;

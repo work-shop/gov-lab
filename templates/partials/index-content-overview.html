@@ -1,0 +1,28 @@
+{% macro contentoverview() %}
+
+<section id="home-content-overview" class="bg-light padded hidden-xs">
+    <div class="container block">
+        <div class="row centered">
+            <div class="col-sm-4">
+                <h2 class="home-page-icon pictogram">r</h2>
+                <h3 class="tagline mb1">Collaborate</h3>
+                <p class="mb1">We are committed to applied research, building partnerships across MIT and beyond.</p>
+                <a class="uppercase sync" href="/{{ url( cms.projects ) }}">Browse our {{ projects_name }}</a>
+            </div>
+            <div class="col-sm-4">
+                <h2 class="home-page-icon pictogram">K</h2>
+                <h3 class="tagline mb1">Learn</h3>
+                <p class="mb1">We seek to pioneer new theories and define new research agendas.</p>
+                <a class="uppercase sync" href="/{{ url( cms.output ) }}">See our {{ output_name }}</a>
+            </div>
+            <div class="col-sm-4">
+                <h2 class="home-page-icon pictogram">a</h2>
+                <h3 class="tagline mb1">Engage</h3>
+                <p class="mb1">Stay up to date with our latest work, and find opportunities to connect!</p>
+                <a class="uppercase sync" href="/{{ url( cms.news ) }}">Stay up to date</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endmacro %}
