@@ -6,13 +6,25 @@
 <footer>
 	<div class="container-fluid">
 
-    {{ s.socialfooter() }}
+    {# {{ s.socialfooter() }} #}
 
 	<div class="row bg-light padded">
 		<div id="footer-logo" class="col-sm-offset-1 col-sm-3 hidden-xs">
-			<a class="link" href="/">
-				<img class="grayscale" src="/static/images/mitgovlab.png" alt="logo"/>
-			</a>
+            <div class="row">
+                <div class="col-sm-12">
+        			<a class="link" href="/">
+        				<img class="grayscale" src="/static/images/mitgovlab.png" alt="logo"/>
+        			</a>
+                </div>
+                <div class="col-sm-12 centered">
+                    <a class="link sync dark h2 skew-field" target="_blank" href="http://twitter.com/mitgovlab">
+                        <span class="icon pictogram dark">t</span>
+                    </a>
+                </div>
+                <div class="col-sm-12">
+                    <h6 class="text">Connect with us on Twitter.</h6>
+                </div>
+            </div>
 		</div>
 
 		<div class="col-xs-4 col-sm-2">
