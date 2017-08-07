@@ -1,9 +1,9 @@
 @font-face {
     font-family: 'modern_pictograms_proregular';
-    src: url('/static/fonts/modernpictogramspro_234.eot');
-    src: url('/static/fonts/modernpictogramspro_234?#iefix') format('embedded-opentype'),
-		url('/static/fonts/modernpictogramspro_234.woff') format('woff'),
-		url('/static/fonts/modernpictogramspro_234.ttf') format('truetype');
+    src: url('/static/fonts/modernpics_2_268e-webfont.eot');
+    src: url('/static/fonts/modernpics_2_268e-webfont.eot?#iefix') format('embedded-opentype'),
+		url('/static/fonts/modernpics_2_268e-webfont.woff') format('woff'),
+		url('/static/fonts/modernpics_2_268e-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }

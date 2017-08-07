@@ -2019,6 +2019,9 @@ a:hover {
   color: #cc3333;
   border-color: #cc3333;
 }
+a.link:hover {
+  border-color: transparent;
+}
 a.skew-field:hover {
   border-bottom: 1px solid transparent;
   color: #cc3333;

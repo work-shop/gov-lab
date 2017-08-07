@@ -45,6 +45,10 @@ a {
         border-color: $brand;
 	}
 
+    &.link:hover {
+        border-color: transparent;
+    }
+
     &.skew-field:hover {
         border-bottom:1px solid transparent;
 		color: $brand;
@@ -100,6 +104,10 @@ header .pictogram, footer .pictogram {
     color:darken($light, 10%);
     font-size:7em;
     z-index: -500;
+}
+
+.home-content-guidepost {
+
 }
 
 /********** @HEADER  *********/
