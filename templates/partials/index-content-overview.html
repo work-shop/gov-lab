@@ -1,28 +1,145 @@
+{% import "templates/partials/row-cards.html" as cards %}
+
+{% set home_image_width = 500 %}
+{% set home_image_height = 350 %}
+
 {% macro contentoverview() %}
 
-<section id="home-content-overview" class="bg-light padded hidden-xs">
+<section id="home-content-overview" class="bg-light pt2 hidden-xs">
     <div class="container block">
         <div class="row centered">
             <div class="col-sm-4">
-                <h2 class="home-page-icon pictogram">r</h2>
-                <h3 class="tagline mb1">Collaborate</h3>
-                <p class="mb1">We are committed to applied research, building partnerships across MIT and beyond.</p>
-                <a class="uppercase sync" href="/{{ url( cms.projects ) }}">Browse our {{ projects_name }}</a>
+                <h2 class="pictogram h1 brand"></h2>
+                <h3 class="bold dark tagline mb1"><a class="u0 link dark" href="#home-content-research">{{ projects_name }} <span class="pictogram">ﬁ</span></a></h3>
+                <p class="mb1 hidden">We are committed to applied research, building partnerships across MIT and beyond.</p>
             </div>
             <div class="col-sm-4">
-                <h2 class="home-page-icon pictogram">K</h2>
-                <h3 class="tagline mb1">Learn</h3>
-                <p class="mb1">We seek to pioneer new theories and define new research agendas.</p>
-                <a class="uppercase sync" href="/{{ url( cms.output ) }}">See our {{ output_name }}</a>
+                <h2 class="pictogram h1 brand">ù</h2>
+                <h3 class="bold dark tagline mb1"><a class="u0 link dark" href="#home-content-updates">{{ news_name }} <span class="pictogram">ﬁ</span></a></h3>
+                <p class="mb1 hidden">Stay up to date with our latest work, and find opportunities to connect!</p>
             </div>
             <div class="col-sm-4">
-                <h2 class="home-page-icon pictogram">a</h2>
-                <h3 class="tagline mb1">Engage</h3>
-                <p class="mb1">Stay up to date with our latest work, and find opportunities to connect!</p>
-                <a class="uppercase sync" href="/{{ url( cms.news ) }}">Stay up to date</a>
+                <h2 class="pictogram h1 brand">7</h2>
+                <h3 class="bold dark tagline mb1"><a class="u0 link dark" href="#home-content-results">{{ output_name }} <span class="pictogram">ﬁ</span></a></h3>
+                <p class="mb1 hidden">We seek to pioneer new theories and define new research agendas.</p>
             </div>
         </div>
     </div>
 </section>
+
+{% endmacro %}
+
+{% macro researchsection( introduction, projects ) %}
+
+<section id="home-content-research" class="bg-white padded">
+<div class="container block">
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-10">
+            <div class="row">
+                <div class="home-content-guidepost col-sm-4 col-lg-4 mb2">
+                    <div class="">
+                            <h3 class="bold mb1 ">{{ introduction }}</h3>
+                            <a class="uppercase sync" href="/projects">Explore our research</a>
+                    </div>
+                </div>
+                {% for project in projects %}
+                    <div class="project-home-page-card col-sm-4 col-lg-4 mb2 centered">
+                        <a href="{{ url( project ) }}">
+                            <img class="project-tint project-tile-image mb1" src="{{ project.images|first|imageCrop(600, 350) }}" />
+                            <h4 class="mt0">{{ project.shortname }}</h4>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+    </div>
+</div>
+</section>
+
+{% endmacro %}
+
+
+{% macro resultssection( introduction, results ) %}
+    <section id="home-content-results" class="bg-white padded">
+    <div class="container block">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-10">
+                <div class="row">
+                    <div class="home-content-guidepost col-sm-4 mb2">
+                        <div class="">
+                                <h3 class="bold mb1">{{ introduction }}</h3>
+                                <a class="uppercase sync" href="/output">Read our {{ output_name }}</a>
+                        </div>
+                    </div>
+                    {% for result in results %}
+                        <div class="result-home-page-card col-sm-4 mb2">
+                            <a href="{{ url( result ) }}">
+                                <div class="row centered">
+                                <div class="col-xs-12 col-lg-offset-2 col-lg-8">
+                                <img class="project-tint project-tile-image mb1" src="{{ result.cover_image|imageCrop(600, 350) }}" />
+                                </div>
+                                </div>
+                                <h5 class="mt0 centered">{{ result.name }}</h5>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+        </div>
+        </div>
+    </div>
+    </section>
+{% endmacro %}
+
+{% macro updatessection( introduction, updates ) %}
+<section class="home-content-updates bg-white padded">
+    <div class="container block">
+    <div class="col-sm-offset-1 col-sm-10">
+    <div class="row">
+
+        <div class="row">
+            <div class="col-sm-4 home-content-guidepost mb2">
+                <div class="">
+                    <h3 class="bold mb1">{{ introduction }}</h3>
+                    <a class="uppercase sync" href="/news">See all of our updates</a>
+                </div>
+            </div>
+
+            {% for update in updates %}
+
+                {% if loop.index % 3 == 0 %}
+                        <div class="row">
+                {% endif %}
+
+                <div class="update-home-page-card col-sm-4 mb2">
+                    <a href="{{ url( update ) }}">
+                        <img class="project-tint project-tile-image mb1" src="{{ update.cover_image|imageCrop(600, 350) }}" />
+                        <h5 class="mt0 centered">{{ update.name }}</h5>
+                        <h6 class="light">{{ update.publication_date|date('F Y') }}</h6>
+                    </a>
+                </div>
+
+                {% if loop.index % 3 == 2 %}
+                        </div>
+                {% endif %}
+
+            {% endfor %}
+
+    </div>
+    </div>
+    </div>
+</section>
+
+{% endmacro %}
+
+
+{% macro homecontentdivider( color, classes ) %}
+
+    <section class="divider {{ color }}">
+        <div class="row">
+            <div class="col-xs-offset-5 col-sm-2 {{ classes }}">
+                <div class="projects-rule"></div>
+            </div>
+        </div>
+    </section>
 
 {% endmacro %}
