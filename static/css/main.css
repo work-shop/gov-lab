@@ -1631,7 +1631,7 @@ p, .wysiwyg h5, .wysiwyg h6 {
     text-align: inherit;
   }
 }
-.bold, input:focus, textarea:focus, input[type="submit"], textarea[type="submit"], .back-to-home, .map-button, .wysiwyg h1, .wysiwyg h2, .wysiwyg h3, .wysiwyg h4, .wysiwyg .project-tile-title, .wysiwyg h5, figure[data-type=quote], figure[data-type=quote] blockquote, figure[data-type=quote] figcaption, figure[data-type=quote] cite, a.active, .sync, header a:hover, footer a:hover, .sort-key.active, .project-tile-title, .output-link {
+.bold, input:focus, textarea:focus, input[type="submit"], textarea[type="submit"], .back-to-home, .map-button, .wysiwyg h1, .wysiwyg h2, .wysiwyg h3, .wysiwyg h4, .wysiwyg .project-tile-title, .wysiwyg h5, figure[data-type=quote], figure[data-type=quote] blockquote, figure[data-type=quote] figcaption, figure[data-type=quote] cite, a.active, .sync, header a:hover, footer a:hover, .sort-key.active, .project-tile-title, .output-link, b, strong {
   font-family: "SimplonNormMedium", Helvetica, arial, sans-serif;
 }
 
