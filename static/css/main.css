@@ -2281,6 +2281,17 @@ aside .active {
   cursor: pointer;
 }
 
+#mc_embed_signup_scroll {
+  font-size: .8em;
+}
+#mc_embed_signup_scroll input[type="submit"] {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding-top: 5px;
+  padding-bottom: 6px;
+}
+
 #subscribe-box {
   position: fixed;
   padding: 0px;
@@ -2289,6 +2300,7 @@ aside .active {
   z-index: 150;
   top: 2.5%;
   left: 0;
+  font-size: .8em;
   overflow: scroll;
   transform: skewX(-5deg) translateX(-200%);
   -moz-transform: skewX(-5deg) translateX(-200%);
