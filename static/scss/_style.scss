@@ -662,13 +662,29 @@ hr {
     @include transition( all, .2s );
 
     &:hover {
-        @extend .pictogram;
+        font-family: "modern_pictograms_proregular";
         top:-0.35em;
         font-size: 1.75em;
         color: $brand !important;
     }
-
 }
+
+
+
+@media ($xs-query) {
+    #search-trigger-button {
+        top:-.30em;
+        font-size: 1.9em;
+
+        &:hover {
+            font-family: "modern_pictograms_proregular";
+            top:-.35em;
+            font-size: 2.1em;
+            color: $brand !important;
+        }
+    }
+}
+
 
 #search-input {
 	border:0px;

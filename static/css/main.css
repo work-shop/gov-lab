@@ -1704,7 +1704,7 @@ p, .wysiwyg h5, .wysiwyg h6 {
   }
 }
 /********** @ICONS *********/
-.pictogram, .wysiwyg ul li::before, #search-trigger-button:hover, #twitter-trigger-button:hover, .search-button {
+.pictogram, .wysiwyg ul li::before, .search-button {
   font-family: "modern_pictograms_proregular";
 }
 
@@ -2055,10 +2055,10 @@ header .sync:hover, footer .sync:hover, menu .sync:hover {
   -ms-transition: all 0.375s 0s ease;
 }
 
-header .pictogram, header .wysiwyg ul li::before, .wysiwyg ul header li::before, header #search-trigger-button:hover, header #twitter-trigger-button:hover, header .search-button, footer .pictogram, footer .wysiwyg ul li::before, .wysiwyg ul footer li::before, footer #search-trigger-button:hover, footer #twitter-trigger-button:hover, footer .search-button {
+header .pictogram, header .wysiwyg ul li::before, .wysiwyg ul header li::before, header .search-button, footer .pictogram, footer .wysiwyg ul li::before, .wysiwyg ul footer li::before, footer .search-button {
   text-decoration: none;
 }
-header .pictogram:hover, header .wysiwyg ul li:hover::before, .wysiwyg ul header li:hover::before, header #search-trigger-button:hover, header #twitter-trigger-button:hover, header .search-button:hover, footer .pictogram:hover, footer .wysiwyg ul li:hover::before, .wysiwyg ul footer li:hover::before, footer #search-trigger-button:hover, footer #twitter-trigger-button:hover, footer .search-button:hover {
+header .pictogram:hover, header .wysiwyg ul li:hover::before, .wysiwyg ul header li:hover::before, header .search-button:hover, footer .pictogram:hover, footer .wysiwyg ul li:hover::before, .wysiwyg ul footer li:hover::before, footer .search-button:hover {
   font-weight: normal;
 }
 
@@ -2538,11 +2538,24 @@ hr.hr-brand {
   -ms-transition: all 0.2s 0s ease;
 }
 #search-trigger-button:hover, #twitter-trigger-button:hover {
+  font-family: "modern_pictograms_proregular";
   top: -0.35em;
   font-size: 1.75em;
   color: #cc3333 !important;
 }
 
+@media (max-width: 767px) {
+  #search-trigger-button {
+    top: -.30em;
+    font-size: 1.9em;
+  }
+  #search-trigger-button:hover {
+    font-family: "modern_pictograms_proregular";
+    top: -.35em;
+    font-size: 2.1em;
+    color: #cc3333 !important;
+  }
+}
 #search-input {
   border: 0px;
   border-bottom: 2px solid #cc3333;
