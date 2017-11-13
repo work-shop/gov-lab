@@ -1704,7 +1704,7 @@ p, .wysiwyg h5, .wysiwyg h6 {
   }
 }
 /********** @ICONS *********/
-.pictogram, .wysiwyg ul li::before, #search-trigger-button:hover, .search-button {
+.pictogram, .wysiwyg ul li::before, #search-trigger-button:hover, #twitter-trigger-button:hover, .search-button {
   font-family: "modern_pictograms_proregular";
 }
 
@@ -2042,11 +2042,12 @@ header a, footer a {
   color: #cc3333;
 }
 
-header .sync, footer .sync {
+header .sync, footer .sync, menu .sync {
   color: #222222;
 }
-header .sync:hover, footer .sync:hover {
+header .sync:hover, footer .sync:hover, menu .sync:hover {
   color: #cc3333;
+  border-bottom: 2px solid transparent;
   transition: all 0.375s 0s ease;
   -moz-transition: all 0.375s 0s ease;
   -webkit-transition: all 0.375s 0s ease;
@@ -2054,10 +2055,10 @@ header .sync:hover, footer .sync:hover {
   -ms-transition: all 0.375s 0s ease;
 }
 
-header .pictogram, header .wysiwyg ul li::before, .wysiwyg ul header li::before, header #search-trigger-button:hover, header .search-button, footer .pictogram, footer .wysiwyg ul li::before, .wysiwyg ul footer li::before, footer #search-trigger-button:hover, footer .search-button {
+header .pictogram, header .wysiwyg ul li::before, .wysiwyg ul header li::before, header #search-trigger-button:hover, header #twitter-trigger-button:hover, header .search-button, footer .pictogram, footer .wysiwyg ul li::before, .wysiwyg ul footer li::before, footer #search-trigger-button:hover, footer #twitter-trigger-button:hover, footer .search-button {
   text-decoration: none;
 }
-header .pictogram:hover, header .wysiwyg ul li:hover::before, .wysiwyg ul header li:hover::before, header #search-trigger-button:hover, header .search-button:hover, footer .pictogram:hover, footer .wysiwyg ul li:hover::before, .wysiwyg ul footer li:hover::before, footer #search-trigger-button:hover, footer .search-button:hover {
+header .pictogram:hover, header .wysiwyg ul li:hover::before, .wysiwyg ul header li:hover::before, header #search-trigger-button:hover, header #twitter-trigger-button:hover, header .search-button:hover, footer .pictogram:hover, footer .wysiwyg ul li:hover::before, .wysiwyg ul footer li:hover::before, footer #search-trigger-button:hover, footer #twitter-trigger-button:hover, footer .search-button:hover {
   font-weight: normal;
 }
 
@@ -2085,6 +2086,7 @@ header {
   -webkit-transition: all 0.25s 0s ease;
   -o-transition: all 0.25s 0s ease;
   -ms-transition: all 0.25s 0s ease;
+  text-align: right;
 }
 header.fixed {
   left: 0;
@@ -2121,6 +2123,7 @@ menu, #search-box {
   width: 95%;
   max-height: 95%;
   z-index: 150;
+  vertical-align: baseline;
   overflow-x: hidden;
   transform: skewX(-5deg) translateX(-200%);
   -moz-transform: skewX(-5deg) translateX(-200%);
@@ -2147,6 +2150,10 @@ menu.open, #search-box.open {
   -webkit-transform: skewX(0deg) translateX(2.5%);
   -o-transform: skewX(0deg) translateX(2.5%);
   -ms-transform: skewX(0deg) translateX(2.5%);
+}
+menu .menu-trigger, #search-box .menu-trigger {
+  text-align: right;
+  cursor: pointer;
 }
 
 #search-box {
@@ -2520,7 +2527,7 @@ hr.hr-brand {
 }
 
 /********** SEARCH ********/
-#search-trigger-button {
+#search-trigger-button, #twitter-trigger-button {
   position: relative;
   top: -0.25em;
   font-size: 1.5em;
@@ -2530,7 +2537,7 @@ hr.hr-brand {
   -o-transition: all 0.2s 0s ease;
   -ms-transition: all 0.2s 0s ease;
 }
-#search-trigger-button:hover {
+#search-trigger-button:hover, #twitter-trigger-button:hover {
   top: -0.35em;
   font-size: 1.75em;
   color: #cc3333 !important;

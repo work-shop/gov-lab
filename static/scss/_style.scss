@@ -78,11 +78,12 @@ header a, footer a {
 	}
 }
 
-header .sync, footer .sync {
+header .sync, footer .sync, menu .sync {
 	color: $dark;
 
 	&:hover {
 		color: $brand;
+        border-bottom:2px solid transparent;
 		@include transition(all, $transition-duration / 2);
 	}
 }
@@ -121,6 +122,7 @@ header {
 	width: 100%;
 	top: -25%;
 	@include transition(all,.25s);
+    text-align: right;
 
 	&.fixed {
 		left: 0;
@@ -184,6 +186,7 @@ menu, #search-box {
 	width:95%;
 	max-height:95%;
 	z-index:150;
+    vertical-align: baseline;
 
 	overflow-x:hidden;
 
@@ -200,7 +203,13 @@ menu, #search-box {
 		@include transform( skewX( $open-skew ) translateX( $open-X ) );
 		//@include animation( menu-open, 5s, both);
 	}
+
+    .menu-trigger {
+        text-align: right;
+        cursor: pointer;
+    }
 }
+
 
 #search-box {
     position: fixed;
@@ -217,6 +226,8 @@ menu, #search-box {
     }
 
 }
+
+
 
 /********** @SIDEBAR *********/
 
@@ -644,7 +655,7 @@ hr {
 
 /********** SEARCH ********/
 
-#search-trigger-button {
+#search-trigger-button, #twitter-trigger-button {
     position:relative;
     top:-0.25em;
     font-size: 1.5em;

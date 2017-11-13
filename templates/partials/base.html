@@ -57,7 +57,9 @@
         <div id="loading-background" class="bg-light"></div>
 
         {% block menu %}
-         
+
+            {% include "templates/partials/menu.html" %}
+
         {% endblock %}
 
         {% include "templates/partials/search-input.html" %}
@@ -65,8 +67,6 @@
         {% block header %}
           {% include "templates/partials/header.html" %}
         {% endblock %}
-
-
 
         {# By default, your inner pages will load into this block. #}
         {% block content %}{% endblock %}

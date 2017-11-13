@@ -1,98 +1,24 @@
-{% set limit = 10 %}
-
 <div id="overlay" class="overlay bg-dark off menu-trigger"></div>
 
 <menu class="bg-light overlay-box" >
-    <div class="outer-container">
+    <div class="container-fluid">
 
-        <div class="row pb0">
-            <div class="col-xs-offset-10 col-sm-offset-11 col-xs-1"><a href="" class="menu-trigger"><h3 class="h1 pictogram bold">’</h3></a></div>
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-5"><a class="sync" href="/about"><h4 class="h2 bold">About</h4></a></div>
+            <div class="col-xs-5"><a class="menu-trigger"><h4 class="h2 pictogram gray bold">ﬂ</h4></a></div>
         </div>
 
-        <div class="row mb2">
-            <div class="col-xs-offset-1 col-sm-2 col-xs-10">
-                <h3><a class="bold link" href="/projects">{{ projects_name }}</a></h3>
-            </div>
-            <div class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-9 mt2">
-                {% for project in cms.projects|slice(0, limit) %}
-                {% if loop.index0 % 3 == 0 %} <div class="row mb1"> {% endif %}
-                    <div class="col-xs-10 col-sm-3"><a class="" href="{{ url( project ) }}">{{ project.shortname }}</a></div>
-                {% if loop.index0 % 3 == 2 %} </div> {% endif %}
-                {% endfor %}
-            </div>
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10"><a class="sync" href="/news"><h4 class="h2 bold">Updates</h4></a></div>
         </div>
 
-
-
-        <div class="row mb2">
-            <div class="col-xs-offset-1 col-sm-2 col-xs-10">
-                <h3><a class="bold link" href="/output">{{ output_name }}</a></h3>
-            </div>
-            <div class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-9 mt2">
-            {% for output in cms.output|slice(0, limit) %}
-            {% if loop.index0 % 3 == 0 %} <div class="row mb1"> {% endif %}
-                <div class="col-sm-3"><a class="" href="{{ url( output ) }}">{{ output.name }}</a></div>
-            {% if loop.index0 % 3 == 2 %} </div> {% endif %}
-            {% endfor %}
-            </div>
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10"><a class="sync" href="/projects"><h4 class="h2 bold">Research</h4></a></div>
         </div>
 
-        <div class="row mb2">
-            <div class="col-xs-offset-1 col-sm-2 col-xs-10">
-                <h3><a class="bold link" href="/news">{{ news_name }}</a></h3>
-            </div>
-            <div class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-9 mt2 mb2">
-            {% for update in cms.news|slice(0, limit) %}
-            {% if loop.index0 % 3 == 0 %} <div class="row mb1"> {% endif %}
-                <div class="col-sm-3"><a class="" href="{{ url( update ) }}">{{ update.name }}</a></div>
-            {% if loop.index0 % 3 == 2 %} </div> {% endif %}
-            {% endfor %}
-            </div>
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10"><a class="sync" href="/output"><h4 class="h2 bold">Results</h4></a></div>
         </div>
-
-        <div class="row mt2">
-            <hr class="col-sm-12 hr-light">
-        </div>
-
-        <div class="row mb2">
-            <div class="col-xs-offset-1 col-sm-2 col-xs-10">
-                <h3><a class="bold link" href="/about">About</a></h3>
-            </div>
-            <div class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-9 mt1">
-                <div class="row">
-                    <div class="col-xs-10 col-sm-2 pb0"><h5 class="mb0"><a class="bold link" href="/about#people">People</a></h5></div>
-                    <div class="col-xs-10 col-sm-2 pb0"><h5 class="mb0"><a class="bold link" href="/about#collaborators">Collaborators</a></h5></div>
-                    <div class="col-xs-10 col-sm-2 pb0"><h5 class="mb0"><a class="bold link" href="/about#funders">Funders</a></h5></div>
-                    <div class="col-xs-10 col-sm-2 pb0"><h5 class="mb0"><a class="bold link" href="/opportunities">Opportunities</a></h5></div>
-                </div>
-            </div>
-        </div>
-
-    	<div class="row">
-    		<hr class="col-sm-12 hr-light">
-    	</div>
-
-    	<div class="row mb2 bg-medium">
-    		<div class="hidden-xs col-sm-2 col-sm-offset-1">
-    			<h3 class="bold">Contact</h3>
-    		</div>
-    		<address id="office-address" class=" col-xs-offset-1 col-xs-5 col-sm-offset-0 col-sm-3 mt1">
-    			<h6 class="bold uppercase mb2">Office:</h6>
-    			<h6>30 Wadsworth Street</h6>
-    			<h6>Building E53-416</h6>
-    			<h6>Cambridge, MA 02142</h6>
-    		</address>
-    		<address id="mailing-address" class=" col-xs-5 col-sm-4 mt1">
-    			<h6 class="bold uppercase mb2">Mail:</h6>
-    			<h6>77 Massachusetts Avenue</h6>
-    			<h6>Building E53-416</h6>
-    			<h6>Cambridge, MA 02139</h6>
-    		</address>
-    	</div>
-
-    	<div class="hidden row bg-white mb2">
-    		<div class="col-sm-10 centered"><a class="uppercase" href='/about'>Learn About Us</a></div>
-    	</div>
 
     </div>
 </menu>
