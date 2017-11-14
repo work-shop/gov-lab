@@ -412,7 +412,7 @@ input,textarea{
 	background: $white;
 	color: $dark;
 
-	font-size:1.6em;
+	font-size:1.2em;
 
 	&:focus{
 		@extend .bold;
@@ -423,6 +423,7 @@ input,textarea{
 	&[type="submit"]{
 		@extend .bold;
 		border:0;
+        font-size: 1.2em;
 		outline: none;
 		padding: 10px 15px;
 		width: auto;

@@ -1394,7 +1394,7 @@ input, textarea {
   width: 100%;
   background: #ffffff;
   color: #222222;
-  font-size: 1.6em;
+  font-size: 1.2em;
 }
 input:focus, textarea:focus {
   outline: none;
@@ -1402,6 +1402,7 @@ input:focus, textarea:focus {
 }
 input[type="submit"], textarea[type="submit"] {
   border: 0;
+  font-size: 1.2em;
   outline: none;
   padding: 10px 15px;
   width: auto;
@@ -2260,7 +2261,8 @@ aside .active {
 
 .footer-logo-row {
   border-bottom: 2px solid white;
-  margin-left: 0;
+  margin-left: 1.57%;
+  width: 96.43%;
 }
 
 .primary-sections .footer-item {
