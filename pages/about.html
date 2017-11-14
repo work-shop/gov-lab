@@ -154,7 +154,7 @@
 
 			{% for collaborator in cms.collaborators %}
 
-				<div class="collaborator max-height-bounded bg-light p1 {% if ( loop.index0 % 3 == 0 ) %}col-xs-offset-1{% endif %} col-xs-3 col-sm-3 col-sm-offset-1 mb2">
+				<div class="collaborator max-height-bounded bg-light p1 col-xs-offset-1 col-xs-4 col-sm-3 col-sm-offset-1 mb2">
 					{% if collaborator.website %}<a target="_blank" class="link" href="{{ collaborator.website }}">{% endif %}
 					<img class="collaborator-logo mb1" src="{{ collaborator.logo|imageSize(200,auto) }}" />
 					{% if collaborator.website %}</a>{% endif %}
@@ -185,7 +185,7 @@
 			<div class="row">
 				{% for funder in cms.funders %}
 
-					<div class="funder max-height-bounded col-xs-offset-1 col-xs-5 col-sm-2 col-sm-offset-1 mb1">
+					<div class="funder max-height-bounded col-xs-offset-1 col-xs-4 col-sm-3 col-sm-offset-1 mb1">
 						{% if funder.website %}<a target="_blank" class="link" href="{{ funder.website }}">{% endif %}
 
 							<img class="funder-logo mb1" src="{{ funder.logo|imageSize(auto,400) }}" />
