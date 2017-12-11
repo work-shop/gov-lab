@@ -7,6 +7,12 @@
 
 {% extends "templates/partials/base.html" %}
 
+{% block og_title %}{% parent %} - Opportunities{% endblock %}
+{% block og_image %}{{ cms.about.opportunities_background_image|imageCrop(1000,500) }}{% endblock %}
+
+{% block tw_title %}{% parent %} - Opportunities{% endblock %}
+{% block tw_image %}{{ cms.about.opportunities_background_image|imageCrop(1000,500) }}{% endblock %}
+
 {% block title %}{% parent %} - {{ cms.about.name }}{% endblock %}
 
 {% block content %}

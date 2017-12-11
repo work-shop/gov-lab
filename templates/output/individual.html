@@ -2,6 +2,14 @@
 
 {% import "templates/partials/row-cards.html" as row %}
 
+{% block og_title %}{% parent %} - {{ item.name }}{% endblock %}
+{% block og_description %}{{ item.summary }}{% endblock %}
+{% block og_image %}{{ item.image|imageCrop(1000,500) }}{% endblock %}
+
+{% block tw_title %}{% parent %} - {{ item.name }}{% endblock %}
+{% block tw_description %}{{ item.summary }}{% endblock %}
+{% block tw_image %}{{ item.image|imageCrop(1000,500) }}{% endblock %}
+
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 
 {% block content %}

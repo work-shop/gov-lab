@@ -4,7 +4,15 @@
 
 {% extends "templates/partials/base.html" %}
 
-{% block title %}{% parent %} - Research{% endblock %}
+{% block og_title %}{% parent %} - {{ output_name }}{% endblock %}
+{% block og_description %}{{ cms.about.output_intro_text }}{% endblock %}
+{% block og_image %}{{ cms.about.research_image|imageCrop(1000,500) }}{% endblock %}
+
+{% block tw_title %}{% parent %} - {{ output_name }}{% endblock %}
+{% block tw_description %}{{ cms.about.output_intro_text }}{% endblock %}
+{% block tw_image %}{{ cms.about.research_image|imageCrop(1000,500) }}{% endblock %}
+
+{% block title %}{% parent %} - {{ output_name }}{% endblock %}
 
 {% block content %}
 

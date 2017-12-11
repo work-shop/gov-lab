@@ -6,6 +6,14 @@
 
 {% import "templates/partials/updates-card.html" as u %}
 
+{% block og_title %}{% parent %} - {{ news_name }}{% endblock %}
+{% block og_description %}{{ cms.about.updates_intro_text }}{% endblock %}
+{% block og_image %}{{ cms.about.news_image|imageCrop(1000,500) }}{% endblock %}
+
+{% block tw_title %}{% parent %} - {{ news_name }}{% endblock %}
+{% block tw_description %}{{ cms.about.updates_intro_text }}{% endblock %}
+{% block tw_image %}{{ cms.about.news_image|imageCrop(1000,500) }}{% endblock %}
+
 {% block title %}{% parent %} - Updates{% endblock %}
 
 {% block content %}

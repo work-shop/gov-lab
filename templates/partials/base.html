@@ -22,6 +22,21 @@
     <meta name="description" content="{% block description %}{{ site_description|default('Built with Webhook.') }}{% endblock %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
+    <!-- facebook open graph data -->
+    <meta property="og:title" content="{% block og_title %}{{ site_title|default('Webhook site') }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ site_description|default('Built with Webhook.') }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% endblock %}">
+    <meta property="og:url" content="http://mitgovlab.org{{ getCurrentUrl() }}">
+    <meta property="og:type" content="website">
+
+    <!-- twitter card data -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@mitgovlab">
+    <meta name="twitter:title" content="{% block tw_title %}{{ site_title|default('Webhook site') }}{% endblock %}">
+    <meta name="twitter:desription" content="{% block tw_description %}{{ site_description|default('Built with Webhook.') }}{% endblock %}">
+    <meta name="twitter:image" content="{% block tw_image %}{% endblock %}">
+
+
     <link rel="shortcut icon" href="/static/images/favicon.png">
     <link rel="apple-touch-icon" href="/static/images/touch-icon.png">
 

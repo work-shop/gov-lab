@@ -4,6 +4,14 @@
 
 {% extends "templates/partials/base.html" %}
 
+{% block og_title %}{% parent %} - {{ cms.about.name }}{% endblock %}
+{% block og_description %}{{ cms.about.about_page_tagline }}{% endblock %}
+{% block og_image %}{{ cms.about.about_image|imageCrop(1000,500) }}{% endblock %}
+
+{% block tw_title %}{% parent %} - {{ item.name }}{% endblock %}
+{% block tw_description %}{{ cms.about.about_page_tagline }}{% endblock %}
+{% block tw_image %}{{ cms.about.about_image|imageCrop(1000,500) }}{% endblock %}
+
 {% block title %}{% parent %} - {{ cms.about.name }}{% endblock %}
 
 {% block content %}
@@ -27,8 +35,8 @@
 
 		<div class="col-sm-offset-2 col-sm-9">
 			<div class="row">
-				<div class="col-xs-offset-1 col-xs-10 centered">
-					<h3 class="mb2">
+				<div class="col-xs-offset-1 col-xs-10 centered mb2">
+					<h3 >
 						{{ cms.about.about_page_tagline }}
 					</h3>
 				</div>
@@ -42,6 +50,12 @@
 					<p>{{ cms.about.about_page_tagline_summary_right_paragraph }}</p>
 				</div>
 			</div>
+
+            <div class="row">
+				<div class="mb2 col-xs-offset-1 col-xs-10 centered">
+                    <a href="/diversity-and-inclusion">Read our statement on diversity and inclusion.</a>
+                </div>
+            </div>
 
 		</div>
 

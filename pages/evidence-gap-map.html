@@ -4,6 +4,12 @@
 
 {% extends "templates/partials/base.html" %}
 
+{% block og_title %}{% parent %} - Evidence Gap Map{% endblock %}
+{% block og_image %}{{ cms.about.evidence_gap_map_header_image|imageCrop(1000,500) }}{% endblock %}
+
+{% block tw_title %}{% parent %} - Evidence Gap Map{% endblock %}
+{% block tw_image %}{{ cms.about.evidence_gap_map_header_image|imageCrop(1000,500) }}{% endblock %}
+
 {% block title %}{% parent %} - Evidence Gap Map{% endblock %}
 
 {% block head_extra %}
@@ -18,7 +24,7 @@
 
 {% block content %}
 
-    {{ list.header( 'about', "Evidence Gap Map", cms.about.about_image, "", "", cms.about.about_image_caption ) }}
+    {{ list.header( 'about', "Evidence Gap Map", cms.about.evidence_gap_map_header_image, "", "", cms.about.evidence_gap_map_image_caption ) }}
 
     <section id="evidence-map" class="bg-light pb2" aside-enter>
         <div class="row">

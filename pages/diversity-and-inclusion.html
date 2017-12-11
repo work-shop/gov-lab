@@ -1,0 +1,38 @@
+{% import "templates/partials/subscribe.html" as s %}
+
+{% import "templates/partials/list-header.html" as list %}
+
+{% extends "templates/partials/base.html" %}
+
+{% block og_title %}{% parent %} - Diversity & Inclusion{% endblock %}
+{% block og_image %}{{ cms.about.diversity_and_inclusion_header_image|imageCrop(1000,500) }}{% endblock %}
+
+{% block tw_title %}{% parent %} - Diversity & Inclusion{% endblock %}
+{% block tw_image %}{{ cms.about.diversity_and_inclusion_header_image|imageCrop(1000,500) }}{% endblock %}
+
+{% block title %}{% parent %} - Diversity & Inclusion{% endblock %}
+
+{% block head_extra %}
+
+    <link rel="stylesheet" href="/static/css/viz.css">
+{% endblock %}
+
+
+{% block content %}
+
+    {{ list.header( 'diversity-and-inclusion', "Our Commitment to Diversity and Inclusion", cms.about.diversity_and_inclusion_header_image, "", "", cms.about.diversity_and_inclusion_image_caption  ) }}
+
+    <section id="evidence-map" class="bg-light pb2" aside-enter>
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-8 wysiwyg padded">
+                {{ cms.about.diversity_and_inclusion_statement|safe }}
+            </div>
+        </div>
+    </section>
+
+    {{ s.subscribe('padded') }}
+
+    {% set returnTo = {to: "Home", url: "/",  aside: false } %}
+    {% include 'templates/partials/prefooter.html' %}
+
+{% endblock %}

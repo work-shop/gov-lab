@@ -4,6 +4,10 @@
 
 {% extends "templates/partials/base.html" %}
 
+{% block og_image %}{{ cms.about.home_image|imageCrop(1000,500) }}{% endblock %}
+
+{% block tw_image %}{{ cms.about.home_image|imageCrop(1000,500) }}{% endblock %}
+
 {% block title %}{% parent %}{% endblock %}
 
 {% block content %}

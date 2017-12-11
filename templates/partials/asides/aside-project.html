@@ -20,7 +20,9 @@
         <ul>
             <li class="h5 uppercase bold sidebar-passive-subheading mb0">Team Members</li>
             {% for teammember in item.team_members %}
+                {% if cms.peopleorder.people_order|where("name",teammember.name)|size == 1 %}
                 <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}"><a href="{{ url(teammember) }}">{{ teammember.name }}</a></li>
+                {% endif %}
             {% endfor %}
         </ul>
     </li>

@@ -2,8 +2,11 @@
 
 {% extends "templates/partials/base.html" %}
 
+{% block og_title %}{% parent %} - {{ projects_name }}{% endblock %}
 
-{% block title %}{% parent %} - Projects{% endblock %}
+{% block tw_title %}{% parent %} - {{ projects_name }}{% endblock %}
+
+{% block title %}{% parent %} - {{ projects_name }}{% endblock %}
 
 {% block content %}
 
