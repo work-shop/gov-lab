@@ -11,7 +11,7 @@
             {% for category in cms.newscategories %}
                 {% if category.news_category.length %}
 
-                    <a class="link" href="#news"><li class="sort-key sidebar-item uppercase mb1" data-sort-key="{{ category.name|lower }}">{{ category.name }}</li></a>
+                    <a class="link" href="#news"><li class="sort-key sidebar-item mb1" data-sort-key="{{ category.name|lower }}">{{ category.name }}</li></a>
 
                 {% endif %}
 

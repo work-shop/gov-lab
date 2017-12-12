@@ -236,7 +236,7 @@ aside {
 	overflow-x: hidden;
     overflow-y: scroll;
 
-	//@extend .mt1;
+	@extend .mt3;
 	@extend .pl2;
 	@extend .pr1;
 	//@extend .bg-white;
@@ -262,6 +262,10 @@ aside {
 
 	& .sidebar-item {
 		font-size: .9em;
+
+        * {
+            border-bottom: none;
+        }
 	}
 
 	& .active {
@@ -281,7 +285,6 @@ aside {
 			left:10px;
 		}
 	}
-
 }
 
 .page-about {
@@ -307,7 +310,7 @@ aside {
 	@extend .m1;
 
 	display:inline-block;
-	border-bottom: 2px solid $dark;
+
 }
 
 .sidebar-passive-subheading {
@@ -315,6 +318,7 @@ aside {
 	@extend .m1;
 
 	display:inline-block;
+
 }
 
 .sort-key {
@@ -452,8 +456,8 @@ hr {
 }
 
 .hr-light {
-		border-bottom-color:$medium-light;
-	}
+	border-bottom-color:$medium-light;
+}
 
 
 /********** .image-overlay ********/

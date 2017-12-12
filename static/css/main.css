@@ -386,7 +386,7 @@ flexslider
   margin-top: 2em;
 }
 
-.mt3 {
+.mt3, aside {
   margin-top: 3em;
 }
 
@@ -2199,6 +2199,9 @@ aside.open {
 aside .sidebar-item {
   font-size: .9em;
 }
+aside .sidebar-item * {
+  border-bottom: none;
+}
 aside .active {
   border-color: #cc3333 !important;
 }
@@ -2231,7 +2234,6 @@ aside .active {
 
 .sidebar-passive-heading {
   display: inline-block;
-  border-bottom: 2px solid #222222;
 }
 
 .sidebar-passive-subheading {

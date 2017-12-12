@@ -12,17 +12,12 @@
 
 {% block title %}{% parent %} - Diversity & Inclusion{% endblock %}
 
-{% block head_extra %}
-
-    <link rel="stylesheet" href="/static/css/viz.css">
-{% endblock %}
-
 
 {% block content %}
 
-    {{ list.header( 'diversity-and-inclusion', "Our Commitment to Diversity and Inclusion", cms.about.diversity_and_inclusion_header_image, "", "", cms.about.diversity_and_inclusion_image_caption  ) }}
+    {{ list.header( 'diversity-and-inclusion-header', "Diversity & Inclusion", cms.about.diversity_and_inclusion_header_image, "", "", cms.about.diversity_and_inclusion_image_caption  ) }}
 
-    <section id="evidence-map" class="bg-light pb2" aside-enter>
+    <section id="diversity-and-inclusion" class="bg-light pb2" aside-enter>
         <div class="row">
             <div class="col-sm-offset-2 col-sm-8 wysiwyg padded">
                 {{ cms.about.diversity_and_inclusion_statement|safe }}

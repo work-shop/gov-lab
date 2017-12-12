@@ -1,11 +1,5 @@
 <ul class="pt3">
 
-    <li class="sidebar-item sidebar-metadata-items active mb2">
-        <ul>
-            <li class="h5 uppercase bold sidebar-active-heading">{{ item.output_type.name }}</li>
-        </ul>
-    </li>
-
     {% if item.file || item.link %}
         <li class="sidebar-item cover-image mb1 {% if item.cover_image %}bg-brand{% else %}bg-real-white no-image{% endif %}">
             <a target="_blank" class="b0" href="{% if item.file %}{{ item.file }}{% elseif item.link %}{{ item.link }}{% endif %}">
@@ -14,57 +8,62 @@
         </li>
     {% endif %}
 
+    <li class="sidebar-item sidebar-metadata-items active mb2">
+        <ul>
+            <li class="h5 uppercase bold sidebar-active-heading mt0 mb0">{{ item.output_type.name }}</li>
+        </ul>
+    </li>
 
     {% if ( item.authors ) %}
-        <li class="sidebar-item sidebar-team-members">
+        <li class="sidebar-item sidebar-team-members mb2">
             <ul>
-                <li class="h5 uppercase bold sidebar-passive-subheading mb0">Author{{ item.authors|pluralize('s') }}</li>
+                <li class="h5 uppercase bold sidebar-passive-subheading mt0 mb0">Author{{ item.authors|pluralize('s') }}</li>
                 {% for teammember in item.authors %}
-                    <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}"><a href="{{ url( teammember ) }}">{{ teammember.name }}</a></li>
+                    <li class="h5 {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}"><a href="{{ url( teammember ) }}">{{ teammember.name }}</a></li>
                 {% endfor %}
             </ul>
         </li>
     {% endif %}
 
     {% if ( item.research_topics ) %}
-        <li class="sidebar-item sidebar-team-members">
+        <li class="sidebar-item sidebar-team-members mb2">
             <ul>
-                <li class="h5 uppercase bold sidebar-passive-subheading mb0">Topic{{ item.research_topics|pluralize('s') }}</li>
+                <li class="h5 uppercase bold sidebar-passive-subheading mt0 mb0">Topic{{ item.research_topics|pluralize('s') }}</li>
                 {% for topic in item.research_topics %}
-                    <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}">{{ topic.name }}</li>
+                    <li class="h5">{{ topic.name }}</li>
                 {% endfor %}
             </ul>
         </li>
     {% endif %}
 
     {% if item.related_projects %}
-        <li class="sidebar-item sidebar-team-members">
+        <li class="sidebar-item sidebar-team-members mb2">
             <ul>
-                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Related Project{{ item.related_projects|pluralize('s') }}</li>
+                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mt0 mb0">Related Research</li>
                 {% for project in item.related_projects %}
-                    <li class="h5 uppercase {% if ( loop.index == item.related_projects|size ) %}mb1 mt0{% endif %}"><a href="{{ url( project ) }}">{{ project.name }}</a></li>
+                    <li class="h5"><a href="{{ url( project ) }}">{{ project.name }}</a></li>
                 {% endfor %}
             </ul>
         </li>
     {% endif %}
 
     {% if item.related_research %}
-        <li class="sidebar-item sidebar-team-members">
+        <li class="sidebar-item sidebar-team-members mb2">
             <ul>
-                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Related Research</li>
+                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mt0 mb0">Related Result{{ item.related_research|pluralize('s') }}</li>
                 {% for output in item.related_research %}
-                    <li class="h5 uppercase {% if ( loop.index == item.related_research|size ) %}mb1 mt0{% endif %}"><a href="{{ url( output ) }}">{{ output.name }}</a></li>
+                    <li class="h5"><a href="{{ url( output ) }}">{{ output.name }}</a></li>
                 {% endfor %}
             </ul>
         </li>
     {% endif %}
 
     {% if item.related_updates %}
-        <li class="sidebar-item sidebar-team-members">
+        <li class="sidebar-item sidebar-team-members mb2">
             <ul>
-                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Related Update{{ item.related_updates|pluralize('s') }}</li>
+                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mt0 mb0">Related Update{{ item.related_updates|pluralize('s') }}</li>
                 {% for update in item.related_updates %}
-                    <li class="h5 uppercase {% if ( loop.index == item.related_updates|size ) %}mb1 mt0{% endif %}"><a href="{{ url( update ) }}">{{ update.name }}</a></li>
+                    <li class="h5"><a href="{{ url( update ) }}">{{ update.name }}</a></li>
                 {% endfor %}
             </ul>
         </li>

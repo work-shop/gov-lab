@@ -1,33 +1,33 @@
 <ul class="pt2">
 
     {% if item.projects_team_members %}
-        <li class="sidebar-item sidebar-team-members">
+        <li class="sidebar-item sidebar-team-members mb2">
             <ul>
-                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Project{{ item.projects_team_members|pluralize('s') }}</li>
+                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Research</li>
                 {% for project in item.projects_team_members %}
-                    <li class="h5 uppercase {% if ( loop.index == item.team_members|size ) %}mb1 mt0{% endif %}"><a href="{{ url( project ) }}">{{ project.shortname }}</a></li>
+                    <li class="h5 mb1"><a href="{{ url( project ) }}">{{ project.shortname }}</a></li>
                 {% endfor %}
             </ul>
         </li>
     {% endif %}
 
     {% if item.output_author %}
-        <li class="sidebar-item sidebar-team-members">
+        <li class="sidebar-item sidebar-team-members mb2 hidden">
             <ul>
-                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Output</li>
+                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Results</li>
                 {% for output in item.output_author %}
-                    <li class="h5 uppercase {% if ( loop.index == item.output_author|size ) %}mb1 mt0{% endif %}"><a href="{{ url( output ) }}">{{ output.name }}</a></li>
+                    <li class="h5 mb1"><a href="{{ url( output ) }}">{{ output.name }}</a></li>
                 {% endfor %}
             </ul>
         </li>
     {% endif %}
 
     {% if item.news_author %}
-        <li class="sidebar-item sidebar-team-members">
+        <li class="sidebar-item sidebar-team-members mb2 hidden">
             <ul>
-                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">News</li>
+                <li class="h5 uppercase underline bold brand sidebar-passive-subheading mb0">Updates</li>
                 {% for news in item.news_author %}
-                    <li class="h5 uppercase {% if ( loop.index == item.news_author|size ) %}mb1 mt0{% endif %}"><a href="{{ url( news ) }}">{{ news.name }}</a></li>
+                    <li class="h5 mb1"><a href="{{ url( news ) }}">{{ news.name }}</a></li>
                 {% endfor %}
             </ul>
         </li>

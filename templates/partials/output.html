@@ -30,7 +30,7 @@
     {% for author in item.authors %}
 
       <li class="inline sidebar-link h6 hidden-xs">
-  <a class="link uppercase bold" href="/about#people">{{ author.name }}</a>{% if ( loop.index < item.authors|size ) %}, {% endif %}
+          <a class="link uppercase bold" href="/about#people">{{ author.name }}</a>{% if ( loop.index < item.authors|size ) %}, {% endif %}
       </li>
 
     {% endfor %}
