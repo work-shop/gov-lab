@@ -459,6 +459,20 @@ hr {
 	border-bottom-color:$medium-light;
 }
 
+/********* .vertical dividers *******/
+
+.brand-stroke {
+    @extend .bold;
+    @extend .brand;
+
+    font-size: 1.2em;
+    padding-top:.2em;
+
+    padding-left:.25em;
+    padding-right:.25em;
+
+    display: inline;
+}
 
 /********** .image-overlay ********/
 
@@ -644,6 +658,11 @@ hr {
 }
 
 /********** OUTPUT ********/
+
+.results-tile-cover-image {
+    padding-top: .8em;
+    border-bottom: 1px solid $brand;
+}
 
 .output-link {
     @extend .bold;

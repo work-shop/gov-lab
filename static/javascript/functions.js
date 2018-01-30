@@ -596,7 +596,7 @@ function maxHeightedSortValue( selector ) {
 
 $(document).ready( function() {
 
-	maxHeightedSortValue( '*[data-sort-value]' )();
+	//maxHeightedSortValue( '*[data-sort-value]' )();
     maxHeightedSortValue( '.teammember' )();
     maxHeightedSortValue( '.collaborator' )();
     maxHeightedSortValue( '.funder' )();
@@ -605,11 +605,11 @@ $(document).ready( function() {
 
 		activate( $(this) );
 
-		filter( $(this).data('sort-key'), $('*[data-sort-value]') );
+		//filter( $(this).data('sort-key'), $('*[data-sort-value]') );
 
 	});
 
-	$(window).resize( maxHeightedSortValue( '*[data-sort-value]' ) );
+	//$(window).resize( maxHeightedSortValue( '*[data-sort-value]' ) );
     $(window).resize( maxHeightedSortValue( '.teammember' ) );
     $(window).resize( maxHeightedSortValue( '.collaborator' ) );
     $(window).resize( maxHeightedSortValue( '.funder' ) );

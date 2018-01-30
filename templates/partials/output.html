@@ -5,39 +5,33 @@
  #}
 {% macro outputcard( item ) %}
 
-<li id="output-{{ item.name|lower|replace(' ', '-', 'g') }}" class="project-tint project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.research_topics, item.output_type ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}">
-    <a href="{{ url( item ) }}">
+<li id="output-{{ item.name|lower|replace(' ', '-', 'g') }}" class="results-tile col-xs-offset-1 col-xs-10 mb4" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.research_topics, item.output_type ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}">
+        <div class="row">
+            <div class="col-sm-3 hidden-xs">
+                <img class="results-tile-cover-image" src="{{ item.cover_image|imageSize(500) }}" />
+            </div>
+            <div class="col-sm-9 col-xs-12">
+                <h6 class="results-tile-metadata bold">
 
-    <div class="row">
-        <h6 class="output-type brand bold col-xs-6">{{ item.output_type.name }}</h6>
-        <h6 class="output-publish-date col-xs-6 uppercase bold">
-            {% if item.publication_date %}
-                {{ item.publication_date|date('F Y') }}
-            {% else %}
-                {{ item.publish_date|date('F Y') }}
-            {% endif %}
+                    {{ item.publication_date|date('F Y')}}
 
-        </h6>
-    </div>
-    <h3 class="title project-tile-title">{{ item.name }}{% if item.subtitle %}:{% endif %}</h3>
-    {% if item.subtitle %}<h4 class="italic">{{ item.subtitle }}</h4>{% endif %}
-    <p class="mb2">{{ item.summary }}</p>
+                    {% if item.authors|size > 0 or item.output_type|size > 0 %}
+                        <span class="brand-stroke">/</span>
+                    {% endif %}
 
-    {% if ( item.authors ) %}
-    <hr class="hr-light mb0">
-    <ul class="project-tile-topics">
+                    {% if item.output_type|size > 0 %}
+                        {{ item.output_type.name }}
+                        <span class="brand-stroke">/</span>
+                    {% endif %}
 
-    {% for author in item.authors %}
-
-      <li class="inline sidebar-link h6 hidden-xs">
-          <a class="link uppercase bold" href="/about#people">{{ author.name }}</a>{% if ( loop.index < item.authors|size ) %}, {% endif %}
-      </li>
-
-    {% endfor %}
-
-    </ul>
-    {% endif %}
-    </a>
+                    {% for team_member in item.authors %}
+                        {{ team_member.name }}{% if !loop.last %}, {% endif %}
+                    {% endfor %}
+                </h6>
+                <a href="{{ url( item ) }}"><h4 class="results-tile-title bold">{{ item.name }}</h4></a>
+                <h6 class="results-tile-summary mb1">{{ item.summary }}</h6>
+            </div>
+        </div>
 </li>
 
 {% endmacro %}

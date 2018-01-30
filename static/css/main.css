@@ -69,7 +69,7 @@ fancy objects
 flexslider
 */
 /********** @COLORS ********************/
-.brand, .back-to-home, aside .sidebar-heading, .sidebar-active-heading, .sidebar-active-subheading, .sort-key.active {
+.brand, .back-to-home, aside .sidebar-heading, .sidebar-active-heading, .sidebar-active-subheading, .sort-key.active, .brand-stroke {
   color: #cc3333;
 }
 
@@ -1656,7 +1656,7 @@ p, .wysiwyg h5, .wysiwyg h6 {
     text-align: inherit;
   }
 }
-.bold, input:focus, textarea:focus, input[type="submit"], textarea[type="submit"], .back-to-home, .map-button, .wysiwyg h1, .wysiwyg h2, .wysiwyg h3, .wysiwyg h4, .wysiwyg h5, figure[data-type=quote], figure[data-type=quote] blockquote, figure[data-type=quote] figcaption, figure[data-type=quote] cite, a.active, .sync, .sort-key.active, .project-tile-title, .output-link, b, strong {
+.bold, input:focus, textarea:focus, input[type="submit"], textarea[type="submit"], .back-to-home, .map-button, .wysiwyg h1, .wysiwyg h2, .wysiwyg h3, .wysiwyg h4, .wysiwyg h5, figure[data-type=quote], figure[data-type=quote] blockquote, figure[data-type=quote] figcaption, figure[data-type=quote] cite, a.active, .sync, .sort-key.active, .brand-stroke, .project-tile-title, .output-link, b, strong {
   font-family: "SimplonNormMedium", Helvetica, arial, sans-serif;
 }
 
@@ -1676,7 +1676,7 @@ p, .wysiwyg h5, .wysiwyg h6 {
   color: #222222;
 }
 
-.brand, .back-to-home, aside .sidebar-heading, .sidebar-active-heading, .sidebar-active-subheading, .sort-key.active {
+.brand, .back-to-home, aside .sidebar-heading, .sidebar-active-heading, .sidebar-active-subheading, .sort-key.active, .brand-stroke {
   color: #cc3333;
 }
 
@@ -2393,6 +2393,15 @@ hr.hr-brand {
   border-bottom-color: #bebebe;
 }
 
+/********* .vertical dividers *******/
+.brand-stroke {
+  font-size: 1.2em;
+  padding-top: .2em;
+  padding-left: .25em;
+  padding-right: .25em;
+  display: inline;
+}
+
 /********** .image-overlay ********/
 .image-overlay {
   position: absolute;
@@ -2523,6 +2532,11 @@ hr.hr-brand {
   }
 }
 /********** OUTPUT ********/
+.results-tile-cover-image {
+  padding-top: .8em;
+  border-bottom: 1px solid #cc3333;
+}
+
 .output-link {
   font-size: 1.2em;
   color: #cc3333;
