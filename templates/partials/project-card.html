@@ -1,33 +1,23 @@
 {% macro project( item ) %}
 
-<li id="project-{{ item.shortname|lower|replace(' ', '-', 'g') }}" class="project-tint project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.topics, item.region ) %}{{ value.name|lower }} {% endfor %}">
+<li id="project-{{ item.shortname|lower|replace(' ', '-', 'g') }}" class="project-tile col-xs-offset-1 col-xs-10 col-sm-5 col-sm-offset-1 mb4" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.topics, item.region ) %}{{ value.name|lower }} {% endfor %}">
     <a href="{{ url( item ) }}">
-
-        <figure class=" mb2">
+        <div class="project-tile-wrapper">
             <img class="project-tile-image" src="{{ item.images|first|imageCrop(500, 350) }}" />
-        </figure>
 
-        <h3 class="title project-tile-title">{{ item.name }}</h3>
-
-        <p class="mb2 hidden-xs">{{ item.summary }}</p>
-
-        <hr class="hr-light mb0 hidden">
-
-        {% if ( item.topics )%}
-            <ul class="project-tile-topics hidden-xs">
-
-            {% for topic in item.topics %}
-
-                <li class="inline sidebar-link h6 hidden-xs">
-                    <a class="link" href="#projects" data-sort-key="{{topic.name|lower}}">
-                        {{ topic.name }}{% if ( loop.index < project.topics|size ) %}, {% endif %}
-                    </a>
-                </li>
-
-            {% endfor %}
-
-            </ul>
-        {% endif %}
+            <div class="project-tile-overlay">
+                <div class="project-tile-title">
+                    <h4 class="project-tile-title-large visible-lg hidden-md hidden-sm hidden-xs">{{ item.name }}</h3>
+                    <h4 class="project-tile-title-medium hidden-lg visible-md visible-sm hidden-xs">{{ item.shortname }}</h4>
+                    <h4 class="project-tile-title-small hidden-lg hidden-md hidden-sm visible-xs">{{ item.name }}</h4>
+                </div>
+                <h6 class="project-tile-researchers white bold visible-lg hidden-md hidden-sm visible-xs">
+                    {% for team_member in item.team_members %}
+                    <span class="white">{{ team_member.name }}</span>{% if !loop.last %}, {% endif %}
+                    {% endfor %}
+                </h6>
+            </div>
+        </div>
     </a>
 </li>
 

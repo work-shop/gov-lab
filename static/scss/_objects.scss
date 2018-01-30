@@ -264,6 +264,9 @@ flexslider
 	display: none;
 }
 
+@include size-dependent( ".visible" ) {
+	display: inherit;
+}
 
 /********** @ANIMATIONS *********/
 

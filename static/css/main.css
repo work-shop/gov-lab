@@ -1012,6 +1012,30 @@ flexslider
     display: none;
   }
 }
+.visible {
+  display: inherit;
+}
+
+@media (min-width: 1201px) {
+  .visible-lg {
+    display: inherit;
+  }
+}
+@media (max-width: 1200px) {
+  .visible-md {
+    display: inherit;
+  }
+}
+@media (max-width: 992px) {
+  .visible-sm {
+    display: inherit;
+  }
+}
+@media (max-width: 767px) {
+  .visible-xs {
+    display: inherit;
+  }
+}
 /********** @ANIMATIONS *********/
 .skew-field {
   transition: transform 0.25s 0s ease;
@@ -1489,7 +1513,7 @@ body {
   font-style: normal;
 }
 
-h1, .h1, h2, .h2, h3, .h3, .wysiwyg h1, h4, .project-tile-title, .h4, .wysiwyg h2, h5, .h5, .wysiwyg h3, h6, .h6, .caption, .wysiwyg h4, .wysiwyg .project-tile-title {
+h1, .h1, h2, .h2, h3, .h3, .wysiwyg h1, h4, .h4, .wysiwyg h2, h5, .h5, .wysiwyg h3, h6, .h6, .caption, .wysiwyg h4 {
   font-weight: normal;
   line-height: 1.5em;
   font-weight: 500;
@@ -1509,7 +1533,7 @@ h3, .h3, .wysiwyg h1 {
   font-size: 1.6em;
 }
 
-h4, .project-tile-title, .h4, .wysiwyg h2 {
+h4, .h4, .wysiwyg h2 {
   font-size: 1.25em;
 }
 
@@ -1517,7 +1541,7 @@ h5, .h5, .wysiwyg h3 {
   font-size: 1em;
 }
 
-h6, .h6, .caption, .wysiwyg h4, .wysiwyg .project-tile-title {
+h6, .h6, .caption, .wysiwyg h4 {
   font-size: .8em;
 }
 
@@ -1632,7 +1656,7 @@ p, .wysiwyg h5, .wysiwyg h6 {
     text-align: inherit;
   }
 }
-.bold, input:focus, textarea:focus, input[type="submit"], textarea[type="submit"], .back-to-home, .map-button, .wysiwyg h1, .wysiwyg h2, .wysiwyg h3, .wysiwyg h4, .wysiwyg .project-tile-title, .wysiwyg h5, figure[data-type=quote], figure[data-type=quote] blockquote, figure[data-type=quote] figcaption, figure[data-type=quote] cite, a.active, .sync, .sort-key.active, .project-tile-title, .output-link, b, strong {
+.bold, input:focus, textarea:focus, input[type="submit"], textarea[type="submit"], .back-to-home, .map-button, .wysiwyg h1, .wysiwyg h2, .wysiwyg h3, .wysiwyg h4, .wysiwyg h5, figure[data-type=quote], figure[data-type=quote] blockquote, figure[data-type=quote] figcaption, figure[data-type=quote] cite, a.active, .sync, .sort-key.active, .project-tile-title, .output-link, b, strong {
   font-family: "SimplonNormMedium", Helvetica, arial, sans-serif;
 }
 
@@ -1640,7 +1664,7 @@ p, .wysiwyg h5, .wysiwyg h6 {
   font-style: italic;
 }
 
-.white {
+.white, .project-tile-title {
   color: white;
 }
 
@@ -2400,37 +2424,36 @@ hr.hr-brand {
   -ms-transition: all 0.375s 0s ease;
 }
 
-.project-tint {
+.project-tile-wrapper {
   position: relative;
-  float: left;
-  cursor: pointer;
-}
-.project-tint figure:before {
-  content: "";
-  display: block;
-  position: absolute;
   top: 0;
-  bottom: 0;
   left: 0;
-  right: 0;
-  background: none;
-  opacity: .5;
-  transition: all 0.375s 0s ease;
-  -moz-transition: all 0.375s 0s ease;
-  -webkit-transition: all 0.375s 0s ease;
-  -o-transition: all 0.375s 0s ease;
-  -ms-transition: all 0.375s 0s ease;
-}
-.project-tint:hover figure:before {
-  background: #cc3333;
 }
 
-.project-tile-image, .news-tile-image {
-  -o-box-shadow: 0 0 1px #222222;
-  -ms-box-shadow: 0 0 1px #222222;
-  -moz-box-shadow: 0 0 1px #222222;
-  -webkit-box-shadow: 0 0 1px #222222;
-  box-shadow: 0 0 1px #222222;
+.project-tile-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 2em;
+  padding-right: 2em;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.project-tile-overlay:hover {
+  background-color: rgba(204, 51, 51, 0.6);
+}
+
+.project-tile-title {
+  margin-top: .5em;
+}
+
+.project-tile-researchers {
+  position: absolute;
+  bottom: .5em;
+  width: 100%;
+  padding-right: 2em;
 }
 
 .projects-rule {
