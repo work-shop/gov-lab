@@ -11,7 +11,7 @@
                     <h4 class="project-tile-title-medium hidden-lg visible-md visible-sm hidden-xs">{{ item.shortname }}</h4>
                     <h4 class="project-tile-title-small hidden-lg hidden-md hidden-sm visible-xs">{{ item.name }}</h4>
                 </div>
-                <h6 class="project-tile-researchers white bold visible-lg hidden-md hidden-sm visible-xs">
+                <h6 class="hidden project-tile-researchers white bold">
                     {% for team_member in item.team_members %}
                     <span class="white">{{ team_member.name }}</span>{% if !loop.last %}, {% endif %}
                     {% endfor %}

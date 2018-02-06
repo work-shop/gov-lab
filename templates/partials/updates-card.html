@@ -1,48 +1,30 @@
-{% macro update( news ) %}
+{% macro update( item ) %}
 
-<li id="{{ news.name|lower|replace(' ', '-', 'g') }}"class="col-xs-12 mb2 project-tint" > <!-- data-sort-value="{% if ( news.category ) %}{{ news.category.name|lower }}{% endif %} " -->
-<div class="row">
+<div id="{{ news.name|lower|replace(' ', '-', 'g') }}"class="updates-tile col-xs-12 mb2" > <!-- data-sort-value="{% if ( news.category ) %}{{ news.category.name|lower }}{% endif %} " -->
 
-    {% if ( news.category ) %}
-        <div class="col-sm-offset-9 col-xs-12 col-sm-2 righted mb1">
-            <a data-sort-key="{{ news.category.name|lower }}" class="h6 uppercase">{{ news.category.name }}</a>
-        </div>
-    {% endif %}
+    <div class="row">
 
-    <a href="{{ url(news) }}">
-
-        <div class="col-sm-12 col-xs-12">
-        <span class="block news-rule-xs"></span>
+        <div class="col-sm-4">
+            <img class="updates-tile-image" src="{{ item.cover_image|imageCrop(500, 350) }}" />
         </div>
 
-        <div class="col-sm-4 col-xs-12 mt1">
-            <div class="news-thumbnail-block" style="background-image:url('{{ news.cover_image|imageSize(1000) }}');"></div>
-        </div>
-
-        <div class="col-xs-12 col-sm-5 pt2 centered-xs">
-            <h3 class="mb1 mt0 bold">{{ news.name }}</h3>
-            <p>{{ news.summary }}</p>
-        </div>
-
-
-        <div class="hidden-xs col-xs-12 col-sm-offset-1 col-sm-2  pt1 righted">
-
-            <h6 class="bold uppercase">
-                {% if news.news_date %}
-                    {{ news.news_date|date('F Y') }}
-                {% else %}
-                    {{ news.publish_date|date('F Y') }}
+        <div class="col-sm-8">
+            <h6 class="updates-tile-metadata bold">
+                {{ item.news_date|date('F Y') }}
+                {% if item.author|size > 0 %}
+                    <span class="brand-stroke">/</span>
+                    {{ item.author.name }}
                 {% endif %}
             </h6>
 
-            {% if ( news.author ) %}
-                <h6 class="bold uppercase">{{ news.author.name }}</h6>
-            {% endif %}
+            <a href="{{ url( item ) }}"><h3 class="updates-tile-title bold">{{ item.name }}</h3></a>
+
+            <h5 class="updates-tile-summary">{{ item.summary }}</h5>
 
         </div>
-    </a>
+
+    </div>
 
 </div>
-</li>
 
 {% endmacro %}

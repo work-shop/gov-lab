@@ -1,0 +1,17 @@
+{% macro metadata_row( date, category, people ) %}
+
+    <span class="metadata-date">{{ data }}</span>
+
+    {% if category|size > 0 %}
+        <span class="brand-stroke">/</span>
+        {{ category.name }}
+    {% endif %}
+
+    {% if people|size > 0 %}
+        <span class="brand-stroke">/</span>
+        {% for person in people %}
+            <span class="metadata-author">{{ person.name }}</span>{% if !loop.last %}, {% endif %}
+        {% endfor %}
+    {% endif %}
+
+{% endmacro %}

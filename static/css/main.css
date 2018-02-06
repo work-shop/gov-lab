@@ -2451,11 +2451,11 @@ hr.hr-brand {
 }
 
 .project-tile-overlay:hover {
-  background-color: rgba(204, 51, 51, 0.6);
+  background-color: rgba(204, 51, 51, 0.7);
 }
 
 .project-tile-title {
-  margin-top: .5em;
+  margin-top: 1em;
 }
 
 .project-tile-researchers {

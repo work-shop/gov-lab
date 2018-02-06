@@ -512,30 +512,6 @@ hr {
 	}
 }
 
-// .project-tint {
-// 	position: relative;
-// 	float: left;
-// 	cursor: pointer;
-//
-//
-// 	& figure:before {
-// 		content: "";
-// 		display: block;
-// 		position: absolute;
-// 		top: 0;
-// 		bottom: 0;
-// 		left: 0;
-// 		right: 0;
-// 		background: none;
-// 		opacity: .5;
-// 		@include transition(all, $transition-duration / 2);
-// 	}
-//
-// 	&:hover figure:before {
-// 		background: $brand;
-// 	}
-// }
-
 .project-tile-wrapper {
     position: relative;
     top: 0;
@@ -564,7 +540,7 @@ hr {
 	@extend .bold;
     @extend .white;
 
-    margin-top: .5em;
+    margin-top: 1em;
 }
 
 .project-tile-researchers {

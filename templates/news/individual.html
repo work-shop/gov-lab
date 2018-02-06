@@ -2,6 +2,7 @@
 {% extends "templates/partials/base.html" %}
 
 {% import "templates/partials/row-cards.html" as row %}
+{% import "templates/partials/metadata-row.html" as m %}
 
 {% block og_title %}{% parent %} - {{ item.name }}{% endblock %}
 {% block og_description %}{{ item.summary }}{% endblock %}
@@ -26,6 +27,11 @@
     </div>
 
     <div class="col-sm-9 bg-white">
+       <div class="row padded">
+           <div class="col-xs-offset-1 col-xs-10 centered-xs">
+              <h6 class="update-item-meta">{{ m.metadata_row( item.publication_date|date('F Y'), [], item.author) }}</h6>
+           </div>
+       </div>
 
        <div class="row padded">
           <div class="col-xs-offset-1 col-xs-10 centered-xs">
