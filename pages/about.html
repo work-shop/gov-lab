@@ -129,7 +129,9 @@
 				</div>
 			</div>
 
-				{% for person in cms.peopleorder.people_order %}
+            <div class="row">
+
+				{% for person in cms.peopleorder.people_order|where("relationship_to_govlab", "Team Member") %}
 
 					<div class="teammember max-height-bounded mb3 col-xs-5 col-sm-3 col-sm-offset-1 {% if ( loop.index0 % 2 == 0 ) %}col-xs-offset-1{% endif %}">
                         <a href="{{ url( person ) }}">
@@ -141,6 +143,26 @@
 					</div>
 
 				{% endfor %}
+            </div>
+
+            {% if cms.peopleorder.people_order|where("relationship_to_govlab", "Affiliate")|size > 0 %}
+            <div class="row mb4">
+                <div class="col-sm-offset-1 col-xs-11 mb2" >
+                    <div class="projects-rule"></div>
+                    <h4 class="">GOV/LAB Affiliates</h4>
+                </div>
+
+                {% for person in cms.peopleorder.people_order|where("relationship_to_govlab", "Affiliate") %}
+                <div class="col-xs-5 col-sm-3 col-sm-offset-1 {% if ( loop.index0 % 2 == 0 ) %}col-xs-offset-1{% endif %}">
+                    {% if person.website %}<a href="{{ person.website }}">{% endif %}
+                        <h5 class="bold">{{ person.name }}</h5>
+                    {% if person.role %}<h6 class="teammember-description mb0">{{ person.role }}</h6>{% endif %}
+                    {% if person.website %}</a>{% endif %}
+                </div>
+                {% endfor %}
+
+            </div>
+            {% endif %}
 
 		</div>
 	</div>

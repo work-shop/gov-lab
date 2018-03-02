@@ -11,9 +11,9 @@
         <div class="col-sm-8">
             <h6 class="updates-tile-metadata bold">
                 {{ item.news_date|date('F Y') }}
-                {% if item.author|size > 0 %}
+                {% if item.authors|size > 0 %}
                     <span class="brand-stroke">/</span>
-                    {{ item.author.name }}
+                    {% for author in item.authors %}{{ author.name }}{% if !loop.last %}, {% endif %}{% endfor %}
                 {% endif %}
             </h6>
 

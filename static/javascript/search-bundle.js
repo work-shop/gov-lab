@@ -122,7 +122,7 @@ module.exports = function( data ) {
 
     function resolveWith( valueInterpolator ) {
         return function( identifier ) {
-            if ( identifier !== "undefined undefined" ) {
+            if ( identifier !== "undefined undefined" && typeof identifier !== "undefined" ) {
 
                 identifier = identifier.split(' ');
                 var type = identifier[0].trim(), id = identifier[1].trim();
@@ -183,7 +183,7 @@ module.exports = function( data ) {
     function collapseNewsObject( news ) {
         var interpolator = function( candidate ) { return candidate.name; };
 
-        var author = resolveWith( interpolator )( news.author );
+        var author = resolveWith( interpolator )( news.authors[0] );
         var image = (typeof news.cover_image !== 'undefined') ? news.cover_image.resize_url : undefined;
 
         return {
@@ -380,13 +380,13 @@ render( Search, config );
  *       this.field('title', 10)
  *       this.field('tags', 100)
  *       this.field('body')
- *       
+ *
  *       this.ref('cid')
- *       
+ *
  *       this.pipeline.add(function () {
  *         // some custom pipeline function
  *       })
- *       
+ *
  *     })
  *
  * @param {Function} config A function that will be called with the new instance

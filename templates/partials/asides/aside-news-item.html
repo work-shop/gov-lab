@@ -8,11 +8,13 @@
         </li>
     {% endif %}
 
-    {% if ( item.author ) %}
+    {% if ( item.authors|size > 0 ) %}
         <li class="sidebar-item mb2">
             <ul>
                 <li class="h5 uppercase bold sidebar-passive-subheading mt0 mb0">Author</li>
-                <li class="h5 "><a href="{{ url( item.author ) }}">{{ item.author.name }}</a></li>
+                {% for author in item.authors %}
+                    <li class="h5 "><a href="{{ url( author ) }}">{{ author.name }}</a></li>
+                {% endfor %}
             </ul>
         </li>
     {% endif %}
