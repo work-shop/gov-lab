@@ -2,6 +2,9 @@
 
 {% import "templates/partials/row-cards.html" as row %}
 
+
+{% import "templates/partials/metadata-row.html" as metadata %}
+
 {% block og_title %}{% parent %} - {{ item.name }}{% endblock %}
 {% block og_description %}{{ item.summary }}{% endblock %}
 {% block og_image %}{{ item.image|imageCrop(1000,500) }}{% endblock %}
@@ -20,31 +23,19 @@
 
     <div class="row">
 
-      <div id="sidebar" class="sidebar col-sm-3 hidden-xs" aside-enter>
-      {% set page = "output-item" %}
-      {% include "templates/partials/aside.html" %}
-      </div>
+      <div class="col-sm-12 bg-white pb2 pt1">
 
-      <div class="col-sm-9 bg-white pb2 pt1">
-
-       <div class="row padded">
-          <div class="col-xs-offset-1 col-xs-10 centered-xs">
-            <h6 class="uppercase bold">
-                {% if item.publication_date %}
-                    {{ item.publication_date|date('F Y') }}
-                {% else %}
-                    {{ item.publish_date|date('F Y') }}
-                {% endif %}
-            </h6>
-            <h2 class="project-title bold">{{ item.name }}{% if item.subtitle%}:{% endif %}</h2>
-            {% if item.subtitle%}<h3 class="italic">{{ item.subtitle }}</h>{% endif %}
-          </div>
-        </div>
-
-        <div class="row mb2">
-          <div class="col-xs-offset-1 col-xs-10 centered-xs">
-            <h4 class="project-summary">{{ item.summary }}</h4>
-          </div>
+        <div class="row padded">
+            <div class="col-sm-offset-3 col-sm-8 col-xs-offset-1 col-xs-10 centered-xs">
+                <div>{{ metadata.metadata_row( item.publication_date|date('F Y') || item.publish_date|date('F Y'), item.output_type, item.authors ) }}</div>
+                <div>
+                    <h2 class="project-title bold">{{ item.name }}{% if item.subtitle%}:{% endif %}</h2>
+                    {% if item.subtitle%}<h3 class="italic">{{ item.subtitle }}</h3>{% endif %}
+                </div>
+                <div>
+                  <h4 class="project-summary">{{ item.summary }}</h4>
+                </div>
+            </div>
         </div>
 
         <div class="row {% if !item.image %} mb2{% endif %}">
@@ -71,7 +62,7 @@
 
 
         <div class="row pb4">
-          <div class="col-xs-offset-1 col-xs-10 wysiwyg">
+          <div class="col-xs-offset-1 col-sm-offset-3 col-sm-7 col-xs-10 wysiwyg">
             {{ item.description|safe }}
           </div>
         </div>
@@ -80,7 +71,6 @@
             {% if item.file %}
                 <div class="col-xs-offset-1 col-xs-5 pb6 centered">
                     <a target="_blank" class="sync output-link" type="{{ item.file.type }}" href="{{ item.file.url }}">Download Content</a>
-                    <script>console.log({{ item.file|json|safe }});</script>
                 </div>
             {% endif %}
             {% if item.link %}
@@ -96,11 +86,11 @@
   </section>
 
   {% if ( item.related_projects.length || item.related_updates.length || item.related_research.length ) %}
-  <section id="project-related" class="bg-light">
+  <section id="project-related" class="bg-white">
   <div class="container-fluid">
         <div class="row">
 
-          <div class="col-sm-offset-3 col-sm-9 bg-white pb4">
+          <div class="col-sm-12 bg-white pb4">
             <div class="row">
               <div class="col-xs-offset-1 col-xs-10 mb2" >
                 <div class="projects-rule"></div>

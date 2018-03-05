@@ -1,16 +1,19 @@
 {% macro metadata_row( date, category, people ) %}
 
-    <span class="metadata-date">{{ data }}</span>
+    <span class="metadata-date">{{ date }}{% if category %},{% endif %}</span>
 
-    {% if category|size > 0 %}
-        <span class="brand-stroke">/</span>
-        {{ category.name }}
+    {% if category %}
+        <span>{{ category.name }}</span>
     {% endif %}
 
     {% if people|size > 0 %}
         <span class="brand-stroke">/</span>
         {% for person in people %}
-            <span class="metadata-author">{{ person.name }}</span>{% if !loop.last %}, {% endif %}
+            <span class="metadata-author">
+                {% if person.relationship_to_govlab == "Team Member" %}
+                <a href="{{ url( person ) }}">{{ person.name }}{% if !loop.last %}, {% endif %}</a>
+                {% endif %}
+            </span>
         {% endfor %}
     {% endif %}
 
