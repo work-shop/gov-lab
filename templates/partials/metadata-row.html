@@ -10,9 +10,10 @@
         <span class="brand-stroke">/</span>
         {% for person in people %}
             <span class="metadata-author">
-                {% if person.relationship_to_govlab == "Team Member" %}
-                <a href="{{ url( person ) }}">{{ person.name }}{% if !loop.last %}, {% endif %}</a>
-                {% endif %}
+                {% if person.relationship_to_govlab == "Team Member" %}<a href="{{ url( person ) }}">{% endif %}
+                {{ person.name }}{% if !loop.last %},{% endif %}
+                {% if person.relationship_to_govlab == "Team Member" %}</a>{% endif %}
+                {% if !loop.last %}&nbsp;{% endif %}
             </span>
         {% endfor %}
     {% endif %}

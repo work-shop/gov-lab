@@ -27,7 +27,9 @@
 
         <div class="row padded">
             <div class="col-sm-offset-3 col-sm-8 col-xs-offset-1 col-xs-10 centered-xs">
-                <div>{{ metadata.metadata_row( item.publication_date|date('F Y') || item.publish_date|date('F Y'), item.output_type, item.authors ) }}</div>
+                <h5 class="bold">
+                    {{ metadata.metadata_row( item.publication_date|date('F Y') || item.publish_date|date('F Y'), item.output_type, item.authors ) }}
+                </h5>
                 <div>
                     <h2 class="project-title bold">{{ item.name }}{% if item.subtitle%}:{% endif %}</h2>
                     {% if item.subtitle%}<h3 class="italic">{{ item.subtitle }}</h3>{% endif %}
