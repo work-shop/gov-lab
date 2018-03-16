@@ -1,4 +1,10 @@
 .wysiwyg {
+
+    /**
+     * This constrains the width of the wysiwyg container on larger screens.
+     */
+    max-width: 900px;
+
     h1,h2,h3,h4,h5 {
         @extend .bold;
     }

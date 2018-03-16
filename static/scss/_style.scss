@@ -557,7 +557,12 @@ hr {
 }
 
 
-
+/**
+ * This constrains the width of the wysiwyg container on larger screens.
+ */
+.project-summary, .project-title {
+    max-width: 900px;
+}
 
 
 /********** NEWS ********/

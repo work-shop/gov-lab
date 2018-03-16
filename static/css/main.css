@@ -1857,6 +1857,12 @@ p, .wysiwyg h5, .wysiwyg h6 {
     opacity: .25;
   }
 }
+.wysiwyg {
+  /**
+   * This constrains the width of the wysiwyg container on larger screens.
+   */
+  max-width: 900px;
+}
 .wysiwyg p, .wysiwyg h5, .wysiwyg h6 {
   margin-bottom: 1.5em;
 }
@@ -2467,6 +2473,13 @@ hr.hr-brand {
 
 .projects-rule {
   border-top: 2px solid #cc3333;
+}
+
+/**
+ * This constrains the width of the wysiwyg container on larger screens.
+ */
+.project-summary, .project-title {
+  max-width: 900px;
 }
 
 /********** NEWS ********/
