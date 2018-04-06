@@ -53,8 +53,6 @@
 {# length must be congruent to 1 mod 4 #}
 {{ o.resultssection( cms.about.home_page_results_oneliner, cms.output|sort('publication_date', true)|slice(0,2) ) }}
 
-
-
 <section id="home-map" class="bg-light block half-lax crop">
 
       {% include "templates/partials/map.html" %}
@@ -65,85 +63,6 @@
       <a class="uppercase sync" href="/projects">See All {{ projects_name }}</a>
     </div>
 </section>
-
-<section id="home-callouts" class="bg-white padded hidden">
-  <div class="container block">
-
-  <div class="row one-quarter">
-    <div class="col-sm-12">
-      <!--<div class="row one-quarter"> -->
-
-        <div class="block-background hidden" style="background: url({{ cms.about.about_image|imageSize(2500,500)}}); background-size:cover; background-position:center center;"> </div>
-
-        <div class="col-sm-6 centered p2">
-              <h4 class="brand">About GOV/LAB</h4>
-              {% if cms.about.home_page_about_callout %}<h4 class="mb2 ">{{ cms.about.home_page_about_callout }}</h4>{% endif %}
-              <a class="uppercase sync" href="/about">Read More About Us</a>
-        </div>
-
-        <div class="col-sm-6 hidden-xs crop">
-
-          <img src="{{ cms.about.about_image|imageCrop(650,450)}}" />
-          <div class="image-overlay col-xs-12 col-sm-offset-1 col-sm-10 centered">
-            <p class="h5 mb2 hidden">We engage under-resourced groups and their governments in <span class="bold">challenging contexts</span>.</p>
-            <a class="uppercase sync hidden" href="/about">Latest updates and publications</a>
-          </div>
-
-        </div>
-
-      <!-- </div> -->
-    </div>
-  </div>
-
-  </div>
-
-</section>
-
-{% if cms.about.home_page_news_item %}
-
-<section id="latest" class="padded bg-white hidden">
-
-  {% set latest = cms.about.home_page_news_item %}
-
-  <div class="container">
-
-  <div class="row">
-
-    <div class="col-xs-6 col-sm-6 project-tint">
-
-      <div class="row">
-
-        <div class="col-xs-12">
-          <figure class="">
-            <img src="{{ latest.cover_image|imageCrop(auto,350)}}" />
-          </figure>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="col-xs-6 col-sm-6">
-
-      <div class="row">
-
-          <div class=" col-xs-12 col-sm-offset-1 col-sm-10 centered mt1">
-            <h4 class="brand">{{ latest.name }}</h4>
-            <p class="h5 dark mb2">{{ latest.summary }}</p>
-            <a class="uppercase sync" href="{{ url( latest ) }}">Read More</a>
-          </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  </div>
-
-</section>
-
-{% endif %}
 
 {{ s.subscribeform('pb3') }}
 
