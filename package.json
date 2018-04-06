@@ -45,5 +45,8 @@
     "grunt-connect-proxy": "~0.2",
     "nodejs-websocket": "~1.2.0",
     "grunt-simple-watch": "~0.1.2"
+  },
+  "devDependencies": {
+    "grunt-sass": "^2.1.0"
   }
 }

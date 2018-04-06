@@ -53,14 +53,14 @@
               <div class="flexslider">
               <ul class="slides">
                 {% for image in project.images %}
-                  <li><img src="{{ image|imageCrop(1000,500) }}"></li>
+                  <li><img class="individual-hero-image"src="{{ image|imageCrop(1000,500) }}"></li>
                 {% endfor %}
               </ul>
               </div>
 
             {% else %}
 
-              <img src="{{ item.images|first|imageCrop(1000,500) }}">
+              <img class="individual-hero-image" src="{{ item.images|first|imageCrop(1000,500) }}">
 
             {% endif %}
 
