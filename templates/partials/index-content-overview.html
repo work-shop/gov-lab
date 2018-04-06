@@ -75,9 +75,9 @@
                         <div class="result-home-page-card col-sm-4 mb2">
                             <a href="{{ url( result ) }}">
                                 <div class="row centered">
-                                <div class="col-xs-12 col-lg-offset-2 col-lg-8">
-                                <img class="project-tint project-tile-image mb1" src="{{ result.cover_image|imageCrop(600, 350) }}" />
-                                </div>
+                                    <div class="col-xs-12">
+                                        <img class="project-tint project-tile-image mb1" src="{{ result.cover_image|imageCrop(600, 350) }}" />
+                                    </div>
                                 </div>
                                 <h5 class="mt0 centered">{{ result.name }}</h5>
                             </a>
