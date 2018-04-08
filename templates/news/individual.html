@@ -15,64 +15,70 @@
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 
 {% block content %}
+
 <article class="news bg-light">
 
-  <section id="news-story bg-light">
-  <div class="container-fluid">
-  <div class="row">
+    <section id="news-story bg-light">
+        <div class="container-fluid">
+            <div class="row">
 
-    <div class="col-sm-12 bg-white">
+                <div class="col-sm-12 bg-white">
 
-       <div class="row padded">
-          <div class="col-xs-offset-1 col-xs-10 centered-xs">
-            <h5 class="bold">
-                {% if item.publication_date %}
-                    {{ m.metadata_row( item.publication_date|date('F Y'), "", item.authors) }}
-                {% else %}
-                    {{ m.metadata_row( item.publish_date|date('F Y'), "", item.authors) }}
-                {% endif %}
-            </h5>
-            <div>
-                <h2 class="project-title bold">{{ item.name }}</h2>
+                    <div class="row padded">
+                        <div class="col-xs-offset-1 col-xs-10 centered-xs">
+
+                            <h5 class="project-metadata bold">
+                            {% if item.publication_date %}
+                                {{ m.metadata_row( item.publication_date|date('F Y'), "", item.authors) }}
+                            {% else %}
+                                {{ m.metadata_row( item.publish_date|date('F Y'), "", item.authors) }}
+                            {% endif %}
+                            </h5>
+
+                            <div>
+                                <h2 class="project-title bold">{{ item.name }}</h2>
+                            </div>
+
+                            <div>
+                                <h4 class="project-summary">{{ item.summary }}</h4>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="projects-rule"></div>
+
+                    </div>
+
+                    {% set image = item.cover_image %}
+
+                    <div class="half individual-hero-image row {% if !image.caption %}mb2{% endif %}" style="background-image:url('{{ image|imageCrop(1000,500) }}');">
+
+                    </div>
+
+                    {% if image.caption %}
+                        <div class="row mb2">
+                            <div class="col-sm-offset-1 col-sm-10">
+                                <p class="caption medium centered italic p-min">{{ image.caption }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="row pb4">
+                        <div class="col-xs-offset-1 col-xs-10">
+                            <div class="wysiwyg">
+                                {{ item.story|safe }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
-            <div>
-              <h4 class="project-summary">{{ item.summary }}</h4>
-            </div>
-          </div>
         </div>
-
-
-        <div class="row">
-
-            <div class="projects-rule"></div>
-
-        </div>
-
-        {% set image = item.cover_image %}
-
-        <div class="half individual-hero-image row {% if !image.caption %}mb2{% endif %}" style="background-image:url('{{ image|imageCrop(1000,500) }}');">
-
-        </div>
-
-        {% if image.caption %}
-        <div class="row mb2">
-            <div class="col-sm-offset-1 col-sm-10">
-                <p class="caption medium centered italic p-min">{{ image.caption }}</p>
-            </div>
-        </div>
-        {% endif %}
-
-        <div class="row pb4">
-          <div class="col-xs-offset-1 col-xs-10 wysiwyg">
-            {{ item.story|safe }}
-          </div>
-        </div>
-
-      </div>
-
-  </div>
-  </div>
-  </section>
+    </section>
 
   {% if ( item.related_projects.length || item.related_research.length || item.related_updates.length ) %}
   <section id="project-related" class="bg-light">

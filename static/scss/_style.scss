@@ -560,8 +560,14 @@ hr {
 /**
  * This constrains the width of the wysiwyg container on larger screens.
  */
-.project-summary, .project-title {
-    max-width: 900px;
+
+
+@media ($lg-query) {
+    .project-summary, .project-title, .project-metadata {
+        width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .individual-hero-image {
@@ -642,6 +648,7 @@ hr {
     .header-height {
         //height:40vh;
         height:320px;
+        padding:none;
     }
 }
 
