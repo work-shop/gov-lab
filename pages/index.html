@@ -50,12 +50,12 @@
 
 {{ o.homecontentdivider( "bg-white", "mb1" ) }}
 
-{# length must be congruent to 1 mod 4 #}
+{# length must be congruent to 1 mod 2 #}
 {{ o.resultssection( cms.about.home_page_results_oneliner, cms.output|sort('publication_date', true)|slice(0,2) ) }}
 
 <section id="home-map" class="bg-light block half-lax crop">
 
-      {% include "templates/partials/map.html" %}
+    {% include "templates/partials/map.html" %}
 
     <div id="map-callout" class="col-sm-3 col-xs-12">
       <h3 class="mb1">Our work spans <br/> the globe.</h3>

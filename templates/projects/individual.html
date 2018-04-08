@@ -46,23 +46,7 @@
 
         {% set image = item.images|first%}
 
-        <div class="row {% if !image.caption %}mb2{% endif %}">
-
-            {% if ( item.images|size > 1 ) %}
-
-              <div class="flexslider">
-              <ul class="slides">
-                {% for image in project.images %}
-                  <li><img class="individual-hero-image"src="{{ image|imageCrop(1000,500) }}"></li>
-                {% endfor %}
-              </ul>
-              </div>
-
-            {% else %}
-
-              <img class="individual-hero-image" src="{{ item.images|first|imageCrop(1000,500) }}">
-
-            {% endif %}
+        <div class="half individual-hero-image row {% if !image.caption %}mb2{% endif %}" style="background-image:url('{{ item.images|first|imageCrop(1000,500) }}');">
 
         </div>
 

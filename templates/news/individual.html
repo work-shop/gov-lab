@@ -50,9 +50,7 @@
 
         {% set image = item.cover_image %}
 
-        <div class="row {% if !image.caption %}mb2{% endif %}">
-
-              <img src="{{ image|imageCrop(1000,500) }}">
+        <div class="half individual-hero-image row {% if !image.caption %}mb2{% endif %}" style="background-image:url('{{ image|imageCrop(1000,500) }}');">
 
         </div>
 
