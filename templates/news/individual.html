@@ -3,6 +3,7 @@
 
 {% import "templates/partials/row-cards.html" as row %}
 {% import "templates/partials/metadata-row.html" as m %}
+{% import "templates/partials/slideshare.html" as s %}
 
 {% block og_title %}{% parent %} - {{ item.name }}{% endblock %}
 {% block og_description %}{{ item.summary }}{% endblock %}
@@ -79,6 +80,10 @@
             </div>
         </div>
     </section>
+
+    {% if item.slideshare_embed %}
+        {{ s.slideshare( item.slideshare_embed ) }}
+    {% endif %}
 
   {% if ( item.related_projects.length || item.related_research.length || item.related_updates.length ) %}
   <section id="project-related" class="bg-light">

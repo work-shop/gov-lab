@@ -56,6 +56,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
     <![endif]-->
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript"> var cms = {{ cms|json|safe }}; </script>
 
     {# Useful block for loading outside scripts in other pages. #}
@@ -89,8 +90,6 @@
         {% block footer %}
           {% include "templates/partials/footer.html" %}
         {% endblock %}
-
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
         {# Put your JS in here and we'll minify it into one file. No CDN scripts. More info: #}
         {# http://www.webhook.com/docs/minify-your-js-and-css/ #}

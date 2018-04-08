@@ -1,6 +1,7 @@
 {% extends "templates/partials/base.html" %}
 
 {% import "templates/partials/row-cards.html" as row %}
+{% import "templates/partials/slideshare.html" as s %}
 
 {% import "templates/partials/metadata-row.html" as metadata %}
 
@@ -130,6 +131,10 @@
         </div>
   </div>
   </section>
+  {% endif %}
+
+  {% if item.slideshare_embed %}
+      {{ s.slideshare( item.slideshare_embed ) }}
   {% endif %}
 
 
