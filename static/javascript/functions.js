@@ -605,7 +605,7 @@ $(document).ready( function() {
 
 		activate( $(this) );
 
-		//filter( $(this).data('sort-key'), $('*[data-sort-value]') );
+		filter( $(this).data('sort-key'), $('*[data-sort-value]') );
 
 	});
 

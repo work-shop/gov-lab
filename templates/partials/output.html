@@ -5,32 +5,30 @@
  #}
 {% macro outputcard( item ) %}
 
-<li id="output-{{ item.name|lower|replace(' ', '-', 'g') }}" class="results-tile col-xs-offset-1 col-xs-10 mb4" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.research_topics, item.output_type ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}">
-        <div class="row">
-            <div class="col-sm-3 hidden-xs">
-                <img class="results-tile-cover-image" src="{{ item.cover_image|imageCrop(250,250) }}" />
-            </div>
-            <div class="col-sm-9 col-xs-12">
-                <h6 class="results-tile-metadata bold">
+<li id="output-{{ item.name|lower|replace(' ', '-', 'g') }}" class="results-tile row mb4" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.research_topics, item.output_type ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}">
+    <div class="col-sm-3 hidden-xs">
+        <img class="results-tile-cover-image" src="{{ item.cover_image|imageCrop(500,500) }}" />
+    </div>
+    <div class="col-sm-9 col-xs-12">
+        <h6 class="results-tile-metadata bold">
 
-                    {% if item.authors|size > 0 or item.output_type|size > 0 %}
-                        {% if item.output_type|size > 0 %}
-                            {{ item.publication_date|date('F Y')}},
-                            {{ item.output_type.name }}
-                            <span class="brand-stroke">/</span>
-                        {% else %}
-                            {{ item.publication_date|date('F Y')}} <span class="brand-stroke">/</span>
-                        {% endif %}
-                    {% endif %}
+            {% if item.authors|size > 0 or item.output_type|size > 0 %}
+                {% if item.output_type|size > 0 %}
+                    {{ item.publication_date|date('F Y')}},
+                    {{ item.output_type.name }}
+                    <span class="brand-stroke">/</span>
+                {% else %}
+                    {{ item.publication_date|date('F Y')}} <span class="brand-stroke">/</span>
+                {% endif %}
+            {% endif %}
 
-                    {% for team_member in item.authors %}
-                        {{ team_member.name }}{% if !loop.last %}, {% endif %}
-                    {% endfor %}
-                </h6>
-                <a href="{{ url( item ) }}"><h4 class="results-tile-title bold">{{ item.name }}</h4></a>
-                <h5 class="results-tile-summary mb1">{{ item.summary }}</h5>
-            </div>
-        </div>
+            {% for team_member in item.authors %}
+                {{ team_member.name }}{% if !loop.last %}, {% endif %}
+            {% endfor %}
+        </h6>
+        <a href="{{ url( item ) }}"><h4 class="results-tile-title bold">{{ item.name }}</h4></a>
+        <h5 class="results-tile-summary mb1">{{ item.summary }}</h5>
+    </div>
 </li>
 
 {% endmacro %}

@@ -2110,6 +2110,25 @@ hr {
   font-weight: bold;
   color: #222222; }
 
+/********** FILTER ********/
+.filter-button {
+  display: inline-block;
+  background-color: #bebebe;
+  border-radius: 20px;
+  padding-left: .5em;
+  padding-right: .5em;
+  margin-right: 1em;
+  margin-bottom: 1em; }
+
+.filter-button:hover {
+  background-color: #a5a4a4;
+  font-weight: bold; }
+
+.filter-button.active {
+  background-color: #cc3333;
+  font-weight: bold;
+  color: white; }
+
 /********** SEARCH ********/
 #search-trigger-button, #twitter-trigger-button {
   position: relative;

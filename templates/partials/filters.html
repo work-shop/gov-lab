@@ -1,0 +1,24 @@
+{% macro filter_menu( label, taxonomy ) %}
+    <div class="filter-module mb1">
+
+        <div class="filter-taxonomy-label mb1">
+            <h5 class="uppercase bold brand">Filter by {{ label }}</h5>
+        </div>
+
+        <ul class="filter-menu">
+            <li class="filter-button sort-key active" data-sort-key=" ">
+                    All
+            </li>
+
+            {% for term in taxonomy|sort('name') %}
+
+                <li class="filter-button sort-key" data-sort-key="{{ term.name|lower|replace(' ', '-', 'g') }}">
+                        {{ term.name }}
+                </li>
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+{% endmacro %}

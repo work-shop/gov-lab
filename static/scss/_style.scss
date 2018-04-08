@@ -716,6 +716,31 @@ hr {
 }
 
 
+/********** FILTER ********/
+
+
+.filter-button {
+    display: inline-block;
+    background-color: $medium-light;
+    border-radius: 20px;
+
+    padding-left: .5em;
+    padding-right: .5em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.filter-button:hover {
+    background-color: darken($medium-light, 10);
+    font-weight: bold;
+}
+
+.filter-button.active {
+    background-color: $brand;
+    font-weight: bold;
+    color: white;
+}
+
 
 /********** SEARCH ********/
 

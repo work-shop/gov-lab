@@ -1,4 +1,5 @@
 {% import "templates/partials/output.html" as o %}
+{% import "templates/partials/filters.html" as f %}
 
 {% import "templates/partials/list-header.html" as list %}
 
@@ -22,26 +23,31 @@
 
 
 <section id="output" class="bg-white pb6" aside-enter>
-<div class="container-fluid">
-<div class="row">
+    <div class="container-fluid">
 
-    <div id="sidebar"  class="col-sm-2 hidden-xs">
-    {% set page = "output" %}
-    {% include "templates/partials/aside.html" %}
+        <div class="row mb2">
+            <div class="col-sm-offset-1 col-sm-10">
+
+                {{ f.filter_menu( 'Result Type', cms.outputtypes ) }}
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-offset-1 col-sm-10">
+                <ul id="output-list" class="">
+                {% for outputItem in output %}
+
+                    {{ o.outputcard( outputItem ) }}
+
+                {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
     </div>
-
-    <div class="col-sm-9">
-        <ul id="output-list" class="">
-        {% for outputItem in output %}
-
-            {{ o.outputcard( outputItem ) }}
-
-        {% endfor %}
-        </ul>
-    </div>
-
-</div>
-</div>
 </section>
 
 {% set returnTo = {to: "Home", url: "/", aside: true } %}
