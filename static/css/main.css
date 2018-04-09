@@ -2124,21 +2124,18 @@ hr {
 /********** FILTER ********/
 .filter-button {
   display: inline-block;
-  background-color: #bebebe;
-  border-radius: 20px;
-  padding-left: .5em;
-  padding-right: .5em;
   margin-right: 1em;
-  margin-bottom: 1em; }
-
-.filter-button:hover {
-  background-color: #a5a4a4;
+  margin-bottom: 1em;
   font-weight: bold; }
 
-.filter-button.active {
-  background-color: #cc3333;
+.filter-button:hover {
   font-weight: bold;
-  color: white; }
+  border-bottom: 2px solid #222222; }
+
+.filter-button.active {
+  color: #cc3333;
+  border-bottom: 2px solid #cc3333;
+  font-weight: bold; }
 
 /********** SEARCH ********/
 #search-trigger-button, #twitter-trigger-button {

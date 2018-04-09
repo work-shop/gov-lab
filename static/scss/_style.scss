@@ -728,24 +728,20 @@ hr {
 
 .filter-button {
     display: inline-block;
-    background-color: $medium-light;
-    border-radius: 20px;
-
-    padding-left: .5em;
-    padding-right: .5em;
     margin-right: 1em;
     margin-bottom: 1em;
+    font-weight: bold;
 }
 
 .filter-button:hover {
-    background-color: darken($medium-light, 10);
     font-weight: bold;
+    border-bottom: 2px solid $dark;
 }
 
 .filter-button.active {
-    background-color: $brand;
+    color: $brand;
+    border-bottom: 2px solid $brand;
     font-weight: bold;
-    color: white;
 }
 
 
