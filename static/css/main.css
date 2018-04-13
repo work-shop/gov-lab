@@ -2126,7 +2126,8 @@ hr {
   display: inline-block;
   margin-right: 1em;
   margin-bottom: 1em;
-  font-weight: bold; }
+  font-weight: bold;
+  border-bottom: 2px solid transparent; }
 
 .filter-button:hover {
   font-weight: bold;
