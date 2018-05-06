@@ -1923,6 +1923,25 @@ aside {
   #subscribe-box .email {
     width: 100%; }
 
+#newsletter-page-list .form-wrapper {
+  overflow: auto; }
+
+#newsletter-page-list input[type="text"], #newsletter-page-list input[type="email"] {
+  display: block;
+  border: 1px solid #cc3333;
+  padding: 1em; }
+  #newsletter-page-list input[type="text"]:focus, #newsletter-page-list input[type="email"]:focus {
+    border: 2px solid #cc3333; }
+
+#newsletter-page-list input[type="submit"] {
+  border: 2px solid #cc3333; }
+  #newsletter-page-list input[type="submit"]:hover {
+    color: #cc3333;
+    background-color: white; }
+
+#mailchimp-response {
+  display: none; }
+
 /********** @FEATURE *********/
 /********** @active ***********/
 /********** about *************/

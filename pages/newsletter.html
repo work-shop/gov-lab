@@ -1,0 +1,26 @@
+{% import "templates/partials/list-header.html" as list %}
+
+{% extends "templates/partials/base.html" %}
+
+{% block og_title %}{% parent %} - Newsletter{% endblock %}
+{% block og_image %}{{ cms.about.opportunities_background_image|imageCrop(1000,500) }}{% endblock %}
+
+{% block tw_title %}{% parent %} - Newsletter{% endblock %}
+{% block tw_image %}{{ cms.about.opportunities_background_image|imageCrop(1000,500) }}{% endblock %}
+
+{% block title %}{% parent %} - Newsletter{% endblock %}
+
+{% block content %}
+
+    {{ list.header( 'newsletter-page', "Newsletter", cms.about.research_image, "We release a bimonthly newsletter covering our activities, research, and reports from the field.", "", cms.about.research_image_caption ) }}
+
+    <section id="newsletter-page-list" class="bg-white">
+
+        {% include "templates/partials/newsletter-mce-form.html" %}
+
+    </section>
+
+    {% set returnTo = {to: "Home", url: "/",  aside: false } %}
+    {% include 'templates/partials/prefooter.html' %}
+
+{% endblock %}

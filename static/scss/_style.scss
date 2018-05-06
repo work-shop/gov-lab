@@ -422,6 +422,38 @@ aside {
 
 }
 
+#newsletter-page-list {
+
+    .form-wrapper {
+        overflow: auto;
+    }
+
+    input[type="text"], input[type="email"] {
+        display:block;
+        border:1px solid $brand;
+        padding:1em;
+
+        &:focus {
+            border:2px solid $brand;
+        }
+
+    }
+
+    input[type="submit"] {
+
+        border:2px solid $brand;
+
+        &:hover {
+            color: $brand;
+            background-color: white;
+        }
+    }
+}
+
+#mailchimp-response {
+    display: none;
+}
+
 
 /********** @FEATURE *********/
 
