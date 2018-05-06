@@ -1,4 +1,5 @@
 {% import "templates/partials/output.html" as o %}
+{% import "templates/partials/evidence-gap-card.html" as ev %}
 {% import "templates/partials/filters.html" as f %}
 
 {% import "templates/partials/list-header.html" as list %}
@@ -37,9 +38,26 @@
 
             <div class="col-sm-offset-1 col-sm-10">
                 <ul id="output-list" class="">
-                {% for outputItem in output %}
+                {% set EGMap = {
+                    name: "Evidence Gap Map",
+                    slug: "evidence-gap-map",
+                    summary: "We designed a systematic search system for literature published in the last 10 years addressing the effects of information on government accountability, both between government and citizens and within government. A total of 34 relevant papers were found. The table below maps the findings of the evidence base. An accompanying report reviews the literature and proposes a framework for thinking of the chain between information and accountability.",
+                    publication_date: "2018-02-01T15:07:00-04:00",
+                    authors: ["people -K284BXcNTh3_9TI3Ys3"],
+                    output_type: "outputtypes -L9Ax21AdgJ2Sxd2dRuI",
+                    evidencemap: true
+                } %}
+                {% for outputItem in merge([ EGMap ], output)|sort('publication_date', true) %}
 
-                    {{ o.outputcard( outputItem ) }}
+                    {% if outputItem.evidencemap %}
+
+                        {{ ev.evidencemap( outputItem ) }}
+
+                    {% else %}
+
+                        {{ o.outputcard( outputItem ) }}
+
+                    {% endif %}
 
                 {% endfor %}
                 </ul>

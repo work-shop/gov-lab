@@ -1,0 +1,32 @@
+{# This is a collection of macros dealing with evidence-map content #}
+
+{# this macro generates a card for an output item given an
+ # output item in JSON.
+ #}
+{% macro evidencemap( item ) %}
+
+<li id="output-evidence-gap-map" class="results-tile row mb4" data-publish-date="{{ item.publication_date }}" data-sort-value="data-&-tools ">
+    <div class="col-sm-3 hidden-xs">
+        <img class="results-tile-cover-image" src="{{ cms.about.evidence_gap_map_header_image|imageCrop(500,500) }}" />
+    </div>
+    <div class="col-sm-9 col-xs-12">
+        <h6 class="results-tile-metadata bold">
+
+            {% if item.authors|size > 0 or item.output_type|size > 0 %}
+                {% if item.output_type|size > 0 %}
+                    {{ item.publication_date|date('F Y')}},
+                    Data & Tools
+                    <span class="brand-stroke">/</span>
+                {% else %}
+                    {{ item.publication_date|date('F Y')}} <span class="brand-stroke">/</span>
+                {% endif %}
+            {% endif %}
+
+            Soubhik Barari
+        </h6>
+        <a href="{{ url( item ) }}"><h4 class="results-tile-title bold">{{ item.name }}</h4></a>
+        <h5 class="results-tile-summary mb1">{{ item.summary }}</h5>
+    </div>
+</li>
+
+{% endmacro %}
