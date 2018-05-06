@@ -1942,6 +1942,17 @@ aside {
 #mailchimp-response {
   display: none; }
 
+.subscribe-box-container {
+  border: 1px solid #cc3333;
+  padding: 2em; }
+
+.subscribe-link {
+  padding: .5em;
+  border: 2px solid #cc3333; }
+  .subscribe-link:hover {
+    color: #cc3333;
+    background-color: white; }
+
 /********** @FEATURE *********/
 /********** @active ***********/
 /********** about *************/

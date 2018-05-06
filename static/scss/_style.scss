@@ -454,6 +454,23 @@ aside {
     display: none;
 }
 
+.subscribe-box-container {
+    background-color: white;
+    border: 1px solid $brand;
+    padding:2em;
+}
+
+.subscribe-link {
+    padding:.5em;
+    border: 2px solid $brand;
+
+    &:hover {
+        color: $brand;
+        background-color: white;
+    }
+
+}
+
 
 /********** @FEATURE *********/
 

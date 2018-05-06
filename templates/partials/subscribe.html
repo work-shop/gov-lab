@@ -15,34 +15,30 @@
 
 {% macro subscribe( classes ) %}
 
-    <div id="overlay" class="overlay bg-dark off subscribe-trigger"></div>
+    <section id="subscribe" class="{{ classes }}" aside-exit>
+      <div class="container-fluid">
 
-    <section id="subscribe" class="bg-white {{ classes }}" aside-exit>
-      <div class="container">
-
-      <div class="row">
-
-        <a class="subscribe-trigger">
-        <div class="col-xs-12">
-          <div class="bg-brand skew-field">
-            <h3 class="white centered p1">
-              <span class="pictogram">→</span><span class="bold">Subscribe</span> to our mailing list to watch our progress!
-            </h3>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="subscribe-box-container">
+                            <h5 class="mb1 bold">
+                                Newsletter
+                            </h5>
+                            <p class="mb2">
+                                Every month or so, MIT GOV/LAB releases a newsletter reporting on our projects, activities, research results for interested folks. If that sounds like you, sign up here!
+                            </p>
+                            <a class="bg-brand white padded bold subscribe-link centered" href="/newsletter">
+                                  Subscribe <span class="hidden-xs">to our newsletter</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
           </div>
-
-        </div>
-        </a>
-
-      </div>
 
       </div>
     </section>
-
-
-    <div id="subscribe-box" class="overlay-box closed bg-light">
-
-        {% include "templates/partials/subscribe-mce-form.html" %}
-
-    </div>
 
 {% endmacro %}
