@@ -463,10 +463,12 @@ aside {
 .subscribe-link {
     padding:.5em;
     border: 2px solid $brand;
+    background-color: transparent;
+    color: $brand;
 
     &:hover {
-        color: $brand;
-        background-color: white;
+        color:white;
+        background-color: $brand;
     }
 
 }
