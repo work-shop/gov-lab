@@ -1520,7 +1520,7 @@ p, .wysiwyg h5, .wysiwyg h6 {
     font-weight: bold; }
 
 @media (min-width: 1201px) {
-  .wysiwyg {
+  .wysiwyg, .slideshare {
     /**
          * This constrains the width of the wysiwyg container on larger screens.
          */

@@ -68,6 +68,9 @@
               <div class="wysiwyg">
                   {{ item.description|safe }}
               </div>
+              {% if item.slideshare_embed %}
+                  {{ s.slideshare( item.slideshare_embed ) }}
+              {% endif %}
           </div>
         </div>
 
@@ -88,10 +91,6 @@
     </div>
   </div>
   </section>
-
-  {% if item.slideshare_embed %}
-      {{ s.slideshare( item.slideshare_embed ) }}
-  {% endif %}
 
   {% if ( item.related_projects.length || item.related_updates.length || item.related_research.length ) %}
   <section id="project-related" class="bg-white">
