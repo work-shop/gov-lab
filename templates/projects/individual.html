@@ -167,8 +167,9 @@
   {% endif %}
 
 
+{% set team = item.team_members|where('relationship_to_govlab', 'Team Member') %}
 
-{% if ( item.team_members.length ) %}
+{% if ( team.length ) %}
     <section id="project-teammembers" class="bg-white">
         <div class="container-fluid">
 
@@ -179,9 +180,9 @@
                     </div>
                 </div>
 
+                {% for teammember in team %}
 
-                {% for teammember in item.team_members %}
-                    {% if loop.index0 % 5 == 0 %}<div class="row">{% endif %}
+                {% if loop.index0 % 5 == 0 %}<div class="row">{% endif %}
 
                     <div class="teammember {% if loop.index0 % 5 == 0 %}col-xs-offset-1{% endif %} col-xs-2 mb1">
                         <a href="{{ url( teammember ) }}">

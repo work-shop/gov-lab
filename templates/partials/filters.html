@@ -11,7 +11,7 @@
             </li>
 
             {% for term in taxonomy|sort('name') %}
-                {% if term[ test_slug ].length > 0 %}
+                {% if term[ test_slug ] && term[ test_slug ].length > 0 %}
 
                 <li class="filter-button sort-key" data-sort-key="{{ term.name|lower|replace(' ', '-', 'g') }}">
                         {{ term.name }}

@@ -6,7 +6,7 @@
         <span>{{ category.name }}</span>
     {% endif %}
 
-    {% if people|size > 0 %}
+    {% if people|size > 0 && category.name != "Research Brief" && category.name != "Learning Case" %}
         <span class="brand-stroke">/</span>
         {% for person in people %}
             <span class="metadata-author">

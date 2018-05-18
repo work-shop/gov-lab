@@ -448,6 +448,10 @@ aside {
             background-color: white;
         }
     }
+
+    .mc-field-group ul li {
+        display: inline-block;
+    }
 }
 
 #mailchimp-response {
@@ -771,6 +775,56 @@ hr {
     text-transform: uppercase;
     font-weight: bold;
     color:$dark;
+}
+
+.research-header {
+    position: relative;
+    // background-color: lighten($brand, 8);
+    // background-blend-mode: multiply;
+
+
+    min-height:25vh;
+
+    .download-button {
+        border: 2px solid white;
+        padding: .5em 1em .5em 1em;
+        font-weight: bold;
+
+        &:hover {
+            background-color: white;
+            color: $brand;
+        }
+
+    }
+
+    .image-container {
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        filter: grayscale(100%);
+    }
+
+    .image-mask {
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background-color: $brand;
+        opacity: .75;
+    }
+
+}
+
+@media ($lg-query) {
+    .research-header .download-button-container {
+        display: block;
+        width: 900px;
+        margin-left:auto;
+        margin-right:auto;
+    }
 }
 
 

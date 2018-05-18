@@ -1939,6 +1939,9 @@ aside {
     color: #cc3333;
     background-color: white; }
 
+#newsletter-page-list .mc-field-group ul li {
+  display: inline-block; }
+
 #mailchimp-response {
   display: none; }
 
@@ -2153,6 +2156,39 @@ hr {
   text-transform: uppercase;
   font-weight: bold;
   color: #222222; }
+
+.research-header {
+  position: relative;
+  min-height: 25vh; }
+  .research-header .download-button {
+    border: 2px solid white;
+    padding: .5em 1em .5em 1em;
+    font-weight: bold; }
+    .research-header .download-button:hover {
+      background-color: white;
+      color: #cc3333; }
+  .research-header .image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: grayscale(100%); }
+  .research-header .image-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #cc3333;
+    opacity: .75; }
+
+@media (min-width: 1201px) {
+  .research-header .download-button-container {
+    display: block;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto; } }
 
 /********** FILTER ********/
 .filter-button {
