@@ -1,4 +1,4 @@
-{% macro metadata_row( date, category, people ) %}
+{% macro metadata_row( date, category, people, invert ) %}
 
     <span class="metadata-date">{{ date }}{% if category %},{% endif %}</span>
 
@@ -7,10 +7,10 @@
     {% endif %}
 
     {% if people|size > 0 && category.name != "Research Brief" && category.name != "Learning Case" %}
-        <span class="brand-stroke">/</span>
+    <span class="brand-stroke{% if invert %}-white{% endif %}">/</span>
         {% for person in people %}
-            <span class="metadata-author">
-                {% if person.relationship_to_govlab == "Team Member" %}<a href="{{ url( person ) }}">{% endif %}
+        <span class="metadata-author {% if invert %}author-light{% endif %}">
+        {% if person.relationship_to_govlab == "Team Member" %}<a class="" href="{{ url( person ) }}">{% endif %}
                 {{ person.name }}{% if !loop.last %},{% endif %}
                 {% if person.relationship_to_govlab == "Team Member" %}</a>{% endif %}
                 {% if !loop.last %}&nbsp;{% endif %}

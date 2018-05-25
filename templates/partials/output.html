@@ -35,24 +35,25 @@
 
 {% macro output_header( item ) %}
 
-    <div class="row padded">
-        <div class="col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10 centered-xs pt1">
-            <h5 class="project-metadata bold">
-                {{ metadata.metadata_row( item.publication_date|date('F Y') || item.publish_date|date('F Y'), item.output_type, item.authors ) }}
+    <div class="row padded standard-output-header">
+
+        <div class="image-mask"></div>
+
+        <div class="col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-9 centered-xs pt1">
+            <h5 class="project-metadata bold white">
+                {{ metadata.metadata_row( item.publication_date|date('F Y') || item.publish_date|date('F Y'), item.output_type, item.authors, true ) }}
             </h5>
             <div>
-                <h2 class="project-title bold">{{ item.name }}{% if item.subtitle%}:{% endif %}</h2>
+                <h3 class="project-title white bold mb1">{{ item.name }}{% if item.subtitle%}:{% endif %}</h3>
                 {% if item.subtitle%}<h3 class="italic">{{ item.subtitle }}</h3>{% endif %}
-            </div>
-            <div>
-              <h4 class="project-summary">{{ item.summary }}</h4>
+                {% if item.file %}<span class="download-button-container"><a href="{{ item.file.url }}" class="white download-button mb1" target="_blank">Download Brief</a></span>{% endif %}
             </div>
         </div>
     </div>
 
-    <div class="row mb2">
+    <div class="row {% if !item.image %} mb2{% endif %} mb2">
 
-        <div class="projects-rule"></div>
+        <div class="projects-rule standard-output-rule"></div>
 
     </div>
 
@@ -65,9 +66,9 @@
         <div class="image-container" style="background-image:url('{{ item.image|imageCrop(1000,500) }}')"></div>
         <div class="image-mask"></div>
 
-        <div class="col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10 centered-xs pt1">
+        <div class="col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-9 centered-xs pt1">
             <h5 class="project-metadata bold white">
-                {{ metadata.metadata_row( item.publication_date|date('F Y') || item.publish_date|date('F Y'), {name: "Research Brief"}, item.authors ) }}
+                {{ metadata.metadata_row( item.publication_date|date('F Y') || item.publish_date|date('F Y'), item.output_type, item.authors ) }}
             </h5>
             <div>
                 <h3 class="project-title white bold mb1">{{ item.name }}{% if item.subtitle%}:{% endif %}</h3>

@@ -28,11 +28,11 @@
 
         {% if item.output_type.name == "Research Brief" || item.output_type.name == "Learning Case"  %}
 
-            {{ o.output_header( item ) }}
+            {{ o.output_research_header( item ) }}
 
         {% else %}
 
-            {{ o.output_research_header( item ) }}
+            {{ o.output_header( item ) }}
 
         {% endif %}
 

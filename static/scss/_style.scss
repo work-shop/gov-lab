@@ -529,6 +529,11 @@ hr {
     display: inline;
 }
 
+.brand-stroke-white {
+    @extend .brand-stroke;
+    color: white;
+}
+
 /********** .image-overlay ********/
 
 .image-overlay {
@@ -557,6 +562,11 @@ hr {
 
 
 /********** PROJECTS ********/
+
+.metadata-author.author-light a {
+    color:white;
+    border-color: white;
+}
 
 .project-tile {
 
@@ -777,7 +787,7 @@ hr {
     color:$dark;
 }
 
-.research-header {
+.research-header, .standard-output-header {
     position: relative;
     // background-color: lighten($brand, 8);
     // background-blend-mode: multiply;
@@ -792,9 +802,28 @@ hr {
 
         &:hover {
             background-color: white;
-            color: $brand;
+            color: $medium-dark;
         }
 
+    }
+
+    .image-mask {
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background-color: $medium-dark;
+        opacity: 1;
+    }
+
+
+}
+
+.research-header {
+
+    .download-button:hover {
+        color:$brand;
     }
 
     .image-container {
@@ -815,15 +844,20 @@ hr {
         background-color: $brand;
         opacity: .75;
     }
+}
 
+.projects-rule.standard-output-rule {
+    border-top-color: $dark;
 }
 
 @media ($lg-query) {
-    .research-header .download-button-container {
-        display: block;
-        width: 900px;
-        margin-left:auto;
-        margin-right:auto;
+    .research-header, .standard-output-header {
+        .download-button-container {
+            display: block;
+            width: 900px;
+            margin-left:auto;
+            margin-right:auto;
+        }
     }
 }
 
