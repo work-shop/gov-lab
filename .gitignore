@@ -20,3 +20,5 @@ node_modules
 
 /.build
 /.firebase.conf
+
+static/css/main.css
