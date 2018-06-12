@@ -39,15 +39,18 @@
             <div class="col-sm-offset-1 col-sm-10">
                 <ul id="output-list" class="">
 
+                {# Soubhik = "people -K284BXcNTh3_9TI3Ys3" #}
+
                 {% set EGMap = {
                     name: "Evidence Gap Map",
                     slug: "evidence-gap-map",
                     summary: cms.about.evidence_gap_map_description,
                     publication_date: cms.about.evidence_gap_map_publication_date,
-                    authors: ["people -K284BXcNTh3_9TI3Ys3"],
+                    authors: [],
                     output_type: "outputtypes -L9Ax21AdgJ2Sxd2dRuI",
                     evidencemap: true
                 } %}
+                
                 {% for outputItem in merge([ EGMap ], output)|sort('publication_date', true) %}
 
                     {% if outputItem.evidencemap %}
