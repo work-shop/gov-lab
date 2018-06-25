@@ -27,6 +27,14 @@
     {{ list.header( 'about', "Evidence Gap Map", cms.about.evidence_gap_map_header_image, "", "", cms.about.evidence_gap_map_image_caption ) }}
 
     <section id="evidence-map" class="bg-light pb2" aside-enter>
+        <div class="row pt2 pb2">
+          <div class="col-xs-offset-1 col-xs-10">
+              <div class="wysiwyg">
+                  {{ cms.about.evidence_gap_map_page_text|safe }}
+              </div>
+
+          </div>
+        </div>
         <div class="row">
             <iframe frameborder="0" scrolling="no" class="col-xs-10 col-xs-offset-1" id="evidence-gap-map-frame" src="https://mit-govlab.github.io/Evidence-Gap-Map/"></iframe>
         </div>
