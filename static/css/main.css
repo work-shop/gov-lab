@@ -1272,6 +1272,9 @@ p, .wysiwyg h5, .wysiwyg h6 {
 .uppercase, .back-to-home {
   text-transform: uppercase; }
 
+.lowercase {
+  text-transform: lowercase; }
+
 .underline {
   border-bottom: 2px solid #f1f1f1; }
 
