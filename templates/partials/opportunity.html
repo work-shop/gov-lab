@@ -1,6 +1,6 @@
 {# These macros implement different DOM components of the opportunities page #}
 
-{# listing : string, string, URL --> opportunity listing 
+{# listing : string, string, URL --> opportunity listing
  # given a name, description and link, this macro produces an offset description
  # of an opportunity in a certain category.
  #}
@@ -15,10 +15,10 @@
           <div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-5 centered-xs">
             <p>{{ description }}</p>
           </div>
-    
+
           {% if link || linktext %}
           <div class="col-xs-offset-1 col-xs-10 col-sm-offset-5 col-sm-5 centered-xs">
-            
+
             {% if link %}<a class="sync uppercase brand h6" href="{{link}}"> {% else %}<p class="uppercase h6">{% endif %}
 
               {% if linktext %}
@@ -36,7 +36,7 @@
 
 {% endmacro %}
 
-{# header : string, string --> opportunity header 
+{# header : string, string --> opportunity header
  # given a name, description and link, this macro produces an offset description
  # of an opportunity in a certain category.
  #}
@@ -51,7 +51,7 @@
 
         <div class="col-sm-5 col-sm-offset-1">
           <h4 class="mb2">
-            
+
               {{ description }}
 
           </h4>
@@ -60,41 +60,35 @@
 
 {% endmacro %}
 
-{# opportunities : string, string, [opportunity] --> opportunity listing 
+{# opportunities : string, string, [opportunity] --> opportunity listing
  # given a name, description, and an array of listings in the category, this
- # macro produces a 
+ # macro produces a
  #}
-{% macro opportunities(name, description, collection, classes) %}
-
-	{% if collection.length > 0 || description %}
+{% macro opportunities(name, description, no_opportunities, collection, classes) %}
 
 	<section id="jobs" class="{{ classes }} padded">
 	  <div class="container-fluid">
 	  <div class="row">
-	    <div class="col-sm-offset-1 col-sm-10">
-	  
-	      {% if cms.opportunities.jobs_introductory_text %}
-	      
-	        {{ header( name, description )}}
 
-	      {% endif %}
 
-	      {% if collection.length > 0 %}
+	      {% if collection && collection.length > 0 %}
+            <div class="col-sm-offset-1 col-sm-10">
 	        {% for opportunity in collection %}
 
 	        {{ listing( opportunity.name, opportunity.description, opportunity.link, opportunity.link_text ) }}
 
 	        {% endfor %}
-	      {% endif %}
+            </div>
 
-	      {# <div class="col-xs-offset-1 col-xs-9">
-	          <span class="block news-rule-xs"></span>
-	      </div> #}
-	    </div> 
+          {% else %}
+            <div class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8">
+                <div class="wysiwyg">{{ no_opportunities|safe }}</div>
+            </div>
+          {% endif %}
+
+
 	  </div>
 	  </div>
 	</section>
-
-	{% endif %}
 
 {% endmacro %}

@@ -21,33 +21,8 @@
 {{ list.header('opportunities', "Opportunities", cms.opportunities.opportunities_background_image, cms.opportunities.opportunities_header_text, cms.opportunities.opportunities_introductory_text ) }}
 
 <section id="opportunities" class="bg-light block">
-  <!-- <div class="block-background" style="background: {% if cms.opportunities.opportunities_background_image %} url({{ cms.opportunities.opportunities_background_image|imageSize(2500,500)}}) {% else %} white {% endif %}; background-size:cover; background-position:center center;"> </div>
 
-  <div class="container half-strict block">
-
-    <div class="row vertical-center">
-      <div class="col-sm-offset-1 col-sm-10 {% if cms.opportunities.opportunities_background_image %}white{% else %}dark{% endif %} centered">
-      <h2 class="bold">{{ cms.opportunities.opportunities_header_text }}</h2>
-      <h3>{{ cms.opportunities.opportunities_introductory_text }}</h3>
-      </div>
-    </div>
-
-
-
-  </div>
-
-   {% if !cms.opportunities.opportunities_background_image %}
-   <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="projects-rule"></div>
-      </div>
-    </div>
-  </div>
-  {%endif %} -->
-
-  {{ o.opportunities("Jobs", cms.opportunities.jobs_introductory_text, cms.opportunities.jobs, "bg-white" ) }}
-
+  {{ o.opportunities("Jobs", cms.opportunities.jobs_introductory_text, cms.opportunities.no_open_opportunities_text, cms.opportunities.jobs, "bg-white" ) }}
 
 </section>
 
@@ -68,10 +43,5 @@
   </div>
 </section>
 
-
-{{ s.subscribe( "padded" ) }}
-
-{% set returnTo = {to: "Home", url: "/" } %}
-{% include 'templates/partials/prefooter.html' %}
 
 {% endblock %}
