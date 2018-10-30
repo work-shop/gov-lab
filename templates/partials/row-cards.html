@@ -15,7 +15,7 @@
 
 {# this macro generates a row representation for an update JSON structure. #}
 {% macro update( item ) %}
-    <li class="p0 col-sm-offset-1 col-sm-10 project-result search-result mb3">
+    <li class="p0 col-xs-offset-1 col-xs-10 project-result search-result mb1">
         <a href="{{ url( item ) }}" class="link">
             <div class="col-sm-2 hidden-xs related-image-block-container">
                 <div class="related-image-block" style="background-image:url('{{ item.cover_image|imageSize(250) }}');"></div>
@@ -30,9 +30,9 @@
     </li>
 {% endmacro %}
 
-{# this macro generates a row representation for an project JSON structure. #}
+{# this macro generates a row representation for a project JSON structure. #}
 {% macro project( item ) %}
-    <li class="p0 col-sm-offset-1 col-sm-10 project-result search-result mb3">
+    <li class="p0 col-xs-offset-1 col-xs-10 project-result search-result mb1">
         <a href="{{ url( item ) }}" class="link">
             <div class="col-sm-2 hidden-xs related-image-block-container">
                 <div class="related-image-block" style="background-image:url('{{ item.images[0]|imageSize(250) }}');"></div>
@@ -47,9 +47,9 @@
     </li>
 {% endmacro %}
 
-{# this macro generates a row representation for an research output JSON structure. #}
+{# this macro generates a row representation for a research output JSON structure. #}
 {% macro research( item ) %}
-    <li class="p0 col-sm-offset-1 col-sm-10 project-result search-result mb3">
+    <li class="p0 col-xs-offset-1 col-xs-10 project-result search-result mb1">
         <a href="{{ url( item ) }}" class="link">
             {% if item.cover_image %}
                 <div class="col-sm-2 hidden-xs related-image-block-container">

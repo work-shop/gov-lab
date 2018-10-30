@@ -137,6 +137,38 @@
   </section>
   {% endif %}
 
+  {% set team = item.team_members|where('relationship_to_govlab', 'Team Member') %}
+
+  {% if ( team.length ) %}
+      <section id="project-teammembers" class="bg-white mb2">
+          <div class="container-fluid">
+
+                  <div class="row">
+                      <div class="col-xs-offset-1 col-xs-10 mb2" >
+                          <div class="projects-rule"></div>
+                          <h4>Team</h4>
+                      </div>
+                  </div>
+
+                  {% for teammember in team %}
+
+                  {% if loop.index0 % 5 == 0 %}<div class="row">{% endif %}
+
+                      <div class="teammember {% if loop.index0 % 5 == 0 %}col-xs-offset-1{% endif %} col-xs-6 col-sm-2 mb1">
+                          <a href="{{ url( teammember ) }}">
+                              {% if teammember.image %}<img class="teammember-image mb1" src="{{ teammember.image|imageCrop(500,500) }}" />{% endif %}
+                              <h5 class="teammember-name bold">{{ teammember.name }}</h5>
+                              <p class="teammember-description">{{ teammember.role }}</p>
+                          </a>
+                      </div>
+
+                      {% if (loop.index0 % 5 == 4 || loop.index == item.team_members.length) %}</div>{% endif %}
+                  {% endfor %}
+
+          </div>
+      </section>
+  {% endif %}
+
 
   {% if ( item.related_updates.length || item.related_research.length || item.related_projects.length ) %}
   <section id="project-related" class="bg-light">
@@ -165,39 +197,6 @@
   </div>
   </section>
   {% endif %}
-
-
-{% set team = item.team_members|where('relationship_to_govlab', 'Team Member') %}
-
-{% if ( team.length ) %}
-    <section id="project-teammembers" class="bg-white">
-        <div class="container-fluid">
-
-                <div class="row">
-                    <div class="col-xs-offset-1 col-xs-10 mb2" >
-                        <div class="projects-rule"></div>
-                        <h4>Team</h4>
-                    </div>
-                </div>
-
-                {% for teammember in team %}
-
-                {% if loop.index0 % 5 == 0 %}<div class="row">{% endif %}
-
-                    <div class="teammember {% if loop.index0 % 5 == 0 %}col-xs-offset-1{% endif %} col-xs-2 mb1">
-                        <a href="{{ url( teammember ) }}">
-                            {% if teammember.image %}<img class="teammember-image mb1" src="{{ teammember.image|imageCrop(500,500) }}" />{% endif %}
-                            <h5 class="teammember-name bold">{{ teammember.name }}</h5>
-                            <p class="teammember-description">{{ teammember.role }}</p>
-                        </a>
-                    </div>
-
-                    {% if (loop.index0 % 5 == 4 || loop.index == item.team_members.length) %}</div>{% endif %}
-                {% endfor %}
-
-        </div>
-    </section>
-{% endif %}
 
 
   {% if (item.collaborators.length or item.sponsors.length) %}
