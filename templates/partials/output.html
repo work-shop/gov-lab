@@ -5,11 +5,11 @@
  #}
 {% macro outputcard( item ) %}
 
-<li id="output-{{ item.name|lower|replace(' ', '-', 'g') }}" class="results-tile row mb1" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.research_topics, item.output_type ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}">
-    <div class="col-sm-3 hidden-xs">
+<li id="output-{{ item.name|lower|replace(' ', '-', 'g') }}" class="results-tile row mb3" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.research_topics, item.output_type ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}">
+    <div class="col-md-2 col-sm-3 hidden-xs">
         <img class="results-tile-cover-image" src="{{ item.cover_image|imageCrop(500,500) }}" />
     </div>
-    <div class="col-sm-9 col-xs-12">
+    <div class="col-md-10 col-sm-9 col-xs-12">
         <h6 class="results-tile-metadata bold">
 
             {% if item.authors|size > 0 or item.output_type|size > 0 %}
