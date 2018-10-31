@@ -25,32 +25,6 @@
                         </div>
                     </div>
 
-                    {% if item.email || item.website || item.twitter_handle %}
-                        {% if item.email %}
-                        <div class="row">
-                            <div class="col-sm-offset-1 col-xs-11">
-                                <p class="h6 uppercase">email <span class="lowercase bold ml2"><a href="mailto:{{ item.email }}">{{ item.email }}</a></span></p>
-                            </div>
-                        </div>
-                        {% endif %}
-
-                        {% if item.website %}
-                        <div class="row">
-                            <div class="col-sm-offset-1 col-xs-11">
-                                <p class="h6 uppercase">Website <span class="lowercase bold ml2"><a href="{{ item.website }}">{{ item.website }}</a></span></p>
-                            </div>
-                        </div>
-                        {% endif %}
-
-                        {% if item.twitter_handle %}
-                        <div class="row">
-                            <div class="col-sm-offset-1 col-xs-11">
-                                <p class="h6 uppercase">Twitter <span class="lowercase bold ml2"><a href="http://twitter.com/{{ item.twitter_handle }}">@{{ item.twitter_handle }}</a></span></p>
-                            </div>
-                        </div>
-                        {% endif %}
-                    {% endif %}
-
                 <div class="row pt2 pb4">
                     <div class="projects-rule"></div>
                 </div>
@@ -59,9 +33,34 @@
                     <div class="col-sm-offset-1 col-sm-4 pb2 person-image">
                         <div class="row pb2">
                             <div class="col-xs-12">
-                                <img class="bio-image" src="{{ item.image|imageSize(1000) }}">
+                                <img class="bio-image" src="{{ item.image|imageCrop(1000) }}">
                             </div>
                         </div>
+                        {% if item.email || item.website || item.twitter_handle %}
+                            {% if item.email %}
+                            <div class="row">
+                                <div class="col-xs-11">
+                                    <p class="h6">email <span class="lowercase bold ml2"><a href="mailto:{{ item.email }}">{{ item.email }}</a></span></p>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            {% if item.website %}
+                            <div class="row">
+                                <div class="col-xs-11">
+                                    <p class="h6">website <span class="lowercase bold ml2"><a href="{{ item.website }}">{{ item.website }}</a></span></p>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            {% if item.twitter_handle %}
+                            <div class="row">
+                                <div class="col-xs-11">
+                                    <p class="h6">twitter <span class="lowercase bold ml2"><a href="http://twitter.com/{{ item.twitter_handle }}">@{{ item.twitter_handle }}</a></span></p>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endif %}
                     </div>
 
                     <div class="col-sm-offset-1 col-sm-5 pb2 person-metadata">
