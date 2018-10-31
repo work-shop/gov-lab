@@ -91,13 +91,13 @@
 
             <div class="row">
             <ul class="mb2">
-                {% for projectItem in item.projects_team_members %}
+                {% for projectItem in item.projects_team_members|sort('publish_date', true) %}
                     {{ row.project( projectItem ) }}
                 {% endfor %}
-                {% for researchItem in item.output_author %}
+                {% for researchItem in item.output_author|sort('publish_date', true) %}
                     {{ row.research( researchItem ) }}
                 {% endfor %}
-                {% for updateItem in merge( item.news_author, item.updates )|uniq %}
+                {% for updateItem in merge( item.news_author, item.updates )|uniq|sort('publish_date', true) %}
                     {{ row.update( updateItem ) }}
                 {% endfor %}
             </ul>
