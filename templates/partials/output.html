@@ -6,10 +6,10 @@
 {% macro outputcard( item ) %}
 
 <li id="output-{{ item.name|lower|replace(' ', '-', 'g') }}" class="results-tile row mb3" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.research_topics, item.output_type ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}">
-    <div class="col-md-2 col-sm-3 hidden-xs">
+    <div class="col-sm-3 col-lg-2 hidden-xs">
         <img class="results-tile-cover-image" src="{{ item.cover_image|imageCrop(500,500) }}" />
     </div>
-    <div class="col-md-10 col-sm-9 col-xs-12">
+    <div class="col-sm-9 col-xs-12 col-lg-8">
         <h6 class="results-tile-metadata bold">
 
             {% if item.authors|size > 0 or item.output_type|size > 0 %}
@@ -43,7 +43,7 @@
             <h5 class="project-metadata bold white">
                 {{ metadata.metadata_row( item.publication_date|date('F Y') || item.publish_date|date('F Y'), item.output_type, item.authors, true ) }}
             </h5>
-            <div>
+            <div class="row">
                 <h3 class="project-title white bold mb1">{{ item.name }}{% if item.subtitle%}:{% endif %}</h3>
                 {% if item.subtitle%}<h3 class="italic">{{ item.subtitle }}</h3>{% endif %}
                 {% if item.file %}<span class="download-button-container"><a href="{{ item.file.url }}" class="white download-button mb1" target="_blank">Download</a></span>{% endif %}
