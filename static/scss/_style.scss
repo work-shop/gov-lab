@@ -789,11 +789,12 @@ hr {
 
 .research-header, .standard-output-header {
     position: relative;
-    // background-color: lighten($brand, 8);
-    // background-blend-mode: multiply;
-
 
     min-height:25vh;
+
+    &.eg-output-header {
+        min-height:10vh;
+    }
 
     .download-button {
         border: 2px solid white;

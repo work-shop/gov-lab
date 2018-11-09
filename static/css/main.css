@@ -2170,6 +2170,8 @@ hr {
 .research-header, .standard-output-header {
   position: relative;
   min-height: 25vh; }
+  .research-header.eg-output-header, .standard-output-header.eg-output-header {
+    min-height: 10vh; }
   .research-header .download-button, .standard-output-header .download-button {
     border: 2px solid white;
     padding: .5em 1em .5em 1em;
