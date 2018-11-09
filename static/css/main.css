@@ -2197,7 +2197,9 @@ hr {
   left: 0;
   width: 100%;
   height: 100%;
-  filter: grayscale(100%); }
+  filter: grayscale(100%);
+  background-position: center, center;
+  background-size: cover; }
 
 .research-header .image-mask {
   position: absolute;
