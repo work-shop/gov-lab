@@ -91,15 +91,19 @@
 
             <div class="row">
             <ul class="mb2">
-                {% for projectItem in item.projects_team_members|sort('publish_date', true) %}
-                    {{ row.project( projectItem ) }}
+
+                {% set related_items = merge( item.projects_team_members, item.output_author, merge( item.news_author, item.updates )|uniq ) %}
+
+                {% for related_item in related_items|sort('publish_date', true) %}
+                    {% if related_item._type == 'projects' %}
+                        {{ row.project( related_item ) }}
+                    {% elseif related_item._type == 'output' %}
+                        {{ row.research( related_item ) }}
+                    {% else %}
+                        {{ row.update( related_item ) }}
+                    {% endif %}
                 {% endfor %}
-                {% for researchItem in item.output_author|sort('publish_date', true) %}
-                    {{ row.research( researchItem ) }}
-                {% endfor %}
-                {% for updateItem in merge( item.news_author, item.updates )|uniq|sort('publish_date', true) %}
-                    {{ row.update( updateItem ) }}
-                {% endfor %}
+
             </ul>
             </div>
 
