@@ -1,4 +1,4 @@
-{% import "templates/partials/project-card.html" as p %}
+{% import "templates/partials/grid-cards.html" as p %}
 
 {% import "templates/partials/filters.html" as f %}
 
@@ -63,7 +63,7 @@
 
                     {% for project in projects|exclude('ongoing', false) %}
 
-                        {{ p.project( project ) }}
+                        {{ p.card( project ) }}
 
                     {% endfor %}
 
@@ -84,7 +84,7 @@
 
                     {% for project in projects|where('ongoing', false) %}
 
-                        {{ p.project( project ) }}
+                        {{ p.card( project ) }}
 
                     {% endfor %}
 

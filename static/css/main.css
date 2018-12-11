@@ -2356,6 +2356,50 @@ hr {
   *[aside-enter] {
     padding-top: 2em !important; } }
 
+.research-tile, .research-wrapper {
+  border-bottom: 3px solid #357ca0;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%; }
+
+.research-label {
+  background-color: #357ca0;
+  padding: 5px; }
+
+.metadata-author.author-light a {
+  color: white;
+  border-color: white; }
+
+.project-tile-wrapper {
+  position: relative;
+  top: 0;
+  left: 0; }
+
+.project-tile-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 2em;
+  padding-right: 2em;
+  background-color: rgba(0, 0, 0, 0.4); }
+
+.project-tile-overlay:hover {
+  background-color: #357ca0; }
+
+.project-tile-title {
+  margin-top: 1em; }
+
+.project-tile-topics {
+  position: absolute;
+  bottom: 1em;
+  width: 75%;
+  padding-right: 2em; }
+
+.projects-rule {
+  border-top: 2px solid #cc3333; }
+
 /* Slick slider useful styles for compnents like dots and arrows */
 .slick-slider {
   position: relative; }
