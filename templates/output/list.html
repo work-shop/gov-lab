@@ -1,4 +1,4 @@
-{% import "templates/partials/output.html" as o %}
+{% import "templates/partials/grid-cards.html" as o %}
 {% import "templates/partials/evidence-gap-card.html" as ev %}
 {% import "templates/partials/filters.html" as f %}
 
@@ -36,12 +36,12 @@
 
         <div class="row">
 
-            <div class="col-sm-offset-2 col-sm-8">
+            <div class="col-sm-offset-1 col-sm-10">
                 <ul id="output-list" class="">
 
                 {# Soubhik = "people -K284BXcNTh3_9TI3Ys3" #}
 
-                {% set EGMap = {
+                {# }{% set EGMap = {
                     name: cms.about.evidence_gap_map_name,
                     slug: "evidence-gap-map",
                     summary: cms.about.evidence_gap_map_description,
@@ -62,6 +62,12 @@
                         {{ o.outputcard( outputItem ) }}
 
                     {% endif %}
+
+                {% endfor %} #}
+
+                {% for outputItem in output|sort('publication_date', true) %}
+
+                    {{ o.result( outputItem ) }}
 
                 {% endfor %}
                 </ul>

@@ -1,11 +1,15 @@
-{% macro card( item ) %}
+{% macro project( item ) %}
 
-<li id="project-{{ item.shortname|lower|replace(' ', '-', 'g') }}" class=" grid-tile col-xs-offset-1 col-xs-10 col-sm-6 col-lg-4 col-xs-offset-0 mb2" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.topics, item.region ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}">
+<li id="project-{{ item.shortname|lower|replace(' ', '-', 'g') }}"
+    class=" grid-tile col-xs-offset-1 col-xs-10 col-sm-6 col-lg-4 col-xs-offset-0 mb2"
+    data-publish-date="{{ item.publish_date }}"
+    data-sort-value="{% for value in merge( item.topics, item.region ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}">
+
     <a href="{{ url( item ) }}">
         <div class="project-tile-wrapper card-wrapper research-wrapper" style="background: url({{ item.images|first|imageSize(750,750)}}); background-size:cover; background-position:center center;">
             <!-- <img class="project-tile-image card-background-image" src="{{ item.images|first|imageCrop(500, 350) }}" /> -->
 
-            <div class="project-tile-overlay card-tile-overlay p2">
+            <div class="project-tile-overlay card-tile-overlay research-tile-overlay p2">
                 <div class="">
                     <h6 class="card-content-type"><span class="research-label uppercase white bold">Research</span></h6>
                 </div>
@@ -15,39 +19,47 @@
                 </div>
                 <h6 class="project-tile-topics white bold">
                     {% for topic in item.topics %}
-                    <span class="white">{{ topic.name }}</span>{% if !loop.last %}, {% endif %}
+                        <span class="white">{{ topic.name }}</span>{% if !loop.last %}, {% endif %}
                     {% endfor %}
                 </h6>
             </div>
         </div>
     </a>
+
 </li>
 
 {% endmacro %}
 
 
 
-{% macro project( item ) %}
+{% macro result( item ) %}
 
-<li id="project-{{ item.shortname|lower|replace(' ', '-', 'g') }}" class="project-tile col-xs-offset-1 col-xs-10 col-sm-6 col-xs-offset-0 mb2" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.topics, item.region ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}">
+<li id="result-{{ item.shortname|lower|replace(' ', '-', 'g') }}"
+    class=" grid-tile col-xs-offset-1 col-xs-10 col-sm-6 col-lg-4 col-xs-offset-0 mb2"
+    data-publish-date="{{ item.publish_date }}"
+    data-sort-value="{% for value in merge( item.topics, item.region ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}">
+
     <a href="{{ url( item ) }}">
-        <div class="project-tile-wrapper">
-            <img class="project-tile-image" src="{{ item.images|first|imageCrop(500, 350) }}" />
+        <div class="project-tile-wrapper card-wrapper results-wrapper" style="background: url({{ item.cover_image|imageSize(750,750)}}); background-size:cover; background-position:center center;">
+            <!-- <img class="project-tile-image card-background-image" src="{{ item.images|first|imageCrop(500, 350) }}" /> -->
 
-            <div class="project-tile-overlay">
-                <div class="project-tile-title">
-                    <h4 class="project-tile-title-large visible-lg hidden-md hidden-sm hidden-xs">{{ item.name }}</h4>
-                    <h4 class="project-tile-title-medium hidden-lg visible-md visible-sm hidden-xs">{{ item.shortname }}</h4>
-                    <h4 class="project-tile-title-small hidden-lg hidden-md hidden-sm visible-xs">{{ item.name }}</h4>
+            <div class="project-tile-overlay card-tile-overlay result-tile-overlay p2">
+                <div class="">
+                    <h6 class="card-content-type"><span class="results-label uppercase white bold">{{ item.output_type.name }}</span></h6>
                 </div>
-                <h6 class="project-tile-researchers white bold">
-                    {% for team_member in item.team_members %}
-                    <span class="white">{{ team_member.name }}</span>{% if !loop.last %}, {% endif %}
+                <div class="project-tile-title">
+                    <h5 class="project-tile-title-large">{{ item.name }}</h5>
+                </div>
+                <h6 class="project-tile-topics white bold">
+                    <span class="white">{{ item.publication_date|date('F Y') }}</span> /
+                    {% for author in item.authors %}
+                        <span class="white">{{ author.name }}</span>{% if !loop.last %}, {% endif %}
                     {% endfor %}
                 </h6>
             </div>
         </div>
     </a>
+
 </li>
 
 {% endmacro %}

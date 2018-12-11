@@ -63,7 +63,7 @@
 
                     {% for project in projects|exclude('ongoing', false) %}
 
-                        {{ p.card( project ) }}
+                        {{ p.project( project ) }}
 
                     {% endfor %}
 
@@ -84,7 +84,7 @@
 
                     {% for project in projects|where('ongoing', false) %}
 
-                        {{ p.card( project ) }}
+                        {{ p.project( project ) }}
 
                     {% endfor %}
 

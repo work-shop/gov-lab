@@ -1,11 +1,10 @@
-.research-tile, .research-wrapper {
-    border-bottom: 3px solid $research-color;
+.card-wrapper {
     width:100%;
     height:0;
     padding-bottom:100%;
 }
 
-.project-tile-overlay {
+.project-tile-overlay, .card-tile-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -23,12 +22,36 @@
     padding:5px;
 }
 
-.project-tile-overlay:hover {
+.results-label {
+    background-color: $results-color;
+    padding:5px;
+}
+
+.research-wrapper {
+    border-bottom: 5px solid $research-color;
+}
+
+.results-wrapper {
+    border-bottom: 5px solid $results-color;
+}
+
+
+.research-tile-overlay:hover {
     background-color: $research-color-60;
 
     .research-label {
         background-color: white;
         color: $research-color-60;
+    }
+
+}
+
+.result-tile-overlay:hover {
+    background-color: $results-color-60;
+
+    .results-label {
+        background-color: white;
+        color: $results-color-60;
     }
 
 }
