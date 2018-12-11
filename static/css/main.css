@@ -2014,48 +2014,24 @@ hr {
   background-size: cover; }
 
 /********** PROJECTS ********/
-/********** PROJECTS ********/
-.metadata-author.author-light a {
-  color: white;
-  border-color: white; }
-
-.project-tile:hover {
-  transition: all 0.375s 0s ease;
-  -moz-transition: all 0.375s 0s ease;
-  -webkit-transition: all 0.375s 0s ease;
-  -o-transition: all 0.375s 0s ease;
-  -ms-transition: all 0.375s 0s ease; }
-
 .project-tile-wrapper {
   position: relative;
   top: 0;
   left: 0; }
 
-.project-tile-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding-left: 2em;
-  padding-right: 2em;
-  background-color: rgba(0, 0, 0, 0.4); }
-
-.project-tile-overlay:hover {
-  background-color: rgba(204, 51, 51, 0.7); }
-
 .project-tile-title {
   margin-top: 1em; }
 
-.project-tile-researchers {
+.project-tile-topics {
   position: absolute;
-  bottom: .5em;
-  width: 100%;
+  bottom: 1em;
+  width: 80%;
   padding-right: 2em; }
 
 .projects-rule {
   border-top: 2px solid #cc3333; }
 
+/********** PROJECTS ********/
 /**
  * This constrains the width of the wysiwyg container on larger screens.
  */
@@ -2361,41 +2337,14 @@ hr {
   height: 0;
   padding-bottom: 100%; }
 
-.project-tile-overlay, .card-tile-overlay {
+.card-tile-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   padding-left: 2em;
-  padding-right: 2em;
-  background-color: rgba(0, 0, 0, 0.4); }
-
-.research-label {
-  background-color: #357ca0;
-  padding: 5px; }
-
-.results-label {
-  background-color: #363333;
-  padding: 5px; }
-
-.research-wrapper {
-  border-bottom: 5px solid #357ca0; }
-
-.results-wrapper {
-  border-bottom: 5px solid #363333; }
-
-.research-tile-overlay:hover {
-  background-color: rgba(53, 124, 160, 0.7); }
-  .research-tile-overlay:hover .research-label {
-    background-color: white;
-    color: rgba(53, 124, 160, 0.7); }
-
-.result-tile-overlay:hover {
-  background-color: rgba(54, 51, 51, 0.7); }
-  .result-tile-overlay:hover .results-label {
-    background-color: white;
-    color: rgba(54, 51, 51, 0.7); }
+  padding-right: 2em; }
 
 .project-tile-wrapper {
   position: relative;
@@ -2413,6 +2362,75 @@ hr {
 
 .projects-rule {
   border-top: 2px solid #cc3333; }
+
+.research-label {
+  background-color: #357ca0;
+  padding: 5px; }
+
+.research-wrapper {
+  border-bottom: 5px solid #357ca0; }
+
+.research-tile-overlay {
+  background-color: rgba(50, 50, 50, 0.6); }
+
+.research-tile-overlay:hover {
+  background-color: rgba(53, 124, 160, 0.7); }
+  .research-tile-overlay:hover .research-label {
+    background-color: white;
+    color: rgba(53, 124, 160, 0.7); }
+
+.results-label {
+  background-color: #363333;
+  padding: 5px; }
+
+.no-image .results-label {
+  background-color: #363333;
+  color: #f1f1f1;
+  padding: 5px; }
+
+.results-wrapper {
+  border-bottom: 5px solid #363333;
+  background-color: #bebebe; }
+
+.result-tile-overlay {
+  background-color: rgba(50, 50, 50, 0.6); }
+
+.result-tile-overlay.no-image {
+  background-color: transparent; }
+  .result-tile-overlay.no-image .project-tile-title, .result-tile-overlay.no-image .project-tile-topics {
+    color: #363333; }
+
+.result-tile-overlay:hover {
+  background-color: rgba(50, 50, 50, 0.9); }
+  .result-tile-overlay:hover .results-label {
+    background-color: white;
+    color: #363333; }
+
+.result-tile-overlay.no-image:hover {
+  background-color: #363333;
+  color: white; }
+  .result-tile-overlay.no-image:hover .project-tile-title, .result-tile-overlay.no-image:hover .project-tile-topics {
+    color: white; }
+  .result-tile-overlay.no-image:hover .results-label {
+    background-color: white;
+    color: #363333; }
+
+.updates-label {
+  background-color: #cc3333;
+  padding: 5px; }
+
+.updates-wrapper {
+  border-bottom: 5px solid #cc3333;
+  background-color: #cc3333; }
+
+.updates-tile-overlay {
+  background-color: rgba(50, 50, 50, 0.8); }
+
+.updates-tile-overlay:hover {
+  background-color: rgba(204, 51, 51, 0.4); }
+  .updates-tile-overlay:hover .updates-label {
+    background-color: #f1f1f1;
+    color: #cc3333; }
 
 /* Slick slider useful styles for compnents like dots and arrows */
 .slick-slider {

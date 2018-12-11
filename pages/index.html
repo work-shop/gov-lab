@@ -1,6 +1,7 @@
 {% import "templates/partials/subscribe.html" as s %}
 {% import "templates/partials/index-content-overview.html" as o %}
 {% import "templates/partials/row-cards.html" as cards %}
+{% import "templates/partials/grid-cards.html" as grid %}
 
 {% extends "templates/partials/base.html" %}
 
@@ -43,12 +44,12 @@
 
 {{ o.updatessection( cms.about.home_page_updates_oneliner, cms.news|sort('news_date', true)|slice(0,5) ) }}
 
-{{ o.homecontentdivider( "bg-white", "mb1" ) }}
+{# {{ o.homecontentdivider( "bg-white", "mb1" ) }} #}
 
 {# length must be congruent to 1 mod 2 #}
 {{ o.researchsection( cms.about.home_page_research_oneliner, cms.projectsorder.projects_order|slice(0,2) ) }}
 
-{{ o.homecontentdivider( "bg-white", "mb1" ) }}
+{# {{ o.homecontentdivider( "bg-white", "mb1" ) }} #}
 
 {# length must be congruent to 1 mod 2 #}
 {{ o.resultssection( cms.about.home_page_results_oneliner, cms.output|sort('publication_date', true)|slice(0,2) ) }}

@@ -1,4 +1,5 @@
 {% import "templates/partials/row-cards.html" as cards %}
+{% import "templates/partials/grid-cards.html" as grid %}
 
 {% set home_image_width = 500 %}
 {% set home_image_height = 350 %}
@@ -36,19 +37,14 @@
     <div class="row">
         <div class="col-sm-offset-1 col-sm-10">
             <div class="row">
-                <div class="home-content-guidepost col-sm-4 col-lg-4 mb2">
+                <div class="home-content-guidepost col-sm-12 col-lg-4 mb2">
                     <div class="">
                             <h3 class="bold mb1 ">{{ introduction }}</h3>
                             <a class="uppercase sync" href="/projects">Explore our research</a>
                     </div>
                 </div>
-                {% for project in projects %}
-                    <div class="project-home-page-card col-sm-4 col-lg-4 mb1 centered">
-                        <a href="{{ url( project ) }}">
-                            <img class="project-tint project-tile-image mb1" src="{{ project.images|first|imageCrop(600, 350) }}" />
-                            <h4 class="mt0">{{ project.shortname }}</h4>
-                        </a>
-                    </div>
+                {% for res in projects %}
+                    {{ grid.research( res ) }}
                 {% endfor %}
             </div>
     </div>
@@ -65,23 +61,14 @@
         <div class="row">
             <div class="col-sm-offset-1 col-sm-10">
                 <div class="row">
-                    <div class="home-content-guidepost col-sm-4 mb2">
+                    <div class="home-content-guidepost col-sm-12 col-lg-4 mb2">
                         <div class="">
                                 <h3 class="bold mb1">{{ introduction }}</h3>
                                 <a class="uppercase sync" href="/output">Read our {{ output_name }}</a>
                         </div>
                     </div>
-                    {% for result in results %}
-                        <div class="result-home-page-card col-sm-4 mb2">
-                            <a href="{{ url( result ) }}">
-                                <div class="row centered">
-                                    <div class="col-xs-12">
-                                        <img class="project-tint project-tile-image mb1" src="{{ result.cover_image|imageCrop(600, 350) }}" />
-                                    </div>
-                                </div>
-                                <h5 class="mt0 centered">{{ result.name }}</h5>
-                            </a>
-                        </div>
+                    {% for res in results %}
+                        {{ grid.result( res ) }}
                     {% endfor %}
                 </div>
         </div>
@@ -97,30 +84,16 @@
     <div class="row">
 
         <div class="row">
-            <div class="col-sm-4 home-content-guidepost mb1">
+            <div class="col-xs-12 col-sm-6 col-lg-4 home-content-guidepost mb1">
                 <div class="">
                     <h3 class="bold mb1">{{ introduction }}</h3>
                     <a class="uppercase sync" href="/news">Follow our updates</a>
                 </div>
             </div>
 
-            {% for update in updates %}
+            {% for upd in updates %}
 
-                {% if loop.index % 3 == 0 %}
-                        <div class="row">
-                {% endif %}
-
-                <div class="update-home-page-card col-sm-4">
-                    <a href="{{ url( update ) }}">
-                        <img class="project-tint project-tile-image mb1" src="{{ update.cover_image|imageCrop(600, 350) }}" />
-                        <h5 class="mt0 centered">{{ update.name }}</h5>
-                        <h6 class="light">{{ update.publication_date|date('F Y') }}</h6>
-                    </a>
-                </div>
-
-                {% if loop.index % 3 == 2 %}
-                        </div>
-                {% endif %}
+                {{ grid.update( upd ) }}
 
             {% endfor %}
 

@@ -560,45 +560,15 @@ hr {
 
 /********** PROJECTS ********/
 
-
-/********** PROJECTS ********/
-
-.metadata-author.author-light a {
-    color:white;
-    border-color: white;
-}
-
-.project-tile {
-
-	&:hover {
-
-		@include transition(all, $transition-duration / 2);
-
-	}
-}
-
 .project-tile-wrapper {
     position: relative;
     top: 0;
     left: 0;
 }
 
-.project-tile-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width:100%;
-    height:100%;
 
-    padding-left: 2em;
-    padding-right: 2em;
 
-    background-color: $black-rgba-30;
-}
 
-.project-tile-overlay:hover {
-    background-color: $brand-rgba-60;
-}
 
 
 .project-tile-title {
@@ -608,11 +578,11 @@ hr {
     margin-top: 1em;
 }
 
-.project-tile-researchers {
+.project-tile-topics {
     position: absolute;
-    bottom: .5em;
+    bottom: 1em;
 
-    width: 100%;
+    width: 80%;
 
     padding-right:2em;
 }
@@ -620,6 +590,8 @@ hr {
 .projects-rule {
 	border-top:2px solid $brand;
 }
+
+/********** PROJECTS ********/
 
 
 /**

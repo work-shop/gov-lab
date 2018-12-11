@@ -4,7 +4,7 @@
     padding-bottom:100%;
 }
 
-.project-tile-overlay, .card-tile-overlay {
+.card-tile-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -14,46 +14,6 @@
     padding-left: 2em;
     padding-right: 2em;
 
-    background-color: $black-rgba-30;
-}
-
-.research-label {
-    background-color: $research-color;
-    padding:5px;
-}
-
-.results-label {
-    background-color: $results-color;
-    padding:5px;
-}
-
-.research-wrapper {
-    border-bottom: 5px solid $research-color;
-}
-
-.results-wrapper {
-    border-bottom: 5px solid $results-color;
-}
-
-
-.research-tile-overlay:hover {
-    background-color: $research-color-60;
-
-    .research-label {
-        background-color: white;
-        color: $research-color-60;
-    }
-
-}
-
-.result-tile-overlay:hover {
-    background-color: $results-color-60;
-
-    .results-label {
-        background-color: white;
-        color: $results-color-60;
-    }
-
 }
 
 
@@ -62,11 +22,6 @@
     top: 0;
     left: 0;
 }
-
-
-
-
-
 
 .project-tile-title {
 	@extend .bold;
@@ -86,4 +41,113 @@
 
 .projects-rule {
 	border-top:2px solid $brand;
+}
+
+
+
+.research-label {
+    background-color: $research-color;
+    padding:5px;
+}
+
+.research-wrapper {
+    border-bottom: 5px solid $research-color;
+}
+
+.research-tile-overlay {
+    background-color:rgba(50,50,50,.6);
+}
+
+.research-tile-overlay:hover {
+    background-color: $research-color-60;
+
+    .research-label {
+        background-color: white;
+        color: $research-color-60;
+    }
+
+}
+
+
+
+
+.results-label {
+    background-color: $results-color;
+    padding:5px;
+}
+
+.no-image .results-label {
+    background-color: $results-color;
+    color: $light;
+    padding:5px;
+}
+
+.results-wrapper {
+    border-bottom: 5px solid $results-color;
+    background-color: $medium-light;
+}
+
+.result-tile-overlay {
+    background-color:rgba(50,50,50,.6);
+}
+
+.result-tile-overlay.no-image {
+    background-color:transparent;
+
+    .project-tile-title, .project-tile-topics {
+        color: $results-color;
+    }
+}
+
+.result-tile-overlay:hover {
+    background-color: rgba(50,50,50,.9);
+
+    // .project-tile-title, .project-tile-topics {
+    //     color: $results-color;
+    // }
+    //
+    .results-label {
+        background-color: white;
+        color: $results-color;
+    }
+}
+
+.result-tile-overlay.no-image:hover {
+    background-color: $results-color;
+    color: white;
+
+    .project-tile-title, .project-tile-topics {
+        color: white;
+    }
+
+    .results-label {
+        background-color: white;
+        color: $results-color;
+    }
+
+}
+
+
+
+.updates-label {
+    background-color: $updates-color;
+    padding:5px;
+}
+
+.updates-wrapper {
+    border-bottom: 5px solid $updates-color;
+    background-color: $updates-color;
+}
+
+.updates-tile-overlay {
+    background-color:rgba(50,50,50,.8);
+}
+
+.updates-tile-overlay:hover {
+    background-color: $updates-color-60;
+
+    .updates-label {
+        background-color: $light;
+        color: $updates-color;
+    }
 }
