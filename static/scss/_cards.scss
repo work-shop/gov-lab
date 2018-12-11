@@ -5,23 +5,6 @@
     padding-bottom:100%;
 }
 
-.research-label {
-    background-color: $research-color;
-    padding:5px;
-}
-
-
-.metadata-author.author-light a {
-    color:white;
-    border-color: white;
-}
-
-.project-tile-wrapper {
-    position: relative;
-    top: 0;
-    left: 0;
-}
-
 .project-tile-overlay {
     position: absolute;
     top: 0;
@@ -35,9 +18,31 @@
     background-color: $black-rgba-30;
 }
 
-.project-tile-overlay:hover {
+.research-label {
     background-color: $research-color;
+    padding:5px;
 }
+
+.project-tile-overlay:hover {
+    background-color: $research-color-60;
+
+    .research-label {
+        background-color: white;
+        color: $research-color-60;
+    }
+
+}
+
+
+.project-tile-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+
+
+
 
 
 .project-tile-title {
@@ -51,7 +56,7 @@
     position: absolute;
     bottom: 1em;
 
-    width: 75%;
+    width: 80%;
 
     padding-right:2em;
 }

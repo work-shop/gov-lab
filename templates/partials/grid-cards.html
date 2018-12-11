@@ -2,7 +2,7 @@
 
 <li id="project-{{ item.shortname|lower|replace(' ', '-', 'g') }}" class=" grid-tile col-xs-offset-1 col-xs-10 col-sm-6 col-lg-4 col-xs-offset-0 mb2" data-publish-date="{{ item.publish_date }}" data-sort-value="{% for value in merge( item.topics, item.region ) %}{{ value.name|lower|replace(' ', '-', 'g') }} {% endfor %}">
     <a href="{{ url( item ) }}">
-        <div class="project-tile-wrapper card-wrapper research-wrapper" style="background-image=url("{{ item.images|first|imageSize(750,500) }}");">
+        <div class="project-tile-wrapper card-wrapper research-wrapper" style="background: url({{ item.images|first|imageSize(750,750)}}); background-size:cover; background-position:center center;">
             <!-- <img class="project-tile-image card-background-image" src="{{ item.images|first|imageCrop(500, 350) }}" /> -->
 
             <div class="project-tile-overlay card-tile-overlay p2">

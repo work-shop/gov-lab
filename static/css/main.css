@@ -2362,19 +2362,6 @@ hr {
   height: 0;
   padding-bottom: 100%; }
 
-.research-label {
-  background-color: #357ca0;
-  padding: 5px; }
-
-.metadata-author.author-light a {
-  color: white;
-  border-color: white; }
-
-.project-tile-wrapper {
-  position: relative;
-  top: 0;
-  left: 0; }
-
 .project-tile-overlay {
   position: absolute;
   top: 0;
@@ -2385,8 +2372,20 @@ hr {
   padding-right: 2em;
   background-color: rgba(0, 0, 0, 0.4); }
 
+.research-label {
+  background-color: #357ca0;
+  padding: 5px; }
+
 .project-tile-overlay:hover {
-  background-color: #357ca0; }
+  background-color: rgba(53, 124, 160, 0.7); }
+  .project-tile-overlay:hover .research-label {
+    background-color: white;
+    color: rgba(53, 124, 160, 0.7); }
+
+.project-tile-wrapper {
+  position: relative;
+  top: 0;
+  left: 0; }
 
 .project-tile-title {
   margin-top: 1em; }
@@ -2394,7 +2393,7 @@ hr {
 .project-tile-topics {
   position: absolute;
   bottom: 1em;
-  width: 75%;
+  width: 80%;
   padding-right: 2em; }
 
 .projects-rule {
