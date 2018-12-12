@@ -3,6 +3,7 @@
 {% import "templates/partials/row-cards.html" as row %}
 {% import "templates/partials/slideshare.html" as s %}
 {% import "templates/partials/output.html" as o %}
+{% import "templates/partials/individual-headers.html" as h %}
 
 {% import "templates/partials/metadata-row.html" as metadata %}
 
@@ -32,7 +33,7 @@
 
         {% else %}
 
-            {{ o.output_header( item ) }}
+            {{ h.result_header( item ) }}
 
         {% endif %}
 

@@ -759,14 +759,7 @@ hr {
     color:$dark;
 }
 
-.research-header, .standard-output-header {
-    position: relative;
-
-    min-height:25vh;
-
-    &.eg-output-header {
-        min-height:10vh;
-    }
+.research-header, .standard-output-header, .individual-metadata-container {
 
     .download-button {
         border: 2px solid white;
@@ -775,9 +768,20 @@ hr {
 
         &:hover {
             background-color: white;
-            color: $medium-dark;
+            color: $results-color;
         }
 
+    }
+
+}
+
+.research-header, .standard-output-header {
+    position: relative;
+
+    min-height:25vh;
+
+    &.eg-output-header {
+        min-height:10vh;
     }
 
     .image-mask {

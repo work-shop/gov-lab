@@ -2143,18 +2143,19 @@ hr {
   font-weight: bold;
   color: #222222; }
 
+.research-header .download-button, .standard-output-header .download-button, .individual-metadata-container .download-button {
+  border: 2px solid white;
+  padding: .5em 1em .5em 1em;
+  font-weight: bold; }
+  .research-header .download-button:hover, .standard-output-header .download-button:hover, .individual-metadata-container .download-button:hover {
+    background-color: white;
+    color: #555555; }
+
 .research-header, .standard-output-header {
   position: relative;
   min-height: 25vh; }
   .research-header.eg-output-header, .standard-output-header.eg-output-header {
     min-height: 10vh; }
-  .research-header .download-button, .standard-output-header .download-button {
-    border: 2px solid white;
-    padding: .5em 1em .5em 1em;
-    font-weight: bold; }
-    .research-header .download-button:hover, .standard-output-header .download-button:hover {
-      background-color: white;
-      color: #555555; }
   .research-header .image-mask, .standard-output-header .image-mask {
     position: absolute;
     top: 0;
@@ -2365,6 +2366,14 @@ hr {
 
 .research-metadata-box {
   background-color: #357ca0; }
+
+.result-metadata-box {
+  background-color: #363333; }
+
+.results-individual-label {
+  background-color: white;
+  color: #363333;
+  padding: 5px; }
 
 @media (max-width: 767px) {
   .individual-metadata-container {
