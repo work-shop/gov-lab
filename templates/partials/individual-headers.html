@@ -1,0 +1,39 @@
+{% macro research_header(item) %}
+
+    {% set image = item.images|first%}
+
+    <div class="half individual-hero-image row" style="background-image:url('{{ image|imageCrop(1000,500) }}');"></div>
+
+    <div class="row individual-metadata-container">
+        <div class="col-sm-8 col-xs-10 col-xs-offset-1 research-metadata-box individual-metadata-box">
+            <div class="row">
+                <h2 class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-12 research-title individual-title">{{ item.name }}</h2>
+            </div>
+            <div class="row">
+                <div class="col-xs-offset-1 col-sm-offset-0 col-xs-8 col-sm-10">
+                    <span class="individual-title-divider">&nbsp;</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-offset-1 col-sm-offset-0 col-xs-8 col-sm-10">
+                    <p class="research-summary individual-summary">{{ item.summary }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-offset-1 col-sm-offset-0 col-xs-8 col-sm-10 research-metadata individual-metadata">
+                    {% for topic in item.topics %}
+                    <span class="bold">{{ topic.name }}</span>{% if !loop.last %},{% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endmacro %}
+
+{% macro result_header(item) %}{% endmacro %}
+
+{% macro update_header(item) %}{% endmacro %}
+
+<!-- <div class="row padded"> <div class="col-xs-offset-1 col-xs-10 centered-xs"> <h2 class="project-title bold">{{ item.name }}</h2> </div> </div> <div class="row mb2"> <div class="col-xs-offset-1 col-xs-10 centered-xs"> <h4
+class="project-summary">{{ item.summary }}</h4> </div> </div> <div class="row"> <div class="projects-rule"></div> </div> -->

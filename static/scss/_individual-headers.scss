@@ -1,0 +1,80 @@
+$individual-offset: 4em;
+
+.individual-metadata-container{
+    position: relative;
+    padding-bottom:$individual-offset;
+    margin-bottom:$individual-offset;
+}
+
+
+.individual-metadata-box {
+    position:absolute;
+    bottom:-$individual-offset;
+    left:0;
+
+    padding:2em;
+    margin-bottom: 3em;
+}
+
+.individual-title {
+    font-weight: bold;
+    color: white;
+    margin-bottom: .5em;
+}
+
+.individual-title-divider {
+    display: block;
+    width:100px;
+    border-bottom: 5px solid $white;
+    margin-bottom: 2em;
+}
+
+.individual-summary {
+    color: white;
+    margin-bottom: 2em;
+}
+
+.individual-metadata {
+    font-weight: bold;
+    color: white;
+}
+
+
+
+// Research Related Definitions
+.research-metadata-box {
+    background-color: $research-color;
+}
+
+
+
+
+
+
+@media (max-width: $xs-size) {
+
+    .individual-metadata-container{
+        position: relative;
+        margin-bottom:2em;
+        padding-bottom:0em;
+    }
+
+    .individual-metadata-box {
+        position: static;
+        width:100%;
+        margin:0;
+    }
+
+    .individual-title {
+        margin-bottom: .2em;
+    }
+
+    .individual-title-divider {
+        margin-bottom: 1em;
+    }
+
+    .individual-summary {
+        margin-bottom: 1em;
+    }
+
+}

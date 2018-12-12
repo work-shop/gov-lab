@@ -2,283 +2,290 @@
 
 {% import "templates/partials/row-cards.html" as row %}
 {% import "templates/partials/slideshare.html" as s %}
+{% import "templates/partials/individual-headers.html" as h %}
 
 {% import "templates/partials/metadata-row.html" as metadata %}
 
-{% block og_title %}{% parent %} - {{ item.name }}{% endblock %}
-{% block og_description %}{{ item.summary }}{% endblock %}
-{% block og_image %}{{ item.images|first|imageCrop(1000,500) }}{% endblock %}
+{% block og_title %}{% parent %}
+    -
+    {{ item.name }}
+{% endblock %}
+{% block og_description %}{{ item.summary }}
+{% endblock %}
+{% block og_image %}{{ item.images|first|imageCrop(1000,500) }}
+{% endblock %}
 
-{% block tw_title %}{% parent %} - {{ item.name }}{% endblock %}
-{% block tw_description %}{{ item.summary }}{% endblock %}
-{% block tw_image %}{{ item.images|first|imageCrop(1000,500) }}{% endblock %}
+{% block tw_title %}{% parent %}
+    -
+    {{ item.name }}
+{% endblock %}
+{% block tw_description %}{{ item.summary }}
+{% endblock %}
+{% block tw_image %}{{ item.images|first|imageCrop(1000,500) }}
+{% endblock %}
 
-{% block title %}{% parent %} - {{ item.name }}{% endblock %}
+{% block title %}{% parent %}
+    -
+    {{ item.name }}
+{% endblock %}
 
 {% block content %}
-<article id="project-{{ item.slug }}" class="bg-white">
+    <article id="project-{{ item.slug }}" class="bg-white">
 
-  <section id="project-body" class="bg-light bg-white-xs">
-  <div class="container-fluid">
+        <section id="project-body" class="bg-light bg-white-xs">
+            <div class="container-fluid">
 
-    <div class="row">
+                <div class="row">
 
-      <div class="col-sm-12 bg-white">
+                    <div class="col-sm-12 bg-white pt0">
 
-       <div class="row padded">
+                        {{ h.research_header( item ) }}
 
-          <div class="col-xs-offset-1 col-xs-10 centered-xs">
-            <h2 class="project-title bold">{{ item.name }}</h2>
-          </div>
-        </div>
+                        {% if image.caption %}
+                            <div class="row mb2">
+                                <div class="col-sm-offset-1 col-sm-10">
+                                    <p class="caption medium centered italic p-min">{{ image.caption }}</p>
+                                </div>
+                            </div>
+                        {% endif %}
 
-        <div class="row mb2">
-          <div class="col-xs-offset-1 col-xs-10 centered-xs">
-            <h4 class="project-summary">{{ item.summary }}</h4>
-          </div>
-        </div>
+                        <div class="row  pb4">
+                            <div class="col-xs-offset-1 col-xs-10">
+                                <div class="wysiwyg">
+                                    {{ item.body|safe }}
+                                </div>
 
-        <div class="row">
+                            </div>
+                        </div>
 
-            <div class="projects-rule"></div>
-
-        </div>
-
-
-        {% set image = item.images|first%}
-
-        <div class="half individual-hero-image row {% if !image.caption %}mb2{% endif %}" style="background-image:url('{{ item.images|first|imageCrop(1000,500) }}');">
-
-        </div>
-
-
-        {% if image.caption %}
-        <div class="row mb2">
-            <div class="col-sm-offset-1 col-sm-10">
-                <p class="caption medium centered italic p-min">{{ image.caption }}</p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        {% if item.slideshare_embed %}
+            {{ s.slideshare( item.slideshare_embed ) }}
         {% endif %}
 
-        <div class="row pb4">
-          <div class="col-xs-offset-1 col-xs-10">
-              <div class="wysiwyg">
-                  {{ item.body|safe }}
-              </div>
+        {% if (item.takeaways.length) %}
+            <section id="project-takeaways" class="bg-light">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-offset-3 col-sm-9 bg-white padded">
+                            <div class="row">
 
-          </div>
-        </div>
+                                <div class="col-xs-offset-1 col-xs-10 mb2">
+                                    <div class="projects-rule"></div>
 
-      </div>
-    </div>
-  </div>
-  </section>
+                                    <h4>Takeaways</h4>
+                                </div>
 
-  {% if item.slideshare_embed %}
-      {{ s.slideshare( item.slideshare_embed ) }}
-  {% endif %}
+                                <ul class="col-sm-offset-1 col-sm-10">
 
-  {% if ( item.takeaways.length ) %}
-  <section id="project-takeaways" class="bg-light">
-  <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-offset-3 col-sm-9 bg-white padded">
-            <div class="row">
+                                    {% for takeaway in item.takeaways %}
 
-            <div class="col-xs-offset-1 col-xs-10 mb2" >
-              <div class="projects-rule"></div>
+                                        <li class="row mb3">
 
-              <h4>Takeaways</h4>
-            </div>
+                                            {% if (takeaway.team_member) %}
 
-            <ul class="col-sm-offset-1 col-sm-10">
+                                                <div class="col-sm-4">
+                                                    <img class="teammember-image mb1" src="{% if ( takeaway.image ) %}{{ takeaway.image|imageCrop(400,400)}}{% else %}{{ takeaway.team_member.image|imageCrop(400,400) }}{% endif %}" alt="">
 
-            {% for takeaway in item.takeaways %}
+                                                </div>
 
-              <li class="row mb3">
+                                                <div class="col-sm-8">
+                                                    <p class="h4 mb1">{{ takeaway.text }}</p>
+                                                    <h4 class="teammember-name bold">
+                                                        –
+                                                        {{ takeaway.team_member.name }}</h4>
+                                                </div>
 
-              {% if ( takeaway.team_member ) %}
+                                            {% elseif ( takeaway.image ) %}
 
-                <div class="col-sm-4">
-                  <img class="teammember-image mb1" src="{% if ( takeaway.image ) %}{{ takeaway.image|imageCrop(400,400)}}{% else %}{{ takeaway.team_member.image|imageCrop(400,400) }}{% endif %}" alt="">
+                                                <div class="col-sm-4">
+                                                    <img src="{{ takeaway.image|imageSize(400,400)}}" alt="">
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <p class="h4">{{ takeaway.text }}</p>
+                                                </div>
 
-                </div>
+                                            {% else %}
 
-                <div class="col-sm-8">
-                  <p class="h4 mb1">{{ takeaway.text }}</p>
-                  <h4 class="teammember-name bold"> – {{ takeaway.team_member.name }}</h4>
-                </div>
+                                                <div class="col-sm-12">
+                                                    <p class="h4">{{ takeaway.text }}</p>
+                                                </div>
 
-              {% elseif ( takeaway.image ) %}
+                                            {% endif %}
 
-                <div class="col-sm-4">
-                  <img src="{{ takeaway.image|imageSize(400,400)}}" alt="">
-                </div>
-                <div class="col-sm-8">
-                  <p class="h4">{{ takeaway.text }}</p>
-                </div>
+                                        </li>
 
-              {% else %}
+                                    {% endfor %}
 
-                <div class="col-sm-12">
-                  <p class="h4">{{ takeaway.text }}</p>
-                </div>
-
-              {% endif %}
-
-              </li>
-
-            {% endfor %}
-
-            </ul>
-          </div>
-        </div>
-  </div>
-  </section>
-  {% endif %}
-
-  {% set team = item.team_members|where('relationship_to_govlab', 'Team Member') %}
-
-  {% if ( team.length ) %}
-      <section id="project-teammembers" class="bg-white mb2">
-          <div class="container-fluid">
-
-                  <div class="row">
-                      <div class="col-xs-offset-1 col-xs-10 mb2" >
-                          <div class="projects-rule"></div>
-                          <h4>Team</h4>
-                      </div>
-                  </div>
-
-                  {% for teammember in team %}
-
-                  {% if loop.index0 % 5 == 0 %}<div class="row">{% endif %}
-
-                      <div class="teammember {% if loop.index0 % 5 == 0 %}col-xs-offset-1{% endif %} col-xs-6 col-sm-2 mb1">
-                          <a href="{{ url( teammember ) }}">
-                              {% if teammember.image %}<img class="teammember-image mb1" src="{{ teammember.image|imageCrop(500,500) }}" />{% endif %}
-                              <h5 class="teammember-name bold">{{ teammember.name }}</h5>
-                              <p class="teammember-description">{{ teammember.role }}</p>
-                          </a>
-                      </div>
-
-                      {% if (loop.index0 % 5 == 4 || loop.index == item.team_members.length) %}</div>{% endif %}
-                  {% endfor %}
-
-          </div>
-      </section>
-  {% endif %}
-
-
-  {% if ( item.related_updates.length || item.related_research.length || item.related_projects.length ) %}
-  <section id="project-related" class="bg-light">
-  <div class="container-fluid">
-        <div class="row">
-
-          <div class="col-sm-12 bg-white pb4">
-            <div class="row">
-              <div class="col-xs-offset-1 col-xs-10 mb2" >
-                <div class="projects-rule"></div>
-                <h4>Related Work</h4>
-              </div>
-            </div>
-
-            <div class="row">
-            <ul class="mb2">
-
-                {{ row.reverse_chronological( merge( item.related_research, item.related_projects, item.related_updates ) ) }}
-
-            </ul>
-            </div>
-
-          </div>
-
-        </div>
-  </div>
-  </section>
-  {% endif %}
-
-
-  {% if (item.collaborators.length or item.sponsors.length) %}
-   <section id="project-sponsors" class="bg-light">
-   <div class="container-fluid">
-   <div class="row">
-                  <div class="col-sm-12 bg-white pb6">
-                  <div class="row">
-    {% if (item.collaborators.length and item.sponsors.length) %}
-
-
-                    <div class="col-xs-offset-1 col-xs-5">
-                      <div class="projects-rule"></div>
-                      <h4 class="mb2">Sponsors</h4>
-                      <ul>
-                      {% for sponsor in item.sponsors %}
-
-                        <li>
-                          {% if sponsor.website %}<a target="_blank"  href="{{ sponsor.website }}">{% endif %}
-                            <span class="uppercase bold">{{ sponsor.name }}</span>
-                          {% if sponsor.website %}</a>{% endif %}
-                        </li>
-                      {% endfor %}
-                      </ul>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                </section>
+            {% endif %}
 
-                    <div class="col-xs-5">
-                      <div class="projects-rule"></div>
-                      <h4 class="mb2">Collaborators</h4>
-                      <ul>
-                      {% for collaborator in item.collaborators %}
-                        <li>
-                          {% if collaborator.website %}<a target="_blank"  href="{{ collaborator.website }}">{% endif %}
-                            <span class="uppercase bold">{{ collaborator.name }}</span>
-                          {% if collaborator.website %}</a>{% endif %}
-                        </li>
-                      {% endfor %}
-                      </ul>
+            {% set team = item.team_members | where('relationship_to_govlab', 'Team Member') %}
+
+            {% if (team.length) %}
+                <section id="project-teammembers" class="bg-white mb2">
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-xs-offset-1 col-xs-10 mb2">
+                                <div class="projects-rule"></div>
+                                <h4>Team</h4>
+                            </div>
+                        </div>
+
+                        {% for teammember in team %}
+
+                            {% if loop.index0 % 5 == 0 %}
+                                <div class="row">
+                                {% endif %}
+
+                                <div class="teammember {% if loop.index0 % 5 == 0 %}col-xs-offset-1{% endif %} col-xs-6 col-sm-2 mb1">
+                                    <a href="{{ url( teammember ) }}">
+                                        {% if teammember.image %}<img class="teammember-image mb1" src="{{ teammember.image|imageCrop(500,500) }}"/>{% endif %}
+                                        <h5 class="teammember-name bold">{{ teammember.name }}</h5>
+                                        <p class="teammember-description">{{ teammember.role }}</p>
+                                    </a>
+                                </div>
+
+                                {% if (loop.index0 % 5 == 4 || loop.index == item.team_members.length) %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
                     </div>
+                </section>
+            {% endif %}
 
+            {% if (item.related_updates.length || item.related_research.length || item.related_projects.length) %}
+                <section id="project-related" class="bg-light">
+                    <div class="container-fluid">
+                        <div class="row">
 
-    {% elseif (item.collaborators.length) %}
+                            <div class="col-sm-12 bg-white pb4">
+                                <div class="row">
+                                    <div class="col-xs-offset-1 col-xs-10 mb2">
+                                        <div class="projects-rule"></div>
+                                        <h4>Related Work</h4>
+                                    </div>
+                                </div>
 
-                    <div class="col-xs-offset-1 col-xs-9">
-                      <div class="projects-rule"></div>
-                      <h4 class="mb2">Collaborators</h4>
-                      <ul>
-                      {% for collaborator in item.collaborators %}
+                                <div class="row">
+                                    <ul class="mb2">
 
-                        <li>
-                          {% if collaborator.website %}<a target="_blank"  href="{{ collaborator.website }}">{% endif %}
-                            <span class="uppercase bold">{{ collaborator.name }}</span>
-                          {% if collaborator.website %}</a>{% endif %}
-                        </li>
-                      {% endfor %}
-                      </ul>
+                                        {{ row.reverse_chronological( merge( item.related_research, item.related_projects, item.related_updates ) ) }}
+
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
                     </div>
+                </section>
+            {% endif %}
 
-    {% else %}
+            {% if (item.collaborators.length or item.sponsors.length) %}
+                <section id="project-sponsors" class="bg-light">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12 bg-white pb6">
+                                <div class="row">
+                                    {% if (item.collaborators.length and item.sponsors.length) %}
 
-                    <div class="col-xs-offset-1 col-xs-9">
-                      <div class="projects-rule"></div>
-                      <h4 class="mb2">Sponsors</h4>
-                      <ul>
-                      {% for sponsor in item.sponsors %}
-                        <li>
-                          {% if sponsor.website %}<a target="_blank"  href="{{ sponsor.website }}">{% endif %}
-                            <span class="uppercase bold">{{ sponsor.name }}</span>
-                          {% if sponsor.website %}</a>{% endif %}
-                        </li>
-                      {% endfor %}
-                      </ul>
+                                        <div class="col-xs-offset-1 col-xs-5">
+                                            <div class="projects-rule"></div>
+                                            <h4 class="mb2">Sponsors</h4>
+                                            <ul>
+                                                {% for sponsor in item.sponsors %}
+
+                                                    <li>
+                                                        {% if sponsor.website %}
+                                                            <a target="_blank" href="{{ sponsor.website }}">
+                                                            {% endif %}
+                                                            <span class="uppercase bold">{{ sponsor.name }}</span>
+                                                            {% if sponsor.website %}
+                                                            </a>
+                                                        {% endif %}
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-xs-5">
+                                            <div class="projects-rule"></div>
+                                            <h4 class="mb2">Collaborators</h4>
+                                            <ul>
+                                                {% for collaborator in item.collaborators %}
+                                                    <li>
+                                                        {% if collaborator.website %}
+                                                            <a target="_blank" href="{{ collaborator.website }}">
+                                                            {% endif %}
+                                                            <span class="uppercase bold">{{ collaborator.name }}</span>
+                                                            {% if collaborator.website %}
+                                                            </a>
+                                                        {% endif %}
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+
+                                    {% elseif (item.collaborators.length) %}
+
+                                        <div class="col-xs-offset-1 col-xs-9">
+                                            <div class="projects-rule"></div>
+                                            <h4 class="mb2">Collaborators</h4>
+                                            <ul>
+                                                {% for collaborator in item.collaborators %}
+
+                                                    <li>
+                                                        {% if collaborator.website %}
+                                                            <a target="_blank" href="{{ collaborator.website }}">
+                                                            {% endif %}
+                                                            <span class="uppercase bold">{{ collaborator.name }}</span>
+                                                            {% if collaborator.website %}
+                                                            </a>
+                                                        {% endif %}
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+
+                                    {% else %}
+
+                                        <div class="col-xs-offset-1 col-xs-9">
+                                            <div class="projects-rule"></div>
+                                            <h4 class="mb2">Sponsors</h4>
+                                            <ul>
+                                                {% for sponsor in item.sponsors %}
+                                                    <li>
+                                                        {% if sponsor.website %}
+                                                            <a target="_blank" href="{{ sponsor.website }}">
+                                                            {% endif %}
+                                                            <span class="uppercase bold">{{ sponsor.name }}</span>
+                                                            {% if sponsor.website %}
+                                                            </a>
+                                                        {% endif %}
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </section>
+            {% endif %}
 
-    {% endif %}
-                  </div>
-                  </div>
-                </div>
-        </div>
-      </section>
-  {% endif %}
+        </article>
 
-</article>
-
-{% endblock %}
+    {% endblock %}
