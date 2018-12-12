@@ -70,7 +70,7 @@
 
 <div id="update-{{ item.shortname|lower|replace(' ', '-', 'g') }}"
     class=" grid-tile col-xs-12 col-sm-6 col-lg-4 mb2"
-    data-publish-date="{{ item.publish_date }}"
+    data-publish-date="{{ item.publish_date }}">
 
     <a href="{{ url( item ) }}">
         <div class="project-tile-wrapper card-wrapper updates-wrapper" style="background: url({{ item.cover_image|imageSize(750,750)}}); background-size:cover; background-position:center center;">
