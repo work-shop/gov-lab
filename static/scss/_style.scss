@@ -759,7 +759,7 @@ hr {
     color:$dark;
 }
 
-.research-header, .standard-output-header, .individual-metadata-container {
+.research-header, .standard-output-header, .individual-metadata-container  {
 
     .download-button {
         border: 2px solid white;
@@ -769,6 +769,24 @@ hr {
         &:hover {
             background-color: white;
             color: $results-color;
+        }
+
+    }
+
+}
+
+
+.download-button-wrapper {
+
+    .download-button {
+        border: 2px solid $results-color;
+        padding: .5em 1em .5em 1em;
+        font-weight: bold;
+        color: $results-color;
+
+        &:hover {
+            background-color: $results-color;
+            color: white;
         }
 
     }
