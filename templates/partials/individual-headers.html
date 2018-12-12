@@ -1,3 +1,4 @@
+{# Create a header for the research individual page. #}
 {% macro research_header(item) %}
 
     {% set image = item.images|first%}
@@ -22,8 +23,7 @@
             <div class="row">
                 <div class="col-xs-offset-1 col-sm-offset-0 col-xs-8 col-sm-10 research-metadata individual-metadata">
                     {% for topic in item.topics %}
-                        <span class="bold">{{ topic.name }}</span>
-                        {% if !loop.last %},{% endif %}
+                        <span class="bold">{{ topic.name }}</span>{% if !loop.last %},{% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -32,14 +32,15 @@
 
 {% endmacro %}
 
+{# Create a header for the result individual page. #}
 {% macro result_header(item) %}
 
     {% set image = item.image %}
 
-    <div class="half individual-hero-image row" style="background-image:url('{{ image|imageCrop(1000,500) }}');"></div>
+    <div class="half individual-hero-image row {% if !image %}hidden-xs{%endif %}" style="background-image:url('{{ image|imageCrop(1000,500) }}');"></div>
 
     <div class="row individual-metadata-container">
-        <div class="col-sm-8 col-xs-10 col-xs-offset-1 result-metadata-box individual-metadata-box">
+        <div class="{% if image %}col-sm-8{% endif %} col-xs-10 col-xs-offset-1 result-metadata-box individual-metadata-box">
             <div class="row">
                 <div class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-12">
                     <span class="results-individual-label uppercase white bold">{{ item.output_type.name }}</span>
@@ -63,8 +64,7 @@
                     <span class="white bold">{{ item.publication_date|date('F Y') }}</span>
                     /
                     {% for author in item.authors %}
-                        <span class="bold">{{ author.name }}</span>
-                        {% if !loop.last %},{% endif %}
+                        <span class="bold">{{ author.name }}</span>{% if !loop.last %},{% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -82,7 +82,41 @@
 
 {% endmacro %}
 
-{% macro update_header(item) %}{% endmacro %}
+{# Create a header for the update individual page. #}
+{% macro update_header(item) %}
+
+    {% set image = item.cover_image %}
+
+    <div class="half individual-hero-image row" style="background-image:url('{{ image|imageCrop(1000,500) }}');"></div>
+
+    <div class="row individual-metadata-container">
+        <div class="col-sm-8 col-xs-10 col-xs-offset-1 update-metadata-box individual-metadata-box">
+            <div class="row">
+                <h2 class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-12 update-title individual-title">{{ item.name }}</h2>
+            </div>
+            <div class="row">
+                <div class="col-xs-offset-1 col-sm-offset-0 col-xs-8 col-sm-10">
+                    <span class="individual-title-divider">&nbsp;</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-offset-1 col-sm-offset-0 col-xs-8 col-sm-10">
+                    <p class="update-summary individual-summary">{{ item.summary }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-offset-1 col-sm-offset-0 col-xs-8 col-sm-10 update-metadata individual-metadata">
+                    <span class="white bold">{{ item.publish_date|date('F Y') }}</span>
+                    /
+                    {% for author in item.authors %}
+                        <span class="bold">{{ author.name }}</span>{% if !loop.last %},{% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endmacro %}
 
 <!-- <div class="row padded"> <div class="col-xs-offset-1 col-xs-10 centered-xs"> <h2 class="project-title bold">{{ item.name }}</h2> </div> </div> <div class="row mb2"> <div class="col-xs-offset-1 col-xs-10 centered-xs"> <h4
 class="project-summary">{{ item.summary }}</h4> </div> </div> <div class="row"> <div class="projects-rule"></div> </div> -->

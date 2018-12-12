@@ -61,12 +61,18 @@ $individual-offset: 4em;
 
 // Updates Related Definitions
 
-
+.update-metadata-box {
+    background-color: $updates-color;
+}
 
 
 
 
 @media (max-width: $xs-size) {
+
+    .individual-initial-column {
+        padding-top: 0px;
+    }
 
     .individual-metadata-container{
         position: relative;

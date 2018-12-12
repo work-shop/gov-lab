@@ -38,7 +38,7 @@
 
                 <div class="row">
 
-                    <div class="col-sm-12 bg-white pb2 pt0" style="padding-top:0px;">
+                    <div class="col-sm-12 bg-white pb2 individual-initial-column" style="padding-top:0px;">
 
                         {% if item.output_type.name == "Research Brief" || item.output_type.name == "Learning Case" %}
 
@@ -71,15 +71,17 @@
 
                         {% if item.file || item.link %}
                             {% if item.file %}
-                                <div class="col-xs-offset-1 col-xs-5 pb6 download-button-wrapper">
+                                <div class="col-xs-offset-1 col-xs-5 pb4 download-button-wrapper">
                                     <span class="download-button-container">
                                         <a href="{{ item.file.url }}" class="download-button mb1" target="_blank">Download</a>
                                     </span>
                                 </div>
                             {% endif %}
                             {% if item.link %}
-                                <div class="{% if !item.file %}col-xs-offset-6 {% endif %} col-xs-5 bg-white pb6 centered">
-                                    <a target="_blank" class="sync output-link" href="{{ item.link }}">View Link</a>
+                                <div class="col-xs-offset-2 col-xs-5 pb4 download-button-wrapper">
+                                    <span class="download-button-container">
+                                        <a href="{{ item.link }}" class="download-button mb1" target="_blank">View Link</a>
+                                    </span>
                                 </div>
                             {% endif %}
                         {% endif %}

@@ -1,117 +1,98 @@
-
 {% extends "templates/partials/base.html" %}
 
 {% import "templates/partials/row-cards.html" as row %}
 {% import "templates/partials/metadata-row.html" as m %}
 {% import "templates/partials/slideshare.html" as s %}
+{% import "templates/partials/individual-headers.html" as h %}
 
-{% block og_title %}{% parent %} - {{ item.name }}{% endblock %}
-{% block og_description %}{{ item.summary }}{% endblock %}
-{% block og_image %}{{ item.cover_image|imageCrop(1000,500) }}{% endblock %}
+{% block og_title %}{% parent %}
+    -
+    {{ item.name }}
+{% endblock %}
+{% block og_description %}{{ item.summary }}
+{% endblock %}
+{% block og_image %}{{ item.cover_image|imageCrop(1000,500) }}
+{% endblock %}
 
-{% block tw_title %}{% parent %} - {{ item.name }}{% endblock %}
-{% block tw_description %}{{ item.summary }}{% endblock %}
-{% block tw_image %}{{ item.cover_image|imageCrop(1000,500) }}{% endblock %}
+{% block tw_title %}{% parent %}
+    -
+    {{ item.name }}
+{% endblock %}
+{% block tw_description %}{{ item.summary }}
+{% endblock %}
+{% block tw_image %}{{ item.cover_image|imageCrop(1000,500) }}
+{% endblock %}
 
-{% block title %}{% parent %} - {{ item.name }}{% endblock %}
+{% block title %}{% parent %}
+    -
+    {{ item.name }}
+{% endblock %}
 
 {% block content %}
 
-<article class="news bg-light">
+    <article class="news bg-light">
 
-    <section id="news-story bg-light">
-        <div class="container-fluid">
-            <div class="row">
+        <section id="news-story bg-light">
+            <div class="container-fluid">
+                <div class="row">
 
-                <div class="col-sm-12 bg-white">
+                    <div class="col-sm-12 bg-white individual-initial-column">
 
-                    <div class="row padded">
-                        <div class="col-xs-offset-1 col-xs-10 centered-xs">
+                        {{ h.update_header(item) }}
 
-                            <h5 class="project-metadata bold">
-                            {% if item.publication_date %}
-                                {{ m.metadata_row( item.publication_date|date('F Y'), "", item.authors) }}
-                            {% else %}
-                                {{ m.metadata_row( item.publish_date|date('F Y'), "", item.authors) }}
-                            {% endif %}
-                            </h5>
-
-                            <div>
-                                <h2 class="project-title bold">{{ item.name }}</h2>
+                        {% if image.caption %}
+                            <div class="row mb2">
+                                <div class="col-sm-offset-1 col-sm-10">
+                                    <p class="caption medium centered italic p-min">{{ image.caption }}</p>
+                                </div>
                             </div>
+                        {% endif %}
 
-                            <div>
-                                <h4 class="project-summary">{{ item.summary }}</h4>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-
-                        <div class="projects-rule"></div>
-
-                    </div>
-
-                    {% set image = item.cover_image %}
-
-                    <div class="half individual-hero-image row {% if !image.caption %}mb2{% endif %}" style="background-image:url('{{ image|imageCrop(1000,500) }}');">
-
-                    </div>
-
-                    {% if image.caption %}
-                        <div class="row mb2">
-                            <div class="col-sm-offset-1 col-sm-10">
-                                <p class="caption medium centered italic p-min">{{ image.caption }}</p>
+                        <div class="row pb4">
+                            <div class="col-xs-offset-1 col-xs-10">
+                                <div class="wysiwyg">
+                                    {{ item.story|safe }}
+                                </div>
+                                {% if item.slideshare_embed %}
+                                    {{ s.slideshare( item.slideshare_embed ) }}
+                                {% endif %}
                             </div>
                         </div>
-                    {% endif %}
 
-                    <div class="row pb4">
-                        <div class="col-xs-offset-1 col-xs-10">
-                            <div class="wysiwyg">
-                                {{ item.story|safe }}
-                            </div>
-                            {% if item.slideshare_embed %}
-                                {{ s.slideshare( item.slideshare_embed ) }}
-                            {% endif %}
-                        </div>
                     </div>
 
                 </div>
-
             </div>
-        </div>
-    </section>
+        </section>
 
-  {% if ( item.related_projects.length || item.related_research.length || item.related_updates.length ) %}
-  <section id="project-related" class="bg-light">
-  <div class="container-fluid">
-        <div class="row">
+        {% if (item.related_projects.length || item.related_research.length || item.related_updates.length) %}
+            <section id="project-related" class="bg-light">
+                <div class="container-fluid">
+                    <div class="row">
 
-          <div class="col-sm-12 bg-white pb4">
-            <div class="row">
-              <div class="col-xs-offset-1 col-xs-10 mb2" >
-                <div class="projects-rule"></div>
-                <h4>Related Work</h4>
-              </div>
-            </div>
+                        <div class="col-sm-12 bg-white pb4">
+                            <div class="row">
+                                <div class="col-xs-offset-1 col-xs-10 mb2">
+                                    <div class="projects-rule"></div>
+                                    <h4>Related Work</h4>
+                                </div>
+                            </div>
 
-            <div class="row">
-            <ul class="mb2">
+                            <div class="row">
+                                <ul class="mb2">
 
-                {{ row.reverse_chronological( merge( item.related_research, item.related_projects, item.related_updates ) ) }}
+                                    {{ row.reverse_chronological( merge( item.related_research, item.related_projects, item.related_updates ) ) }}
 
-            </ul>
-            </div>
+                                </ul>
+                            </div>
 
-          </div>
+                        </div>
 
-        </div>
-  </div>
-  </section>
-  {% endif %}
+                    </div>
+                </div>
+            </section>
+        {% endif %}
 
-</article>
+    </article>
 
 {% endblock %}
