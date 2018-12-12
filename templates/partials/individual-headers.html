@@ -39,8 +39,8 @@
 
     <div class="half individual-hero-image row {% if !image %}hidden-xs{%endif %}" style="background-image:url('{{ image|imageCrop(1000,500) }}');"></div>
 
-    <div class="row individual-metadata-container">
-        <div class="{% if image %}col-sm-8{% endif %} col-xs-10 col-xs-offset-1 result-metadata-box individual-metadata-box">
+    <div class="row individual-metadata-container {% if !image %}truncated{%endif %}">
+        <div class="{% if image %}col-sm-8{% endif %} col-xs-10 col-xs-offset-1 result-metadata-box individual-metadata-box {% if !image %}truncated{%endif %}">
             <div class="row">
                 <div class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-12">
                     <span class="results-individual-label uppercase white bold">{{ item.output_type.name }}</span>

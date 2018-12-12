@@ -45,14 +45,14 @@
 
         <div class="project-tile-overlay card-tile-overlay result-tile-overlay {% if !item.image %}no-image{% endif %} p2">
                 <div class="">
-                    <h6 class="card-content-type"><span class="results-label uppercase white bold">{{ item.output_type.name }}</span></h6>
+                    <h6 class="card-content-type"><span class="results-label uppercase white bold">{% if item.evidencemap %}Data & Tools{% else %}{{ item.output_type.name }}{% endif %}</span></h6>
                 </div>
                 <div class="project-tile-title">
-                    <h5 class="project-tile-title-large hidden-xs">{{ item.name }}</h5>
+                    <h4 class="project-tile-title-large hidden-xs">{{ item.name }}</h3>
                     <h3 class="project-tile-title-large hidden-lg hidden-md hidden-sm visible-xs">{{ item.name }}</h3>
                 </div>
                 <h5 class="project-tile-topics white bold">
-                    <span class="">{{ item.publication_date|date('F Y') }}</span> /
+                    <span class="">{{ item.publication_date|date('F Y') }}</span> {% if !item.evidencemap %}/ {% endif %}
                     {% for author in item.authors %}
                         <span class="">{{ author.name }}</span>{% if !loop.last %}, {% endif %}
                     {% endfor %}
@@ -81,7 +81,7 @@
                     <h6 class="card-content-type"><span class="updates-label uppercase white bold">Update</span></h6>
                 </div>
                 <div class="project-tile-title">
-                    <h5 class="project-tile-title-large hidden-xs">{{ item.name }}</h5>
+                    <h3 class="project-tile-title-large hidden-xs">{{ item.name }}</h3>
                     <h3 class="project-tile-title-large hidden-lg hidden-md hidden-sm visible-xs">{{ item.name }}</h3>
                 </div>
                 <h5 class="project-tile-topics white bold">

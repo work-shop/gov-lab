@@ -1,4 +1,5 @@
-$individual-offset: 4em;
+$individual-offset: 10em;
+$individual-truncated-offset:2em;
 
 .individual-metadata-container{
     position: relative;
@@ -14,6 +15,16 @@ $individual-offset: 4em;
 
     padding:2em;
     margin-bottom: 3em;
+}
+
+.individual-metadata-container.truncated {
+    padding-bottom:$individual-truncated-offset;
+    margin-bottom:$individual-truncated-offset;
+}
+
+
+.individual-metadata-box.truncated {
+    bottom:-$individual-truncated-offset;
 }
 
 .individual-title {

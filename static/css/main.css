@@ -2344,15 +2344,22 @@ hr {
 
 .individual-metadata-container {
   position: relative;
-  padding-bottom: 4em;
-  margin-bottom: 4em; }
+  padding-bottom: 10em;
+  margin-bottom: 10em; }
 
 .individual-metadata-box {
   position: absolute;
-  bottom: -4em;
+  bottom: -10em;
   left: 0;
   padding: 2em;
   margin-bottom: 3em; }
+
+.individual-metadata-container.truncated {
+  padding-bottom: 2em;
+  margin-bottom: 2em; }
+
+.individual-metadata-box.truncated {
+  bottom: -2em; }
 
 .individual-title {
   font-weight: bold;
@@ -2426,6 +2433,9 @@ hr {
 
 .project-tile-title {
   margin-top: 1em; }
+
+.project-tile-title-large {
+  font-size: 1.5em; }
 
 .project-tile-topics {
   position: absolute;
