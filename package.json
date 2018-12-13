@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git://github.com/webhook/webhook-generate.git"
   },
+  "scripts": {
+    "deploy-do": "./.deploy-do"
+  },
   "author": "Webhook",
   "license": "MIT",
   "bugs": {

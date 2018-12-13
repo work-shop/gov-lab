@@ -1,0 +1,3 @@
+#!/bin/bash
+
+scp -r .build/* root@wsri.host:/var/www/mitgovlab.org/
