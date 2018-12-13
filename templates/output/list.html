@@ -1,6 +1,7 @@
 {% import "templates/partials/grid-cards.html" as o %}
 {% import "templates/partials/evidence-gap-card.html" as ev %}
 {% import "templates/partials/filters.html" as f %}
+{% import "templates/partials/alert-banner.html" as alert %}
 
 {% import "templates/partials/list-header.html" as list %}
 
@@ -19,6 +20,8 @@
 {% block content %}
 
 {% set output = cms.output|sort('publication_date', true) %}
+
+{{ alert.banner() }}
 
 {{ list.header('output', output_name, cms.about.research_image, cms.about.output_intro_callout, cms.about.output_intro_text, cms.about.research_image_caption ) }}
 

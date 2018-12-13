@@ -5,6 +5,7 @@
 {% import "templates/partials/list-header.html" as list %}
 
 {% import "templates/partials/updates-card.html" as u %}
+{% import "templates/partials/alert-banner.html" as alert %}
 
 {% block og_title %}{% parent %} - {{ news_name }}{% endblock %}
 {% block og_description %}{{ cms.about.updates_intro_text }}{% endblock %}
@@ -19,6 +20,8 @@
 
 
 {% block content %}
+
+{{ alert.banner() }}
 
 {{ list.header( 'news', news_name, cms.about.news_image, cms.about.updates_intro_callout, cms.about.updates_intro_text, cms.about.news_image_caption ) }}
 

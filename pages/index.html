@@ -2,6 +2,7 @@
 {% import "templates/partials/index-content-overview.html" as o %}
 {% import "templates/partials/row-cards.html" as cards %}
 {% import "templates/partials/grid-cards.html" as grid %}
+{% import "templates/partials/alert-banner.html" as alert %}
 
 {% extends "templates/partials/base.html" %}
 
@@ -12,6 +13,8 @@
 {% block title %}{% parent %}{% endblock %}
 
 {% block content %}
+
+{{ alert.banner() }}
 
 <section id="home-introduction" class="bg-light block">
 

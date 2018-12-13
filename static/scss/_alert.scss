@@ -1,0 +1,29 @@
+#alert-banner {
+    background-color: $medium-dark;
+    padding:.75em;
+}
+
+.alert-big-text {
+    font-weight: bold;
+    color:white;
+
+    * {
+        vertical-align: middle;
+    }
+}
+
+.alert-text {
+    color:white;
+
+    margin:0em;
+
+    a {
+        color:white;
+        border-bottom: 1px solid white;
+
+        &:hover {
+            border-bottom: 3px solid white;
+        }
+
+    }
+}

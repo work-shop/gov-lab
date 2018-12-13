@@ -1,4 +1,4 @@
-$individual-offset: 10em;
+$individual-offset: 8em;
 $individual-truncated-offset:2em;
 
 .individual-metadata-container{
@@ -30,19 +30,19 @@ $individual-truncated-offset:2em;
 .individual-title {
     font-weight: bold;
     color: white;
-    margin-bottom: .5em;
+    margin-bottom: .25em;
 }
 
 .individual-title-divider {
     display: block;
     width:100px;
     border-bottom: 5px solid $white;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 .individual-summary {
     color: white;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 .individual-metadata {
@@ -55,6 +55,12 @@ $individual-truncated-offset:2em;
 // Research Related Definitions
 .research-metadata-box {
     background-color: $research-color;
+}
+
+.research-individual-label {
+    background-color: white;
+    color:$research-color;
+    padding:5px;
 }
 
 
@@ -74,6 +80,12 @@ $individual-truncated-offset:2em;
 
 .update-metadata-box {
     background-color: $updates-color;
+}
+
+.updates-individual-label {
+    background-color: white;
+    color:$updates-color;
+    padding:5px;
 }
 
 
@@ -109,4 +121,13 @@ $individual-truncated-offset:2em;
         margin-bottom: 1em;
     }
 
+}
+
+@media ( min-width: $lg-size ) {
+    .individual-metadata-box {
+        width:980px;
+        left:50%;
+        margin-left:0px;
+        transform:translateX(-50%);
+    }
 }

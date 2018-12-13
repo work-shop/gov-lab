@@ -2,6 +2,8 @@
 
 {% import "templates/partials/filters.html" as f %}
 
+{% import "templates/partials/alert-banner.html" as alert %}
+
 {% extends "templates/partials/base.html" %}
 
 {% block og_title %}{% parent %} - {{ projects_name }}{% endblock %}
@@ -13,6 +15,8 @@
 {% block content %}
 
 {% set projects = cms.projectsorder.projects_order %}
+
+{{ alert.banner() }}
 
 <section id="projects-introduction" class="bg-light block half-lax crop">
 

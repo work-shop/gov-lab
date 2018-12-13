@@ -31,12 +31,14 @@
 }
 
 .project-tile-title-large {
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 .project-tile-topics {
     position: absolute;
     bottom: 1em;
+
+    font-size: 0.8em;
 
     width: 80%;
 
@@ -153,5 +155,41 @@
     .updates-label {
         background-color: $light;
         color: $updates-color;
+    }
+}
+
+@media ( max-width: $xs-size ) {
+    .project-tile-title-large {
+        font-size: 2em;
+    }
+}
+
+@media ( min-width: $xs-size ) and ( max-width: $sm-size ) {
+    .project-tile-title-large {
+        font-size: 1.5em;
+    }
+}
+
+@media ( min-width: $sm-size ) and ( max-width: $md-size ) {
+    .project-tile-title-large {
+        font-size: 2em;
+    }
+}
+
+@media ( min-width: $md-size ) and ( max-width: $lg-size ) {
+    .project-tile-title-large {
+        font-size: 1em;
+    }
+}
+
+@media ( min-width: $lg-size ) {
+    .project-tile-title-large {
+        font-size: 1em;
+    }
+}
+
+@media ( min-width: $lg-size + 400px ) {
+    .project-tile-title-large {
+        font-size: 1.25em;
     }
 }

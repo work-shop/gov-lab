@@ -14,8 +14,7 @@
                     <h6 class="card-content-type"><span class="research-label uppercase white bold">Research</span></h6>
                 </div>
                 <div class="project-tile-title">
-                    <h3 class="project-tile-title-large hidden-lg">{{ item.name }}</h3>
-                    <h4 class="project-tile-title-large visible-lg hidden-md hidden-sm hidden-xs">{{ item.name }}</h4>
+                    <h3 class="project-tile-title-large">{{ item.name }}</h3>
                 </div>
                 <h5 class="project-tile-topics white bold">
                     {% for topic in item.topics %}
@@ -48,8 +47,7 @@
                     <h6 class="card-content-type"><span class="results-label uppercase white bold">{% if item.evidencemap %}Data & Tools{% else %}{{ item.output_type.name }}{% endif %}</span></h6>
                 </div>
                 <div class="project-tile-title">
-                    <h4 class="project-tile-title-large hidden-xs">{{ item.name }}</h3>
-                    <h3 class="project-tile-title-large hidden-lg hidden-md hidden-sm visible-xs">{{ item.name }}</h3>
+                    <h3 class="project-tile-title-large">{{ item.name }}</h3>
                 </div>
                 <h5 class="project-tile-topics white bold">
                     <span class="">{{ item.publication_date|date('F Y') }}</span> {% if !item.evidencemap %}/ {% endif %}
@@ -81,8 +79,7 @@
                     <h6 class="card-content-type"><span class="updates-label uppercase white bold">Update</span></h6>
                 </div>
                 <div class="project-tile-title">
-                    <h3 class="project-tile-title-large hidden-xs">{{ item.name }}</h3>
-                    <h3 class="project-tile-title-large hidden-lg hidden-md hidden-sm visible-xs">{{ item.name }}</h3>
+                    <h3 class="project-tile-title-large">{{ item.name }}</h3>
                 </div>
                 <h5 class="project-tile-topics white bold">
                     <span class="white">{{ item.publish_date|date('F Y') }}</span> /

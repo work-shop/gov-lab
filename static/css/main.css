@@ -1225,7 +1225,7 @@ h1, .h1, h2, .h2, h3, .h3, .wysiwyg h1, h4, .h4, .wysiwyg h2, h5, .h5, .wysiwyg 
   font-weight: 500; }
 
 h1, .h1 {
-  font-size: 3em;
+  font-size: 2.75em;
   line-height: 1.5em; }
 
 h2, .h2 {
@@ -2344,12 +2344,12 @@ hr {
 
 .individual-metadata-container {
   position: relative;
-  padding-bottom: 10em;
-  margin-bottom: 10em; }
+  padding-bottom: 8em;
+  margin-bottom: 8em; }
 
 .individual-metadata-box {
   position: absolute;
-  bottom: -10em;
+  bottom: -8em;
   left: 0;
   padding: 2em;
   margin-bottom: 3em; }
@@ -2364,17 +2364,17 @@ hr {
 .individual-title {
   font-weight: bold;
   color: white;
-  margin-bottom: .5em; }
+  margin-bottom: .25em; }
 
 .individual-title-divider {
   display: block;
   width: 100px;
   border-bottom: 5px solid #ffffff;
-  margin-bottom: 2em; }
+  margin-bottom: 1em; }
 
 .individual-summary {
   color: white;
-  margin-bottom: 2em; }
+  margin-bottom: 1em; }
 
 .individual-metadata {
   font-weight: bold;
@@ -2382,6 +2382,11 @@ hr {
 
 .research-metadata-box {
   background-color: #cc3333; }
+
+.research-individual-label {
+  background-color: white;
+  color: #cc3333;
+  padding: 5px; }
 
 .result-metadata-box {
   background-color: #363333; }
@@ -2393,6 +2398,11 @@ hr {
 
 .update-metadata-box {
   background-color: #357ca0; }
+
+.updates-individual-label {
+  background-color: white;
+  color: #357ca0;
+  padding: 5px; }
 
 @media (max-width: 767px) {
   .individual-initial-column {
@@ -2411,6 +2421,13 @@ hr {
     margin-bottom: 1em; }
   .individual-summary {
     margin-bottom: 1em; } }
+
+@media (min-width: 1201px) {
+  .individual-metadata-box {
+    width: 980px;
+    left: 50%;
+    margin-left: 0px;
+    transform: translateX(-50%); } }
 
 .card-wrapper {
   width: 100%;
@@ -2435,11 +2452,12 @@ hr {
   margin-top: 1em; }
 
 .project-tile-title-large {
-  font-size: 1.5em; }
+  font-size: 1em; }
 
 .project-tile-topics {
   position: absolute;
   bottom: 1em;
+  font-size: 0.8em;
   width: 80%;
   padding-right: 2em; }
 
@@ -2514,6 +2532,49 @@ hr {
   .updates-tile-overlay:hover .updates-label {
     background-color: #f1f1f1;
     color: #357ca0; }
+
+@media (max-width: 767px) {
+  .project-tile-title-large {
+    font-size: 2em; } }
+
+@media (min-width: 767px) and (max-width: 992px) {
+  .project-tile-title-large {
+    font-size: 1.5em; } }
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .project-tile-title-large {
+    font-size: 2em; } }
+
+@media (min-width: 1200px) and (max-width: 1201px) {
+  .project-tile-title-large {
+    font-size: 1em; } }
+
+@media (min-width: 1201px) {
+  .project-tile-title-large {
+    font-size: 1em; } }
+
+@media (min-width: 1601px) {
+  .project-tile-title-large {
+    font-size: 1.25em; } }
+
+#alert-banner {
+  background-color: #555555;
+  padding: .75em; }
+
+.alert-big-text {
+  font-weight: bold;
+  color: white; }
+  .alert-big-text * {
+    vertical-align: middle; }
+
+.alert-text {
+  color: white;
+  margin: 0em; }
+  .alert-text a {
+    color: white;
+    border-bottom: 1px solid white; }
+    .alert-text a:hover {
+      border-bottom: 3px solid white; }
 
 /* Slick slider useful styles for compnents like dots and arrows */
 .slick-slider {

@@ -2,6 +2,8 @@
 
 {% import "templates/partials/list-header.html" as list %}
 
+{% import "templates/partials/alert-banner.html" as alert %}
+
 {% extends "templates/partials/base.html" %}
 
 {% block og_title %}{% parent %} - {{ cms.about.name }}{% endblock %}
@@ -21,6 +23,8 @@
         <div class="row"><img src="{{ cms.about.about_image|imageSize(2500,500)}}" /></div>
     </div>
 </section> -->
+
+{{ alert.banner() }}
 
 {{ list.header( 'about', "About", cms.about.about_image, "", "", cms.about.about_image_caption ) }}
 
