@@ -40,15 +40,7 @@
 
                     <div class="col-sm-12 bg-white pb2 individual-initial-column" style="padding-top:0px;">
 
-                        {% if item.output_type.name == "Research Brief" || item.output_type.name == "Learning Case" %}
-
-                            {{ o.output_research_header( item ) }}
-
-                        {% else %}
-
-                            {{ h.result_header( item ) }}
-
-                        {% endif %}
+                        {{ h.result_header( item ) }}
 
                         {% if image.caption %}
                             <div class="row mb2">

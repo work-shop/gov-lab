@@ -7,7 +7,6 @@
 
     <a href="{{ url( item ) }}">
         <div class="project-tile-wrapper card-wrapper research-wrapper" style="background: url({{ item.images|first|imageSize(750,750)}}); background-size:cover; background-position:center center;">
-            <!-- <img class="project-tile-image card-background-image" src="{{ item.images|first|imageCrop(500, 350) }}" /> -->
 
             <div class="project-tile-overlay card-tile-overlay research-tile-overlay p2">
                 <div class="">
@@ -40,7 +39,6 @@
 
     <a href="{{ url( item ) }}">
         <div class="project-tile-wrapper card-wrapper results-wrapper" {% if item.image %} style="background: url({{ item.image|imageSize(750,750)}}); background-size:cover; background-position:center center;"{% endif %} >
-            <!--  -->
 
         <div class="project-tile-overlay card-tile-overlay result-tile-overlay {% if !item.image %}no-image{% endif %} p2">
                 <div class="">
@@ -72,7 +70,6 @@
 
     <a href="{{ url( item ) }}">
         <div class="project-tile-wrapper card-wrapper updates-wrapper" style="background: url({{ item.cover_image|imageSize(750,750)}}); background-size:cover; background-position:center center;">
-            <!-- <img class="project-tile-image card-background-image" src="{{ item.images|first|imageCrop(500, 350) }}" /> -->
 
             <div class="project-tile-overlay card-tile-overlay updates-tile-overlay p2">
                 <div class="">

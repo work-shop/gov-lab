@@ -1,5 +1,6 @@
 {% import "templates/partials/subscribe.html" as s %}
 {% import "templates/partials/metadata-row.html" as metadata %}
+{% import "templates/partials/individual-headers.html" as h %}
 
 {% import "templates/partials/list-header.html" as list %}
 
@@ -25,46 +26,20 @@
 
 {% block content %}
 
-    <section id="evidence-map-intro" class="bg-light">
-        <div class="row">
-            <div class="col-sm-12 bg-gray pb0 pt0" style="padding-top:0px;">
+    {% set EGMap = {
+        name: cms.about.evidence_gap_map_name,
+        slug: "evidence-gap-map",
+        image: cms.about.evidence_gap_map_thumbnail_image,
+        summary: cms.about.evidence_gap_map_description,
+        publication_date: cms.about.evidence_gap_map_publication_date,
+        authors: [{name: "Soubhik Barari"}],
+        output_type: { name: "Data & Tools" },
+        evidencemap: true
+    } %}
 
-                {% set EGMap = {
-                    name: cms.about.evidence_gap_map_name,
-                    slug: "evidence-gap-map",
-                    summary: cms.about.evidence_gap_map_description,
-                    publication_date: cms.about.evidence_gap_map_publication_date,
-                    authors: ["people -KPThWCcCVv7HWMQ2Snh"],
-                    output_type: "outputtypes -L9Ax21AdgJ2Sxd2dRuI",
-                    evidencemap: true
-                } %}
-                <div class="row padded standard-output-header eg-output-header">
+    {{ h.result_header( EGMap ) }}
 
-                    <div class="image-mask"></div>
-
-                    <div class="col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-9 centered-xs pt1">
-                        <h5 class="project-metadata bold white">
-                            <span class="metadata-date">{{ EGMap.publication_date|date('F Y') }} , </span><span>Data & Tools</span>
-                        </h5>
-                        <div>
-                            <h3 class="project-title white bold mb1">{{ EGMap.name }}{% if item.subtitle%}:{% endif %}</h3>
-                            {% if EGMap.subtitle%}<h3 class="italic">{{ EGMap.subtitle }}</h3>{% endif %}
-                            {% if EGMap.file %}<span class="download-button-container"><a href="{{ EGMap.file.url }}" class="white download-button mb1" target="_blank">Download</a></span>{% endif %}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="projects-rule standard-output-rule"></div>
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="evidence-map" class="bg-light pb2" aside-enter>
+    <section id="evidence-map" class="pb2">
         <div class="row pt1 pb2">
           <div class="col-xs-offset-1 col-xs-10">
               <div class="wysiwyg">

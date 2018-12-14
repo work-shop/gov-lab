@@ -67,10 +67,11 @@
             <div class="row">
                 <div class="col-xs-offset-1 col-sm-offset-0 col-xs-8 col-sm-10 result-metadata individual-metadata">
                     <span class="white bold">{{ item.publication_date|date('F Y') }}</span>
-                    /
-                    {% for author in item.authors %}
-                        <span class="bold">{{ author.name }}</span>{% if !loop.last %},{% endif %}
-                    {% endfor %}
+                    {% if !item.evidencemap %} /
+                        {% for author in item.authors %}
+                            <span class="bold">{{ author.name }}</span>{% if !loop.last %},{% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
             {% if item.file %}
