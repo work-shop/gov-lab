@@ -32,13 +32,18 @@
 
 {% macro result( item ) %}
 
+{% set image = item.image %}
+{% if item.evidencemap %}
+    {% set image = cms.about.evidence_gap_map_header_image %}
+{% endif %}
+
 <div id="result-{{ item.shortname|lower|replace(' ', '-', 'g') }}"
     class=" grid-tile col-xs-12 col-sm-6 col-lg-4 mb2"
     data-publish-date="{{ item.publish_date }}"
     data-sort-value="{% for value in merge( item.research_topics, item.output_type ) %}{{ value.name|lower|replace(' ', '-', 'g') }}{% endfor %}">
 
     <a href="{{ url( item ) }}">
-        <div class="project-tile-wrapper card-wrapper results-wrapper" {% if item.image %} style="background: url({{ item.image|imageSize(750,750)}}); background-size:cover; background-position:center center;"{% endif %} >
+        <div class="project-tile-wrapper card-wrapper results-wrapper" {% if item.image %} style="background: url({{ image|imageSize(750,750)}}); background-size:cover; background-position:center center;"{% endif %} >
 
         <div class="project-tile-overlay card-tile-overlay result-tile-overlay {% if !item.image %}no-image{% endif %} p2">
                 <div class="">
